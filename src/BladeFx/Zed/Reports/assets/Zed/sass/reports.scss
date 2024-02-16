@@ -1,0 +1,50 @@
+.category-sidebar {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0.125rem 0.125rem 0.313rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 70vh;
+
+    &__list-item {
+        width: 100%;
+        transition: all 100ms ease-in-out;
+
+        &:nth-child(n+3) > &--text {
+            margin-left: 2rem;
+        }
+
+        &--text {
+            padding: 1rem;
+        }
+
+        &--title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.4rem;
+            user-select: none;
+        }
+
+        &--active {
+            background-color: #19aa8d;
+            color: white;
+        }
+
+        &:hover {
+            background-color: #19aa8d;
+            cursor: pointer;
+            color: white;
+        }
+    }
+}
+
+.toggle-icon {
+    color:white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+    &--active {
+        color: black;
+    }
+}

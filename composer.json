@@ -1,23 +1,45 @@
 {
-    "name": "xiphias/composer-package-creation-template",
+    "name": "xiphias/bfx-reports",
     "description": "This is the template for developing and testing creation of composer packages",
     "autoload": {
         "psr-4": {
-            "Xiphias\\": "src/Xiphias"
+            "BladeFx\\": "src/BladeFx"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "XiphiasTest\\": "tests/XiphiasTest/"
+            "BladeFxTests\\": "tests/BladeFxTests/"
         }
     },
     "authors": [
         {
             "name": "Filip Gojković",
             "email": "filip.gojkovic@xiphias.hr"
+        },
+        {
+            "name": "Domagoj Križanec",
+            "email": "domagoj.krizanec@xiphias.hr"
+        },
+        {
+            "name": "Nino Hasl",
+            "email": "nino.hasl@xiphias.hr"
+        },
+        {
+            "name": "Javor Novosel",
+            "email": "javor.novosel@xiphias.hr"
+        },
+        {
+            "name": "Alen Valek",
+            "email": "alen.valek@xiphias.hr"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=8.0",
+        "spryker/session": "*",
+        "spryker/kernel": "^3.72.0",
+        "spryker/acl": "^3.13.0",
+        "spryker/translator": "^1.9.1"
+    },
     "require-dev": {
         "spryker/code-sniffer": "*",
         "spryker/container": "*",

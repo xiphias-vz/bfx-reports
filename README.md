@@ -7,7 +7,7 @@ Template for creating composer package.
 ## Installation
 
 ```
-composer require xiphias/name-of-your-package
+composer require xiphias/bfx-reports
 ```
 
 ## Documentation

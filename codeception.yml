@@ -1,12 +1,13 @@
 namespace: SprykerTest
-include:
-  - tests/XiphiasTest/Zed/ZedModuleTemplate
+include: []
+
 paths:
   tests: tests/
   output: tests/_output/
   data: tests/_data/
   support: tests/_support/
   envs: tests/_envs/
+
 settings:
   suite_class: \PHPUnit\Framework\TestSuite
   colors: true

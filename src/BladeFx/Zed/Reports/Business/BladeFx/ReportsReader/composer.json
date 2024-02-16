@@ -1,0 +1,14 @@
+{
+    "name": "vendor_name/ReportsReader",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "valek",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+    }
+}
