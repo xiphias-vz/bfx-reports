@@ -36,7 +36,7 @@
     "require": {
         "php": ">=8.0",
         "spryker/session": "*",
-        "spryker/kernel": "^3.72.0",
+        "spryker/kernel": "^3.7.0",
         "spryker/acl": "^3.13.0",
         "spryker/translator": "^1.9.1"
     },
