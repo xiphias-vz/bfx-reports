@@ -15,6 +15,8 @@ use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
 use Psr\Http\Message\RequestInterface;
@@ -136,6 +138,38 @@ class RequestManager implements RequestManagerInterface
         BladeFxGetReportByFormatRequestTransfer $requestTransfer,
     ): RequestInterface {
         $validator = $this->requestFactory->createReportByFormatRequestValidator();
+        $this->validateRequest($validator, $requestTransfer);
+
+        return $this->requestBuilder->buildRequest($resource, $requestTransfer);
+    }
+
+    /**
+     * @param string $resource
+     * @param \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $requestTransfer
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    public function getReportParamFormRequest(
+        string $resource,
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+    ): RequestInterface {
+        $validator = $this->requestFactory->createReportParamFormRequestValidator();
+        $this->validateRequest($validator, $requestTransfer);
+
+        return $this->requestBuilder->buildRequest($resource, $requestTransfer);
+    }
+
+    /**
+     * @param string $resource
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    public function getReportPreview(
+        string $resource,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+    ): RequestInterface {
+        $validator = $this->requestFactory->createReportPreviewRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
 
         return $this->requestBuilder->buildRequest($resource, $requestTransfer);

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Communication\Mapper;
 
+use BladeFx\Shared\Reports\ReportsConstants;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,8 +23,9 @@ class ParameterMapper
     public function mapParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer
     {
         return (new BladeFxParameterTransfer())
-            ->setParamName($request->query->get('paramName'))
-            ->setParamValue($request->query->get('paramValue'))
+            ->setParamName($request->query->get(ReportsConstants::PARAMETER_NAME))
+            ->setParamValue($request->query->get(ReportsConstants::PARAMETER_VALUE))
+            ->setReportId((int)$request->query->get('report_id'))
             ->setSqlDbType('');
     }
 }

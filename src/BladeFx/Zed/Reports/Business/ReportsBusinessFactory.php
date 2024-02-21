@@ -14,6 +14,8 @@ use BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticator;
 use BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReader;
 use BladeFx\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReaderInterface;
+use BladeFx\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReader;
+use BladeFx\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReaderInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReader;
 use BladeFx\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReaderInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\ReportListReader\BladeFxReportListReader;
@@ -26,6 +28,7 @@ use BladeFx\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessor;
 use BladeFx\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
+use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
 use BladeFx\Zed\Reports\ReportsDependencyProvider;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
@@ -33,6 +36,7 @@ use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
 
 /**
  * @method \BladeFx\Zed\Reports\ReportsConfig getConfig()
+ * @method \BladeFx\Zed\Reports\Business\ReportsFacade getFacade();
  */
 class ReportsBusinessFactory extends AbstractBusinessFactory
 {
@@ -145,19 +149,6 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \BladeFx\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReaderInterface
-     */
-    public function createBladeFxReportReader(): BladeFxReportByFormatReaderInterface
-    {
-        return new BladeFxReportByFormatReader(
-            $this->createBladeFxAuthenticator(),
-            $this->getBladeFxClient(),
-            $this->getSessionClient(),
-            $this->getConfig(),
-        );
-    }
-
-    /**
      * @return \BladeFx\Zed\Reports\Business\BladeFx\ReportListReader\BladeFxReportListReaderInterface
      */
     public function createBladeFxReportListReader(): BladeFxReportListReaderInterface
@@ -180,6 +171,33 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getBladeFxClient(),
             $this->getSessionClient(),
             $this->getConfig(),
+        );
+    }
+
+    /**
+     * @return \BladeFx\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReaderInterface
+     */
+    public function createBladeFxPreviewReader(): BladeFxPreviewReaderInterface
+    {
+        return new BladeFxPreviewReader(
+            $this->getBladeFxClient(),
+            $this->createTokenResolver(),
+            $this->getConfig(),
+        );
+    }
+
+    /**
+     * @param \BladeFx\Zed\Reports\Business\ReportsFacadeInterface $facade
+     * @param array|null $params
+     *
+     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
+     */
+    public function createSalesReportsTable(ReportsFacadeInterface $facade, ?array $params = []): SalesReportsTable
+    {
+        return new SalesReportsTable(
+            $facade,
+            $this->getConfig(),
+            $params,
         );
     }
 }

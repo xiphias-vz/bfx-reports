@@ -17,6 +17,10 @@ use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
@@ -69,17 +73,6 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer $requestTransfer
-     *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer
-     */
-    public function sendGetReportParameterListRequest(
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
-    ): BladeFxGetReportParameterListResponseTransfer {
-        return $this->getFactory()->createApiHandler()->getParameterList($requestTransfer);
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
@@ -88,5 +81,37 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
         BladeFxGetReportByFormatRequestTransfer $requestTransfer,
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->getFactory()->createApiHandler()->getReportByFormat($requestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function sendGetReportParamFormRequest(BladeFxGetReportParamFormRequestTransfer $requestTransfer): BladeFxGetReportParamFormResponseTransfer
+    {
+        return $this->getFactory()->createApiHandler()->getReportParamForm($requestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     */
+    public function sendGetReportPreviewRequest(
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+    ): BladeFxGetReportPreviewResponseTransfer {
+        return $this->getFactory()->createApiHandler()->getReportPreview($requestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer
+     */
+    public function sendGetReportParameterListRequest(
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+    ): BladeFxGetReportParameterListResponseTransfer {
+        return $this->getFactory()->createApiHandler()->getParameterList($requestTransfer);
     }
 }

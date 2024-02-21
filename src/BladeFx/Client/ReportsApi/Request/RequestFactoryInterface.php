@@ -69,6 +69,11 @@ interface RequestFactoryInterface
     public function createReportByFormatRequestBuilder(): RequestBuilderInterface;
 
     /**
+     * @return \BladeFx\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createReportPreviewRequestBuilder(): RequestBuilderInterface;
+
+    /**
      * @return \BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface
      */
     public function createReportByFormatRequestValidator(): RequestValidatorInterface;
@@ -77,4 +82,19 @@ interface RequestFactoryInterface
      * @return \BladeFx\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface
      */
     public function createRequestBodyFormatter(): RequestBodyFormatterInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createReportParamFormRequestBuilder(): RequestBuilderInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createReportParamFormRequestValidator(): RequestValidatorInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createReportPreviewRequestValidator(): RequestValidatorInterface;
 }

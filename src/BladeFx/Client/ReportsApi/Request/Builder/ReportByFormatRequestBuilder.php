@@ -11,7 +11,6 @@ namespace BladeFx\Client\ReportsApi\Request\Builder;
 
 use BladeFx\Client\ReportsApi\ReportsApiConfig;
 use BladeFx\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
@@ -63,7 +62,10 @@ class ReportByFormatRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        $headers = $this->addAuthHeader($requestTransfer);
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $reportByFormatRequestTransfer */
+        $reportByFormatRequestTransfer = $requestTransfer;
+
+        $headers = $this->addAuthHeader($reportByFormatRequestTransfer->getToken());
         $headers['AcceptEncoding'] = ['*'];
         $headers['accept'] = ['text/plain'];
 
@@ -73,30 +75,28 @@ class ReportByFormatRequestBuilder extends AbstractRequestBuilder
     /**
      * @param string $resource
      * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
      *
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function buildRequest(string $resource, AbstractTransfer $requestTransfer, ?BladeFxParameterTransfer $parameterTransfer = null): RequestInterface
+    public function buildRequest(string $resource, AbstractTransfer $requestTransfer): RequestInterface
     {
         $uri = $this->buildUri($resource);
         $headers = $this->getCombinedHeaders($requestTransfer);
-        $encodedData = $this->getEncodedData($requestTransfer, $parameterTransfer);
+        $encodedData = $this->getEncodedData($requestTransfer);
 
         return new Request($this->getMethodName(), $uri, $headers, $encodedData);
     }
 
     /**
      * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
      *
      * @return string
      */
-    protected function getEncodedData(AbstractTransfer $requestTransfer, ?BladeFxParameterTransfer $parameterTransfer = null): string
+    protected function getEncodedData(AbstractTransfer $requestTransfer): string
     {
-        $data = $requestTransfer->toArray(true, true);
-
-        $data = $this->bodyFormatter->formatDataBeforeEncoding($data, $parameterTransfer);
+        $data = $this->bodyFormatter->formatDataBeforeEncoding(
+            $requestTransfer,
+        );
 
         return $this->utilEncodingService->encodeJson($data);
     }

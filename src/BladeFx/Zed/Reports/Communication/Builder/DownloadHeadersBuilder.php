@@ -26,27 +26,20 @@ class DownloadHeadersBuilder implements DownloadHeadersBuilderInterface
     /**
      * @param string $fileFormat
      *
-     * @return string|null
+     * @return string
      */
-    protected function getApplicationType(string $fileFormat): string|null
+    protected function getApplicationType(string $fileFormat): string
     {
-        switch ($fileFormat) {
-            case 'pdf':
-                return 'application/pdf';
-            case 'csv':
-                return 'application/csv';
-            case 'pptx':
-                return 'application/pptx';
-            case 'docx':
-                return 'application/docs';
-            case 'xlsx':
-                return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-            case 'mht':
-                return 'application/mht';//provjeriti
-            case 'rtf':
-                return 'application/rtf';
-            case 'jpg':
-                return 'application/jpg';//točan format?
-        }
+        return match ($fileFormat) {
+            'pdf' => 'application/pdf',
+            'csv' => 'application/csv',
+            'pptx' => 'application/pptx',
+            'docx' => 'application/docs',
+            'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'mht' => 'application/mht',
+            'rtf' => 'application/rtf',
+            'jpg' => 'application/jpg',
+            default => 'error',
+        };
     }
 }

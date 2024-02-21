@@ -22,6 +22,11 @@ class Role extends SprykerRole
     protected $queryContainer;
 
     /**
+     * @var \BladeFx\Zed\Acl\Business\Writer\BladeFxRoleWriterInterface
+     */
+    protected BladeFxRoleWriterInterface $bfxRoleWriter;
+
+    /**
      * @param \Spryker\Zed\Acl\Business\Model\GroupInterface $group
      * @param \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface $queryContainer
      * @param array $aclRolesExpanderPlugins

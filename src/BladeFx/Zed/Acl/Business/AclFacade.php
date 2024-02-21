@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\RoleTransfer;
 use Spryker\Zed\Acl\Business\AclFacade as SprykerAclFacade;
 
 /**
- * @method \Spryker\Zed\Acl\Business\AclBusinessFactory getFactory()
+ * @method \BladeFx\Zed\Acl\Business\AclBusinessFactory getFactory()
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
  */

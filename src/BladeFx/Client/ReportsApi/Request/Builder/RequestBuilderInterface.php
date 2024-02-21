@@ -7,19 +7,19 @@
 
 namespace BladeFx\Client\ReportsApi\Request\Builder;
 
-use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Psr\Http\Message\RequestInterface;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface RequestBuilderInterface
 {
     /**
      * @param string $resource
-     * @param \Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
      *
      * @return \Psr\Http\Message\RequestInterface
      */
     public function buildRequest(
         string $resource,
-        BladeFxGetReportsListRequestTransfer $requestTransfer,
+        AbstractTransfer $requestTransfer,
     ): RequestInterface;
 }

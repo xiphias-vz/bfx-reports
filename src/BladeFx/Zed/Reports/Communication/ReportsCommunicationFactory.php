@@ -11,7 +11,6 @@ namespace BladeFx\Zed\Reports\Communication;
 
 use BladeFx\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use BladeFx\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
-use BladeFx\Zed\Reports\Communication\Formatter\ParameterFormatter;
 use BladeFx\Zed\Reports\Communication\Mapper\ParameterMapper;
 use BladeFx\Zed\Reports\Communication\Table\ReportsTable;
 use BladeFx\Zed\Reports\ReportsDependencyProvider;
@@ -49,14 +48,6 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     public function createDownloadHeadersBuilder(): DownloadHeadersBuilderInterface
     {
         return new DownloadHeadersBuilder();
-    }
-
-    /**
-     * @return \BladeFx\Zed\Reports\Communication\Formatter\ParameterFormatter
-     */
-    public function createParameterFormatter(): ParameterFormatter
-    {
-        return new ParameterFormatter();
     }
 
     /**

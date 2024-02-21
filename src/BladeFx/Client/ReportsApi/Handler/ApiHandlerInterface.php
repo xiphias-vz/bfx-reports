@@ -15,6 +15,10 @@ use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
@@ -67,4 +71,22 @@ interface ApiHandlerInterface
     public function getReportByFormat(
         BladeFxGetReportByFormatRequestTransfer $requestTransfer,
     ): BladeFxGetReportByFormatResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     */
+    public function getReportPreview(
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+    ): BladeFxGetReportPreviewResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function getReportParamForm(
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+    ): BladeFxGetReportParamFormResponseTransfer;
 }

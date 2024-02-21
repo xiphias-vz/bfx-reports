@@ -16,6 +16,8 @@ use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
 use Psr\Http\Message\ResponseInterface;
@@ -134,6 +136,36 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateResponse($validator, $converterResultTransfer->getBladeFxGetReportByFormatResponse());
 
         return $converterResultTransfer->getBladeFxGetReportByFormatResponse();
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     */
+    public function getReportPreviewResponseTransfer(?ResponseInterface $response): BladeFxGetReportPreviewResponseTransfer
+    {
+        $this->validateRawResponse($response);
+        $converterResultTransfer = $this->responseFactory->createReportPreviewResponseConverter()->convert($response);
+        $validator = $this->responseFactory->createResponsePreviewValidator();
+        $this->validateResponse($validator, $converterResultTransfer->getBladeFxGetReportPreviewResponse());
+
+        return $converterResultTransfer->getBladeFxGetReportPreviewResponse();
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function getReportParamFormResponseTransfer(?ResponseInterface $response): BladeFxGetReportParamFormResponseTransfer
+    {
+        $this->validateRawResponse($response);
+        $converterResultTransfer = $this->responseFactory->createReportParamFormRequestConverter()->convert($response);
+        $validator = $this->responseFactory->createReportParamFormResponseValidator();
+        $this->validateResponse($validator, $converterResultTransfer->getBladeFxGetReportParamFormResponse());
+
+        return $converterResultTransfer->getBladeFxGetReportParamFormResponse();
     }
 
     /**

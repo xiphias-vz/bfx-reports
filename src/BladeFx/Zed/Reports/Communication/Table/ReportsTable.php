@@ -48,6 +48,16 @@ class ReportsTable extends AbstractTable
     protected const URL_PARAM_IS_FAVORITE = 'is_favorite';
 
     /**
+     * @var string
+     */
+    protected const EDIT_BUTTON_NAME = 'Edit';
+
+    /**
+     * @var string
+     */
+    protected const EDIT_URL_FORMAT = '/reports?repId=%s#parameter-form-modal';
+
+    /**
      * @var \BladeFx\Zed\Reports\Business\ReportsFacadeInterface
      */
     protected ReportsFacadeInterface $reportsFacade;
@@ -103,7 +113,7 @@ class ReportsTable extends AbstractTable
         $urls = [];
 
         $urls[] = $this->generateViewButton(
-            Url::generate('/reports/detail', [
+            (string)Url::generate('/reports/detail', [
                 'rep_id' => $item[''],
             ]),
             'View',
@@ -173,6 +183,10 @@ class ReportsTable extends AbstractTable
                 'isDrilldown' => $this->formatIsDrillDownField(
                     $reportListItem->getIsDrilldown(),
                 ),
+                'action' => $this->generateEditButton(
+                    $this->buildEditUrl($reportListItem->getRepId()),
+                    static::EDIT_BUTTON_NAME,
+                ),
             ];
         }
 
@@ -234,5 +248,15 @@ class ReportsTable extends AbstractTable
     protected function generateActiveModifier(): string
     {
         return sprintf('%s%s', static::MODIFIER_PREFIX, static::ACTIVE_MODIFIER);
+    }
+
+    /**
+     * @param int $repId
+     *
+     * @return string
+     */
+    protected function buildEditUrl(int $repId): string
+    {
+        return sprintf(static::EDIT_URL_FORMAT, $repId);
     }
 }

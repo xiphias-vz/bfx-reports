@@ -30,8 +30,11 @@ class ReportByFormatRequestValidator extends AbstractRequestValidator
      */
     public function validateRequest(AbstractTransfer $requestTransfer): bool
     {
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransferCasted */
+        $requestTransferCasted = $requestTransfer;
+
         try {
-            $requestTransfer
+            $requestTransferCasted
                 ->requireToken()
                 ->requireRepId()
                 ->requireReturnType();

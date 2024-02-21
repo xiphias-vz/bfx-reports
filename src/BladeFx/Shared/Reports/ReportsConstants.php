@@ -72,7 +72,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_ORDER_ATTRIBUTE = 'BLADE_FX_ORDER_ATTRIBUTE';
+    public const BLADE_FX_ORDER_ATTRIBUTE = 'spryker_order_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_CUSTOMER_ATTRIBUTE = 'spryker_customer_detail';
 
     /**
      * @var string
@@ -80,14 +85,42 @@ class ReportsConstants
     public const QUERY_ATTRIBUTE = 'attribute';
 
     /**
-     * @var array
+     * @var string
      */
-    protected const BLADE_FX_PREVIEW_TRANSFER_SNAKE_CASE_PROPERTIES = [
-        'repId', 'layoutId', 'paramId',
-    ];
+    public const BLADE_FX_ORDER_PARAM_NAME = '@order_id';
 
     /**
      * @var string
      */
-    public const BLADE_FX_ORDER_PARAM_NAME = '@order_id';
+    public const BLADE_FX_CUSTOMER_PARAM_NAME = '@CustomerID';
+
+    /**
+     * @var string
+     */
+    public const ROOT_URL_QUERY_PROPERTY = 'rootUrl';
+
+    /**
+     * @var string
+     */
+    public const PARAMETER_NAME = 'paramName';
+
+    /**
+     * @var string
+     */
+    public const PARAMETER_VALUE = 'paramValue';
+
+    /**
+     * @var string
+     */
+    public const ATTRIBUTE = 'attribute';
+
+    /**
+     * @var string
+     */
+    public const REPORT_ID = 'report_id';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
 }

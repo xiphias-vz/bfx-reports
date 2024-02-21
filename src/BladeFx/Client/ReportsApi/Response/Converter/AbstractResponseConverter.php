@@ -72,6 +72,8 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
                 self::ERROR_INVALID_RESPONSE_MISSING_PROPERTY,
                 $response,
             );
+
+            return [];
         }
 
         return $this->utilEncodingService->decodeJson($bodyContent, true);

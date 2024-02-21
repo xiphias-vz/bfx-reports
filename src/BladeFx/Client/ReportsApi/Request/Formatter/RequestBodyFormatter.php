@@ -10,20 +10,22 @@ declare(strict_types=1);
 namespace BladeFx\Client\ReportsApi\Request\Formatter;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
 {
     /**
-     * @param array $data
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
      *
      * @return array
      */
-    public function formatDataBeforeEncoding(array $data, ?BladeFxParameterTransfer $parameterTransfer): array
+    public function formatDataBeforeEncoding(AbstractTransfer $requestTransfer): array
     {
+        $data = $requestTransfer->toArray(true, true);
+
         $data = $this->changeArrayFromCamelCaseToSnakeCase($data);
-        if ($this->parameterTransferIsValid($parameterTransfer)) {
-            return $this->mergeParametersWithData($data, $parameterTransfer);
+        if ($this->parameterTransferIsValid($requestTransfer->getParams())) {
+            return $this->mergeParametersWithData($data, $requestTransfer->getParams());
         }
 
         return $data;
@@ -91,8 +93,9 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
     private function changeKeyFromCamelCaseToSnakeCase(string $camelKey): string
     {
         $result = '';
+        $camelKeyLen = strlen($camelKey);
 
-        for ($i = 0; $i < strlen($camelKey); $i++) {
+        for ($i = 0; $i < $camelKeyLen; $i++) {
             $char = $camelKey[$i];
 
             if (ctype_upper($char)) {

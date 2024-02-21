@@ -29,13 +29,15 @@ class ReportParameterListResponseValidator extends AbstractResponseValidator
     protected function validateResponse(AbstractTransfer $responseTransfer): bool
     {
         try {
-            foreach ($responseTransfer->getParameterList() as $report) {
+            /** @var \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer $responseTransferCasted */
+            $responseTransferCasted = $responseTransfer;
+
+            /** @var \Generated\Shared\Transfer\BladeFxParameterTransfer $report */
+            foreach ($responseTransferCasted->getParameterList() as $report) {
                 $report
-                    ->requireParamId()
+                    ->requireReportId()
                     ->requireParamName()
-                    ->requireParamCaption();
-//                    ->requireRepDesc()
-//                    ->requireRepHashCode();
+                    ->requireParamValue();
             }
         } catch (RequiredTransferPropertyException) {
             return false;

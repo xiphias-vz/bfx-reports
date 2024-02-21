@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business\BladeFx\ReportsReader;
 
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\ReportsReaderRequestTransfer;
 
@@ -20,4 +21,11 @@ interface ReportsReaderInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
      */
     public function getReportsList(ReportsReaderRequestTransfer $readerRequestTransfer): BladeFxGetReportsListResponseTransfer;
+
+    /**
+     * @param int $reportId
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer;
 }

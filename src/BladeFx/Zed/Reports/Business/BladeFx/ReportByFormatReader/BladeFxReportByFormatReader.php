@@ -9,13 +9,14 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business\BladeFx\ReportByFormatReader;
 
-use BladeFx\Client\ReportsApi\ReportsApiClient;
+use BladeFx\Client\ReportsApi\ReportsApiClientInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use BladeFx\Zed\Reports\ReportsConfig;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 
 class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterface
@@ -25,15 +26,23 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
      */
     protected const DEFAULT_DATA_RETURN_TYPE = 'string';
 
+    protected BladeFxAuthenticatorInterface $authenticator;
+
+    protected ReportsApiClientInterface $apiClient;
+
+    protected SessionClientInterface $sessionClient;
+
+    protected ReportsConfig $config;
+
     /**
      * @param \BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface $authenticator
-     * @param \BladeFx\Client\ReportsApi\ReportsApiClient $apiClient
+     * @param \BladeFx\Client\ReportsApi\ReportsApiClientInterface $apiClient
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param \BladeFx\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
         BladeFxAuthenticatorInterface $authenticator,
-        ReportsApiClient $apiClient,
+        ReportsApiClientInterface $apiClient,
         SessionClientInterface $sessionClient,
         ReportsConfig $config,
     ) {
@@ -56,7 +65,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         ?BladeFxParameterTransfer $parameterTransfer = null,
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->apiClient->sendGetReportByFormatRequest(
-            $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format),
+            $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format, $parameterTransfer),
         );
     }
 
@@ -91,7 +100,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
             return $this->sessionClient->get($bfxTokenSessionKey);
         }
 
-        return $this->getAuthenticationResponseTransfer()?->getToken();
+        return $this->getAuthenticationResponseTransfer()->getToken();
     }
 
     /**
@@ -109,12 +118,12 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         ?BladeFxParameterTransfer $parameterTransfer = null,
     ): BladeFxGetReportByFormatRequestTransfer {
         return (new BladeFxGetReportByFormatRequestTransfer())
-            ->setToken($token)
             ->setRepId($reportId)
             ->setFileFormat($format)
-            ->setLayoutId(0)
+            ->setLayoutId($this->config->getDefaultLayout())
+            ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE)
             ->setParams($parameterTransfer)
-            ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE);
+            ->setToken((new BladeFxTokenTransfer())->setToken($token));
     }
 
     /**

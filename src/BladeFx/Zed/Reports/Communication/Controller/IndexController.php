@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Communication\Controller;
 
+use BladeFx\Shared\Reports\ReportsConstants;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -91,15 +92,10 @@ class IndexController extends AbstractController
      */
     public function previewAction(Request $request): Response
     {
-        $reportId = $this->castId($request->query->get('report_id'));
-        $format = 'html';
-
-        $formattedParams = $this->getFactory()->createParameterFormatter()->formatParameters($request->query->all());
         $paramTransfer = $this->getFactory()->createParameterMapper()->mapParametersToNewParameterTransfer($request);
+        $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
 
-        $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramTransfer);
-
-        return new Response($responseTransfer->getReport());
+        return new Response($responseTransfer->getUrl());
     }
 
     /**
@@ -118,8 +114,8 @@ class IndexController extends AbstractController
             return $this->RedirectResponse($request->headers->get('referer'));
         }
 
-        $paramName = $request->query->get('paramName');
-        $paramValue = $request->query->get('paramValue');
+        $paramName = $request->query->get(ReportsConstants::PARAMETER_NAME);
+        $paramValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
 
         $paramTransfer = (new BladeFxParameterTransfer())->setParamName($paramName)->setParamValue($paramValue)->setSqlDbType('');
         $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramTransfer);
@@ -130,5 +126,20 @@ class IndexController extends AbstractController
             200,
             $headers,
         );
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function reportIframeAction(Request $request): JsonResponse
+    {
+        $reportId = (int)$request->get('repId');
+        $reportParamFormTransfer = $this->getFacade()->getReportParamForm($reportId);
+
+        return $this->jsonResponse([
+           'iframeUrl' => $reportParamFormTransfer->getIframeUrl(),
+        ]);
     }
 }

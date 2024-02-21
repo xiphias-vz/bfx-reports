@@ -7,9 +7,7 @@
 
 namespace BladeFx\Client\ReportsApi\Response;
 
-use BladeFx\Client\ReportsApi\Response\Converter\ReportByFormatResponseConverter;
 use BladeFx\Client\ReportsApi\Response\Converter\ResponseConverterInterface;
-use BladeFx\Client\ReportsApi\Response\Validator\ReportByFormatResponseValidator;
 use BladeFx\Client\ReportsApi\Response\Validator\ResponseValidatorInterface;
 
 interface ResponseFactoryInterface
@@ -62,10 +60,35 @@ interface ResponseFactoryInterface
     /**
      * @return \BladeFx\Client\ReportsApi\Response\Converter\ReportByFormatResponseConverter
      */
-    public function createReportByFormatResponseConverter(): ReportByFormatResponseConverter;
+    public function createReportByFormatResponseConverter(): ResponseConverterInterface;
 
     /**
-     * @return \BladeFx\Client\ReportsApi\Response\Validator\ReportByFormatResponseValidator
+     * @return \BladeFx\Client\ReportsApi\Response\Converter\ResponseConverterInterface
      */
-    public function createReportByFormatResponseValidator(): ReportByFormatResponseValidator;
+    public function createReportPreviewResponseConverter(): ResponseConverterInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createReportByFormatResponseValidator(): ResponseValidatorInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Response\Converter\ReportParamFormResponseConverter
+     */
+    public function createReportParamFormRequestConverter(): ResponseConverterInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createReportParamFormResponseValidator(): ResponseValidatorInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Response\Validator\ReportParameterListResponseValidator
+     */
+    public function createReportParameterListResponseValidator(): ResponseValidatorInterface;
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createResponsePreviewValidator(): ResponseValidatorInterface;
 }

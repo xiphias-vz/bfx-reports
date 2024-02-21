@@ -58,6 +58,11 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
+    public const GET_REPORT_PREVIEW_API_RESOURCE = '/api/ReportData/GetReportPreviewURL';
+
+    /**
+     * @var string
+     */
     public const GET_REPORT_HTML_API_RESOURCE = '/api/ReportData/GetReportHTML';
 
     /**
@@ -104,6 +109,11 @@ class ReportsApiConfig extends AbstractBundleConfig
      * @var string
      */
     public const SET_FAVORITE_REPORT_API_RESOURCE = '/api/ReportData/SetFavoriteReport';
+
+    /**
+     * @var string
+     */
+    public const GER_REPORT_PARAMETER_FORM_API_RESOURCE = '/api/ReportData/GetReportURL';
 
     /**
      * @return float|int
@@ -180,6 +190,14 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @return string
      */
+    public function getReportPreviewResourceParameter(): string
+    {
+        return static::GET_REPORT_PREVIEW_API_RESOURCE;
+    }
+
+    /**
+     * @return string
+     */
     public function getReportHTMLResourceParameter(): string
     {
         return static::GET_REPORT_HTML_API_RESOURCE;
@@ -247,5 +265,13 @@ class ReportsApiConfig extends AbstractBundleConfig
     public function getReportIMGResourceParameter(): string
     {
         return static::GET_REPORT_IMG_API_RESOURCE;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReportParamFormResourceParameter(): string
+    {
+        return static::GER_REPORT_PARAMETER_FORM_API_RESOURCE;
     }
 }

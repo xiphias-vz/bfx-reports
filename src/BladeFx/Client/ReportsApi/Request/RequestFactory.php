@@ -15,6 +15,8 @@ use BladeFx\Client\ReportsApi\Request\Builder\AuthenticationRequestBuilder;
 use BladeFx\Client\ReportsApi\Request\Builder\CategoriesListRequestBuilder;
 use BladeFx\Client\ReportsApi\Request\Builder\ReportByFormatRequestBuilder;
 use BladeFx\Client\ReportsApi\Request\Builder\ReportParameterListRequestBuilder;
+use BladeFx\Client\ReportsApi\Request\Builder\ReportParamFormRequestBuilder;
+use BladeFx\Client\ReportsApi\Request\Builder\ReportPreviewRequestBuilder;
 use BladeFx\Client\ReportsApi\Request\Builder\ReportsListRequestBuilder;
 use BladeFx\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 use BladeFx\Client\ReportsApi\Request\Builder\SetFavoriteReportRequestBuilder;
@@ -24,6 +26,8 @@ use BladeFx\Client\ReportsApi\Request\Validator\AuthenticationRequestValidator;
 use BladeFx\Client\ReportsApi\Request\Validator\CategoriesListRequestValidator;
 use BladeFx\Client\ReportsApi\Request\Validator\ReportByFormatRequestValidator;
 use BladeFx\Client\ReportsApi\Request\Validator\ReportParameterListRequestValidator;
+use BladeFx\Client\ReportsApi\Request\Validator\ReportParamFormRequestValidator;
+use BladeFx\Client\ReportsApi\Request\Validator\ReportPreviewRequestValidator;
 use BladeFx\Client\ReportsApi\Request\Validator\ReportsListRequestValidator;
 use BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface;
 use BladeFx\Client\ReportsApi\Request\Validator\SetFavoriteReportRequestValidator;
@@ -76,6 +80,14 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
     public function createReportByFormatRequestValidator(): RequestValidatorInterface
     {
         return new ReportByFormatRequestValidator();
+    }
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createReportPreviewRequestValidator(): RequestValidatorInterface
+    {
+        return new ReportPreviewRequestValidator();
     }
 
     /**
@@ -148,6 +160,38 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
             $this->getConfig(),
             $this->getUtilEncodingService(),
             $this->createRequestBodyFormatter(),
+        );
+    }
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createReportParamFormRequestValidator(): RequestValidatorInterface
+    {
+        return new ReportParamFormRequestValidator();
+    }
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createReportParamFormRequestBuilder(): RequestBuilderInterface
+    {
+        return new ReportParamFormRequestBuilder(
+            $this->getConfig(),
+            $this->getUtilEncodingService(),
+            $this->createRequestBodyFormatter(),
+        );
+    }
+
+    /**
+     * @return \BladeFx\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createReportPreviewRequestBuilder(): RequestBuilderInterface
+    {
+        return new ReportPreviewRequestBuilder(
+            $this->createRequestBodyFormatter(),
+            $this->getUtilEncodingService(),
+            $this->getConfig(),
         );
     }
 

@@ -30,7 +30,10 @@ class SetFavoriteReportRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        return $this->addAuthHeader($requestTransfer);
+        /** @var \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $setFavoriteReportRequestTransfer */
+        $setFavoriteReportRequestTransfer = $requestTransfer;
+
+        return $this->addAuthHeader($setFavoriteReportRequestTransfer->getToken());
     }
 
     /**
@@ -45,7 +48,9 @@ class SetFavoriteReportRequestBuilder extends AbstractRequestBuilder
         AbstractTransfer|BladeFxSetFavoriteReportRequestTransfer $requestTransfer,
         ?BladeFxParameterTransfer $parameterTransfer = null,
     ): RequestInterface {
-        $uri = $this->buildUri($resource, $this->getQueryParamsFromRequestTransfer($requestTransfer));
+        $uri = $this->buildUri($resource, $this->getQueryParamsFromRequestTransfer(
+            $requestTransfer,
+        ));
         $headers = $this->getCombinedHeaders($requestTransfer);
         $encodedData = $this->getEncodedData($requestTransfer);
 
@@ -53,15 +58,18 @@ class SetFavoriteReportRequestBuilder extends AbstractRequestBuilder
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $requestTransfer
      *
      * @return array
      */
-    protected function getQueryParamsFromRequestTransfer(BladeFxSetFavoriteReportRequestTransfer $requestTransfer): array
+    protected function getQueryParamsFromRequestTransfer(AbstractTransfer|BladeFxSetFavoriteReportRequestTransfer $requestTransfer): array
     {
+        /** @var \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $setFavoriteReportRequestTransfer */
+        $setFavoriteReportRequestTransfer = $requestTransfer;
+
         return [
-            'rep_id' => $requestTransfer->getRepId(),
-            'user_id' => $requestTransfer->getUserId(),
+            'rep_id' => $setFavoriteReportRequestTransfer->getRepId(),
+            'user_id' => $setFavoriteReportRequestTransfer->getUserId(),
         ];
     }
 }

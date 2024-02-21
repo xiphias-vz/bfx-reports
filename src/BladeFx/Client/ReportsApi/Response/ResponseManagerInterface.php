@@ -11,6 +11,8 @@ use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
 use Psr\Http\Message\ResponseInterface;
@@ -62,4 +64,18 @@ interface ResponseManagerInterface
         ?ResponseInterface $response,
         string $format,
     ): BladeFxGetReportByFormatResponseTransfer;
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function getReportParamFormResponseTransfer(?ResponseInterface $response): BladeFxGetReportParamFormResponseTransfer;
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     */
+    public function getReportPreviewResponseTransfer(?ResponseInterface $response): BladeFxGetReportPreviewResponseTransfer;
 }

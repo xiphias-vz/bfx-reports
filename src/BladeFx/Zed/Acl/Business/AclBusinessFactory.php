@@ -16,7 +16,7 @@ use Spryker\Zed\Acl\Business\Model\RoleInterface;
 use Spryker\Zed\Acl\Business\Writer\RoleWriterInterface;
 
 /**
- * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
+ * @method \BladeFx\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
  * @method \Pyz\Zed\Acl\AclConfig getConfig()

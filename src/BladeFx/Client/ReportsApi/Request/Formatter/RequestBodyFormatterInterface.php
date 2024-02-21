@@ -7,15 +7,14 @@
 
 namespace BladeFx\Client\ReportsApi\Request\Formatter;
 
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface RequestBodyFormatterInterface
 {
     /**
-     * @param array $data
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
      *
      * @return array
      */
-    public function formatDataBeforeEncoding(array $data, ?BladeFxParameterTransfer $parameterTransfer): array;
+    public function formatDataBeforeEncoding(AbstractTransfer $requestTransfer): array;
 }

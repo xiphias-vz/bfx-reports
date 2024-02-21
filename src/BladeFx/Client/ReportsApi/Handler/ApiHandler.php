@@ -20,6 +20,10 @@ use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
@@ -191,6 +195,50 @@ class ApiHandler implements ApiHandlerInterface
     }
 
     /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     */
+    public function getReportParamForm(
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+    ): BladeFxGetReportParamFormResponseTransfer {
+        $this->requestManager->setRequestBuilder(
+            $this->requestFactory->createReportParamFormRequestBuilder(),
+        );
+
+        $request = $this->requestManager->getReportParamFormRequest(
+            $this->apiClientConfig->getReportParamFormResourceParameter(),
+            $requestTransfer,
+        );
+
+        $response = $this->httpClient->sendRequest($request);
+
+        return $this->responseManager->getReportParamFormResponseTransfer($response);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     */
+    public function getReportPreview(
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+    ): BladeFxGetReportPreviewResponseTransfer {
+        $this->requestManager->setRequestBuilder(
+            $this->requestFactory->createReportPreviewRequestBuilder(),
+        );
+
+        $request = $this->requestManager->getReportPreview(
+            $this->apiClientConfig->getReportPreviewResourceParameter(),
+            $requestTransfer,
+        );
+
+        $response = $this->httpClient->sendRequest($request);
+
+        return $this->responseManager->getReportPreviewResponseTransfer($response);
+    }
+
+    /**
      * @param string $format
      *
      * @return string
@@ -207,7 +255,7 @@ class ApiHandler implements ApiHandlerInterface
             'mht' => $this->apiClientConfig->getReportMHTResourceParameter(),
             'rtf' => $this->apiClientConfig->getReportRTFResourceParameter(),
             'jpg' => $this->apiClientConfig->getReportIMGResourceParameter(),
-            default => '',
+            default => 'error',
         };
     }
 }

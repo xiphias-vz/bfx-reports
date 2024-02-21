@@ -55,6 +55,11 @@ class ReportsConfig extends AbstractBundleConfig
     protected const DEFAULT_CATEGORY_INDEX = -1;
 
     /**
+     * @var int
+     */
+    protected const DEFAULT_LAYOUT = 0;
+
+    /**
      * @var array
      */
     protected const REPORTS_TABLE_COLUMN_MAP = [
@@ -65,6 +70,21 @@ class ReportsConfig extends AbstractBundleConfig
         'catName' => 'Category name',
         'isActive' => 'Is active',
         'isDrilldown' => 'Is drilldown',
+        'action' => 'action',
+    ];
+
+    /**
+     * @var array
+     */
+    protected const SALES_REPORTS_TABLE_COLUMN_MAP = [
+        'isFavorite' => 'Is Favorite',
+        'repId' => 'rep_id',
+        'repName' => 'rep_name',
+        'repDesc' => 'rep_desc',
+        'catName' => 'Category name',
+        'isActive' => 'Is active',
+        'isDrilldown' => 'Is drilldown',
+        'actions' => 'Actions',
     ];
 
     /**
@@ -74,7 +94,23 @@ class ReportsConfig extends AbstractBundleConfig
         'isFavorite',
         'isActive',
         'isDrilldown',
+        'action',
     ];
+
+    /**
+     * @var array
+     */
+    protected const SALES_REPORTS_TABLE_RAW_COLUMNS = [
+        'isFavorite',
+        'isActive',
+        'isDrilldown',
+        'actions',
+    ];
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
 
     /**
      * @return int
@@ -98,86 +134,6 @@ class ReportsConfig extends AbstractBundleConfig
     public function getReturnTypeJson(): string
     {
         return static::DEFAULT_DATA_RETURN_TYPE;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxSprykerOrderAttribute(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_ORDER_ATTRIBUTE);
-    }
-
-    /**
-     * @return string
-     */
-    public function getWebServiceUrlFile(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_WEB_SERVICE_FILE];
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxUserUrlInfo(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_USER_INFO];
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxReportUrlList(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_REPORT_LIST];
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxPrintOutFileUrl(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_URL_PRINT_OUT_FILE];
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxMobileFileUrl(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_URL_MOBILE_FILE];
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxReportsHost(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_REPORTS_HOST);
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxThisHost(): string
-    {
-        return $this->get(ReportsConstants::BLADE_FX_X_THIS_HOST);
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathTagUser(): string
-    {
-        return static::PATH_TAG_USER;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathTagReports(): string
-    {
-        return static::PATH_TAG_REPORTS;
     }
 
     /**
@@ -231,8 +187,48 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @return array<string>
      */
+    public function getSalesReportsTableColumnMap(): array
+    {
+        return static::SALES_REPORTS_TABLE_COLUMN_MAP;
+    }
+
+    /**
+     * @return array<string>
+     */
     public function getReportsTableRawColumns(): array
     {
         return static::REPORTS_TABLE_RAW_COLUMNS;
+    }
+
+    /**
+     * @return array<string>
+     */
+    public function getSalesReportsTableRawColumns(): array
+    {
+        return static::SALES_REPORTS_TABLE_RAW_COLUMNS;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRootUrl(): string
+    {
+        return $this->get(static::BLADE_FX_ROOT_URL);
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefaultLayout(): int
+    {
+        return static::DEFAULT_LAYOUT;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParamFormRootUrl(): string
+    {
+        return $this->get(ReportsConstants::BLADE_FX_ROOT_URL);
     }
 }

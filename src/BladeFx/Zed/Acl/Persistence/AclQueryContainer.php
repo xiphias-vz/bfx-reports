@@ -14,7 +14,7 @@ use Orm\Zed\Acl\Persistence\SpyAclRoleQuery;
 use Spryker\Zed\Acl\Persistence\AclQueryContainer as SprykerAclQueryContainer;
 
 /**
- * @method \Spryker\Zed\Acl\Persistence\AclPersistenceFactory getFactory()
+ * @method \BladeFx\Zed\Acl\Persistence\AclPersistenceFactory getFactory()
  */
 class AclQueryContainer extends SprykerAclQueryContainer implements AclQueryContainerInterface
 {
