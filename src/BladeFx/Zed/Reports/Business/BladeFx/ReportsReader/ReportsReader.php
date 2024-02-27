@@ -16,7 +16,6 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\ReportsReaderRequestTransfer;
 
 class ReportsReader implements ReportsReaderInterface
@@ -75,7 +74,7 @@ class ReportsReader implements ReportsReaderInterface
         ?string $attribute = '',
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()))
+            ->setToken($this->tokenResolver->resolveToken())
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
             ->setAttribute($attribute)
             ->setReturnType($this->config->getReturnTypeJson());
@@ -89,9 +88,9 @@ class ReportsReader implements ReportsReaderInterface
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer
     {
         $requestTransfer = (new BladeFxGetReportParamFormRequestTransfer())
+            ->setToken($this->tokenResolver->resolveToken())
             ->setRootUrl($this->config->getParamFormRootUrl())
-            ->setReportId($reportId)
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()));
+            ->setReportId($reportId);
 
         return $this->apiClient->sendGetReportParamFormRequest($requestTransfer);
     }

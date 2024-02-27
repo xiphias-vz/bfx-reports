@@ -29,10 +29,7 @@ class ReportsListRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer $reportsListRequestTransfer */
-        $reportsListRequestTransfer = $requestTransfer;
-
-        return $this->addAuthHeader($reportsListRequestTransfer->getToken());
+        return $this->addAuthHeader($requestTransfer);
     }
 
     /**
@@ -61,12 +58,9 @@ class ReportsListRequestBuilder extends AbstractRequestBuilder
      */
     protected function getQueryParamsFromRequestTransfer(AbstractTransfer|BladeFxGetReportsListRequestTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer $reportsListRequestTransfer */
-        $reportsListRequestTransfer = $requestTransfer;
-
         return [
-            'catId' => $reportsListRequestTransfer->getCatId(),
-            'attribute' => $reportsListRequestTransfer->getAttribute(),
+            'catId' => $requestTransfer->getCatId(),
+            'attribute' => $requestTransfer->getAttribute(),
         ];
     }
 }

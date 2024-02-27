@@ -6,7 +6,7 @@
     <transfer name="BladeFxSetFavoriteReportRequest">
         <property name="repId" type="int" />
         <property name="userId" type="string" />
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
     </transfer>
 
     <transfer name="BladeFxSetFavoriteReportResponse">
@@ -53,14 +53,10 @@
         <property name="licenceExp" type="bool" />
     </transfer>
 
-    <transfer name="BladeFxToken">
-        <property name="token" type="string"/>
-    </transfer>
-
     <!--       BladeFx get categories list transfers -->
     <transfer name="BladeFxGetCategoriesListRequest" strict="true">
         <property name="catId" type="int" />
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="returnType" type="string" />
     </transfer>
 
@@ -87,7 +83,7 @@
     <transfer name="BladeFxGetReportsListRequest" strict="true">
         <property name="catId" type="int" />
         <property name="search" type="string" />
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="attribute" type="string" />
         <property name="returnType" type="string" />
     </transfer>
@@ -99,7 +95,7 @@
 
     <transfer name="BladeFxGetReportParameterListRequest" strict="true">
         <property name="reportId" type="int" />
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="hostAddress" type="string"/>
         <property name="returnType" type="string" />
     </transfer>
@@ -143,7 +139,7 @@
     </transfer>
 
     <transfer name="BladeFxGetReportPreviewRequest" strict="true">
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="returnType" type="string" />
         <property name="repId" type="int"/>
         <property name="layoutId" type="int"/>
@@ -158,7 +154,7 @@
     </transfer>
 
     <transfer name="BladeFxGetReportByFormatRequest" strict="true">
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="returnType" type="string" />
         <property name="repId" type="int"/>
         <property name="layoutId" type="int"/>
@@ -212,7 +208,7 @@
     </transfer>
 
     <transfer name="BladeFxGetReportParamFormRequest" >
-        <property name="token" type="BladeFxToken" />
+        <property name="token" type="string" />
         <property name="reportId" type="int" />
         <property name="rootUrl" type="string" />
     </transfer>

@@ -8,6 +8,7 @@
 namespace BladeFx\Client\ReportsApi\Response;
 
 use BladeFx\Client\ReportsApi\Response\Converter\ResponseConverterInterface;
+use BladeFx\Client\ReportsApi\Response\Validator\ReportByFormatResponseValidator;
 use BladeFx\Client\ReportsApi\Response\Validator\ResponseValidatorInterface;
 
 interface ResponseFactoryInterface

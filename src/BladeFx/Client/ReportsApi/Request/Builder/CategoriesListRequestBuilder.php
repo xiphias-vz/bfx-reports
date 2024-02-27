@@ -26,9 +26,6 @@ class CategoriesListRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer $categoriesListRequestTransfer */
-        $categoriesListRequestTransfer = $requestTransfer;
-
-        return $this->addAuthHeader($categoriesListRequestTransfer->getToken());
+        return $this->addAuthHeader($requestTransfer);
     }
 }

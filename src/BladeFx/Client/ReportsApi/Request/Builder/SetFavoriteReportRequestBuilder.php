@@ -30,10 +30,7 @@ class SetFavoriteReportRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $setFavoriteReportRequestTransfer */
-        $setFavoriteReportRequestTransfer = $requestTransfer;
-
-        return $this->addAuthHeader($setFavoriteReportRequestTransfer->getToken());
+        return $this->addAuthHeader($requestTransfer);
     }
 
     /**
@@ -58,18 +55,15 @@ class SetFavoriteReportRequestBuilder extends AbstractRequestBuilder
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $requestTransfer @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|BladeFxSetFavoriteReportRequestTransfer $requestTransfer @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer@param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
      *
      * @return array
      */
     protected function getQueryParamsFromRequestTransfer(AbstractTransfer|BladeFxSetFavoriteReportRequestTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer $setFavoriteReportRequestTransfer */
-        $setFavoriteReportRequestTransfer = $requestTransfer;
-
         return [
-            'rep_id' => $setFavoriteReportRequestTransfer->getRepId(),
-            'user_id' => $setFavoriteReportRequestTransfer->getUserId(),
+            'rep_id' => $requestTransfer->getRepId(),
+            'user_id' => $requestTransfer->getUserId(),
         ];
     }
 }

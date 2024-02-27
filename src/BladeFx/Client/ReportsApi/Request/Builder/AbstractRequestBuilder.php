@@ -9,7 +9,6 @@ namespace BladeFx\Client\ReportsApi\Request\Builder;
 
 use BladeFx\Client\ReportsApi\ReportsApiConfig;
 use BladeFx\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
@@ -163,11 +162,11 @@ abstract class AbstractRequestBuilder implements RequestBuilderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxTokenTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
      *
      * @return array<string>
      */
-    protected function addAuthHeader(BladeFxTokenTransfer $requestTransfer): array
+    protected function addAuthHeader(AbstractTransfer $requestTransfer): array
     {
         return [
             static::HEADER_TYPE_AUTHORIZATION => static::AUTHORIZATION_TYPE_BEARER . ' ' . $requestTransfer->getToken(),

@@ -93,9 +93,8 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
     private function changeKeyFromCamelCaseToSnakeCase(string $camelKey): string
     {
         $result = '';
-        $camelKeyLen = strlen($camelKey);
 
-        for ($i = 0; $i < $camelKeyLen; $i++) {
+        for ($i = 0; $i < strlen($camelKey); $i++) {
             $char = $camelKey[$i];
 
             if (ctype_upper($char)) {

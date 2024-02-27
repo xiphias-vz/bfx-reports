@@ -26,9 +26,6 @@ class ReportParameterListRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer $reportParameterListRequestTransfer */
-        $reportParameterListRequestTransfer = $requestTransfer;
-
-        return $this->addAuthHeader($reportParameterListRequestTransfer->getToken());
+        return $this->addAuthHeader($requestTransfer);
     }
 }
