@@ -13,6 +13,7 @@ use BladeFx\Client\ReportsApi\ReportsApiClientInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use BladeFx\Zed\Reports\ReportsConfig;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\ReportsUpdaterRequestTransfer;
 use Spryker\Client\Session\SessionClientInterface;
@@ -110,7 +111,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
         );
 
         return (new BladeFxSetFavoriteReportRequestTransfer())
-            ->setToken($token)
+            ->setToken((new BladeFxTokenTransfer())->setToken($token))
             ->setUserId($userId)
             ->setRepId($repId);
     }

@@ -62,7 +62,10 @@ class ReportByFormatRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        $headers = $this->addAuthHeader($requestTransfer);
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $reportByFormatRequestTransfer */
+        $reportByFormatRequestTransfer = $requestTransfer;
+
+        $headers = $this->addAuthHeader($reportByFormatRequestTransfer->getToken());
         $headers['AcceptEncoding'] = ['*'];
         $headers['accept'] = ['text/plain'];
 

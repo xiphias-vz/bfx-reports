@@ -28,9 +28,11 @@ class ReportParamFormRequestValidator extends AbstractRequestValidator
      */
     public function validateRequest(AbstractTransfer $requestTransfer): bool
     {
-        /** @var \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $requestTransfer */
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $reportParamFormRequestTransfer */
+        $reportParamFormRequestTransfer = $requestTransfer;
+
         try {
-            $requestTransfer
+            $reportParamFormRequestTransfer
                 ->requireReportId()
                 ->requireToken()
                 ->requireRootUrl();

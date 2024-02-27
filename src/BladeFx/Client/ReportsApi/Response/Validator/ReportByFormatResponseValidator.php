@@ -30,10 +30,10 @@ class ReportByFormatResponseValidator extends AbstractResponseValidator
      */
     protected function validateResponse(AbstractTransfer $responseTransfer): bool
     {
-        /**@var \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer $responseTransferCasted */
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer $responseTransferCasted */
         $responseTransferCasted = $responseTransfer;
         try {
-            $responseTransfer->requireReport();
+            $responseTransferCasted->requireReport();
         } catch (RequiredTransferPropertyException) {
             return false;
         }

@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business\BladeFx\ReportByFormatReader;
 
-use BladeFx\Client\ReportsApi\ReportsApiClient;
 use BladeFx\Client\ReportsApi\ReportsApiClientInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use BladeFx\Zed\Reports\ReportsConfig;
@@ -17,6 +16,7 @@ use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 
 class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterface
@@ -28,7 +28,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
 
     protected BladeFxAuthenticatorInterface $authenticator;
 
-    protected ReportsApiClient $apiClient;
+    protected ReportsApiClientInterface $apiClient;
 
     protected SessionClientInterface $sessionClient;
 
@@ -100,7 +100,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
             return $this->sessionClient->get($bfxTokenSessionKey);
         }
 
-        return $this->getAuthenticationResponseTransfer()?->getToken();
+        return $this->getAuthenticationResponseTransfer()->getToken();
     }
 
     /**
@@ -118,12 +118,12 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         ?BladeFxParameterTransfer $parameterTransfer = null,
     ): BladeFxGetReportByFormatRequestTransfer {
         return (new BladeFxGetReportByFormatRequestTransfer())
-            ->setToken($token)
             ->setRepId($reportId)
             ->setFileFormat($format)
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE)
-            ->setParams($parameterTransfer);
+            ->setParams($parameterTransfer)
+            ->setToken((new BladeFxTokenTransfer())->setToken($token));
     }
 
     /**

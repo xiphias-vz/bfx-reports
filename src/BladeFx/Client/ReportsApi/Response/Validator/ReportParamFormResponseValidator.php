@@ -28,8 +28,11 @@ class ReportParamFormResponseValidator extends AbstractResponseValidator
      */
     public function validateResponse(AbstractTransfer $responseTransfer): bool
     {
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer $reportParamFormResponseTransfer */
+        $reportParamFormResponseTransfer = $responseTransfer;
+
         try {
-            $responseTransfer->requireIframeUrl();
+            $reportParamFormResponseTransfer->requireIframeUrl();
         } catch (RequiredTransferPropertyException) {
             return false;
         }

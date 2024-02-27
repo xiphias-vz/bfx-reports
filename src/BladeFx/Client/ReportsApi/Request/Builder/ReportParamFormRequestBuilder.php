@@ -38,7 +38,10 @@ class ReportParamFormRequestBuilder extends AbstractRequestBuilder
      */
     public function getAdditionalHeaders(AbstractTransfer $requestTransfer): array
     {
-        return $this->addAuthHeader($requestTransfer);
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer $reportParamFormRequestTransfer */
+        $reportParamFormRequestTransfer = $requestTransfer;
+
+        return $this->addAuthHeader($reportParamFormRequestTransfer->getToken());
     }
 
     /**

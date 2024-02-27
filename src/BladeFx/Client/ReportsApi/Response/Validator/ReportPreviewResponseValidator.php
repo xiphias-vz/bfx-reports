@@ -28,8 +28,9 @@ class ReportPreviewResponseValidator extends AbstractResponseValidator implement
      */
     protected function validateResponse(AbstractTransfer $responseTransfer): bool
     {
-        /**@var \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransferCasted */
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransferCasted */
         $responseTransferCasted = $responseTransfer;
+
         try {
             $responseTransferCasted->requireUrl();
         } catch (RequiredTransferPropertyException) {

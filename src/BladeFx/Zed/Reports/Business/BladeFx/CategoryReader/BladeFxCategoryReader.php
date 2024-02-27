@@ -14,6 +14,7 @@ use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use BladeFx\Zed\Reports\ReportsConfig;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
 
 class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
@@ -81,8 +82,11 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
         CategoryReaderRequestTransfer $readerRequestTransfer,
     ): BladeFxGetCategoriesListRequestTransfer {
         return (new BladeFxGetCategoriesListRequestTransfer())
-            ->setToken($this->tokenResolver->resolveToken())
+//            ->setToken($this->tokenResolver->resolveToken())
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
-            ->setReturnType($this->config->getReturnTypeJson());
+            ->setReturnType($this->config->getReturnTypeJson())
+            ->setToken(
+                (new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()),
+            );
     }
 }

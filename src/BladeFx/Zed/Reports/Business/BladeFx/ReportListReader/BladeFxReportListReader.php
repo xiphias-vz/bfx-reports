@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business\BladeFx\ReportListReader;
 
-use BladeFx\Client\ReportsApi\ReportsApiClient;
 use BladeFx\Client\ReportsApi\ReportsApiClientInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use BladeFx\Zed\Reports\ReportsConfig;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 
 class BladeFxReportListReader implements BladeFxReportListReaderInterface
@@ -36,9 +36,9 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
     protected BladeFxAuthenticatorInterface $authenticator;
 
     /**
-     * @var \BladeFx\Client\ReportsApi\ReportsApiClient
+     * @var \BladeFx\Client\ReportsApi\ReportsApiClientInterface
      */
-    protected ReportsApiClient $apiClient;
+    protected ReportsApiClientInterface $apiClient;
 
     /**
      * @var \Spryker\Client\Session\SessionClientInterface
@@ -104,7 +104,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
             return $this->sessionClient->get($bfxTokenSessionKey);
         }
 
-        return $this->getAuthenticationResponseTransfer()?->getToken();
+        return $this->getAuthenticationResponseTransfer()->getToken();
     }
 
     /**
@@ -118,7 +118,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
         string $attribute = '',
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken($token)
+            ->setToken((new BladeFxTokenTransfer())->setToken($token))
             ->setAttribute($attribute)
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE);
     }

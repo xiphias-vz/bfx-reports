@@ -28,9 +28,10 @@ class ReportPreviewRequestValidator extends AbstractRequestValidator implements 
      */
     public function validateRequest(AbstractTransfer $requestTransfer): bool
     {
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransferCasted */
+        $requestTransferCasted = $requestTransfer;
+
         try {
-            /**@var \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer */
-            $requestTransferCasted = $requestTransfer;
             $requestTransferCasted
                 ->requireToken()
                 ->requireRepId()

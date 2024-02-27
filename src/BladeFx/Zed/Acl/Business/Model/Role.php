@@ -24,7 +24,7 @@ class Role extends SprykerRole
     /**
      * @var \BladeFx\Zed\Acl\Business\Writer\BladeFxRoleWriterInterface
      */
-    protected  BladeFxRoleWriterInterface $bfxRoleWriter;
+    protected BladeFxRoleWriterInterface $bfxRoleWriter;
 
     /**
      * @param \Spryker\Zed\Acl\Business\Model\GroupInterface $group

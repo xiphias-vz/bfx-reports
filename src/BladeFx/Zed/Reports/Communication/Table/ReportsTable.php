@@ -113,7 +113,7 @@ class ReportsTable extends AbstractTable
         $urls = [];
 
         $urls[] = $this->generateViewButton(
-            Url::generate('/reports/detail', [
+            (string)Url::generate('/reports/detail', [
                 'rep_id' => $item[''],
             ]),
             'View',

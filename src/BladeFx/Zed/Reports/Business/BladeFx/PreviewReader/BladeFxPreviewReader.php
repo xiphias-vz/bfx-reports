@@ -15,6 +15,7 @@ use BladeFx\Zed\Reports\ReportsConfig;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 
 class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
 {
@@ -69,11 +70,11 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
         BladeFxParameterTransfer $parameterTransfer,
     ): BladeFxGetReportPreviewRequestTransfer {
         return (new BladeFxGetReportPreviewRequestTransfer())
-            ->setToken($this->tokenResolver->resolveToken())
             ->setRepId($parameterTransfer->getReportId())
             ->setParams($parameterTransfer)
             ->setRootUrl($this->config->getRootUrl())
             ->setLayoutId($this->config->getDefaultLayout())
-            ->setReturnType($this->config->getReturnTypeJson());
+            ->setReturnType($this->config->getReturnTypeJson())
+            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()));
     }
 }

@@ -20,6 +20,10 @@ function PreviewListenerAdder() {
                     if (row.classList.contains('odd') || row.classList.contains('even')) {
                         let button = row.querySelector('a.btn-edit');
 
+                        if (!button) {
+                            button = row.querySelector('a.btn-preview');
+                        }
+
                         if (button !== null) {
                             button.addEventListener('click', async (e) => {
                                 e.preventDefault();

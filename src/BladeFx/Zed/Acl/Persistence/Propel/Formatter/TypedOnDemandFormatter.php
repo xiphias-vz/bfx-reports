@@ -47,6 +47,7 @@ class TypedOnDemandFormatter extends OnDemandFormatter
     public function getAllObjectsFromRow(array $row): ActiveRecordInterface
     {
         $obj = parent::getAllObjectsFromRow($row);
+        /** @phpstan-ignore-next-line */
         $numColumnsLeft = $this->tableMap::NUM_COLUMNS;
 
         $asColumnCount = 0;
@@ -65,7 +66,9 @@ class TypedOnDemandFormatter extends OnDemandFormatter
             $class = $tableMap->getClassName();
             $joinObj = $this->getSingleObjectFromRow($asColumnRow, $class);
 
+            /** @phpstan-ignore-next-line */
             $columnValue = $joinObj->getByName($columnName);
+            /** @phpstan-ignore-next-line */
             $obj->setVirtualColumn($alias, $columnValue);
             $asColumnCount += 1;
         }
@@ -85,6 +88,7 @@ class TypedOnDemandFormatter extends OnDemandFormatter
         foreach ($this->joins as $join) {
             if (str_contains($clause, $join->getRightTableName())) {
                 /** @var \Propel\Runtime\Map\TableMap $tableMap */
+                /** @phpstan-ignore-next-line */
                 $tableMap = $join->getTableMap();
             }
         }
