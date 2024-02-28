@@ -12,6 +12,7 @@ namespace BladeFx\Zed\Reports\Communication\Controller;
 use BladeFx\Shared\Reports\ReportsConstants;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
+use Spryker\Zed\Sales\SalesConfig;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,6 +70,36 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function salesReportsTableAction(Request $request): JsonResponse
+    {
+        $reportTable = $this
+            ->getFactory()
+            ->createSalesReportsTable($this->formatRequestParameters($request));
+
+        return new JsonResponse(
+            $reportTable->fetchData(),
+        );
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
+    protected function formatRequestParameters(Request $request): array
+    {
+        return [
+            ReportsConstants::ATTRIBUTE => ReportsConstants::BLADE_FX_ORDER_ATTRIBUTE,
+            ReportsConstants::PARAMETER_NAME => ReportsConstants::BLADE_FX_ORDER_PARAM_NAME,
+            ReportsConstants::PARAMETER_VALUE => $this->castId($request->query->getInt(SalesConfig::PARAM_ID_SALES_ORDER)),
+        ];
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function favoriteReportAction(Request $request): RedirectResponse
@@ -88,14 +119,16 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function previewAction(Request $request): Response
+    public function previewAction(Request $request): JsonResponse
     {
         $paramTransfer = $this->getFactory()->createParameterMapper()->mapParametersToNewParameterTransfer($request);
         $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
 
-        return new Response($responseTransfer->getUrl());
+        return $this->jsonResponse([
+            'iframeUrl' => $responseTransfer->getUrl(),
+        ]);
     }
 
     /**

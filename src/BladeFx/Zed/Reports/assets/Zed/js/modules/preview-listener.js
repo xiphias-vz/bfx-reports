@@ -1,5 +1,6 @@
 'use strict';
 
+var reportTab = document.querySelector('#tab-content-report');
 var $previewModal = $('.preview-modal');
 
 function initialize() {
@@ -10,8 +11,12 @@ function initialize() {
 function PreviewListenerAdder() {
     function addListenerToReportsTable() {
         setTimeout(() => {
-            const tableContainer = document.querySelector('div.dataTables_scrollBody')
-
+            let tableContainer;
+            if (reportTab) {
+                tableContainer = reportTab.querySelector('div.dataTables_scrollBody')
+            } else {
+                tableContainer = document.querySelector('div.dataTables_scrollBody')
+            }
             var $reportsTable = $(tableContainer.querySelector('table')).DataTable();
 
             $reportsTable.on('draw', function () {

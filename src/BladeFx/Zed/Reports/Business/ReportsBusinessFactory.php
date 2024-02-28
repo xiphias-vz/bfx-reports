@@ -185,19 +185,4 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
         );
     }
-
-    /**
-     * @param \BladeFx\Zed\Reports\Business\ReportsFacadeInterface $facade
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function createSalesReportsTable(ReportsFacadeInterface $facade, ?array $params = []): SalesReportsTable
-    {
-        return new SalesReportsTable(
-            $facade,
-            $this->getConfig(),
-            $params,
-        );
-    }
 }

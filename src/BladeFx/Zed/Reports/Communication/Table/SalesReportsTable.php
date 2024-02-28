@@ -45,7 +45,8 @@ class SalesReportsTable extends ReportsTable
 
         $queryParams = $this->generateQueryParams();
 
-        $url = Url::generate('reports-table', $queryParams)->build();
+        $this->baseUrl = '/';
+        $url = Url::generate('reports/index/sales-reports-table', $queryParams)->build();
         $config->setUrl($url);
 
         return $config;
