@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business;
 
+use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
