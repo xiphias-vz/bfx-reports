@@ -81,11 +81,4 @@ interface ReportsFacadeInterface
     public function getReportPreviewURL(
         BladeFxParameterTransfer $parameterTransfer,
     ): BladeFxGetReportPreviewResponseTransfer;
-
-    /**
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function getSalesReportsTable(?array $params): SalesReportsTable;
 }

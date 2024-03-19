@@ -28,7 +28,6 @@ use BladeFx\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessor;
 use BladeFx\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use BladeFx\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
-use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
 use BladeFx\Zed\Reports\ReportsDependencyProvider;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
@@ -183,21 +182,6 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getBladeFxClient(),
             $this->createTokenResolver(),
             $this->getConfig(),
-        );
-    }
-
-    /**
-     * @param \BladeFx\Zed\Reports\Business\ReportsFacadeInterface $facade
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function createSalesReportsTable(ReportsFacadeInterface $facade, ?array $params = []): SalesReportsTable
-    {
-        return new SalesReportsTable(
-            $facade,
-            $this->getConfig(),
-            $params,
         );
     }
 }

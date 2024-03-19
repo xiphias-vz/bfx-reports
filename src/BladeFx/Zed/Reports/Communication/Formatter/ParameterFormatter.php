@@ -7,46 +7,23 @@
 
 namespace BladeFx\Zed\Reports\Communication\Formatter;
 
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use BladeFx\Shared\Reports\ReportsConstants;
+use Spryker\Zed\Sales\SalesConfig;
+use Symfony\Component\HttpFoundation\Request;
 
-class ParameterFormatter
+class ParameterFormatter implements ParameterFormatterInterface
 {
     /**
-     * @param array $params
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array<array>
+     * @return array
      */
-    public function formatParameters(array $params): array
+    public function formatRequestParameters(Request $request): array
     {
-        $params = ((new BladeFxParameterTransfer())->fromArray($params, true))->toArray(true, true);
-        $longest = 0;
-
-        foreach ($params as $key => $value) {
-            $params[$key] = explode(',', $value);
-            if (count($params[$key]) > $longest) {
-                $longest = count($params[$key]);
-            }
-        }
-
-        $formattedParams = [
-            'params' => [
-                [],
-            ],
+        return [
+            ReportsConstants::ATTRIBUTE => ReportsConstants::BLADE_FX_ORDER_ATTRIBUTE,
+            ReportsConstants::PARAMETER_NAME => ReportsConstants::BLADE_FX_ORDER_PARAM_NAME,
+            ReportsConstants::PARAMETER_VALUE => (int)$request->query->getInt(SalesConfig::PARAM_ID_SALES_ORDER),
         ];
-
-        for ($i = 0; $i <= $longest; $i++) {
-            $formattedParams['params'][$i] = [];
-        }
-
-        foreach ($params as $key => $value) {
-            for ($valuePosition = 0; $valuePosition < $longest; $valuePosition++) {
-                if ($value[0] === null || count($value) < $valuePosition) {
-                    continue;
-                }
-                $formattedParams['params'][$valuePosition][$key] = $value[$valuePosition];
-            }
-        }
-
-        return $formattedParams;
     }
 }

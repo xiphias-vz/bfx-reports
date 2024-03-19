@@ -117,14 +117,4 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     {
         return $this->getFactory()->createBladeFxReportsReader()->getReportParamForm($reportId);
     }
-
-    /**
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function getSalesReportsTable(?array $params): SalesReportsTable
-    {
-        return $this->getFactory()->createSalesReportsTable($this, $params);
-    }
 }

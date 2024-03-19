@@ -69,6 +69,32 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function salesReportsTableAction(Request $request): JsonResponse
+    {
+        $reportTable = $this
+            ->getFactory()
+            ->createSalesReportsTable($this->formatRequestParameters($request));
+
+        return new JsonResponse(
+            $reportTable->fetchData(),
+        );
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
+    protected function formatRequestParameters(Request $request): array
+    {
+        return $this->getFactory()->createParameterFormatter()->formatRequestParameters($request);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function favoriteReportAction(Request $request): RedirectResponse
@@ -88,14 +114,16 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function previewAction(Request $request): Response
+    public function previewAction(Request $request): JsonResponse
     {
         $paramTransfer = $this->getFactory()->createParameterMapper()->mapParametersToNewParameterTransfer($request);
         $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
 
-        return new Response($responseTransfer->getUrl());
+        return $this->jsonResponse([
+            'iframeUrl' => $responseTransfer->getUrl(),
+        ]);
     }
 
     /**

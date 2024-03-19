@@ -55,7 +55,7 @@ class ReportsTable extends AbstractTable
     /**
      * @var string
      */
-    protected const EDIT_URL_FORMAT = '/reports?repId=%s#parameter-form-modal';
+    protected const EDIT_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
 
     /**
      * @var \BladeFx\Zed\Reports\Business\ReportsFacadeInterface
