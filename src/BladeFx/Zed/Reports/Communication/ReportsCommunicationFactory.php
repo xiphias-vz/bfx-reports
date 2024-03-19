@@ -9,9 +9,10 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Communication;
 
-use BladeFx\Zed\Reports\Business\ReportsFacadeInterface;
 use BladeFx\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use BladeFx\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
+use BladeFx\Zed\Reports\Communication\Formatter\ParameterFormatter;
+use BladeFx\Zed\Reports\Communication\Formatter\ParameterFormatterInterface;
 use BladeFx\Zed\Reports\Communication\Mapper\ParameterMapper;
 use BladeFx\Zed\Reports\Communication\Table\ReportsTable;
 use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
@@ -61,8 +62,7 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @param \BladeFx\Zed\Reports\Business\ReportsFacadeInterface $facade
-     * @param array|null $params
+     * @param array $params
      *
      * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
      */
@@ -73,5 +73,13 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
             $this->getConfig(),
             $params,
         );
+    }
+
+    /**
+     * @return \BladeFx\Zed\Reports\Communication\Formatter\ParameterFormatterInterface
+     */
+    public function createParameterFormatter(): ParameterFormatterInterface
+    {
+        return new ParameterFormatter();
     }
 }

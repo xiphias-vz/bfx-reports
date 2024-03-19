@@ -12,7 +12,6 @@ namespace BladeFx\Zed\Reports\Communication\Controller;
 use BladeFx\Shared\Reports\ReportsConstants;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
-use Spryker\Zed\Sales\SalesConfig;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,11 +89,7 @@ class IndexController extends AbstractController
      */
     protected function formatRequestParameters(Request $request): array
     {
-        return [
-            ReportsConstants::ATTRIBUTE => ReportsConstants::BLADE_FX_ORDER_ATTRIBUTE,
-            ReportsConstants::PARAMETER_NAME => ReportsConstants::BLADE_FX_ORDER_PARAM_NAME,
-            ReportsConstants::PARAMETER_VALUE => $this->castId($request->query->getInt(SalesConfig::PARAM_ID_SALES_ORDER)),
-        ];
+        return $this->getFactory()->createParameterFormatter()->formatRequestParameters($request);
     }
 
     /**

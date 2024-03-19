@@ -1,6 +1,7 @@
 'use strict';
 
 var reportTab = document.querySelector('#tab-content-report');
+var reportBlock = document.querySelector('#reports');
 var $previewModal = $('.preview-modal');
 
 function initialize() {
@@ -11,12 +12,7 @@ function initialize() {
 function PreviewListenerAdder() {
     function addListenerToReportsTable() {
         setTimeout(() => {
-            let tableContainer;
-            if (reportTab) {
-                tableContainer = reportTab.querySelector('div.dataTables_scrollBody')
-            } else {
-                tableContainer = document.querySelector('div.dataTables_scrollBody')
-            }
+            let tableContainer = getTableContainer();
             var $reportsTable = $(tableContainer.querySelector('table')).DataTable();
 
             $reportsTable.on('draw', function () {
@@ -48,7 +44,7 @@ function PreviewListenerAdder() {
                     }
                 });
             });
-        }, 100);
+        }, 10);
     }
 
     async function getIframeUrl(url) {
@@ -60,6 +56,19 @@ function PreviewListenerAdder() {
 
     function displayModal() {
         $previewModal.modal('show');
+    }
+
+    function getTableContainer() {
+        let tableContainer;
+        if (reportTab) {
+            return reportTab.querySelector('div.dataTables_scrollBody')
+        }
+
+        if (reportBlock) {
+            return reportBlock.querySelector('div.dataTables_scrollBody')
+        }
+
+        return document.querySelector('div.dataTables_scrollBody')
     }
 
     return {

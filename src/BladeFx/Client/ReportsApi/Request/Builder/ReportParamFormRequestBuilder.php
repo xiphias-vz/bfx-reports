@@ -28,7 +28,7 @@ class ReportParamFormRequestBuilder extends AbstractRequestBuilder
      */
     public function getMethodName(): string
     {
-        return parent::METHOD_POST;
+        return parent::METHOD_GET;
     }
 
     /**

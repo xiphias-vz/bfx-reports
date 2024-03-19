@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business;
 
-use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
@@ -81,11 +80,4 @@ interface ReportsFacadeInterface
     public function getReportPreviewURL(
         BladeFxParameterTransfer $parameterTransfer,
     ): BladeFxGetReportPreviewResponseTransfer;
-
-    /**
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function getSalesReportsTable(?array $params): SalesReportsTable;
 }

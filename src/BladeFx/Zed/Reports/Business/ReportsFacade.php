@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace BladeFx\Zed\Reports\Business;
 
-use BladeFx\Zed\Reports\Communication\Table\SalesReportsTable;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
@@ -116,15 +115,5 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer
     {
         return $this->getFactory()->createBladeFxReportsReader()->getReportParamForm($reportId);
-    }
-
-    /**
-     * @param array|null $params
-     *
-     * @return \BladeFx\Zed\Reports\Communication\Table\SalesReportsTable
-     */
-    public function getSalesReportsTable(?array $params): SalesReportsTable
-    {
-        return $this->getFactory()->createSalesReportsTable($this, $params);
     }
 }
