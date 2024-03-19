@@ -3,12 +3,12 @@
     "description": "This is the template for developing and testing creation of composer packages",
     "autoload": {
         "psr-4": {
-            "BladeFx\\": "src/BladeFx"
+            "Xiphias\\": "src/Xiphias"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BladeFxTests\\": "tests/BladeFxTests/"
+            "XiphiasTests\\": "tests/XiphiasTests/"
         }
     },
     "authors": [
