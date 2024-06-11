@@ -8,6 +8,7 @@
 namespace Xiphias\Client\ReportsApi\Request;
 
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListRequestTransfer;
@@ -101,5 +102,16 @@ interface RequestManagerInterface
     public function getReportPreview(
         string $resource,
         BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+    ): RequestInterface;
+
+    /**
+     * @param string $resource
+     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    public function getCreateOrUpdateUserOnBladeFxRequest(
+        string $resource,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
     ): RequestInterface;
 }

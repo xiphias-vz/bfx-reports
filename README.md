@@ -12,4 +12,4 @@ composer require xiphias/bfx-reports
 
 ## Documentation
 
-[Xiphias Documentation](https://xiphias.atlassian.net/wiki/home)
+[Xiphias Documentation](https://xiphias.atlassian.net/wiki/spaces/SPRYK/pages/1565687809/BladeFx+Reports+Documentation)

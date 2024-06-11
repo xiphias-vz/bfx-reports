@@ -3,6 +3,7 @@
 var reportTab = document.querySelector('#tab-content-report');
 var reportBlock = document.querySelector('#reports');
 var $previewModal = $('.preview-modal');
+var $loader = $('.loader');
 
 function initialize() {
     const listenerAdder = new PreviewListenerAdder();
@@ -28,17 +29,17 @@ function PreviewListenerAdder() {
                         if (button !== null) {
                             button.addEventListener('click', async (e) => {
                                 e.preventDefault();
-
+                                displayModal();
                                 const iframeUrl = await getIframeUrl(button.href)
                                 $('.modal-body').attr('src', iframeUrl);
-                                displayModal();
-
+                                $loader.addClass('hidden');
                             });
 
                             row.addEventListener('dblclick', async () => {
+                                displayModal();
                                 const iframeUrl = await getIframeUrl(button.href)
                                 $('.modal-body').attr('src', iframeUrl);
-                                displayModal();
+                                $loader.addClass('hidden');
                             });
                         }
                     }
@@ -55,7 +56,9 @@ function PreviewListenerAdder() {
     }
 
     function displayModal() {
+        $('.modal-body').attr('src', null);
         $previewModal.modal('show');
+        $loader.removeClass('hidden');
     }
 
     function getTableContainer() {

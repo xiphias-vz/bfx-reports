@@ -33,5 +33,15 @@ class BladeFxSessionHandlerPostAuthenticationPlugin extends AbstractPlugin imple
             $this->getFactory()->getConfig()->getBfxUserIdSessionKey(),
             $authenticationResponseTransfer->getIdUser(),
         );
+
+        $sessionClient->set(
+            $this->getFactory()->getConfig()->getBfxUserCompanyIdSessionKey(),
+            $authenticationResponseTransfer->getIdCompany(),
+        );
+
+        $sessionClient->set(
+            $this->getFactory()->getConfig()->getBfxUserLanguageIdSessionKey(),
+            $authenticationResponseTransfer->getIdLanguage(),
+        );
     }
 }

@@ -9,6 +9,7 @@ namespace Xiphias\Client\ReportsApi\Response;
 
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
@@ -78,4 +79,11 @@ interface ResponseManagerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreviewResponseTransfer(?ResponseInterface $response): BladeFxGetReportPreviewResponseTransfer;
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
+     */
+    public function getCreateOrUpdateUserOnBladeFxResponseTransfer(?ResponseInterface $response): BladeFxCreateOrUpdateUserResponseTransfer;
 }

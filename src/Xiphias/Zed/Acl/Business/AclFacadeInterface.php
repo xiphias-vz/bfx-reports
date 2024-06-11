@@ -7,6 +7,7 @@
 
 namespace Xiphias\Zed\Acl\Business;
 
+use Generated\Shared\Transfer\BfxAclRoleTransfer;
 use Generated\Shared\Transfer\RoleTransfer;
 use Spryker\Zed\Acl\Business\AclFacadeInterface as SprykerAclFacadeInterface;
 
@@ -18,4 +19,14 @@ interface AclFacadeInterface extends SprykerAclFacadeInterface
      * @return void
      */
     public function writeBladeFxRole(RoleTransfer $roleTransfer): void;
+
+    /**
+     * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
+     */
+    public function createBfxAclRoleAndGroup(): BfxAclRoleTransfer;
+
+    /**
+     * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
+     */
+    public function createBfxMerchantPortalAclRoleAndGroup(): BfxAclRoleTransfer;
 }

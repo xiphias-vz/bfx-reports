@@ -10,6 +10,7 @@ namespace Xiphias\Client\ReportsApi\Response;
 use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 use Xiphias\Client\ReportsApi\Response\Converter\AuthenticationResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\CategoriesListResponseConverter;
+use Xiphias\Client\ReportsApi\Response\Converter\CreateOrUpdateUserOnBladeFxResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\ReportByFormatResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\ReportParameterListResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\ReportParamFormResponseConverter;
@@ -19,6 +20,7 @@ use Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface;
 use Xiphias\Client\ReportsApi\Response\Converter\SetFavoriteReportResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Validator\AuthenticationResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\CategoriesListResponseValidator;
+use Xiphias\Client\ReportsApi\Response\Validator\CreateOrUpdateUserOnBladeFxResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ReportByFormatResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ReportParameterListResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ReportParamFormResponseValidator;
@@ -96,6 +98,14 @@ class ResponseFactory implements ResponseFactoryInterface
     }
 
     /**
+     * @return \Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface
+     */
+    public function createCreateOrUpdateUserOnBfxResponseConverter(): ResponseConverterInterface
+    {
+        return new CreateOrUpdateUserOnBladeFxResponseConverter($this->utilEncodingService);
+    }
+
+    /**
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createAuthenticationResponseValidator(): ResponseValidatorInterface
@@ -165,5 +175,13 @@ class ResponseFactory implements ResponseFactoryInterface
     public function createResponsePreviewValidator(): ResponseValidatorInterface
     {
         return new ReportPreviewResponseValidator();
+    }
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createCreateOrUpdateUserOnBfxResponseValidator(): ResponseValidatorInterface
+    {
+        return new CreateOrUpdateUserOnBladeFxResponseValidator();
     }
 }

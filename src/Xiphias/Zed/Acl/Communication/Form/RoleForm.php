@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Acl\Business\AclFacadeInterface getFacade()
- * @method \Pyz\Zed\Acl\AclConfig getConfig()
+ * @method \Xiphias\Zed\Acl\AclConfig getConfig()
  * @method \Spryker\Zed\Acl\Communication\AclCommunicationFactory getFactory()
  */
 class RoleForm extends SprykerRoleForm

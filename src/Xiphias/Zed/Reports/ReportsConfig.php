@@ -42,6 +42,46 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var string
      */
+    protected const BFX_USER_COMPANY_ID_SESSION_KEY = 'bfx_company_id';
+
+    /**
+     * @var string
+     */
+    protected const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
+
+    /**
+     * @var string
+     */
+    protected const ROOT_GROUP_NAME = 'root_group';
+
+    /**
+     * @var int
+     */
+    protected const ROOT_ADMIN_ID = 1;
+
+    /**
+     * @var string
+     */
+    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
+
+    /**
+     * @var string
+     */
+    protected const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+
+    /**
+     * @var string
+     */
+    protected const MERCHANT_ID_KEY = 'merchant_id';
+
+    /**
+     * @var string
+     */
+    protected const SPRYKER_USER_ID_KEY = 'spryker_user_id';
+
+    /**
+     * @var string
+     */
     protected const DEFAULT_DATA_RETURN_TYPE = 'JSON';
 
     /**
@@ -68,9 +108,7 @@ class ReportsConfig extends AbstractBundleConfig
         'repName' => 'rep_name',
         'repDesc' => 'rep_desc',
         'catName' => 'Category name',
-        'isActive' => 'Is active',
-        'isDrilldown' => 'Is drilldown',
-        'action' => 'action',
+        'actions' => 'action',
     ];
 
     /**
@@ -82,8 +120,6 @@ class ReportsConfig extends AbstractBundleConfig
         'repName' => 'rep_name',
         'repDesc' => 'rep_desc',
         'catName' => 'Category name',
-        'isActive' => 'Is active',
-        'isDrilldown' => 'Is drilldown',
         'actions' => 'Actions',
     ];
 
@@ -92,9 +128,7 @@ class ReportsConfig extends AbstractBundleConfig
      */
     protected const REPORTS_TABLE_RAW_COLUMNS = [
         'isFavorite',
-        'isActive',
-        'isDrilldown',
-        'action',
+        'actions',
     ];
 
     /**
@@ -102,8 +136,6 @@ class ReportsConfig extends AbstractBundleConfig
      */
     protected const SALES_REPORTS_TABLE_RAW_COLUMNS = [
         'isFavorite',
-        'isActive',
-        'isDrilldown',
         'actions',
     ];
 
@@ -177,6 +209,22 @@ class ReportsConfig extends AbstractBundleConfig
     }
 
     /**
+     * @return string
+     */
+    public function getBfxUserCompanyIdSessionKey(): string
+    {
+        return static::BFX_USER_COMPANY_ID_SESSION_KEY;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBfxUserLanguageIdSessionKey(): string
+    {
+        return static::BFX_USER_LANGUAGE_ID_SESSION_KEY;
+    }
+
+    /**
      * @return array<string>
      */
     public function getReportsTableColumnMap(): array
@@ -230,5 +278,53 @@ class ReportsConfig extends AbstractBundleConfig
     public function getParamFormRootUrl(): string
     {
         return $this->get(ReportsConstants::BLADE_FX_ROOT_URL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getBladeFxBOGroupName(): string
+    {
+        return static::BLADE_FX_GROUP_NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBladeFxMerchantPortalGroupName(): string
+    {
+        return static::BLADE_FX_MERCHANT_PORTAL_GROUP_NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRootGroupName(): string
+    {
+        return static::ROOT_GROUP_NAME;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRootAdminId(): int
+    {
+        return static::ROOT_ADMIN_ID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantIdKey(): string
+    {
+        return static::MERCHANT_ID_KEY;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSprykerUserIdKey(): string
+    {
+        return static::SPRYKER_USER_ID_KEY;
     }
 }

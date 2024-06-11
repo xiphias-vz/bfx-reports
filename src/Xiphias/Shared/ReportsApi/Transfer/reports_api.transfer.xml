@@ -195,7 +195,47 @@
         <property name="mobileLayout" type="bool" />
         <property name="attribute" type="string" />
     </transfer>
+    <!--       BladeFx create or update user -->
+    <transfer name="BladeFxCreateOrUpdateUserRequest">
+        <property name="token" type="BladeFxToken" />
+        <property name="email" type="string" />
+        <property name="firstName" type="string" />
+        <property name="lastName" type="string" />
+        <property name="password" type="string" />
+        <property name="roleName" type="string" />
+        <property name="companyId" type="int" />
+        <property name="languageId" type="int" />
+        <property name="isActive" type="bool"/>
+        <property name="customFields" type="BladeFxCreateOrUpdateUserCustomFields[]" />
+    </transfer>
 
+    <transfer name="BladeFxCreateOrUpdateUserRequestWithoutToken">
+        <property name="email" type="string" />
+        <property name="firstName" type="string" />
+        <property name="lastName" type="string" />
+        <property name="password" type="string" />
+        <property name="roleName" type="string" />
+        <property name="companyId" type="int" />
+        <property name="languageId" type="int" />
+        <property name="isActive" type="bool"/>
+        <property name="customFields" type="BladeFxCreateOrUpdateUserCustomFields[]" />
+    </transfer>
+
+    <transfer name="BladeFxCreateOrUpdateUserCustomFields">
+        <property name="fieldName" type="string" />
+        <property name="fieldValue" type="string" />
+    </transfer>
+
+    <transfer name="BladeFxCreateOrUpdateUserResponse">
+        <property name="statusCode" type="int" />
+        <property name="success" type="bool"/>
+        <property name="rMessage" type="string" />
+        <property name="causer" type="string" />
+        <property name="id" type="int" />
+        <property name="areUsure" type="bool" />
+        <property name="optionValue" type="string" />
+        <property name="licenceIssue" type="bool" />
+    </transfer>
     <!--       BladeFx api shared transfers -->
     <transfer name="BladeFxApiResponseConversionResult" strict="true">
         <property name="bladeFxAuthenticationResponse" type="BladeFxAuthenticationResponse"/>

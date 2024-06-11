@@ -16,7 +16,7 @@ use Xiphias\Zed\Acl\Communication\Form\RoleForm;
  * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
  * @method \Spryker\Zed\Acl\Business\AclFacadeInterface getFacade()
- * @method \Pyz\Zed\Acl\AclConfig getConfig()
+ * @method \Xiphias\Zed\Acl\AclConfig getConfig()
  */
 class AclCommunicationFactory extends SprykerAclCommunicationFactory
 {

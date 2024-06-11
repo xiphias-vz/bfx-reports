@@ -10,6 +10,8 @@ namespace Xiphias\Client\ReportsApi\Handler;
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
@@ -89,4 +91,13 @@ interface ApiHandlerInterface
     public function getReportParamForm(
         BladeFxGetReportParamFormRequestTransfer $requestTransfer,
     ): BladeFxGetReportParamFormResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
+     */
+    public function createOrUpdateUserOnBladeFx(
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+    ): BladeFxCreateOrUpdateUserResponseTransfer;
 }

@@ -11,6 +11,7 @@ namespace Xiphias\Client\ReportsApi\Response;
 
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
@@ -166,6 +167,21 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateResponse($validator, $converterResultTransfer->getBladeFxGetReportParamFormResponse());
 
         return $converterResultTransfer->getBladeFxGetReportParamFormResponse();
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface|null $response
+     *
+     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
+     */
+    public function getCreateOrUpdateUserOnBladeFxResponseTransfer(?ResponseInterface $response): BladeFxCreateOrUpdateUserResponseTransfer
+    {
+        $this->validateRawResponse($response);
+        $converterResultTransfer = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseConverter()->convert($response);
+        $validator = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseValidator();
+        $this->validateResponse($validator, $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse());
+
+        return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
     }
 
     /**

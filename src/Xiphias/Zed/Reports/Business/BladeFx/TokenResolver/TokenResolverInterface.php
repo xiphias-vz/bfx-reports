@@ -12,7 +12,7 @@ namespace Xiphias\Zed\Reports\Business\BladeFx\TokenResolver;
 interface TokenResolverInterface
 {
     /**
-     * @return string
+     * @return string|null
      */
-    public function resolveToken(): string;
+    public function resolveToken(): string|null;
 }

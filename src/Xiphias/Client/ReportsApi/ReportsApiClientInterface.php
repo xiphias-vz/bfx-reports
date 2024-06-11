@@ -10,6 +10,7 @@ namespace Xiphias\Client\ReportsApi;
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
@@ -128,4 +129,13 @@ interface ReportsApiClientInterface
     public function sendGetReportParameterListRequest(
         BladeFxGetReportParameterListRequestTransfer $requestTransfer,
     ): BladeFxGetReportParameterListResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
+     *
+     * @return void
+     */
+    public function sendCreateOrUpdateUserOnBfxRequest(
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+    ): void;
 }
