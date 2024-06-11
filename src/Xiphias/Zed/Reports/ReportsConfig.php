@@ -108,7 +108,7 @@ class ReportsConfig extends AbstractBundleConfig
         'repName' => 'rep_name',
         'repDesc' => 'rep_desc',
         'catName' => 'Category name',
-        'action' => 'action',
+        'actions' => 'action',
     ];
 
     /**
@@ -128,7 +128,7 @@ class ReportsConfig extends AbstractBundleConfig
      */
     protected const REPORTS_TABLE_RAW_COLUMNS = [
         'isFavorite',
-        'action',
+        'actions',
     ];
 
     /**

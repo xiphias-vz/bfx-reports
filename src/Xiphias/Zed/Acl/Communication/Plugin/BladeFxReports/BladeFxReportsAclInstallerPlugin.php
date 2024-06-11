@@ -12,7 +12,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Xiphias\Shared\Acl\AclConstants;
 
 /**
- * @method \Pyz\Zed\Acl\AclConfig getConfig()
+ * @method \Xiphias\Zed\Acl\AclConfig getConfig()
  * @method \Spryker\Zed\Acl\Communication\AclCommunicationFactory getFactory()
  * @method \Spryker\Zed\Acl\Business\AclFacadeInterface getFacade()
  * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()

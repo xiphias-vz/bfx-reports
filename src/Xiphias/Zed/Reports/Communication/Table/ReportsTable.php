@@ -71,7 +71,7 @@ class ReportsTable extends AbstractTable
     /**
      * @var string
      */
-    protected const HEADER_ACTIONS = 'actions';
+    protected const HEADER_ACTION = 'action';
 
     /**
      * @var string
@@ -87,21 +87,15 @@ class ReportsTable extends AbstractTable
      * @var \Xiphias\Zed\Reports\ReportsConfig
      */
     protected ReportsConfig $reportsConfig;
-    /**
-     * @var array
-     */
-    protected array $params;
 
     /**
      * @param \Xiphias\Zed\Reports\Business\ReportsFacadeInterface $reportsFacade
      * @param \Xiphias\Zed\Reports\ReportsConfig $reportsConfig
-     * @param array $params
      */
-    public function __construct(ReportsFacadeInterface $reportsFacade, ReportsConfig $reportsConfig, ?array $params = [])
+    public function __construct(ReportsFacadeInterface $reportsFacade, ReportsConfig $reportsConfig)
     {
         $this->reportsFacade = $reportsFacade;
         $this->reportsConfig = $reportsConfig;
-        $this->params = $params;
     }
 
     /**
@@ -137,6 +131,24 @@ class ReportsTable extends AbstractTable
         return $this->reportsConfig->getReportsTableColumnMap();
     }
 
+    /**
+     * @param array $item
+     *
+     * @return array
+     */
+    protected function createActionUrls(array $item): array
+    {
+        $urls = [];
+
+        $urls[] = $this->generateViewButton(
+            (string)Url::generate('/reports/detail', [
+                'rep_id' => $item[''],
+            ]),
+            'View',
+        );
+
+        return $urls;
+    }
 
     /**
      * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
@@ -178,16 +190,6 @@ class ReportsTable extends AbstractTable
         $reportList = $this->reportsFacade
             ->processGetReportsRequest($this->request);
 
-        return $this->processData($reportList);
-    }
-
-    /**
-     * @param array $reportList
-     *
-     * @return array
-     */
-    public function processData(array $reportList): array
-    {
         $results = [];
         $searchTerm = $this->getSearchTerm()['value'];
 
@@ -207,9 +209,9 @@ class ReportsTable extends AbstractTable
                 BladeFxReportTransfer::REP_NAME => $reportListItem->getRepName(),
                 BladeFxReportTransfer::REP_DESC => $reportListItem->getRepDesc(),
                 BladeFxReportTransfer::CAT_NAME => $reportListItem->getCatName(),
-                static::HEADER_ACTIONS => $this->getActionButtons(
-                    $reportListItem->getRepId(),
-                    $this->params,
+                static::HEADER_ACTION => $this->generateEditButton(
+                    $this->buildEditUrl($reportListItem->getRepId()),
+                    static::EDIT_BUTTON_NAME,
                 ),
             ];
         }
@@ -244,14 +246,10 @@ class ReportsTable extends AbstractTable
         $columns = $this->getCsvHeaders();
         usort($results, function ($a, $b) use ($sortDirection, $columns, $columnIndex) {
             if ($sortDirection === static::SORT_DESCENDING) {
-                /** @var array<array<int|string>> $b*/
 
-                /** @var array<array<int|string>> $a*/
                 return $b[array_keys($columns)[$columnIndex]] <=> $a[array_keys($columns)[$columnIndex]];
             }
-            /** @var array<array<int|string>> $b*/
 
-            /** @var array<array<int|string>> $a*/
             return $a[array_keys($columns)[$columnIndex]] <=> $b[array_keys($columns)[$columnIndex]];
         });
 
@@ -266,20 +264,6 @@ class ReportsTable extends AbstractTable
     protected function paginateResults(array $results): array
     {
         return array_slice($results, $this->getOffset(), $this->getLimit());
-    }
-
-    /**
-     * @param int $reportId
-     * @param array|null $params
-     *
-     * @return string
-     */
-    public function getActionButtons(int $reportId, ?array $params = []): string
-    {
-        return $this->generateEditButton(
-            $this->buildEditUrl($reportId),
-            static::EDIT_BUTTON_NAME,
-        );
     }
 
     /**

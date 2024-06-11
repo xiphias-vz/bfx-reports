@@ -5,7 +5,7 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Pyz\Zed\SecurityGui\Communication\Plugin\Security\Handler;
+namespace Xiphias\Zed\SecurityGui\Communication\Plugin\Security\Handler;
 
 use Spryker\Zed\SecurityGui\Communication\Plugin\Security\Handler\UserAuthenticationSuccessHandler as SprykerUserAuthenticationSuccessHandler;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
- * @method \Pyz\Zed\SecurityGui\Communication\SecurityGuiCommunicationFactory getFactory()
- * @method \Pyz\Zed\SecurityGui\SecurityGuiConfig getConfig()
+ * @method \Xiphias\Zed\SecurityGui\Communication\SecurityGuiCommunicationFactory getFactory()
+ * @method \Xiphias\Zed\SecurityGui\SecurityGuiConfig getConfig()
  * @method \Spryker\Zed\SecurityGui\Business\SecurityGuiFacadeInterface getFacade()
  */
 class UserAuthenticationSuccessHandler extends SprykerUserAuthenticationSuccessHandler

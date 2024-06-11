@@ -5,10 +5,10 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Pyz\Zed\SecurityGui\Communication;
+namespace Xiphias\Zed\SecurityGui\Communication;
 
-use Pyz\Zed\SecurityGui\Communication\Plugin\Security\Handler\UserAuthenticationSuccessHandler;
-use Pyz\Zed\SecurityGui\SecurityGuiDependencyProvider;
+use Xiphias\Zed\SecurityGui\Communication\Plugin\Security\Handler\UserAuthenticationSuccessHandler;
+use Xiphias\Zed\SecurityGui\SecurityGuiDependencyProvider;
 use Spryker\Zed\SecurityGui\Communication\SecurityGuiCommunicationFactory as SprykerSecurityGuiCommunicationFactory;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Xiphias\Zed\Reports\Business\ReportsFacadeInterface;
