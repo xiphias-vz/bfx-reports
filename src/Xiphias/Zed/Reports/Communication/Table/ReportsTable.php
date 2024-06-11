@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Table;
 
+use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
@@ -50,12 +51,32 @@ class ReportsTable extends AbstractTable
     /**
      * @var string
      */
-    protected const EDIT_BUTTON_NAME = 'Edit';
+    protected const EDIT_BUTTON_NAME = 'Preview';
 
     /**
      * @var string
      */
     protected const EDIT_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
+
+    /**
+     * @var string
+     */
+    protected const KEY_COLUMN = 'column';
+
+    /**
+     * @var string
+     */
+    protected const KEY_DIRECTION = 'dir';
+
+    /**
+     * @var string
+     */
+    protected const HEADER_ACTIONS = 'actions';
+
+    /**
+     * @var string
+     */
+    protected const SORT_DESCENDING = 'desc';
 
     /**
      * @var \Xiphias\Zed\Reports\Business\ReportsFacadeInterface
@@ -66,15 +87,21 @@ class ReportsTable extends AbstractTable
      * @var \Xiphias\Zed\Reports\ReportsConfig
      */
     protected ReportsConfig $reportsConfig;
+    /**
+     * @var array
+     */
+    protected array $params;
 
     /**
      * @param \Xiphias\Zed\Reports\Business\ReportsFacadeInterface $reportsFacade
      * @param \Xiphias\Zed\Reports\ReportsConfig $reportsConfig
+     * @param array $params
      */
-    public function __construct(ReportsFacadeInterface $reportsFacade, ReportsConfig $reportsConfig)
+    public function __construct(ReportsFacadeInterface $reportsFacade, ReportsConfig $reportsConfig, ?array $params = [])
     {
         $this->reportsFacade = $reportsFacade;
         $this->reportsConfig = $reportsConfig;
+        $this->params = $params;
     }
 
     /**
@@ -90,7 +117,14 @@ class ReportsTable extends AbstractTable
         $queryParams = $this->generateQueryParams();
 
         $url = Url::generate('reports-table', $queryParams)->build();
+        $config->setDefaultSortField(BladeFxReportTransfer::IS_FAVORITE, static::SORT_DESCENDING);
         $config->setUrl($url);
+        $config->setSortable(
+            [
+                BladeFxReportTransfer::IS_FAVORITE,
+                BladeFxReportTransfer::REP_NAME,
+            ],
+        );
 
         return $config;
     }
@@ -103,24 +137,6 @@ class ReportsTable extends AbstractTable
         return $this->reportsConfig->getReportsTableColumnMap();
     }
 
-    /**
-     * @param array $item
-     *
-     * @return array
-     */
-    protected function createActionUrls(array $item): array
-    {
-        $urls = [];
-
-        $urls[] = $this->generateViewButton(
-            (string)Url::generate('/reports/detail', [
-                'rep_id' => $item[''],
-            ]),
-            'View',
-        );
-
-        return $urls;
-    }
 
     /**
      * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
@@ -162,44 +178,118 @@ class ReportsTable extends AbstractTable
         $reportList = $this->reportsFacade
             ->processGetReportsRequest($this->request);
 
+        return $this->processData($reportList);
+    }
+
+    /**
+     * @param array $reportList
+     *
+     * @return array
+     */
+    public function processData(array $reportList): array
+    {
         $results = [];
+        $searchTerm = $this->getSearchTerm()['value'];
 
         /**
          * @var \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
          */
         foreach ($reportList as $reportListItem) {
+            if ($searchTerm) {
+                if (!$this->isSearchTermFound($reportListItem->getRepName(), $searchTerm)) {
+                    continue;
+                }
+            }
+
             $results[] = [
-                'isFavorite' => $this->formatIsFavoriteField(
+                BladeFxReportTransfer::IS_FAVORITE => $reportListItem->getIsFavorite(),
+                BladeFxReportTransfer::REP_ID => $reportListItem->getRepId(),
+                BladeFxReportTransfer::REP_NAME => $reportListItem->getRepName(),
+                BladeFxReportTransfer::REP_DESC => $reportListItem->getRepDesc(),
+                BladeFxReportTransfer::CAT_NAME => $reportListItem->getCatName(),
+                static::HEADER_ACTIONS => $this->getActionButtons(
                     $reportListItem->getRepId(),
-                    $reportListItem->getIsFavorite(),
-                ),
-                'repId' => $reportListItem->getRepId(),
-                'repName' => $reportListItem->getRepName(),
-                'repDesc' => $reportListItem->getRepDesc(),
-                'catName' => $reportListItem->getCatName(),
-                'isActive' => $this->formatIsActiveField(
-                    $reportListItem->getIsActive(),
-                ),
-                'isDrilldown' => $this->formatIsDrillDownField(
-                    $reportListItem->getIsDrilldown(),
-                ),
-                'action' => $this->generateEditButton(
-                    $this->buildEditUrl($reportListItem->getRepId()),
-                    static::EDIT_BUTTON_NAME,
+                    $this->params,
                 ),
             ];
         }
+
+        $this->filtered = count($results);
+        $this->total = count($reportList);
+
+        $sortingParameters = $this->createSortingParameters($this->getOrderParameter())[0];
+        if ($sortingParameters) {
+            $results = $this->sortResults($results, $sortingParameters[static::KEY_COLUMN], $sortingParameters[static::KEY_DIRECTION]);
+        }
+
+        foreach ($results as &$result) {
+            $result[BladeFxReportTransfer::IS_FAVORITE] = $this->formatIsFavoriteField(
+                $result[BladeFxReportTransfer::REP_ID],
+                $result[BladeFxReportTransfer::IS_FAVORITE],
+            );
+        }
+
+        return $this->paginateResults($results);
+    }
+
+    /**
+     * @param array $results
+     * @param string $columnIndex
+     * @param string $sortDirection
+     *
+     * @return array
+     */
+    protected function sortResults(array $results, string $columnIndex, string $sortDirection): array
+    {
+        $columns = $this->getCsvHeaders();
+        usort($results, function ($a, $b) use ($sortDirection, $columns, $columnIndex) {
+            if ($sortDirection === static::SORT_DESCENDING) {
+                /** @var array<array<int|string>> $b*/
+
+                /** @var array<array<int|string>> $a*/
+                return $b[array_keys($columns)[$columnIndex]] <=> $a[array_keys($columns)[$columnIndex]];
+            }
+            /** @var array<array<int|string>> $b*/
+
+            /** @var array<array<int|string>> $a*/
+            return $a[array_keys($columns)[$columnIndex]] <=> $b[array_keys($columns)[$columnIndex]];
+        });
 
         return $results;
     }
 
     /**
-     * @param int $repId
-     * @param bool|null $isFavorite
+     * @param array $results
+     *
+     * @return array
+     */
+    protected function paginateResults(array $results): array
+    {
+        return array_slice($results, $this->getOffset(), $this->getLimit());
+    }
+
+    /**
+     * @param int $reportId
+     * @param array|null $params
      *
      * @return string
      */
-    protected function formatIsFavoriteField(int $repId, ?bool $isFavorite = null): string
+    public function getActionButtons(int $reportId, ?array $params = []): string
+    {
+        return $this->generateEditButton(
+            $this->buildEditUrl($reportId),
+            static::EDIT_BUTTON_NAME,
+        );
+    }
+
+    /**
+     * @param int $repId
+     * @param bool|null $isFavorite
+     * @param string $tab
+     *
+     * @return string
+     */
+    protected function formatIsFavoriteField(int $repId, ?bool $isFavorite = null, string $tab = ''): string
     {
         $categoryKey = $this->reportsConfig->getCategoryQueryKey();
         $categoryId = $this->request->query->getInt(
@@ -215,31 +305,7 @@ class ReportsTable extends AbstractTable
             $categoryKey => $categoryId,
         ]);
 
-        return sprintf('<a href="%s"><i class="fa fa-star toggle-icon%s"></i></a>', $url, $activeClass);
-    }
-
-    /**
-     * @param bool $isActive
-     *
-     * @return string
-     */
-    protected function formatIsActiveField(bool $isActive = false): string
-    {
-        $checkedStr = $isActive ? static::ELEMENT_PROPERTY_CHECKED : '';
-
-        return '<input type="checkbox" disabled ' . $checkedStr . ' />';
-    }
-
-    /**
-     * @param bool $isDrilldown
-     *
-     * @return string
-     */
-    protected function formatIsDrillDownField(bool $isDrilldown = false): string
-    {
-        $checkedStr = $isDrilldown ? static::ELEMENT_PROPERTY_CHECKED : '';
-
-        return '<input type="checkbox" disabled ' . $checkedStr . ' />';
+        return sprintf('<a href="%s"><i class="fa fa-star toggle-icon%s"></i></a>', $url . $tab, $activeClass);
     }
 
     /**
@@ -258,5 +324,20 @@ class ReportsTable extends AbstractTable
     protected function buildEditUrl(int $repId): string
     {
         return sprintf(static::EDIT_URL_FORMAT, $repId);
+    }
+
+    /**
+     * @param string $haystack
+     * @param string $needle
+     *
+     * @return bool
+     */
+    protected function isSearchTermFound(string $haystack, string $needle): bool
+    {
+        if (str_contains(strtolower($haystack), strtolower($needle))) {
+            return true;
+        }
+
+        return false;
     }
 }

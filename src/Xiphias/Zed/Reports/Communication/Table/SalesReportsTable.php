@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Table;
 
+use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Xiphias\Shared\Reports\ReportsConstants;
@@ -17,21 +18,15 @@ use Xiphias\Zed\Reports\ReportsConfig;
 
 class SalesReportsTable extends ReportsTable
 {
-    private ?array $params;
+    /**
+     * @var string
+     */
+    protected const HEADER_ACTIONS = 'actions';
 
     /**
-     * @param \Xiphias\Zed\Reports\Business\ReportsFacadeInterface $reportsFacade
-     * @param \Xiphias\Zed\Reports\ReportsConfig $reportsConfig
-     * @param array|null $params
+     * @var array|null
      */
-    public function __construct(
-        ReportsFacadeInterface $reportsFacade,
-        ReportsConfig $reportsConfig,
-        ?array $params = [],
-    ) {
-        parent::__construct($reportsFacade, $reportsConfig);
-        $this->params = $params;
-    }
+    protected array $params;
 
     /**
      * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
@@ -47,7 +42,14 @@ class SalesReportsTable extends ReportsTable
 
         $this->baseUrl = '/';
         $url = Url::generate('reports/index/sales-reports-table', $queryParams)->build();
+        $config->setDefaultSortField(BladeFxReportTransfer::IS_FAVORITE, static::SORT_DESCENDING);
         $config->setUrl($url);
+        $config->setSortable(
+            [
+                BladeFxReportTransfer::IS_FAVORITE,
+                BladeFxReportTransfer::REP_NAME,
+            ],
+        );
 
         return $config;
     }
@@ -65,35 +67,7 @@ class SalesReportsTable extends ReportsTable
             ->getReportsList()
             ->getArrayCopy();
 
-        $results = [];
-
-        /**
-         * @var \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
-         */
-        foreach ($reportList as $reportListItem) {
-            $results[] = [
-                'isFavorite' => $this->formatIsFavoriteField(
-                    $reportListItem->getRepId(),
-                    $reportListItem->getIsFavorite(),
-                ),
-                'repId' => $reportListItem->getRepId(),
-                'repName' => $reportListItem->getRepName(),
-                'repDesc' => $reportListItem->getRepDesc(),
-                'catName' => $reportListItem->getCatName(),
-                'isActive' => $this->formatIsActiveField(
-                    $reportListItem->getIsActive(),
-                ),
-                'isDrilldown' => $this->formatIsDrillDownField(
-                    $reportListItem->getIsDrilldown(),
-                ),
-                'actions' => $this->getActionButtons(
-                    $reportListItem->getRepId(),
-                    $this->params,
-                ),
-            ];
-        }
-
-        return $results;
+        return $this->processData($reportList);
     }
 
     /**
@@ -124,7 +98,7 @@ class SalesReportsTable extends ReportsTable
      *
      * @return string
      */
-    public function getActionButtons(int $reportId, ?array $params): string
+    public function getActionButtons(int $reportId, ?array $params = []): string
     {
         $buttons = [];
         $buttons[] = $this->createPreviewButton($reportId, $params);
@@ -204,5 +178,17 @@ class SalesReportsTable extends ReportsTable
         ];
 
         return $this->generateButton($url, $title, $defaultOptions);
+    }
+
+    /**
+     * @param int $repId
+     * @param bool|null $isFavorite
+     * @param string $tab
+     *
+     * @return string
+     */
+    protected function formatIsFavoriteField(int $repId, ?bool $isFavorite = null, string $tab = '#tab-content-report'): string
+    {
+        return parent::formatIsFavoriteField($repId, $isFavorite, $tab);
     }
 }

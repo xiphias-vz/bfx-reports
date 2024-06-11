@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportListReader;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
@@ -94,17 +93,13 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    protected function getUserToken(): string
+    protected function getUserToken(): string|null
     {
         $bfxTokenSessionKey = $this->config->getBfxTokenSessionKey();
 
-        if ($this->sessionClient->has($bfxTokenSessionKey)) {
-            return $this->sessionClient->get($bfxTokenSessionKey);
-        }
-
-        return $this->getAuthenticationResponseTransfer()->getToken();
+        return $this->sessionClient->has($bfxTokenSessionKey) ? $this->sessionClient->get($bfxTokenSessionKey) : null;
     }
 
     /**
@@ -121,13 +116,5 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
             ->setToken((new BladeFxTokenTransfer())->setToken($token))
             ->setAttribute($attribute)
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE);
-    }
-
-    /**
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer
-     */
-    protected function getAuthenticationResponseTransfer(): BladeFxAuthenticationResponseTransfer
-    {
-        return $this->authenticator->authenticate();
     }
 }

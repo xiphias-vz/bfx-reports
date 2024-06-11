@@ -9,10 +9,16 @@ namespace Xiphias\Client\ReportsApi\Request;
 
 use Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
+use Xiphias\Client\ReportsApi\Request\Mapper\RequestMapperInterface;
 use Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface;
 
 interface RequestFactoryInterface
 {
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Mapper\RequestMapperInterface
+     */
+    public function createRequestMapper(): RequestMapperInterface;
+
     /**
      * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
      */
@@ -97,4 +103,9 @@ interface RequestFactoryInterface
      * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
      */
     public function createReportPreviewRequestValidator(): RequestValidatorInterface;
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createCreateOrUpdateUserOnBladeFxRequestBuilder(): RequestBuilderInterface;
 }

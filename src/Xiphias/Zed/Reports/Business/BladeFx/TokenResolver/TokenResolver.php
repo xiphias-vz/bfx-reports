@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\TokenResolver;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
@@ -44,24 +43,12 @@ class TokenResolver implements TokenResolverInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function resolveToken(): string
+    public function resolveToken(): string|null
     {
         $bfxTokenSessionKey = $this->config->getBfxTokenSessionKey();
 
-        if ($this->sessionClient->has($bfxTokenSessionKey)) {
-            return $this->sessionClient->get($bfxTokenSessionKey);
-        }
-
-        return $this->getAuthenticationResponseTransfer()->getToken();
-    }
-
-    /**
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer
-     */
-    protected function getAuthenticationResponseTransfer(): BladeFxAuthenticationResponseTransfer
-    {
-        return $this->authenticator->authenticate();
+        return $this->sessionClient->has($bfxTokenSessionKey) ? $this->sessionClient->get($bfxTokenSessionKey) : null;
     }
 }

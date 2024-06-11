@@ -35,9 +35,14 @@ class IndexController extends AbstractController
      */
     public function indexAction(Request $request): array
     {
-        $categoryTree = $this
+        $categories = $this
             ->getFacade()
             ->processCategoryTreeListRequest($request);
+
+        $categoryTree = $this
+            ->getFactory()
+            ->createCategoryTreeBuilder()
+            ->buildCategoryTree($categories);
 
         $reportsTable = $this->getFactory()
             ->createReportsTable();
@@ -108,7 +113,7 @@ class IndexController extends AbstractController
             $categoryParamKey => $categoryId,
         ];
 
-        return $this->redirectResponse(static::ROOT_MODULE_URL . '?' . http_build_query($queryParams));
+        return $this->redirectResponse($request->headers->get('referer'));
     }
 
     /**

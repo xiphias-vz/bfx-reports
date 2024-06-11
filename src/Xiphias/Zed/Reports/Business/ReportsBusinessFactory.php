@@ -17,6 +17,8 @@ use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticator;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReader;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReaderInterface;
+use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxChecker;
+use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReader;
 use Xiphias\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReaderInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReader;
@@ -31,11 +33,14 @@ use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessor;
 use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
+use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandler;
+use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
  * @method \Xiphias\Zed\Reports\Business\ReportsFacade getFacade();
+ * @method \Xiphias\Zed\Reports\Persistence\ReportsRepositoryInterface getRepository();
  */
 class ReportsBusinessFactory extends AbstractBusinessFactory
 {
@@ -62,6 +67,7 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->getSessionClient(),
             $this->getBladeFxPostAuthenticationPlugins(),
+            $this->createBladeFxChecker(),
         );
     }
 
@@ -182,6 +188,30 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getBladeFxClient(),
             $this->createTokenResolver(),
             $this->getConfig(),
+        );
+    }
+
+    /**
+     * @return \Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface
+     */
+    public function createUserHandler(): UserHandlerInterface
+    {
+        return new UserHandler(
+            $this->getBladeFxClient(),
+            $this->getSessionClient(),
+            $this->createTokenResolver(),
+            $this->createBladeFxChecker(),
+            $this->getConfig(),
+        );
+    }
+
+    /**
+     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
+     */
+    public function createBladeFxChecker(): BladeFxCheckerInterface
+    {
+        return new BladeFxChecker(
+            $this->getRepository(),
         );
     }
 }
