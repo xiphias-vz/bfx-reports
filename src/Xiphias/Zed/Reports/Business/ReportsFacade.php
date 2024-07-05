@@ -15,6 +15,8 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\MerchantUserTransfer;
+use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,13 +26,27 @@ use Symfony\Component\HttpFoundation\Request;
 class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
 {
     /**
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticateBladeFxUser(): BladeFxAuthenticationResponseTransfer
+    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
     {
         return $this->getFactory()
             ->createBladeFxAuthenticator()
-            ->authenticate();
+            ->authenticate($request, $userTransfer);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     *
+     * @return void
+     */
+    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void
+    {
+        $this->getFactory()->createBladeFxAuthenticator()->authenticateUserOnMerchantPortal($request, $merchantUserTransfer);
     }
 
     /**
@@ -115,5 +131,16 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer
     {
         return $this->getFactory()->createBladeFxReportsReader()->getReportParamForm($reportId);
+    }
+
+    /**
+     * @param array $userForm
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void
+    {
+        $this->getFactory()->createUserHandler()->createOrUpdateUserOnBladeFx($userForm, $userTransfer);
     }
 }

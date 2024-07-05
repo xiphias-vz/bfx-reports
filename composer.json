@@ -1,6 +1,6 @@
 {
     "name": "xiphias/bfx-reports",
-    "description": "This is the template for developing and testing creation of composer packages",
+    "description": "Integration of BladeFx reports service",
     "autoload": {
         "psr-4": {
             "Xiphias\\": "src/Xiphias"
@@ -31,6 +31,14 @@
         {
             "name": "Alen Valek",
             "email": "alen.valek@xiphias.hr"
+        },
+        {
+            "name": "Edo Kreš",
+            "email": "edo.kres@xiphias.hr"
+        },
+        {
+            "name": "Tomislav Lenartić",
+            "email": "tomislav.lenartic@xiphias.hr"
         }
     ],
     "require": {

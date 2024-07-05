@@ -12,6 +12,7 @@ namespace Xiphias\Client\ReportsApi;
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
@@ -113,5 +114,16 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
         BladeFxGetReportParameterListRequestTransfer $requestTransfer,
     ): BladeFxGetReportParameterListResponseTransfer {
         return $this->getFactory()->createApiHandler()->getParameterList($requestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
+     *
+     * @return void
+     */
+    public function sendCreateOrUpdateUserOnBfxRequest(
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+    ): void {
+        $this->getFactory()->createApiHandler()->createOrUpdateUserOnBladeFx($requestTransfer);
     }
 }

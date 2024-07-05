@@ -68,6 +68,11 @@ interface ResponseFactoryInterface
     public function createReportPreviewResponseConverter(): ResponseConverterInterface;
 
     /**
+     * @return \Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface
+     */
+    public function createCreateOrUpdateUserOnBfxResponseConverter(): ResponseConverterInterface;
+
+    /**
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createReportByFormatResponseValidator(): ResponseValidatorInterface;
@@ -91,4 +96,9 @@ interface ResponseFactoryInterface
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createResponsePreviewValidator(): ResponseValidatorInterface;
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createCreateOrUpdateUserOnBfxResponseValidator(): ResponseValidatorInterface;
 }

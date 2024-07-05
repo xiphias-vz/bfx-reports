@@ -10,16 +10,20 @@ namespace Xiphias\Zed\Acl\Business;
 use Spryker\Zed\Acl\Business\AclBusinessFactory as SprykerAclBusinessFactory;
 use Spryker\Zed\Acl\Business\Model\RoleInterface;
 use Spryker\Zed\Acl\Business\Writer\RoleWriterInterface;
+use Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxAclRoleCreator;
+use Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxAclRoleCreatorInterface;
+use Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxMerchantPortalAclRoleCreator;
+use Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxMerchantPortalAclRoleCreatorInterface;
 use Xiphias\Zed\Acl\Business\Model\Role;
 use Xiphias\Zed\Acl\Business\Writer\BladeFxRoleWriter;
 use Xiphias\Zed\Acl\Business\Writer\BladeFxRoleWriterInterface;
 use Xiphias\Zed\Acl\Business\Writer\RoleWriter;
 
 /**
- * @method \Xiphias\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
+ * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
- * @method \Pyz\Zed\Acl\AclConfig getConfig()
+ * @method \Xiphias\Zed\Acl\AclConfig getConfig()
  */
 class AclBusinessFactory extends SprykerAclBusinessFactory
 {
@@ -58,5 +62,21 @@ class AclBusinessFactory extends SprykerAclBusinessFactory
             $this->getAclRolePostSavePlugins(),
             $this->createBladeFxRoleWriter(),
         );
+    }
+
+    /**
+     * @return \Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxAclRoleCreatorInterface
+     */
+    public function createBfxAclRoleCreator(): BfxAclRoleCreatorInterface
+    {
+        return new BfxAclRoleCreator($this->getConfig());
+    }
+
+    /**
+     * @return \Xiphias\Zed\Acl\Business\BfxAclRoleCreator\BfxMerchantPortalAclRoleCreatorInterface
+     */
+    public function createBfxMerchantPortalAclRoleCreator(): BfxMerchantPortalAclRoleCreatorInterface
+    {
+        return new BfxMerchantPortalAclRoleCreator($this->getConfig());
     }
 }

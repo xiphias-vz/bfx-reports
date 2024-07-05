@@ -63,6 +63,11 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
+    public const GET_CREATE_OR_UPDATE_USER_ON_BFX_API_RESOURCE = '/api/Users/SetUser';
+
+    /**
+     * @var string
+     */
     public const GET_REPORT_HTML_API_RESOURCE = '/api/ReportData/GetReportHTML';
 
     /**
@@ -193,6 +198,14 @@ class ReportsApiConfig extends AbstractBundleConfig
     public function getReportPreviewResourceParameter(): string
     {
         return static::GET_REPORT_PREVIEW_API_RESOURCE;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateOrUpdateUserOnBfxResourceParameter(): string
+    {
+        return static::GET_CREATE_OR_UPDATE_USER_ON_BFX_API_RESOURCE;
     }
 
     /**

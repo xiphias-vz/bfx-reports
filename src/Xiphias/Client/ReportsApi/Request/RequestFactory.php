@@ -13,6 +13,7 @@ use Xiphias\Client\ReportsApi\ReportsApiDependencyProvider;
 use Xiphias\Client\ReportsApi\ReportsApiFactory;
 use Xiphias\Client\ReportsApi\Request\Builder\AuthenticationRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\CategoriesListRequestBuilder;
+use Xiphias\Client\ReportsApi\Request\Builder\CreateOrUpdateUserOnBladeFxRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\ReportByFormatRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\ReportParameterListRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\ReportParamFormRequestBuilder;
@@ -22,8 +23,11 @@ use Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 use Xiphias\Client\ReportsApi\Request\Builder\SetFavoriteReportRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatter;
 use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
+use Xiphias\Client\ReportsApi\Request\Mapper\RequestMapper;
+use Xiphias\Client\ReportsApi\Request\Mapper\RequestMapperInterface;
 use Xiphias\Client\ReportsApi\Request\Validator\AuthenticationRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\CategoriesListRequestValidator;
+use Xiphias\Client\ReportsApi\Request\Validator\CreateOrUpdateUserOnBladeFxRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\ReportByFormatRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\ReportParameterListRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\ReportParamFormRequestValidator;
@@ -34,6 +38,14 @@ use Xiphias\Client\ReportsApi\Request\Validator\SetFavoriteReportRequestValidato
 
 class RequestFactory extends ReportsApiFactory implements RequestFactoryInterface
 {
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Mapper\RequestMapperInterface
+     */
+    public function createRequestMapper(): RequestMapperInterface
+    {
+        return new RequestMapper();
+    }
+
     /**
      * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
      */
@@ -88,6 +100,14 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
     public function createReportPreviewRequestValidator(): RequestValidatorInterface
     {
         return new ReportPreviewRequestValidator();
+    }
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createCreateOrUpdateUserOnBladeFxRequestValidator(): RequestValidatorInterface
+    {
+        return new CreateOrUpdateUserOnBladeFxRequestValidator();
     }
 
     /**
@@ -192,6 +212,19 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
             $this->createRequestBodyFormatter(),
             $this->getUtilEncodingService(),
             $this->getConfig(),
+        );
+    }
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createCreateOrUpdateUserOnBladeFxRequestBuilder(): RequestBuilderInterface
+    {
+        return new CreateOrUpdateUserOnBladeFxRequestBuilder(
+            $this->getConfig(),
+            $this->getUtilEncodingService(),
+            $this->createRequestBodyFormatter(),
+            $this->createRequestMapper(),
         );
     }
 

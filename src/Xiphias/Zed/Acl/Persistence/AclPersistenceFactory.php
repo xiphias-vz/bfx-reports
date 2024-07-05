@@ -14,7 +14,7 @@ use Spryker\Zed\Acl\Persistence\AclPersistenceFactory as SprykerAclPersistenceFa
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
- * @method \Pyz\Zed\Acl\AclConfig getConfig()
+ * @method \Xiphias\Zed\Acl\AclConfig getConfig()
  */
 class AclPersistenceFactory extends SprykerAclPersistenceFactory
 {
