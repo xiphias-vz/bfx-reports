@@ -108,7 +108,7 @@ class ReportsConfig extends AbstractBundleConfig
         'repName' => 'rep_name',
         'repDesc' => 'rep_desc',
         'catName' => 'Category name',
-        'actions' => 'action',
+        'action' => 'action',
     ];
 
     /**

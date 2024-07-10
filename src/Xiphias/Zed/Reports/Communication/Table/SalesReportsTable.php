@@ -13,8 +13,6 @@ use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Xiphias\Shared\Reports\ReportsConstants;
-use Xiphias\Zed\Reports\Business\ReportsFacadeInterface;
-use Xiphias\Zed\Reports\ReportsConfig;
 
 class SalesReportsTable extends ReportsTable
 {
