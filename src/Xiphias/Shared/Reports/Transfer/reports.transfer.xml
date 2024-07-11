@@ -21,20 +21,6 @@
         <property name="categoryId" type="string" />
     </transfer>
 
-<!--    <transfer name="BladeFxReport">-->
-<!--        <property name="catId" type="string"/>-->
-<!--        <property name="catParentId" type="string"/>-->
-<!--        <property name="catName" type="string"/>-->
-<!--        <property name="catSort" type="string"/>-->
-<!--        <property name="repId" type="string"/>-->
-<!--        <property name="repName" type="string"/>-->
-<!--        <property name="repDesc" type="string"/>-->
-<!--        <property name="canView" type="string"/>-->
-<!--        <property name="layoutId" type="string"/>-->
-<!--        <property name="isDef" type="string"/>-->
-<!--        <property name="isMetro" type="string"/>-->
-<!--    </transfer>-->
-
     <transfer name="OrderData">
         <property name="orderReference" type="int"/>
         <property name="idReport" type="int"/>
