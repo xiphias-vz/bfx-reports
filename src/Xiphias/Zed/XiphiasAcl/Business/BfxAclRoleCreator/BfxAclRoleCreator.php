@@ -5,28 +5,28 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\Acl\Business\BfxAclRoleCreator;
+namespace Xiphias\Zed\XiphiasAcl\Business\BfxAclRoleCreator;
 
 use ArrayObject;
 use Generated\Shared\Transfer\BfxAclRoleTransfer;
 use Generated\Shared\Transfer\GroupTransfer;
 use Generated\Shared\Transfer\RoleTransfer;
 use Generated\Shared\Transfer\RuleTransfer;
-use Pyz\Zed\Acl\AclConfig;
+use Xiphias\Zed\XiphiasAcl\XiphiasAclConfig;
 use Spryker\Shared\Acl\AclConstants as SprykerAclConstants;
 use Xiphias\Shared\Acl\AclConstants;
 
 class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
 {
     /**
-     * @var \Pyz\Zed\Acl\AclConfig $config
+     * @var \Xiphias\Zed\XiphiasAcl\XiphiasAclConfig $config
      */
-    protected AclConfig $config;
+    protected XiphiasAclConfig $config;
 
     /**
-     * @param \Pyz\Zed\Acl\AclConfig $config
+     * @param \Xiphias\Zed\XiphiasAcl\XiphiasAclConfig $config
      */
-    public function __construct(AclConfig $config)
+    public function __construct(XiphiasAclConfig $config)
     {
         $this->config = $config;
     }

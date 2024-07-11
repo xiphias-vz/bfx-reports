@@ -5,20 +5,20 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\Acl\Business;
+namespace Xiphias\Zed\XiphiasAcl\Business;
 
 use Generated\Shared\Transfer\BfxAclRoleTransfer;
 use Generated\Shared\Transfer\RoleTransfer;
 use Spryker\Zed\Acl\Business\AclFacadeInterface as SprykerAclFacadeInterface;
 
-interface AclFacadeInterface extends SprykerAclFacadeInterface
+interface XiphiasAclFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\RoleTransfer $roleTransfer
-     *
-     * @return void
-     */
-    public function writeBladeFxRole(RoleTransfer $roleTransfer): void;
+//    /**
+//     * @param \Generated\Shared\Transfer\RoleTransfer $roleTransfer
+//     *
+//     * @return void
+//     */
+//    public function writeBladeFxRole(RoleTransfer $roleTransfer): void;
 
     /**
      * @return \Generated\Shared\Transfer\BfxAclRoleTransfer

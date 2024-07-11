@@ -5,30 +5,31 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\Acl\Business;
+namespace Xiphias\Zed\XiphiasAcl\Business;
 
 use Generated\Shared\Transfer\BfxAclRoleTransfer;
 use Generated\Shared\Transfer\RoleTransfer;
+use Spryker\Zed\Acl\Business\AclFacade;
 use Spryker\Zed\Acl\Business\AclFacade as SprykerAclFacade;
 
 /**
- * @method \Spryker\Zed\Acl\Business\AclBusinessFactory getFactory()
+ * @method \Xiphias\Zed\XiphiasAcl\Business\XiphiasAclBusinessFactory getFactory()
  * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
  * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
  */
-class AclFacade extends SprykerAclFacade implements AclFacadeInterface
+class XiphiasAclFacade extends AclFacade implements XiphiasAclFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\RoleTransfer $roleTransfer
-     *
-     * @return void
-     */
-    public function writeBladeFxRole(RoleTransfer $roleTransfer): void
-    {
-        $this->getFactory()
-            ->createBladeFxRoleWriter()
-            ->writeBladeFxRole($roleTransfer);
-    }
+//    /**
+//     * @param \Generated\Shared\Transfer\RoleTransfer $roleTransfer
+//     *
+//     * @return void
+//     */
+//    public function writeBladeFxRole(RoleTransfer $roleTransfer): void
+//    {
+//        $this->getFactory()
+//            ->createBladeFxRoleWriter()
+//            ->writeBladeFxRole($roleTransfer);
+//    }
 
     /**
      * @return \Generated\Shared\Transfer\BfxAclRoleTransfer

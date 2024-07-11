@@ -5,17 +5,14 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\Acl\Communication\Plugin\BladeFxReports;
+namespace Xiphias\Zed\XiphiasAcl\Communication\Plugin\BladeFxReports;
 
 use Spryker\Zed\AclExtension\Dependency\Plugin\AclInstallerPluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Xiphias\Shared\Acl\AclConstants;
 
 /**
- * @method \Xiphias\Zed\Acl\AclConfig getConfig()
- * @method \Spryker\Zed\Acl\Communication\AclCommunicationFactory getFactory()
- * @method \Spryker\Zed\Acl\Business\AclFacadeInterface getFacade()
- * @method \Spryker\Zed\Acl\Persistence\AclQueryContainerInterface getQueryContainer()
+ * @method \Xiphias\Zed\XiphiasAcl\Business\XiphiasAclFacadeInterface getFacade()
  */
 class BladeFxReportsAclInstallerPlugin extends AbstractPlugin implements AclInstallerPluginInterface, AclConstants
 {
