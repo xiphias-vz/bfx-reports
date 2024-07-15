@@ -56,7 +56,7 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
 
         return (new RoleTransfer())
             ->setName($this->config->getBfxGroupName())
-            ->setReference($this->config->getBfxGroupReference())
+            //->setReference($this->config->getBfxGroupReference())
             ->setAclRules($this->getAclRoleRules())
             ->setAclGroup($groupTransfer);
     }
@@ -82,10 +82,10 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
             AclConstants::BFX_REPORTS_GUI,
         ];
 
-        $merchantPortalBundles = $this->config->getMerchantPortalGuiBundles();
+        //$merchantPortalBundles = $this->config->getMerchantPortalGuiBundles();
 
         $ruleTransfers = $this->addRoleRules($ruleTransfers, $bundles, SprykerAclConstants::ALLOW);
-        $ruleTransfers = $this->addRoleRules($ruleTransfers, $merchantPortalBundles, AclConstants::DENY);
+        //$ruleTransfers = $this->addRoleRules($ruleTransfers, $merchantPortalBundles, AclConstants::DENY);
 
         return $ruleTransfers;
     }
