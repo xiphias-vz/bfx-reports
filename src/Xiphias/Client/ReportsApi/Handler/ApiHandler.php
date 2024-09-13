@@ -239,6 +239,7 @@ class ApiHandler implements ApiHandlerInterface
 
         return $this->responseManager->getReportPreviewResponseTransfer($response);
     }
+
     /**
      * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
      *

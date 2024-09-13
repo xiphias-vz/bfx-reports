@@ -22,7 +22,7 @@ class SalesReportsTable extends ReportsTable
     protected const HEADER_ACTIONS = 'actions';
 
     /**
-     * @var array|null
+     * @var array
      */
     protected array $params;
 

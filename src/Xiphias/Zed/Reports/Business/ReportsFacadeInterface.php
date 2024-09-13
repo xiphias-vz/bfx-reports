@@ -15,7 +15,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\MerchantUserTransfer;
+//use Generated\Shared\Transfer\MerchantUserTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,13 +29,13 @@ interface ReportsFacadeInterface
      */
     public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool;
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-     *
-     * @return void
-     */
-    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
+//    /**
+//     * @param \Symfony\Component\HttpFoundation\Request $request
+//     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+//     *
+//     * @return void
+//     */
+//    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -95,10 +95,24 @@ interface ReportsFacadeInterface
     ): BladeFxGetReportPreviewResponseTransfer;
 
     /**
-     * @param array $userForm
+     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void;
+    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void;
+
+    /**
+     * @param $userId
+     *
+     * @return bool
+     */
+    public function checkIfUserHasBfxBOGroup($userId): bool;
 }

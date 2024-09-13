@@ -12,9 +12,9 @@ use Generated\Shared\Transfer\BfxAclRoleTransfer;
 use Generated\Shared\Transfer\GroupTransfer;
 use Generated\Shared\Transfer\RoleTransfer;
 use Generated\Shared\Transfer\RuleTransfer;
-use Xiphias\Zed\XiphiasAcl\XiphiasAclConfig;
 use Spryker\Shared\Acl\AclConstants as SprykerAclConstants;
 use Xiphias\Shared\Acl\AclConstants;
+use Xiphias\Zed\XiphiasAcl\XiphiasAclConfig;
 
 class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
 {

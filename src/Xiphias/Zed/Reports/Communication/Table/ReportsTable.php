@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Communication\Table;
 
 use Generated\Shared\Transfer\BladeFxReportTransfer;
+use InvalidArgumentException;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
@@ -237,12 +238,27 @@ class ReportsTable extends AbstractTable
      * @param string $columnIndex
      * @param string $sortDirection
      *
+     * @throws \InvalidArgumentException
+     *
      * @return array
      */
     protected function sortResults(array $results, string $columnIndex, string $sortDirection): array
     {
         $columns = $this->getCsvHeaders();
+
+        if (is_numeric($columnIndex)) {
+            $columnIndex = (int)$columnIndex;
+        }
+
+        if (!isset(array_keys($columns)[$columnIndex])) {
+            throw new InvalidArgumentException("Invalid column index: $columnIndex");
+        }
+
         usort($results, function ($a, $b) use ($sortDirection, $columns, $columnIndex) {
+            if (!array_key_exists(array_keys($columns)[$columnIndex], $a) || !array_key_exists(array_keys($columns)[$columnIndex], $b)) {
+                return 0;
+            }
+
             if ($sortDirection === static::SORT_DESCENDING) {
                 /** @var array<array<int|string>> $b*/
 

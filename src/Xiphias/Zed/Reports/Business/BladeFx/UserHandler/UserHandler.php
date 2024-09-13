@@ -109,46 +109,64 @@ class UserHandler implements UserHandlerInterface
     }
 
     /**
-     * @param array $userForm
+     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void
+    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void
     {
-        $groupRoles = $userForm[static::GROUP];
         $userId = $userTransfer->getIdUser();
 
-        if (!$this->bladeFxChecker->checkIfPasswordExists($userForm[static::PASSWORD])) {
+        if (!$this->bladeFxChecker->checkIfPasswordExists($userTransfer->getPassword())) {
             return;
         }
 
-        if ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForCreationOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm, true, false);
-        } elseif ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForUpdateOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm, true, false);
-        } elseif ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm, false, false);
-        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm);
+//        //Changes for market place and merchant portal
+//        if ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForCreationOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer, true, false);
+//        } elseif ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForUpdateOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer, true, false);
+//        } elseif ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer, false, false);
+//        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer);
+//        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForUpdateOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer);
+//        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
+//            $this->createUserOrUpdateOnBfx($userTransfer, false);
+//        }
+
+        //Changes for b2c
+        if ($this->bladeFxChecker->checkIfBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId)) {
+            $this->createUserOrUpdateOnBfx($userTransfer);
         } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForUpdateOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm);
+            $this->createUserOrUpdateOnBfx($userTransfer);
         } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userId, $userForm, false);
+            $this->deleteUserOnBladeFx($userTransfer);
         }
     }
 
     /**
-     * @param int $userId
-     * @param array $userForm
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void
+    {
+        $this->createUserOrUpdateOnBfx($userTransfer, false);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
      * @param bool $isItFromBO
      *
      * @return void
      */
-    public function createUserOrUpdateOnBfx(int $userId, array $userForm, bool $isActive = true, bool $isItFromBO = true): void
+    public function createUserOrUpdateOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isItFromBO = true): void
     {
-        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userId, $userForm, $isActive, $isItFromBO);
+        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive, $isItFromBO);
 
         try {
             $this->apiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
@@ -158,34 +176,32 @@ class UserHandler implements UserHandlerInterface
     }
 
     /**
-     * @param int $userId
-     * @param array $userForm
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
      * @param bool $isItFromBO
      *
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
      */
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
-        int $userId,
-        array $userForm,
+        UserTransfer $userTransfer,
         bool $isActive = true,
         bool $isItFromBO = true,
     ): BladeFxCreateOrUpdateUserRequestTransfer {
         $bladeFxCreateOrUpdateUserRequestTransfer = (new BladeFxCreateOrUpdateUserRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
-            ->setEmail($userForm[static::USERNAME])
-            ->setFirstName($userForm[static::FIRST_NAME])
-            ->setLastName($userForm[static::LAST_NAME])
-            ->setPassword($userForm[static::PASSWORD])
+            ->setEmail($userTransfer->getUsername())
+            ->setFirstName($userTransfer->getFirstName())
+            ->setLastName($userTransfer->getLastName())
+            ->setPassword($userTransfer->getPassword())
             ->setRoleName($isItFromBO ? static::SRYKER_BO_ROLE : static::SPRYKER_MP_ROLE)
             ->setCompanyId($this->getUserIdCompany())
             ->setLanguageId($this->getUserIdLanguage())
             ->setIsActive($isActive)
             ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
                 ->setFieldName($this->config->getSprykerUserIdKey())
-                ->setFieldValue((string)($userId)));
+                ->setFieldValue((string)($userTransfer->getIdUser())));
 
-        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userId, $isItFromBO);
+        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userTransfer->getIdUser(), $isItFromBO);
     }
 
     /**

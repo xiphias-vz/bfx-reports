@@ -8,7 +8,7 @@
 namespace Xiphias\Zed\SecurityGui;
 
 use Spryker\Zed\Kernel\Container;
-use Spryker\Zed\MerchantUser\Communication\Plugin\SecurityGui\MerchantUserUserRoleFilterPlugin;
+//use Spryker\Zed\MerchantUser\Communication\Plugin\SecurityGui\MerchantUserUserRoleFilterPlugin;
 use Spryker\Zed\SecurityGui\SecurityGuiDependencyProvider as SprykerSecurityGuiDependencyProvider;
 use Spryker\Zed\WarehouseUser\Communication\Plugin\SecurityGui\WarehouseUserLoginRestrictionPlugin;
 
@@ -32,15 +32,15 @@ class SecurityGuiDependencyProvider extends SprykerSecurityGuiDependencyProvider
         return $container;
     }
 
-    /**
-     * @return array<\Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\UserRoleFilterPluginInterface>
-     */
-    protected function getUserRoleFilterPlugins(): array
-    {
-        return [
-            new MerchantUserUserRoleFilterPlugin(),
-        ];
-    }
+//    /**
+//     * @return array<\Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\UserRoleFilterPluginInterface>
+//     */
+//    protected function getUserRoleFilterPlugins(): array
+//    {
+//        return [
+//            new MerchantUserUserRoleFilterPlugin(),
+//        ];
+//    }
 
     /**
      * @return list<\Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\UserLoginRestrictionPluginInterface>

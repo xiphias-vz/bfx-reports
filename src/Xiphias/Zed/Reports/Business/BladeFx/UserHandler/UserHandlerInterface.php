@@ -12,10 +12,17 @@ use Generated\Shared\Transfer\UserTransfer;
 interface UserHandlerInterface
 {
     /**
-     * @param array $userForm
+     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void;
+    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void;
 }

@@ -11,6 +11,7 @@ namespace Xiphias\Zed\Reports\Communication;
 
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
@@ -34,6 +35,14 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     public function getSessionClient(): SessionClientInterface
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::SESSION_CLIENT);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RequestStack|null
+     */
+    public function getRequestStackService(): ?RequestStack
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::SERVICE_REQUEST_STACK);
     }
 
     /**

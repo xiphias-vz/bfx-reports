@@ -38,6 +38,13 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     public const BLADE_FX_POST_AUTHENTICATION_PLUGINS = 'BLADE_FX_POST_AUTHENTICATION_PLUGINS';
 
     /**
+     * @uses \Spryker\Zed\Http\Communication\Plugin\Application\HttpApplicationPlugin::SERVICE_REQUEST_STACK
+     *
+     * @var string
+     */
+    public const SERVICE_REQUEST_STACK = 'request_stack';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -60,6 +67,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = $this->addSessionClient($container);
+        $container = $this->addRequestStackService($container);
 
         return $container;
     }
@@ -90,6 +98,22 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container->set(static::SESSION_CLIENT, function (Container $container) {
             return $container->getLocator()->session()->client();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addRequestStackService(Container $container): Container
+    {
+        $container->set(static::SERVICE_REQUEST_STACK, function (Container $container) {
+            return $container->hasApplicationService(static::SERVICE_REQUEST_STACK)
+                ? $container->getApplicationService(static::SERVICE_REQUEST_STACK)
+                : null;
         });
 
         return $container;

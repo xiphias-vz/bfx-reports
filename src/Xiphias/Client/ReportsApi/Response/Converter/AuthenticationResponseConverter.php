@@ -23,7 +23,7 @@ class AuthenticationResponseConverter extends AbstractResponseConverter
         array $responseData,
     ): BladeFxApiResponseConversionResultTransfer {
         $bladeFxAuthenticationResponseTransfer = new BladeFxAuthenticationResponseTransfer();
-        $bladeFxAuthenticationResponseTransfer->fromArray($responseData);
+        $bladeFxAuthenticationResponseTransfer->fromArray($responseData, true);
 
         return $apiResponseConversionResultTransfer->setBladeFxAuthenticationResponse($bladeFxAuthenticationResponseTransfer);
     }

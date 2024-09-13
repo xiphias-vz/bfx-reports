@@ -8,29 +8,13 @@
 namespace Xiphias\Zed\XiphiasAcl\Business;
 
 use Generated\Shared\Transfer\BfxAclRoleTransfer;
-use Generated\Shared\Transfer\RoleTransfer;
-use Spryker\Zed\Acl\Business\AclFacade;
-use Spryker\Zed\Acl\Business\AclFacade as SprykerAclFacade;
+use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \Xiphias\Zed\XiphiasAcl\Business\XiphiasAclBusinessFactory getFactory()
- * @method \Spryker\Zed\Acl\Persistence\AclRepositoryInterface getRepository()
- * @method \Spryker\Zed\Acl\Persistence\AclEntityManagerInterface getEntityManager()
  */
-class XiphiasAclFacade extends AclFacade implements XiphiasAclFacadeInterface
+class XiphiasAclFacade extends AbstractFacade implements XiphiasAclFacadeInterface
 {
-//    /**
-//     * @param \Generated\Shared\Transfer\RoleTransfer $roleTransfer
-//     *
-//     * @return void
-//     */
-//    public function writeBladeFxRole(RoleTransfer $roleTransfer): void
-//    {
-//        $this->getFactory()
-//            ->createBladeFxRoleWriter()
-//            ->writeBladeFxRole($roleTransfer);
-//    }
-
     /**
      * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
      */

@@ -7,11 +7,11 @@
 
 namespace Xiphias\Zed\SecurityGui\Communication;
 
-use Xiphias\Zed\SecurityGui\Communication\Plugin\Security\Handler\UserAuthenticationSuccessHandler;
-use Xiphias\Zed\SecurityGui\SecurityGuiDependencyProvider;
 use Spryker\Zed\SecurityGui\Communication\SecurityGuiCommunicationFactory as SprykerSecurityGuiCommunicationFactory;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Xiphias\Zed\Reports\Business\ReportsFacadeInterface;
+use Xiphias\Zed\SecurityGui\Communication\Plugin\Security\Handler\UserAuthenticationSuccessHandler;
+use Xiphias\Zed\SecurityGui\SecurityGuiDependencyProvider;
 
 /**
  * @method \Pyz\Zed\SecurityGui\SecurityGuiConfig getConfig()
