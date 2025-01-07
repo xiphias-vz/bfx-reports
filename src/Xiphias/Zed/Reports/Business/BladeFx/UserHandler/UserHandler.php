@@ -9,10 +9,6 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\UserHandler;
 
-use Exception;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
@@ -122,6 +118,8 @@ class UserHandler implements UserHandlerInterface
             return;
         }
 
+        //TODO: Implement plugin logic here!!!!!!!!
+
 //        //Changes for market place and merchant portal
 //        if ($this->bladeFxChecker->checkIfMerchantPortalUserApplicableForCreationOnBfx($groupRoles, $userId)) {
 //            $this->createUserOrUpdateOnBfx($userTransfer, true, false);
@@ -136,117 +134,5 @@ class UserHandler implements UserHandlerInterface
 //        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
 //            $this->createUserOrUpdateOnBfx($userTransfer, false);
 //        }
-
-        //Changes for b2c
-        if ($this->bladeFxChecker->checkIfBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userTransfer);
-        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForUpdateOnBfx($groupRoles, $userId)) {
-            $this->createUserOrUpdateOnBfx($userTransfer);
-        } elseif ($this->bladeFxChecker->checkIfBackofficeUserApplicableForDeleteOnBfx($groupRoles, $userId)) {
-            $this->deleteUserOnBladeFx($userTransfer);
-        }
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
-    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void
-    {
-        $this->createUserOrUpdateOnBfx($userTransfer, false);
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param bool $isActive
-     * @param bool $isItFromBO
-     *
-     * @return void
-     */
-    public function createUserOrUpdateOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isItFromBO = true): void
-    {
-        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive, $isItFromBO);
-
-        try {
-            $this->apiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
-        } catch (Exception $exception) {
-            return;
-        }
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param bool $isActive
-     * @param bool $isItFromBO
-     *
-     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
-     */
-    public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
-        UserTransfer $userTransfer,
-        bool $isActive = true,
-        bool $isItFromBO = true,
-    ): BladeFxCreateOrUpdateUserRequestTransfer {
-        $bladeFxCreateOrUpdateUserRequestTransfer = (new BladeFxCreateOrUpdateUserRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
-            ->setEmail($userTransfer->getUsername())
-            ->setFirstName($userTransfer->getFirstName())
-            ->setLastName($userTransfer->getLastName())
-            ->setPassword($userTransfer->getPassword())
-            ->setRoleName($isItFromBO ? static::SRYKER_BO_ROLE : static::SPRYKER_MP_ROLE)
-            ->setCompanyId($this->getUserIdCompany())
-            ->setLanguageId($this->getUserIdLanguage())
-            ->setIsActive($isActive)
-            ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
-                ->setFieldName($this->config->getSprykerUserIdKey())
-                ->setFieldValue((string)($userTransfer->getIdUser())));
-
-        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userTransfer->getIdUser(), $isItFromBO);
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer
-     * @param int $userId
-     * @param bool $isItFromBO
-     *
-     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
-     */
-    protected function appendMerchantIdToRequest(
-        BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer,
-        int $userId,
-        bool $isItFromBO,
-    ): BladeFxCreateOrUpdateUserRequestTransfer {
-        if (!$isItFromBO) {
-            return $bladeFxCreateOrUpdateUserRequestTransfer
-                ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
-                    ->setFieldName($this->config->getMerchantIdKey())
-                    ->setFieldValue($this->bladeFxChecker->getUserMerchantId($userId)));
-        }
-
-        return $bladeFxCreateOrUpdateUserRequestTransfer;
-    }
-
-    /**
-     * @return string|null
-     */
-    protected function getToken(): string|null
-    {
-        return $this->sessionClient->has($this->config->getBfxTokenSessionKey()) ? $this->sessionClient->get($this->config->getBfxTokenSessionKey()) : null;
-    }
-
-    /**
-     * @return int|null
-     */
-    protected function getUserIdCompany(): int|null
-    {
-        return $this->sessionClient->has($this->config->getBfxUserCompanyIdSessionKey()) ? $this->sessionClient->get($this->config->getBfxUserCompanyIdSessionKey()) : null;
-    }
-
-    /**
-     * @return int|null
-     */
-    protected function getUserIdLanguage(): int|null
-    {
-        return $this->sessionClient->has($this->config->getBfxUserLanguageIdSessionKey()) ? $this->sessionClient->get($this->config->getBfxUserLanguageIdSessionKey()) : null;
     }
 }

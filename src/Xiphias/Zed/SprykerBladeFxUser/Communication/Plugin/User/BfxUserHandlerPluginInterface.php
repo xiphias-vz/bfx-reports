@@ -5,17 +5,24 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace Xiphias\Zed\Reports\Business\BladeFx\UserHandler;
+namespace Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User;
 
 use Generated\Shared\Transfer\UserTransfer;
 
-interface UserHandlerInterface
+interface BfxUserHandlerPluginInterface
 {
     /**
      * @param array $groupRoles
+     * @param int $userId
+     *
+     * @return bool
+     */
+    public function isApplicable(array $groupRoles, int $userId): bool;
+
+    /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
+    public function execute(UserTransfer $userTransfer): void;
 }

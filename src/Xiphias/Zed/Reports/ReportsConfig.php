@@ -145,11 +145,6 @@ class ReportsConfig extends AbstractBundleConfig
     public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
 
     /**
-     * @var string
-     */
-    public const BLADE_FX_USER_SESSION = 'bfx_user_session';
-
-    /**
      * @return int
      */
     public function getDefaultCategoryIndex(): int
@@ -331,15 +326,5 @@ class ReportsConfig extends AbstractBundleConfig
     public function getSprykerUserIdKey(): string
     {
         return static::SPRYKER_USER_ID_KEY;
-    }
-
-    /**
-     * @param string $username
-     *
-     * @return string
-     */
-    public function getBfxUserSessionKey(string $username): string
-    {
-        return static::BLADE_FX_USER_SESSION . '-' . md5($username);
     }
 }

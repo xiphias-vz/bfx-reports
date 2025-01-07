@@ -35,7 +35,7 @@ interface ReportsFacadeInterface
 //     *
 //     * @return void
 //     */
-//    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
+    //public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -93,26 +93,4 @@ interface ReportsFacadeInterface
     public function getReportPreviewURL(
         BladeFxParameterTransfer $parameterTransfer,
     ): BladeFxGetReportPreviewResponseTransfer;
-
-    /**
-     * @param array $groupRoles
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
-    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
-
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
-    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void;
-
-    /**
-     * @param $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasBfxBOGroup($userId): bool;
 }

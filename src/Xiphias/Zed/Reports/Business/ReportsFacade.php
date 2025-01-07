@@ -132,35 +132,4 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     {
         return $this->getFactory()->createBladeFxReportsReader()->getReportParamForm($reportId);
     }
-
-    /**
-     * @param array $groupRoles
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
-    public function createOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void
-    {
-        $this->getFactory()->createUserHandler()->createOrUpdateUserOnBladeFx($groupRoles, $userTransfer);
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
-    public function deleteUserOnBladeFx(UserTransfer $userTransfer): void
-    {
-        $this->getFactory()->createUserHandler()->deleteUserOnBladeFx($userTransfer);
-    }
-
-    /**
-     * @param $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasBfxBOGroup($userId): bool
-    {
-        return $this->getFactory()->createBladeFxChecker()->checkIfUserHasBfxBOGroup($userId);
-    }
 }
