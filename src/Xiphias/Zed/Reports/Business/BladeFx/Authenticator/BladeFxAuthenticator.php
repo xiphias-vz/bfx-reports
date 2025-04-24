@@ -81,7 +81,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
     {
-        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfAdmin($userTransfer) ? $this->getRootUserAuthenticationRequestTransfer() : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
+        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer) ? $this->getRootUserAuthenticationRequestTransfer() : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
 
         try {
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(

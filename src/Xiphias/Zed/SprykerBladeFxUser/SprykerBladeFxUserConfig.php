@@ -18,6 +18,11 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      * @var string
      */
     protected const ROOT_GROUP_NAME = 'root_group';
+
+    /**
+     * @var int
+     */
+    protected const ROOT_ADMIN_ID = 1;
     /**
      * @var string
      */
@@ -89,5 +94,21 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
     public function getMarketplaceInstallation(): string
     {
         return $this->getSharedConfig()->getMarketplaceInstallation();
+    }
+
+    /**
+     * @return string
+     */
+    public function getRootGroupName(): string
+    {
+        return static::ROOT_GROUP_NAME;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRootAdminId(): int
+    {
+        return static::ROOT_ADMIN_ID;
     }
 }

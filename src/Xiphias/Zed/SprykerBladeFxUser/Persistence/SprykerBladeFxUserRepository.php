@@ -8,6 +8,7 @@
 namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
+use Generated\Shared\Transfer\UserTransfer;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserPersistenceFactory getFactory();
