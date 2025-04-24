@@ -2,6 +2,9 @@
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Business\Checker;
 
+use Generated\Shared\Transfer\UserTransfer;
+
+
 interface BladeFXUserCheckerInterface
 {
     /**
@@ -117,6 +120,13 @@ interface BladeFXUserCheckerInterface
      * @return bool
      */
     public function checkIfPasswordExists(?string $password): bool;
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool;
 
     /**
      * @param int $userId

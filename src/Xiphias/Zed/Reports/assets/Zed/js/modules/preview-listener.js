@@ -29,17 +29,11 @@ function PreviewListenerAdder() {
                         if (button !== null) {
                             button.addEventListener('click', async (e) => {
                                 e.preventDefault();
-                                displayModal();
-                                const iframeUrl = await getIframeUrl(button.href)
-                                $('.modal-body').attr('src', iframeUrl);
-                                $loader.addClass('hidden');
+                                await handleReportPreview();
                             });
 
                             row.addEventListener('dblclick', async () => {
-                                displayModal();
-                                const iframeUrl = await getIframeUrl(button.href)
-                                $('.modal-body').attr('src', iframeUrl);
-                                $loader.addClass('hidden');
+                                await handleReportPreview();
                             });
                         }
                     }
@@ -55,6 +49,17 @@ function PreviewListenerAdder() {
         return responseJson.iframeUrl
     }
 
+    async function handleReportPreview() {
+        displayModal();
+        const iframeUrl = await getIframeUrl(button.href)
+        $loader.addClass('hidden');
+        $('.modal-body').attr('src', iframeUrl);
+
+        if (!iframeUrl) {
+            $previewModal.modal('close');
+        }
+    }
+
     function displayModal() {
         $('.modal-body').attr('src', null);
         $previewModal.modal('show');
@@ -62,7 +67,6 @@ function PreviewListenerAdder() {
     }
 
     function getTableContainer() {
-        let tableContainer;
         if (reportTab) {
             return reportTab.querySelector('div.dataTables_scrollBody')
         }

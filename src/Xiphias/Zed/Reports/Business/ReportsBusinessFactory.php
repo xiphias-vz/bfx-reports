@@ -36,6 +36,7 @@ use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandler;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
@@ -67,7 +68,8 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->getSessionClient(),
             $this->getBladeFxPostAuthenticationPlugins(),
-            $this->createBladeFxChecker(),
+//            $this->createBladeFxChecker(),
+            $this->getSprykerBladeFxUserFacade(),
         );
     }
 
@@ -154,6 +156,14 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return SprykerBladeFxUserFacadeInterface
+     */
+    public function getSprykerBladeFxUserFacade(): SprykerBladeFxUserFacadeInterface
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::SPRYKER_BLADE_FX_FACADE);
+    }
+
+    /**
      * @return \Xiphias\Zed\Reports\Business\BladeFx\ReportListReader\BladeFxReportListReaderInterface
      */
     public function createBladeFxReportListReader(): BladeFxReportListReaderInterface
@@ -187,20 +197,6 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
         return new BladeFxPreviewReader(
             $this->getBladeFxClient(),
             $this->createTokenResolver(),
-            $this->getConfig(),
-        );
-    }
-
-    /**
-     * @return \Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface
-     */
-    public function createUserHandler(): UserHandlerInterface
-    {
-        return new UserHandler(
-            $this->getBladeFxClient(),
-            $this->getSessionClient(),
-            $this->createTokenResolver(),
-            $this->createBladeFxChecker(),
             $this->getConfig(),
         );
     }

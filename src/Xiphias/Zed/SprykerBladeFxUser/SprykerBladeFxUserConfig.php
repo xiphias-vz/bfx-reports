@@ -17,6 +17,10 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
     /**
      * @var string
      */
+    protected const ROOT_GROUP_NAME = 'root_group';
+    /**
+     * @var string
+     */
     protected const SPRYKER_USER_ID_KEY = 'spryker_user_id';
 
     /**

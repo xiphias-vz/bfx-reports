@@ -57,6 +57,13 @@ interface SprykerBladeFxUserFacadeInterface
     public function checkIfUserHasBfxBOGroup(int $userId): bool;
 
     /**
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool;
+
+    /**
      * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *

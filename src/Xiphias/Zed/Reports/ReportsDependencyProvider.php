@@ -14,6 +14,8 @@ use Spryker\Zed\Kernel\Container;
 use Xiphias\Client\ReportsApi\ReportsApiClient;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandlerPostAuthenticationPlugin;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacade;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 class ReportsDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -21,6 +23,10 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      * @var string
      */
     public const BLADE_FX_CLIENT = 'BLADE_FX_CLIENT';
+    /**
+     * @var string
+     */
+    public const SPRYKER_BLADE_FX_FACADE = 'SPRYKER_BLADE_FX_FACADE';
 
     /**
      * @var string
@@ -53,6 +59,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container = $this->addBladeFxClient($container);
         $container = $this->addSessionClient($container);
+        $container = $this->addSprykerBladeFxUserFacade($container);
         $container = $this->addMessengerFacade($container);
         $container = $this->addBladeFxPostAuthenticationPlugins($container);
 
@@ -83,6 +90,23 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
             static::BLADE_FX_CLIENT,
             static function (): ReportsApiClientInterface {
                 return new ReportsApiClient();
+            },
+        );
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addSprykerBladeFxUserFacade(Container $container): Container
+    {
+        $container->set(
+            static::SPRYKER_BLADE_FX_FACADE,
+            static function (): SprykerBladeFxUserFacadeInterface {
+                return new SprykerBladeFxUserFacade();
             },
         );
 

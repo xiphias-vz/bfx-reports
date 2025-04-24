@@ -81,6 +81,26 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     }
 
     /**
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool
+    {
+        return $this->getFactory()->createBladeFXUserChecker()->checkIfUserIsAdmin($userTransfer);
+    }
+
+    /**
+     * @param $userInt
+     *
+     * @return bool
+     */
+    public function checkIfUserHasBfxMPGroup($userInt): bool
+    {
+        return $this->getFactory()->createBladeFXUserChecker()->checkIfUserHasBfxMPGroup($userInt);
+    }
+
+    /**
      * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *

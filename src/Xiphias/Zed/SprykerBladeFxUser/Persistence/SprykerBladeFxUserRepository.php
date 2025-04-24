@@ -10,7 +10,8 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
- * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserPersistenceFactory getFactory()
+ * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserPersistenceFactory getFactory();
+ * @method \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig getConfig();
  */
 class SprykerBladeFxUserRepository extends AbstractRepository implements SprykerBladeFxUserRepositoryInterface
 {
@@ -152,5 +153,30 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
         }
 
         return false;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserHasAdminGroup(UserTransfer $userTransfer): bool
+    {
+        $adminGroupId = $this->getRootGroupId();
+        $userId = $userTransfer->getIdUser();
+
+        if ($userId !== $this->getFactory()->getConfig()->getRootAdminId()) {
+            return false;
+        }
+
+        return $this->checkIfUserHasWantedGroup($userId, $adminGroupId);
+    }
+
+    /**
+     * @return int
+     */
+    protected function getRootGroupId(): int
+    {
+        return $this->findWantedGroupId($this->getFactory()->getConfig()->getRootGroupName());
     }
 }

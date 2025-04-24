@@ -2,6 +2,7 @@
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Business\Checker;
 
+use Generated\Shared\Transfer\UserTransfer;
 use Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserRepositoryInterface;
 
 class BladeFXUserChecker implements BladeFXUserCheckerInterface
@@ -182,5 +183,19 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
     public function getUserMerchantId(int $userId): string
     {
         return $this->sprykerBladeFxUserRepository->getUserMerchantId($userId);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool
+    {
+        if (!$userTransfer) {
+            return false;
+        }
+
+        return $this->sprykerBladeFxUserRepository->checkIfUserHasAdminGroup($userTransfer);
     }
 }

@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 {
@@ -52,20 +53,24 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins
-     * @param \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface $bladeFxChecker
+//     * @param \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface $bladeFxChecker
+     * @param SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
      */
     public function __construct(
         ReportsApiClientInterface $apiClient,
         ReportsConfig $config,
         SessionClientInterface $sessionClient,
         array $bladeFxPostAuthenticationPlugins,
-        BladeFxCheckerInterface $bladeFxChecker,
+//        BladeFxCheckerInterface $bladeFxChecker,
+        SprykerBladeFxUserFacadeInterface $bladeFxUserFacade,
     ) {
         $this->apiClient = $apiClient;
         $this->config = $config;
         $this->sessionClient = $sessionClient;
         $this->bladeFxPostAuthenticationPlugins = $bladeFxPostAuthenticationPlugins;
-        $this->bladeFxChecker = $bladeFxChecker;
+//        $this->bladeFxChecker = $bladeFxChecker;
+        $this->bladeFxUserFacade = $bladeFxUserFacade;
+
     }
 
     /**
@@ -76,7 +81,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
     {
-        $validatedAuthenticationRequestTransfer = $this->bladeFxChecker->checkIfAdmin($userTransfer) ? $this->getRootUserAuthenticationRequestTransfer() : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
+        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfAdmin($userTransfer) ? $this->getRootUserAuthenticationRequestTransfer() : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
 
         try {
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
@@ -99,7 +104,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticateUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void
     {
-        if ($this->bladeFxChecker->checkIfUserHasBfxMPGroup($merchantUserTransfer->getIdUser())) {
+        if ($this->bladeFxUserFacade->checkIfUserHasBfxMPGroup($merchantUserTransfer->getIdUser())) {
             $userInfo = $request->request->getIterator()->current();
 
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
