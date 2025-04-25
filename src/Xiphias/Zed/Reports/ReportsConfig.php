@@ -52,16 +52,6 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    protected const ROOT_GROUP_NAME = 'root_group';
-
-    /**
-     * @var int
-     */
-    protected const ROOT_ADMIN_ID = 1;
-
-    /**
-     * @var string
-     */
     protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
 
     /**
@@ -294,22 +284,6 @@ class ReportsConfig extends AbstractBundleConfig
     public function getBladeFxMerchantPortalGroupName(): string
     {
         return static::BLADE_FX_MERCHANT_PORTAL_GROUP_NAME;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRootGroupName(): string
-    {
-        return static::ROOT_GROUP_NAME;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRootAdminId(): int
-    {
-        return static::ROOT_ADMIN_ID;
     }
 
     /**
