@@ -98,13 +98,13 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function authenticateUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void
+    public function authenticateUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {
-        if ($this->bladeFxUserFacade->checkIfUserHasBfxMPGroup($merchantUserTransfer->getIdUser())) {
+        if ($this->bladeFxUserFacade->checkIfUserHasBfxMPGroup($userTransfer->getIdUser())) {
             $userInfo = $request->request->getIterator()->current();
 
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(

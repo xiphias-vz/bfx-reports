@@ -40,13 +40,13 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void
+    public function authenticateBladeFxUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {
-        $this->getFactory()->createBladeFxAuthenticator()->authenticateUserOnMerchantPortal($request, $merchantUserTransfer);
+        $this->getFactory()->createBladeFxAuthenticator()->authenticateUserOnMerchantPortal($request, $userTransfer);
     }
 
     /**

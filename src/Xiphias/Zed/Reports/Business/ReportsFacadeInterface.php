@@ -29,13 +29,13 @@ interface ReportsFacadeInterface
      */
     public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool;
 
-//    /**
-//     * @param \Symfony\Component\HttpFoundation\Request $request
-//     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
-//     *
-//     * @return void
-//     */
-    //public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function authenticateBladeFxUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
