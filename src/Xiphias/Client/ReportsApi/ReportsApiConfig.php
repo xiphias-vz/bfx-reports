@@ -58,7 +58,7 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const GET_REPORT_PREVIEW_API_RESOURCE = '/api/ReportData/GetReportPreviewURL';
+    public const GET_REPORT_PREVIEW_API_RESOURCE = '/api/ReportData/GetEncryptedData';
 
     /**
      * @var string

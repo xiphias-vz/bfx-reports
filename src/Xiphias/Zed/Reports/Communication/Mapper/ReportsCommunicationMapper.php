@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\Reports\ReportsConfig;
 
-class ReportsCommunicationMapper
+class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
 {
     /**
      * @var string

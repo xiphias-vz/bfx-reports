@@ -12,6 +12,7 @@ namespace Xiphias\Client\ReportsApi\Request\Formatter;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
 {
@@ -64,6 +65,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
         $params = $parameterTransfer->toArray(true, true);
         $data['params'] = [$this->changeArrayFromCamelCaseToSnakeCase($params)];
         $data['imageFormat'] = '';
+        $data['entryText'] = $params[ReportsConstants::PARAMETER_VALUE];
 
         return $data;
     }
