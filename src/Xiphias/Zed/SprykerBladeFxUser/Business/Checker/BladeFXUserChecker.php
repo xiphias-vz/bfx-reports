@@ -12,9 +12,7 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
      */
     public function __construct(
         protected SprykerBladeFxUserRepositoryInterface $sprykerBladeFxUserRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * @param array $groupRoles
@@ -83,36 +81,33 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool
+    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->findBladeFxBOGroupById($groupRoles) && !$this->checkIfUserHasBfxBOGroup($userId);
+        return $this->findBladeFxBOGroupById($userTransfer->getGroup()) && !$this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool
+    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
+        return $this->findBladeFxBOGroupById($userTransfer->getGroup()) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool
+    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool
     {
-        return !$this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
+        return !$this->findBladeFxBOGroupById($userTransfer->getGroup()) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**

@@ -12,25 +12,25 @@ use Xiphias\Shared\Acl\AclConstants as XiphiasAclConstants;
 
 class XiphiasAclConfig extends AbstractBundleConfig
 {
-    /**
-     * @var string
-     */
-    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
+//    /**
+//     * @var string
+//     */
+//    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
 
     /**
      * @var string
      */
     protected const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
 
-    /**
-     * @var string
-     */
-    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_REFERENCE = 'bladefx-reports-mp';
-
-    /**
-     * @var string
-     */
-    protected const BLADE_FX_GROUP_REFERENCE = 'bladefx-reports';
+//    /**
+//     * @var string
+//     */
+//    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_REFERENCE = 'bladefx-reports-mp';
+//
+//    /**
+//     * @var string
+//     */
+//    protected const BLADE_FX_GROUP_REFERENCE = 'bladefx-reports';
 
     /**
      * @return string

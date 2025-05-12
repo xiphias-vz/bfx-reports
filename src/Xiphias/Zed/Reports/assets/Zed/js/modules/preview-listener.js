@@ -29,11 +29,11 @@ function PreviewListenerAdder() {
                         if (button !== null) {
                             button.addEventListener('click', async (e) => {
                                 e.preventDefault();
-                                await handleReportPreview();
+                                await handleReportPreview(button);
                             });
 
                             row.addEventListener('dblclick', async () => {
-                                await handleReportPreview();
+                                await handleReportPreview(button);
                             });
                         }
                     }
@@ -49,7 +49,7 @@ function PreviewListenerAdder() {
         return responseJson.iframeUrl
     }
 
-    async function handleReportPreview() {
+    async function handleReportPreview(button) {
         displayModal();
         const iframeUrl = await getIframeUrl(button.href)
         $loader.addClass('hidden');

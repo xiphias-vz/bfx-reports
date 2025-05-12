@@ -22,6 +22,11 @@ interface SprykerBladeFxUserRepositoryInterface
     public function getBladeFxBOGroupId(): int;
 
     /**
+     * @return int
+     */
+    public function getBladeFxMPGroupId(): int;
+
+    /**
      * @param string $groupName
      *
      * @return int

@@ -40,7 +40,7 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
     /**
      * @return int
      */
-    protected function getBladeFxMPGroupId(): int
+    public function getBladeFxMPGroupId(): int
     {
         return $this->findWantedGroupId($this->getFactory()->getReportsSharedConfig()->getBladeFxMerchantPortalGroupName());
     }

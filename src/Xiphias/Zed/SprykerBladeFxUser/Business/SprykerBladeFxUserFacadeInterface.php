@@ -19,28 +19,25 @@ interface SprykerBladeFxUserFacadeInterface
     public function createOrUpdateUserOnBfx(UserTransfer $userTransfer): void;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
@@ -64,10 +61,9 @@ interface SprykerBladeFxUserFacadeInterface
     public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool;
 
     /**
-     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function executeCreateOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
+    public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void;
 }

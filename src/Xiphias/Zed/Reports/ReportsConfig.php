@@ -90,6 +90,11 @@ class ReportsConfig extends AbstractBundleConfig
     protected const DEFAULT_LAYOUT = 0;
 
     /**
+     * @var string
+     */
+    public const GET_REPORT_PREVIEW_URL_PATH = '/ReportEdit/ReportPreviewPrint/';
+
+    /**
      * @var array
      */
     protected const REPORTS_TABLE_COLUMN_MAP = [
@@ -300,5 +305,13 @@ class ReportsConfig extends AbstractBundleConfig
     public function getSprykerUserIdKey(): string
     {
         return static::SPRYKER_USER_ID_KEY;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReportPreviewUrlPath(): string
+    {
+        return static::GET_REPORT_PREVIEW_URL_PATH;
     }
 }

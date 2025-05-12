@@ -90,28 +90,11 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array
-     */
-    protected function formatRequestParameters(Request $request): array
-    {
-        return $this->getFactory()->createParameterFormatter()->formatRequestParameters($request);
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function favoriteReportAction(Request $request): RedirectResponse
     {
         $this->getFacade()->processSetFavoriteReportRequest($request);
-
-        $categoryParamKey = $this->getFactory()->getConfig()->getCategoryQueryKey();
-        $categoryId = $request->query->get($categoryParamKey);
-
-        $queryParams = [
-            $categoryParamKey => $categoryId,
-        ];
 
         return $this->redirectResponse($request->headers->get('referer'));
     }
@@ -123,11 +106,12 @@ class IndexController extends AbstractController
      */
     public function previewAction(Request $request): JsonResponse
     {
-        $paramTransfer = $this->getFactory()->createParameterMapper()->mapParametersToNewParameterTransfer($request);
+        $mapper = $this->getFactory()->createReportsCommunicationMapper();
+        $paramTransfer = $mapper->mapPreviewParametersToNewParameterTransfer($request);
         $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
 
         return $this->jsonResponse([
-            'iframeUrl' => $responseTransfer->getUrl(),
+            'iframeUrl' => $mapper->assembleUrl($responseTransfer),
         ]);
     }
 
@@ -138,7 +122,7 @@ class IndexController extends AbstractController
      */
     public function downloadAction(Request $request): Response
     {
-        $reportId = $this->castId($request->query->get('report_id'));
+        $reportId = $this->castId($request->query->get(ReportsConstants::REPORT_ID));
         $format = $request->query->get('format');
 
         if (!$format) {
@@ -147,10 +131,7 @@ class IndexController extends AbstractController
             return $this->RedirectResponse($request->headers->get('referer'));
         }
 
-        $paramName = $request->query->get(ReportsConstants::PARAMETER_NAME);
-        $paramValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
-
-        $paramTransfer = (new BladeFxParameterTransfer())->setParamName($paramName)->setParamValue($paramValue)->setSqlDbType('');
+        $paramTransfer = $this->getFactory()->createReportsCommunicationMapper()->mapDownloadParametersToNewParameterTransfer($request);
         $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramTransfer);
         $headers = $this->getFactory()->createDownloadHeadersBuilder()->buildDownloadHeaders($format);
 
@@ -174,5 +155,16 @@ class IndexController extends AbstractController
         return $this->jsonResponse([
            'iframeUrl' => $reportParamFormTransfer->getIframeUrl(),
         ]);
+    }
+
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
+    protected function formatRequestParameters(Request $request): array
+    {
+        return $this->getFactory()->createParameterFormatter()->formatRequestParameters($request);
     }
 }

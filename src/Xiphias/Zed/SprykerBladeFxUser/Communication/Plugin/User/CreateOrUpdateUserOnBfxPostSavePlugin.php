@@ -14,19 +14,10 @@ use Spryker\Zed\UserExtension\Dependency\Plugin\UserPostSavePluginInterface;
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface getFacade()
  * @method \Xiphias\Zed\SprykerBladeFxUser\Communication\SprykerBladeFxUserCommunicationFactory getFactory()
+ * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserRepositoryInterface getRepository()
  */
 class CreateOrUpdateUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSavePluginInterface
 {
-    /**
-     * @var string
-     */
-    protected const USER_KEY = 'user';
-
-    /**
-     * @var string
-     */
-    protected const GROUP_KEY = 'group';
-
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
@@ -34,17 +25,23 @@ class CreateOrUpdateUserOnBfxPostSavePlugin extends AbstractPlugin implements Us
      */
     public function postSave(UserTransfer $userTransfer): UserTransfer
     {
-        $sessionClient = $this->getFactory()->getSessionClient();
-        $bfxUserSession = $this->getFactory()->getReportsSharedConfig()->getBfxUserSessionKey($userTransfer->getUsername());
-        $request = $this->getFactory()->getRequestStackService()->getCurrentRequest();
-
-        if ($sessionClient->has($bfxUserSession)) {
-            $userTransferFromSession = ($sessionClient->get($bfxUserSession))
-                ->setIdUser($userTransfer->getIdUser());
-            $this->getFacade()->executeCreateOrUpdateUserOnBladeFx($request->request->all()[static::USER_KEY][static::GROUP_KEY], $userTransferFromSession);
-            $sessionClient->remove($bfxUserSession);
+        if ($this->hasUserBfxGroup($userTransfer->getGroup())) {
+            $this->getFacade()->executeCreateOrUpdateUserOnBladeFx($userTransfer);
         }
 
         return $userTransfer;
+    }
+
+    /**
+     * @param array $groups
+     *
+     * @return bool
+     */
+    protected function hasUserBfxGroup(array $groups): bool
+    {
+        $bofficeGroupId = $this->getRepository()->getBladeFxBOGroupId();
+        $mpGroupId = $this->getRepository()->getBladeFxMPGroupId();
+
+        return in_array($bofficeGroupId, $groups) || in_array($mpGroupId, $groups);
     }
 }

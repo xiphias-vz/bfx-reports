@@ -77,12 +77,8 @@ class ReportPreviewRequestBuilder extends AbstractRequestBuilder
         string $resource,
         AbstractTransfer $requestTransfer,
     ): RequestInterface {
-        /** @var \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $reportPreviewRequestTransfer */
-        $reportPreviewRequestTransfer = $requestTransfer;
-
         $uri = $this->buildUri(
             $resource,
-            [ReportsConstants::ROOT_URL_QUERY_PROPERTY => $reportPreviewRequestTransfer->getRootUrl()],
         );
         $headers = $this->getCombinedHeaders($requestTransfer);
         $encodedData = $this->getEncodedData($requestTransfer);

@@ -56,28 +56,25 @@ interface BladeFXUserCheckerInterface
     public function checkIfMarketplaceBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool;
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
+    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool;
 
     /**
      * @param array $groupRoles

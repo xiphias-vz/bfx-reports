@@ -119,6 +119,17 @@ class ReportsApiConfig extends AbstractBundleConfig
      * @var string
      */
     public const GER_REPORT_PARAMETER_FORM_API_RESOURCE = '/api/ReportData/GetReportURL';
+    /**
+     * @var array
+     */
+    public CONST KEYS_TO_CHANGE_FROM_CAMEL_CASE = [
+        'repId' => 1,
+        'layoutId' => 1,
+        'paramId' => 1,
+        'hostAddress' => 1,
+        'userId' => 1,
+        'connId' => 1, //u getUserEntity UserId treba biti u camel caseu ali otom potom
+    ];
 
     /**
      * @return float|int
@@ -286,5 +297,13 @@ class ReportsApiConfig extends AbstractBundleConfig
     public function getReportParamFormResourceParameter(): string
     {
         return static::GER_REPORT_PARAMETER_FORM_API_RESOURCE;
+    }
+
+    /**
+     * @return array|int[]
+     */
+    public function getKeysToChangeFromCamelCaseToSnakeCase(): array
+    {
+        return static::KEYS_TO_CHANGE_FROM_CAMEL_CASE;
     }
 }

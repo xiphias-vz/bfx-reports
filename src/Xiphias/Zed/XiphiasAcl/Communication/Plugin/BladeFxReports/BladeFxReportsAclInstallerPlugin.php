@@ -23,7 +23,7 @@ class BladeFxReportsAclInstallerPlugin extends AbstractPlugin implements AclInst
     {
         $roles = [];
         $roles[] = $this->getFacade()->createBfxAclRoleAndGroup()->getRole();
-        $roles[] = $this->getFacade()->createBfxMerchantPortalAclRoleAndGroup()->getRole();
+//        $roles[] = $this->getFacade()->createBfxMerchantPortalAclRoleAndGroup()->getRole();
 
         return $roles;
     }
@@ -35,7 +35,7 @@ class BladeFxReportsAclInstallerPlugin extends AbstractPlugin implements AclInst
     {
         $groups = [];
         $groups[] = $this->getFacade()->createBfxAclRoleAndGroup()->getGroup();
-        $groups[] = $this->getFacade()->createBfxMerchantPortalAclRoleAndGroup()->getGroup();
+//        $groups[] = $this->getFacade()->createBfxMerchantPortalAclRoleAndGroup()->getGroup();
 
         return $groups;
     }

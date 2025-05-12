@@ -28,10 +28,9 @@ interface BladeFxUserHandlerInterface
     public function deleteUserOnBladeFx(UserTransfer $userTransfer): void;
 
     /**
-     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function executeCreateOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void;
+    public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void;
 }

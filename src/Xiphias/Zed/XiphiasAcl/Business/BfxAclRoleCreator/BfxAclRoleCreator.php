@@ -51,12 +51,10 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
     protected function createRole(): RoleTransfer
     {
         $groupTransfer = (new GroupTransfer())
-            ->setName($this->config->getBfxGroupName())
-            ->setReference($this->config->getBfxGroupReference());
+            ->setName($this->config->getBfxGroupName());
 
         return (new RoleTransfer())
             ->setName($this->config->getBfxGroupName())
-            //->setReference($this->config->getBfxGroupReference())
             ->setAclRules($this->getAclRoleRules())
             ->setAclGroup($groupTransfer);
     }
@@ -80,6 +78,7 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
 
         $bundles = [
             AclConstants::BFX_REPORTS_GUI,
+            AclConstants::BFX_REPORTS_MERCHANT_PORTAL_GUI
         ];
 
         //$merchantPortalBundles = $this->config->getMerchantPortalGuiBundles();

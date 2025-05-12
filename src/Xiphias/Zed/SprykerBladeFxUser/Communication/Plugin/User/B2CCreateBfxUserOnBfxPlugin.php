@@ -16,14 +16,13 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class B2CCreateBfxUserOnBfxPlugin extends AbstractPlugin implements BfxUserHandlerPluginInterface
 {
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function isApplicable(array $groupRoles, int $userId): bool
+    public function isApplicable(UserTransfer $userTransfer): bool
     {
-        return $this->getFacade()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId);
+        return $this->getFacade()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($userTransfer);
     }
 
     /**

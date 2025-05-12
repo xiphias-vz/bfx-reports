@@ -152,8 +152,8 @@ class SalesReportsTable extends ReportsTable
         $downloadUrl = Url::generate(
             '/reports/index/download',
             [
-                ReportsConstants::REPORT_ID => $reportId,
                 'format' => 'pdf',
+                ReportsConstants::REPORT_ID => $reportId,
                 ReportsConstants::PARAMETER_NAME => $params[ReportsConstants::PARAMETER_NAME],
                 ReportsConstants::PARAMETER_VALUE => $params[ReportsConstants::PARAMETER_VALUE],
             ],

@@ -11,9 +11,15 @@ namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Xiphias\Client\ReportsApi\ReportsApiConfig;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
 {
+    private ReportsApiConfig $config;
+
+    public function __construct(ReportsApiConfig $config) {
+        $this->config = $config;
+    }
     /**
      * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
      *
@@ -70,9 +76,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
     protected function changeArrayFromCamelCaseToSnakeCase(array $data): array
     {
         $changedData = [];
-        $keysToChangeFromCamelCase = [
-            'repId' => 1, 'layoutId' => 1, 'paramId' => 1, 'hostAddress' => 1, 'userId' => 1, 'connId' => 1, //u getUserEntity UserId treba biti u camel caseu ali otom potom
-        ];
+        $keysToChangeFromCamelCase = $this->config->getKeysToChangeFromCamelCaseToSnakeCase();
 
         foreach ($data as $camelKey => $value) {
             if (array_key_exists($camelKey, $keysToChangeFromCamelCase)) {

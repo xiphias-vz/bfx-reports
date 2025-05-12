@@ -46,34 +46,29 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     }
 
     /**
-     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function executeCreateOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void
+    public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void
     {
-        $userId = $userTransfer->getIdUser();
+//        if (!$this->bladeFXUserChecker->checkIfPasswordExists($userTransfer->getPassword())) {
+//            return;
+//        }
 
-        if (!$this->bladeFXUserChecker->checkIfPasswordExists($userTransfer->getPassword())) {
-            return;
-        }
-
-        $this->executeBfxUserHandlerPlugins($userTransfer, $groupRoles, $userId);
+        $this->executeBfxUserHandlerPlugins($userTransfer);
     }
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param array $groupRoles
-     * @param int $userId
      *
      * @return void
      */
-    protected function executeBfxUserHandlerPlugins(UserTransfer $userTransfer, array $groupRoles, int $userId): void
+    protected function executeBfxUserHandlerPlugins(UserTransfer $userTransfer): void
     {
         foreach ($this->bfxUserHandlerPlugins as $bfxUserHandlerPlugin) {
-            if ($bfxUserHandlerPlugin->isApplicable($groupRoles, $userId)) {
-                $bfxUserHandlerPlugin->execute($userTransfer, $groupRoles, $userId);
+            if ($bfxUserHandlerPlugin->isApplicable($userTransfer)) {
+                $bfxUserHandlerPlugin->execute($userTransfer);
 
                 break;
             }

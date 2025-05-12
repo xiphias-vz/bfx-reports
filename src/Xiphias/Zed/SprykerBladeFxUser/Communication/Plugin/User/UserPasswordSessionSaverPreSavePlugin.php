@@ -19,29 +19,12 @@ use Spryker\Zed\UserExtension\Dependency\Plugin\UserPreSavePluginInterface;
 class UserPasswordSessionSaverPreSavePlugin extends AbstractPlugin implements UserPreSavePluginInterface
 {
     /**
-     * @var string
-     */
-    protected const USER_KEY = 'user';
-
-    /**
-     * @var string
-     */
-    protected const GROUP_KEY = 'group';
-
-    /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return \Generated\Shared\Transfer\UserTransfer
      */
     public function preSave(UserTransfer $userTransfer): UserTransfer
     {
-        $sessionClient = $this->getFactory()->getSessionClient();
-        $request = $this->getFactory()->getRequestStackService()->getCurrentRequest();
-
-        if (isset($request->request->all()[static::USER_KEY]) && ($this->getRepository()->checkIfUserHasBfxBOGroup($userTransfer->getIdUser()) || $this->getRepository()->findBladeFxBOGroupById($request->request->all()[static::USER_KEY][static::GROUP_KEY]))) {
-            $sessionClient->set($this->getFactory()->getReportsSharedConfig()->getBfxUserSessionKey($userTransfer->getUsername()), $userTransfer);
-        }
-
         return $userTransfer;
     }
 }

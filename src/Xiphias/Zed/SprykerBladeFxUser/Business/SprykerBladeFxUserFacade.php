@@ -28,36 +28,34 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool
+
+    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($groupRoles, $userId);
+        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($userTransfer);
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool
+    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForUpdateOnBfx($groupRoles, $userId);
+        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForUpdateOnBfx($userTransfer);
     }
 
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool
+    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForDeleteOnBfx($groupRoles, $userId);
+        return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForDeleteOnBfx($userTransfer);
     }
 
     /**
@@ -101,13 +99,12 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     }
 
     /**
-     * @param array $groupRoles
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function executeCreateOrUpdateUserOnBladeFx(array $groupRoles, UserTransfer $userTransfer): void
+    public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void
     {
-        $this->getFactory()->createBladeFxUserHandler()->executeCreateOrUpdateUserOnBladeFx($groupRoles, $userTransfer);
+        $this->getFactory()->createBladeFxUserHandler()->executeCreateOrUpdateUserOnBladeFx($userTransfer);
     }
 }

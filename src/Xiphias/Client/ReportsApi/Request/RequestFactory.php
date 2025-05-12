@@ -241,6 +241,8 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
      */
     public function createRequestBodyFormatter(): RequestBodyFormatterInterface
     {
-        return new RequestBodyFormatter();
+        return new RequestBodyFormatter(
+            $this->getConfig()
+        );
     }
 }

@@ -12,12 +12,11 @@ use Generated\Shared\Transfer\UserTransfer;
 interface BfxUserHandlerPluginInterface
 {
     /**
-     * @param array $groupRoles
-     * @param int $userId
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */
-    public function isApplicable(array $groupRoles, int $userId): bool;
+    public function isApplicable(UserTransfer $userTransfer): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
