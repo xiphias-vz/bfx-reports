@@ -23,6 +23,8 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
      */
     protected const DELIMITER = '##';
 
+    protected const PARAMETER_SEPARATOR = ',';
+
     /**
      * @var int
      */
@@ -70,7 +72,7 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
 
         return (new BladeFxParameterTransfer())
             ->setParamName($parameterName)
-            ->setParamValue($this->buildParameters($reportId, $parameterValue))
+            ->setParamValue($this->buildParameters($reportId, $parameterValue, $parameterName))
             ->setReportId($reportId)
             ->setSqlDbType('');
     }
@@ -94,7 +96,7 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
      *
      * @return string
      */
-    protected function buildParameters(int $reportId, ?string $parameter): string
+    protected function buildParameters(int $reportId, ?string $parameterValue, ?string $parameterName): string
     {
         return $reportId
             . static::DELIMITER
@@ -102,7 +104,9 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
             . static::DELIMITER
             . static::LAYOUT_ID_DEFAULT
             . static::DELIMITER
-            . $parameter
+            . $parameterName
+            . static::PARAMETER_SEPARATOR
+            . $parameterValue
             . static::DELIMITER
             . date('j.n.Y. H:i:s')
             . static::DELIMITER
