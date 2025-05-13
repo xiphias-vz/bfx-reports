@@ -23,18 +23,18 @@ use Xiphias\Zed\Reports\Communication\Mapper\ReportsCommunicationMapperInterface
 use Xiphias\Zed\Reports\Communication\Table\ReportsTable;
 use Xiphias\Zed\Reports\Communication\Table\SalesReportsTable;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
-//use Xiphias\Zed\Reports\Communication\TabCreator\TabCreator;
-//use Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface;
-//use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpander;
-//use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpanderInterface;
-//use Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface;
+use Xiphias\Zed\Reports\Communication\TabCreator\TabCreator;
+use Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpander;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpanderInterface;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
  * @method \Xiphias\Zed\Reports\Business\ReportsFacadeInterface getFacade()
  */
 class ReportsCommunicationFactory extends AbstractCommunicationFactory
-//    implements ViewExpanderTableFactoryInterface
+    implements ViewExpanderTableFactoryInterface
 {
     /**
      * @return \Spryker\Client\Session\SessionClientInterface
@@ -112,19 +112,19 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-//    /**
-//     * @return TabCreatorInterface
-//     */
-//    public function createTabCreator(): TabCreatorInterface
-//    {
-//        return new TabCreator();
-//    }
-//
-//    /**
-//     * @return ReportsSalesOverviewExpanderInterface
-//     */
-//    public function createReportsSalesOverviewExpander(): ReportsSalesOverviewExpanderInterface
-//    {
-//        return new ReportsSalesOverviewExpander($this);
-//    }
+    /**
+     * @return TabCreatorInterface
+     */
+    public function createTabCreator(): TabCreatorInterface
+    {
+        return new TabCreator();
+    }
+
+    /**
+     * @return ReportsSalesOverviewExpanderInterface
+     */
+    public function createReportsSalesOverviewExpander(): ReportsSalesOverviewExpanderInterface
+    {
+        return new ReportsSalesOverviewExpander($this);
+    }
 }
