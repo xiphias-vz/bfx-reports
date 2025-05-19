@@ -93,13 +93,32 @@ class ReportPreviewRequestBuilder extends AbstractRequestBuilder
      */
     protected function getEncodedData(AbstractTransfer $requestTransfer): string
     {
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $reportPreviewRequestTransfer */
+        $reportPreviewRequestTransfer = $requestTransfer;
+
         $data = $this->bodyFormatter->formatDataBeforeEncoding(
-            $requestTransfer,
+            $reportPreviewRequestTransfer,
         );
 
-        $data['entryText'] = $requestTransfer->getParams()->getParameterValue();
-        unset($data['params']);
+        $data[ReportsConstants::ENTRY_TEXT_REPORT_PREVIEW_PARAMETER_NAME] = $reportPreviewRequestTransfer->getParams()->getParamValue();
+        $data = $this->cleanDataOfUnneededParameters($data);
 
         return $this->utilEncodingService->encodeJson($data);
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, string>
+     */
+    protected function cleanDataOfUnneededParameters(array $data): array
+    {
+        foreach ($data as $key => $value) {
+            if ($key !== ReportsConstants::ENTRY_TEXT_REPORT_PREVIEW_PARAMETER_NAME) {
+                unset($data[$key]);
+            }
+        }
+
+        return $data;
     }
 }

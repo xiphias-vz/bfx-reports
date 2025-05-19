@@ -123,6 +123,11 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const ENTRY_TEXT_REPORT_PREVIEW_PARAMETER_NAME = 'entryText';
+
+    /**
+     * @var string
+     */
     public const ATTRIBUTE = 'attribute';
 
     /**
