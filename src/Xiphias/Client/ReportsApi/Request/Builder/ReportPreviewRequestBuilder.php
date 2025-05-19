@@ -97,6 +97,9 @@ class ReportPreviewRequestBuilder extends AbstractRequestBuilder
             $requestTransfer,
         );
 
+        $data['entryText'] = $requestTransfer->getParams()->getParameterValue();
+        unset($data['params']);
+
         return $this->utilEncodingService->encodeJson($data);
     }
 }

@@ -38,6 +38,8 @@ function PreviewListenerAdder() {
                         }
                     }
                 });
+
+                goToFirstPageIfCurrentPageEmpty(tableContainer, $reportsTable);
             });
         }, 10);
     }
@@ -76,6 +78,12 @@ function PreviewListenerAdder() {
         }
 
         return document.querySelector('div.dataTables_scrollBody')
+    }
+
+    function goToFirstPageIfCurrentPageEmpty(tableContainer, $reportsTable) {
+        if (tableContainer.querySelector('.dataTables_empty')) {
+            $reportsTable.page('first').draw('false');
+        }
     }
 
     return {

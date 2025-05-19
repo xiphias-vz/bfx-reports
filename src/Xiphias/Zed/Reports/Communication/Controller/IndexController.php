@@ -131,8 +131,8 @@ class IndexController extends AbstractController
             return $this->RedirectResponse($request->headers->get('referer'));
         }
 
-        $paramTransfer = $this->getFactory()->createReportsCommunicationMapper()->mapDownloadParametersToNewParameterTransfer($request);
-        $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramTransfer);
+        $paramListTransfer = $this->getFactory()->createReportsCommunicationMapper()->mapDownloadParametersToNewParameterListTransfer($request);
+        $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramListTransfer);
         $headers = $this->getFactory()->createDownloadHeadersBuilder()->buildDownloadHeaders($format);
 
         return new Response(

@@ -87,12 +87,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_ORDER_PARAM_NAME = 'orderID';
+    public const BLADE_FX_ORDER_PARAM_NAME = '@OrderID';
 
     /**
      * @var string
      */
-    public const BLADE_FX_CUSTOMER_PARAM_NAME = 'customerID';
+    public const BLADE_FX_CUSTOMER_PARAM_NAME = '@CustomerID';
 
     /**
      * @var string
@@ -108,6 +108,17 @@ class ReportsConstants
      * @var string
      */
     public const PARAMETER_VALUE = 'paramValue';
+
+    /**
+     * @var string
+     */
+    public const CONTEXT_BLADE_FX_PARAMETER_NAME = '@context';
+
+    /**
+     * @var string
+     */
+
+    public const ID_BLADE_FX_PARAMETER_NAME = '@ID';
 
     /**
      * @var string

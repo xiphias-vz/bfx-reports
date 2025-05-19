@@ -15,6 +15,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 //use Generated\Shared\Transfer\MerchantUserTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,14 +62,14 @@ interface ReportsFacadeInterface
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByIdInWantedFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterTransfer $parameterTransfer,
+        ?BladeFxParameterListTransfer $paramListTransfer,
     ): BladeFxGetReportByFormatResponseTransfer;
 
     /**

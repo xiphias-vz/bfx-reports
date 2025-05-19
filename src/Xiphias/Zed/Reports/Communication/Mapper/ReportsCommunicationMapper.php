@@ -9,8 +9,9 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Mapper;
 
-use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
@@ -23,6 +24,9 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
      */
     protected const DELIMITER = '##';
 
+    /**
+     * @var string
+     */
     protected const PARAMETER_SEPARATOR = ',';
 
     /**
@@ -47,15 +51,28 @@ class ReportsCommunicationMapper implements ReportsCommunicationMapperInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Generated\Shared\Transfer\BladeFxParameterTransfer
+     * @return BladeFxParameterListTransfer
      */
-    public function mapDownloadParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer
+    public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
     {
-        return (new BladeFxParameterTransfer())
-            ->setParamName($request->query->get(ReportsConstants::PARAMETER_NAME))
-            ->setParamValue($request->query->get(ReportsConstants::PARAMETER_VALUE))
-            ->setReportId((int)$request->query->get(ReportsConstants::REPORT_ID))
-            ->setSqlDbType('');
+        $reportId = (int)$request->get(ReportsConstants::REPORT_ID);
+        $paramId = $request->query->get(ReportsConstants::PARAMETER_VALUE);
+        $contextValue = $request->query->get(ReportsConstants::PARAMETER_NAME);
+        $parameterTransfers = new BladeFxParameterListTransfer();
+
+        $parameterTransfers->addBladeFxParameter((new BladeFxParameterTransfer())
+            ->setParamName(ReportsConstants::CONTEXT_BLADE_FX_PARAMETER_NAME)
+            ->setParamValue($contextValue)
+            ->setReportId($reportId)
+            ->setSqlDbType(''));
+
+        $parameterTransfers->addBladeFxParameter((new BladeFxParameterTransfer())
+            ->setParamName(ReportsConstants::ID_BLADE_FX_PARAMETER_NAME)
+            ->setParamValue($paramId)
+            ->setReportId($reportId)
+            ->setSqlDbType(''));
+
+        return $parameterTransfers;
     }
 
     /**

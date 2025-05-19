@@ -43,7 +43,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return bool
      */
-    protected function parameterTransferIsValid(?BladeFxParameterTransfer $parameterTransfer): bool
+    public function parameterTransferIsValid(?BladeFxParameterTransfer $parameterTransfer): bool
     {
         if ($parameterTransfer) {
             if ($parameterTransfer->getParamName() && $parameterTransfer->getParamValue()) {
@@ -60,12 +60,11 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return array
      */
-    protected function mergeParametersWithData(array $data, ?BladeFxParameterTransfer $parameterTransfer): array
+    public function mergeParametersWithData(array $data, ?BladeFxParameterTransfer $parameterTransfer): array
     {
         $params = $parameterTransfer->toArray(true, true);
         $data['params'] = [$this->changeArrayFromCamelCaseToSnakeCase($params)];
         $data['imageFormat'] = '';
-        $data['entryText'] = $params[ReportsConstants::PARAMETER_VALUE];
 
         return $data;
     }
@@ -75,7 +74,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return array
      */
-    protected function changeArrayFromCamelCaseToSnakeCase(array $data): array
+    public function changeArrayFromCamelCaseToSnakeCase(array $data): array
     {
         $changedData = [];
         $keysToChangeFromCamelCase = $this->config->getKeysToChangeFromCamelCaseToSnakeCase();

@@ -9,10 +9,11 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
@@ -24,13 +25,21 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
      * @var string
      */
     protected const DEFAULT_DATA_RETURN_TYPE = 'string';
-
+    /**
+     * @var BladeFxAuthenticatorInterface
+     */
     protected BladeFxAuthenticatorInterface $authenticator;
-
+    /**
+     * @var ReportsApiClientInterface
+     */
     protected ReportsApiClientInterface $apiClient;
-
+    /**
+     * @var SessionClientInterface
+     */
     protected SessionClientInterface $sessionClient;
-
+    /**
+     * @var ReportsConfig
+     */
     protected ReportsConfig $config;
 
     /**
@@ -54,17 +63,17 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterTransfer $parameterTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null,
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->apiClient->sendGetReportByFormatRequest(
-            $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format, $parameterTransfer),
+            $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format, $paramListTransfer),
         );
     }
 
@@ -78,13 +87,13 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     protected function buildAuthenticatedReportByFormatRequestTransfer(
         int $reportId,
         string $format,
-        ?BladeFxParameterTransfer $parameterTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null,
     ): BladeFxGetReportByFormatRequestTransfer {
         return $this->buildReportByFormatRequestTransfer(
             $this->getUserToken(),
             $reportId,
             $format,
-            $parameterTransfer,
+            $paramListTransfer,
         );
     }
 
@@ -102,7 +111,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
      * @param string $token
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer
      */
@@ -110,14 +119,14 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         string $token,
         int $reportId,
         string $format,
-        ?BladeFxParameterTransfer $parameterTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null,
     ): BladeFxGetReportByFormatRequestTransfer {
         return (new BladeFxGetReportByFormatRequestTransfer())
             ->setRepId($reportId)
             ->setFileFormat($format)
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE)
-            ->setParams($parameterTransfer)
+            ->setParams($paramListTransfer)
             ->setToken((new BladeFxTokenTransfer())->setToken($token));
     }
 }
