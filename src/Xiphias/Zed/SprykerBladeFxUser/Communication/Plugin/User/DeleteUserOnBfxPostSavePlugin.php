@@ -34,9 +34,12 @@ class DeleteUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSa
             return $userTransfer;
         }
 
-        $request = $this->getFactory()->getRequestStackService()->getCurrentRequest();
+        $request = $this->getFactory()->getRequestStackService()?->getCurrentRequest();
 
-        if ($request->isMethod(static::HTTP_METHOD_DELETE) && $this->getFacade()->checkIfUserHasBfxBOGroup($userTransfer->getIdUser())) {
+        if ($request
+            && $request->isMethod(static::HTTP_METHOD_DELETE)
+            && $this->getFacade()->hasUserBfxGroup($userTransfer->getIdUser())
+        ) {
             $this->getFacade()->deleteUserOnBladeFx($userTransfer);
         }
 

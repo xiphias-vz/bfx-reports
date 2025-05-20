@@ -115,7 +115,6 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
             ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
                 ->setFieldName($this->config->getSprykerUserIdKey())
                 ->setFieldValue((string)($userTransfer->getIdUser())));
-
     }
 
 

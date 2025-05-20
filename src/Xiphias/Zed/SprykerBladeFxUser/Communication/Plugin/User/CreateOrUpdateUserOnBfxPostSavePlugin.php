@@ -26,7 +26,7 @@ class CreateOrUpdateUserOnBfxPostSavePlugin extends AbstractPlugin implements Us
      */
     public function postSave(UserTransfer $userTransfer): UserTransfer
     {
-        if (!class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS) && $this->getFacade()->hasUserBfxGroup($userTransfer->getIdUser())) {
+        if (!class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS)) {
             $this->getFacade()->executeCreateOrUpdateUserOnBladeFx($userTransfer);
         }
 
