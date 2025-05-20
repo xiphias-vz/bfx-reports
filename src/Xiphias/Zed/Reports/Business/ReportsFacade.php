@@ -133,4 +133,16 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     {
         return $this->getFactory()->createBladeFxReportsReader()->getReportParamForm($reportId);
     }
+
+    /**
+     * @param string $fileFormat
+     * @param int $reportId
+     * @param string $reportName
+     *
+     * @return array
+     */
+    public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array
+    {
+        return $this->getFactory()->createDownloadHeadersBuilder()->buildDownloadHeaders($fileFormat, $reportId, $reportName);
+    }
 }

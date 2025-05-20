@@ -18,7 +18,7 @@ interface BladeFxUserHandlerInterface
      *
      * @return void
      */
-    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isItFromBO = true): void;
+    public function createOrUpdateUserOnBladeFx(UserTransfer $userTransfer, bool $isActive = true, bool $isMerchantUser = false): void;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer

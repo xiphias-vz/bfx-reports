@@ -35,6 +35,8 @@ use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandler;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface;
+use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
+use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
@@ -202,12 +204,20 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
+     * @return DownloadHeadersBuilderInterface
      */
-    public function createBladeFxChecker(): BladeFxCheckerInterface
+    public function createDownloadHeadersBuilder(): DownloadHeadersBuilderInterface
     {
-        return new BladeFxChecker(
-            $this->getRepository(),
-        );
+        return new DownloadHeadersBuilder();
     }
+//
+//    /**
+//     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
+//     */
+//    public function createBladeFxChecker(): BladeFxCheckerInterface
+//    {
+//        return new BladeFxChecker(
+//            $this->getRepository(),
+//        );
+//    }
 }

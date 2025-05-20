@@ -10,6 +10,7 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\UserExtension\Dependency\Plugin\UserPostSavePluginInterface;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface getFacade()
@@ -29,6 +30,10 @@ class DeleteUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSa
      */
     public function postSave(UserTransfer $userTransfer): UserTransfer
     {
+        if (class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS)) {
+            return $userTransfer;
+        }
+
         $request = $this->getFactory()->getRequestStackService()->getCurrentRequest();
 
         if ($request->isMethod(static::HTTP_METHOD_DELETE) && $this->getFacade()->checkIfUserHasBfxBOGroup($userTransfer->getIdUser())) {

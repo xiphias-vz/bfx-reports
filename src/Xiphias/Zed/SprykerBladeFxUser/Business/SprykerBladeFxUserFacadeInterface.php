@@ -23,21 +23,21 @@ interface SprykerBladeFxUserFacadeInterface
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool;
+    public function isUserApplicableForCreateOnBfx(UserTransfer $userTransfer): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool;
+    public function isUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool;
+    public function isUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
@@ -51,7 +51,7 @@ interface SprykerBladeFxUserFacadeInterface
      *
      * @return bool
      */
-    public function checkIfUserHasBfxBOGroup(int $userId): bool;
+    public function hasUserBfxGroup(int $userId): bool;
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer

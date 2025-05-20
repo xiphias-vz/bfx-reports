@@ -12,15 +12,26 @@ class DownloadHeadersBuilder implements DownloadHeadersBuilderInterface
     /**
      * @param string $fileFormat
      *
-     * @return array
+     * @return array<string, string>
      */
-    public function buildDownloadHeaders(string $fileFormat): array
+    public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array
     {
         return [
             'Content-Type' => $this->getApplicationType($fileFormat),
-            'Content-Disposition' => 'attachment; filename=' . 'filename.' . $fileFormat,
+            'Content-Disposition' => 'attachment; filename=' . $this->buildFilename($reportId, $reportName) . $fileFormat,
             'Pragma' => 'Public',
         ];
+    }
+
+    /**
+     * @param int $reportId
+     * @param string $reportName
+     *
+     * @return string
+     */
+    protected function buildFilename(int $reportId, string $reportName): string
+    {
+        return 'ID ' . $reportId . '-' . $reportName . ' (Date ' . date('d-m-y') . ').';
     }
 
     /**

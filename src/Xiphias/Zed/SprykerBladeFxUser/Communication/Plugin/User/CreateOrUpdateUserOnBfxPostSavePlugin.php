@@ -10,6 +10,7 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\UserExtension\Dependency\Plugin\UserPostSavePluginInterface;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface getFacade()
@@ -25,23 +26,10 @@ class CreateOrUpdateUserOnBfxPostSavePlugin extends AbstractPlugin implements Us
      */
     public function postSave(UserTransfer $userTransfer): UserTransfer
     {
-        if ($this->hasUserBfxGroup($userTransfer->getGroup())) {
+        if (!class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS) && $this->getFacade()->hasUserBfxGroup($userTransfer->getIdUser())) {
             $this->getFacade()->executeCreateOrUpdateUserOnBladeFx($userTransfer);
         }
 
         return $userTransfer;
-    }
-
-    /**
-     * @param array $groups
-     *
-     * @return bool
-     */
-    protected function hasUserBfxGroup(array $groups): bool
-    {
-        $bofficeGroupId = $this->getRepository()->getBladeFxBOGroupId();
-        $mpGroupId = $this->getRepository()->getBladeFxMPGroupId();
-
-        return in_array($bofficeGroupId, $groups) || in_array($mpGroupId, $groups);
     }
 }

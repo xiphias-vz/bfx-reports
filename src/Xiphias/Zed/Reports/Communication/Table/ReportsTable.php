@@ -52,12 +52,12 @@ class ReportsTable extends AbstractTable
     /**
      * @var string
      */
-    protected const EDIT_BUTTON_NAME = 'Preview';
+    protected const PREVIEW_BUTTON_NAME = 'Preview';
 
     /**
      * @var string
      */
-    protected const EDIT_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
+    protected const PREVIEW_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
 
     /**
      * @var string
@@ -208,10 +208,7 @@ class ReportsTable extends AbstractTable
                 BladeFxReportTransfer::REP_NAME => $reportListItem->getRepName(),
                 BladeFxReportTransfer::REP_DESC => $reportListItem->getRepDesc(),
                 BladeFxReportTransfer::CAT_NAME => $reportListItem->getCatName(),
-                static::HEADER_ACTIONS => $this->getActionButtons(
-                    $reportListItem->getRepId(),
-                    $this->params,
-                ),
+                static::HEADER_ACTIONS => $this->getActionButtons($reportListItem,$this->params),
             ];
         }
 
@@ -290,11 +287,11 @@ class ReportsTable extends AbstractTable
      *
      * @return string
      */
-    public function getActionButtons(int $reportId, ?array $params = []): string
+    public function getActionButtons(BladeFxReportTransfer $reportListItem, ?array $params = []): string
     {
         return $this->generateEditButton(
-            $this->buildEditUrl($reportId),
-            static::EDIT_BUTTON_NAME,
+            $this->buildEditUrl($reportListItem),
+            static::PREVIEW_BUTTON_NAME,
         );
     }
 
@@ -337,9 +334,9 @@ class ReportsTable extends AbstractTable
      *
      * @return string
      */
-    protected function buildEditUrl(int $repId): string
+    protected function buildEditUrl($reportListItem): string
     {
-        return sprintf(static::EDIT_URL_FORMAT, $repId);
+        return sprintf(static::PREVIEW_URL_FORMAT, $reportListItem->getRepId());
     }
 
     /**

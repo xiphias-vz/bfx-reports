@@ -9,6 +9,7 @@ namespace Xiphias\Zed\XiphiasAcl;
 
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use Xiphias\Shared\Acl\AclConstants as XiphiasAclConstants;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 class XiphiasAclConfig extends AbstractBundleConfig
 {
@@ -16,11 +17,6 @@ class XiphiasAclConfig extends AbstractBundleConfig
      * @var string
      */
     protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
-
-    /**
-     * @var string
-     */
-    protected const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
 
     /**
      * @return string
@@ -35,7 +31,7 @@ class XiphiasAclConfig extends AbstractBundleConfig
      */
     public function getBfxGroupName(): string
     {
-        return static::BLADE_FX_GROUP_NAME;
+        return ReportsConstants::BLADE_FX_GROUP_NAME;
     }
 
     /**

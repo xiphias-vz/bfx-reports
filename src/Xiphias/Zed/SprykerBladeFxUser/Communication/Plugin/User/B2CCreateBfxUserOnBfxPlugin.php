@@ -22,7 +22,7 @@ class B2CCreateBfxUserOnBfxPlugin extends AbstractPlugin implements BfxUserHandl
      */
     public function isApplicable(UserTransfer $userTransfer): bool
     {
-        return $this->getFacade()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($userTransfer);
+        return $this->getFacade()->isUserApplicableForCreateOnBfx($userTransfer);
     }
 
     /**

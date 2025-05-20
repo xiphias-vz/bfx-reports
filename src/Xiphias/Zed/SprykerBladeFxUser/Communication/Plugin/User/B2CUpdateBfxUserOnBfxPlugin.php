@@ -12,7 +12,6 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface getFacade()
- * @method \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserBusinessFactory getFactory()
  */
 class B2CUpdateBfxUserOnBfxPlugin extends AbstractPlugin implements BfxUserHandlerPluginInterface
 {
@@ -23,7 +22,7 @@ class B2CUpdateBfxUserOnBfxPlugin extends AbstractPlugin implements BfxUserHandl
      */
     public function isApplicable(UserTransfer $userTransfer): bool
     {
-        return $this->getFacade()->checkIfB2CBackofficeUserApplicableForUpdateOnBfx($userTransfer);
+        return $this->getFacade()->isUserApplicableForUpdateOnBfx($userTransfer);
     }
 
     /**

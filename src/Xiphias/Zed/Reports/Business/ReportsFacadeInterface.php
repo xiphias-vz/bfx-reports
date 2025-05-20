@@ -94,4 +94,13 @@ interface ReportsFacadeInterface
     public function getReportPreviewURL(
         BladeFxParameterTransfer $parameterTransfer,
     ): BladeFxGetReportPreviewResponseTransfer;
+
+    /**
+     * @param string $fileFormat
+     * @param int $reportId
+     * @param string $reportName
+     *
+     * @return array
+     */
+    public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array;
 }

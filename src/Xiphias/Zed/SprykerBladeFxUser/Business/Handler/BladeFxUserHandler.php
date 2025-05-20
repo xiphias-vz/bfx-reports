@@ -52,10 +52,6 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      */
     public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void
     {
-//        if (!$this->bladeFXUserChecker->checkIfPasswordExists($userTransfer->getPassword())) {
-//            return;
-//        }
-
         $this->executeBfxUserHandlerPlugins($userTransfer);
     }
 
@@ -82,9 +78,9 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      *
      * @return void
      */
-    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isItFromBO = true): void
+    public function createOrUpdateUserOnBladeFx(UserTransfer $userTransfer, bool $isActive = true, bool $isMerchantUser = false): void
     {
-        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive, $isItFromBO);
+        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive, $isMerchantUser);
 
         try {
             $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
@@ -100,7 +96,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      */
     public function deleteUserOnBladeFx(UserTransfer $userTransfer): void
     {
-        $this->createOrUpdateUserOnBfx($userTransfer, false);
+        $this->createOrUpdateUserOnBladeFx($userTransfer, false);
     }
 
     /**
@@ -113,7 +109,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
         UserTransfer $userTransfer,
         bool $isActive = true,
-        bool $isItFromBO = true,
+        bool $isMerchantUser = false,
     ): BladeFxCreateOrUpdateUserRequestTransfer {
         $bladeFxCreateOrUpdateUserRequestTransfer = (new BladeFxCreateOrUpdateUserRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
@@ -121,7 +117,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
             ->setFirstName($userTransfer->getFirstName())
             ->setLastName($userTransfer->getLastName())
             ->setPassword($userTransfer->getPassword())
-            ->setRoleName($isItFromBO ? static::SRYKER_BO_ROLE : static::SPRYKER_MP_ROLE)
+            ->setRoleName($isMerchantUser ? static::SPRYKER_MP_ROLE : static::SRYKER_BO_ROLE)
             ->setCompanyId($this->getUserIdCompany())
             ->setLanguageId($this->getUserIdLanguage())
             ->setIsActive($isActive)
@@ -129,22 +125,22 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
                 ->setFieldName($this->config->getSprykerUserIdKey())
                 ->setFieldValue((string)($userTransfer->getIdUser())));
 
-        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userTransfer->getIdUser(), $isItFromBO);
+        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userTransfer->getIdUser(), $isMerchantUser);
     }
 
     /**
      * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer
      * @param int $userId
-     * @param bool $isItFromBO
+     * @param bool $isMerchantUser
      *
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
      */
     protected function appendMerchantIdToRequest(
         BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer,
         int $userId,
-        bool $isItFromBO,
+        bool $isMerchantUser,
     ): BladeFxCreateOrUpdateUserRequestTransfer {
-        if (!$isItFromBO) {
+        if ($isMerchantUser) {
             return $bladeFxCreateOrUpdateUserRequestTransfer
                 ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
                     ->setFieldName($this->config->getMerchantIdKey())

@@ -139,4 +139,14 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+
+    /**
+     * @var string
+     */
+    public const MARKETPLACE_ONLY_CLASS = 'MerchantUser';
 }

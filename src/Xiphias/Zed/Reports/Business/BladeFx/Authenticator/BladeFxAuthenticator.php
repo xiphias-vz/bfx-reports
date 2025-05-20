@@ -81,7 +81,9 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
     {
-        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer) ? $this->getRootUserAuthenticationRequestTransfer() : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
+        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer)
+            ? $this->getRootUserAuthenticationRequestTransfer()
+            : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
 
         try {
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
@@ -104,7 +106,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticateUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {
-        if ($this->bladeFxUserFacade->checkIfUserHasBfxMPGroup($userTransfer->getIdUser())) {
+        if ($this->bladeFxUserFacade->hasUserBfxGroup($userTransfer->getIdUser())) {
             $userInfo = $request->request->getIterator()->current();
 
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(

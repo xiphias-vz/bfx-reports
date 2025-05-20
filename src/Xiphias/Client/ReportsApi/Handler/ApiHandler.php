@@ -33,14 +33,29 @@ use Xiphias\Client\ReportsApi\Response\ResponseManagerInterface;
 
 class ApiHandler implements ApiHandlerInterface
 {
+    /**
+     * @var RequestManagerInterface
+     */
     private RequestManagerInterface $requestManager;
 
+    /**
+     * @var ResponseManagerInterface
+     */
     private ResponseManagerInterface $responseManager;
 
+    /**
+     * @var HttpApiClientInterface
+     */
     private HttpApiClientInterface $httpClient;
 
+    /**
+     * @var ReportsApiConfig
+     */
     private ReportsApiConfig $apiClientConfig;
 
+    /**
+     * @var RequestFactoryInterface
+     */
     private RequestFactoryInterface $requestFactory;
 
     /**

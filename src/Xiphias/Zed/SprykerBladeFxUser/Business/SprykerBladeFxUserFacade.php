@@ -22,9 +22,9 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return void
      */
-    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isItFromBO = true): void
+    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isMerchantUser = false): void
     {
-        $this->getFactory()->createBladeFxUserHandler()->createOrUpdateUserOnBfx($userTransfer, $isActive, $isItFromBO);
+        $this->getFactory()->createBladeFxUserHandler()->createOrUpdateUserOnBladeFx($userTransfer, $isActive, $isMerchantUser);
     }
 
     /**
@@ -32,8 +32,7 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return bool
      */
-
-    public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool
+    public function isUserApplicableForCreateOnBfx(UserTransfer $userTransfer): bool
     {
         return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForCreationOnBfx($userTransfer);
     }
@@ -43,7 +42,7 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool
+    public function isUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool
     {
         return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForUpdateOnBfx($userTransfer);
     }
@@ -53,7 +52,7 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return bool
      */
-    public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool
+    public function isUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool
     {
         return $this->getFactory()->createBladeFXUserChecker()->checkIfB2CBackofficeUserApplicableForDeleteOnBfx($userTransfer);
     }
@@ -73,7 +72,7 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return bool
      */
-    public function checkIfUserHasBfxBOGroup(int $userId): bool
+    public function hasUserBfxGroup(int $userId): bool
     {
         return $this->getFactory()->createBladeFXUserChecker()->checkIfUserHasBfxBOGroup($userId);
     }
@@ -86,16 +85,6 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool
     {
         return $this->getFactory()->createBladeFXUserChecker()->checkIfUserIsAdmin($userTransfer);
-    }
-
-    /**
-     * @param $userInt
-     *
-     * @return bool
-     */
-    public function checkIfUserHasBfxMPGroup($userInt): bool
-    {
-        return $this->getFactory()->createBladeFXUserChecker()->checkIfUserHasBfxMPGroup($userInt);
     }
 
     /**

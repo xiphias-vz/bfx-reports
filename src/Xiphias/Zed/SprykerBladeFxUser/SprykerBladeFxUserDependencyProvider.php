@@ -38,8 +38,6 @@ class SprykerBladeFxUserDependencyProvider extends AbstractBundleDependencyProvi
     public const SERVICE_REQUEST_STACK = 'request_stack';
 
     /**
-     * var string
-     *
      * @var string
      */
     public const BLADE_FX_USER_HANDLER_PLUGINS = 'BLADE_FX_USER_HANDLER_PLUGINS';
