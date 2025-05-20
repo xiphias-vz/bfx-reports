@@ -8,6 +8,7 @@
 namespace Xiphias\Zed\SprykerBladeFxUser;
 
 use Spryker\Zed\Kernel\AbstractBundleConfig;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 /**
  * @method \Xiphias\Shared\SprykerBladeFxUser\SprykerBladeFxUserConfig getSharedConfig()
@@ -23,6 +24,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      * @var int
      */
     protected const ROOT_ADMIN_ID = 1;
+
     /**
      * @var string
      */
@@ -53,7 +55,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      */
     public function getSprykerUserIdKey(): string
     {
-        return static::SPRYKER_USER_ID_KEY;
+        return ReportsConstants::SPRYKER_USER_ID_KEY;
     }
 
     /**
@@ -61,7 +63,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      */
     public function getMerchantIdKey(): string
     {
-        return static::MERCHANT_ID_KEY;
+        return ReportsConstants::MERCHANT_ID_KEY;
     }
 
     /**
@@ -69,7 +71,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      */
     public function getBfxTokenSessionKey(): string
     {
-        return static::BFX_TOKEN_SESSION_KEY;
+        return ReportsConstants::BFX_TOKEN_SESSION_KEY;
     }
 
     /**
@@ -77,7 +79,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      */
     public function getBfxUserCompanyIdSessionKey(): string
     {
-        return static::BFX_USER_COMPANY_ID_SESSION_KEY;
+        return ReportsConstants::BFX_USER_COMPANY_ID_SESSION_KEY;
     }
 
     /**
@@ -85,7 +87,7 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
      */
     public function getBfxUserLanguageIdSessionKey(): string
     {
-        return static::BFX_USER_LANGUAGE_ID_SESSION_KEY;
+        return ReportsConstants::BFX_USER_LANGUAGE_ID_SESSION_KEY;
     }
 
     /**

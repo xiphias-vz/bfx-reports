@@ -22,9 +22,9 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
      *
      * @return void
      */
-    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true, bool $isMerchantUser = false): void
+    public function createOrUpdateUserOnBfx(UserTransfer $userTransfer, bool $isActive = true): void
     {
-        $this->getFactory()->createBladeFxUserHandler()->createOrUpdateUserOnBladeFx($userTransfer, $isActive, $isMerchantUser);
+        $this->getFactory()->createBladeFxUserHandler()->createOrUpdateUserOnBladeFx($userTransfer, $isActive);
     }
 
     /**

@@ -14,20 +14,12 @@ use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
 use Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig;
 
 class BladeFxUserHandler implements BladeFxUserHandlerInterface
 {
-    /**
-     * @var string
-     */
-    protected const SRYKER_BO_ROLE = 'SprykerBORole';
-
-    /**
-     * @var string
-     */
-    protected const SPRYKER_MP_ROLE = 'SprykerMPRole';
 
     /**
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
@@ -78,9 +70,9 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      *
      * @return void
      */
-    public function createOrUpdateUserOnBladeFx(UserTransfer $userTransfer, bool $isActive = true, bool $isMerchantUser = false): void
+    public function createOrUpdateUserOnBladeFx(UserTransfer $userTransfer, bool $isActive = true): void
     {
-        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive, $isMerchantUser);
+        $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive);
 
         try {
             $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
@@ -109,15 +101,14 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
         UserTransfer $userTransfer,
         bool $isActive = true,
-        bool $isMerchantUser = false,
     ): BladeFxCreateOrUpdateUserRequestTransfer {
-        $bladeFxCreateOrUpdateUserRequestTransfer = (new BladeFxCreateOrUpdateUserRequestTransfer())
+        return (new BladeFxCreateOrUpdateUserRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
             ->setEmail($userTransfer->getUsername())
             ->setFirstName($userTransfer->getFirstName())
             ->setLastName($userTransfer->getLastName())
             ->setPassword($userTransfer->getPassword())
-            ->setRoleName($isMerchantUser ? static::SPRYKER_MP_ROLE : static::SRYKER_BO_ROLE)
+            ->setRoleName(ReportsConstants::SRYKER_BO_ROLE)
             ->setCompanyId($this->getUserIdCompany())
             ->setLanguageId($this->getUserIdLanguage())
             ->setIsActive($isActive)
@@ -125,30 +116,8 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
                 ->setFieldName($this->config->getSprykerUserIdKey())
                 ->setFieldValue((string)($userTransfer->getIdUser())));
 
-        return $this->appendMerchantIdToRequest($bladeFxCreateOrUpdateUserRequestTransfer, $userTransfer->getIdUser(), $isMerchantUser);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer
-     * @param int $userId
-     * @param bool $isMerchantUser
-     *
-     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
-     */
-    protected function appendMerchantIdToRequest(
-        BladeFxCreateOrUpdateUserRequestTransfer $bladeFxCreateOrUpdateUserRequestTransfer,
-        int $userId,
-        bool $isMerchantUser,
-    ): BladeFxCreateOrUpdateUserRequestTransfer {
-        if ($isMerchantUser) {
-            return $bladeFxCreateOrUpdateUserRequestTransfer
-                ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
-                    ->setFieldName($this->config->getMerchantIdKey())
-                    ->setFieldValue($this->bladeFXUserChecker->getUserMerchantId($userId)));
-        }
-
-        return $bladeFxCreateOrUpdateUserRequestTransfer;
-    }
 
     /**
      * @return string|null

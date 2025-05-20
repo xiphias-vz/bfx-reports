@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Controller;
 
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

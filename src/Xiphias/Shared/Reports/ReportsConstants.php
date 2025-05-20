@@ -149,4 +149,39 @@ class ReportsConstants
      * @var string
      */
     public const MARKETPLACE_ONLY_CLASS = 'MerchantUser';
+
+    /**
+     * @var string
+     */
+    protected const SRYKER_BO_ROLE = 'SprykerBORole';
+
+    /**
+     * @var string
+     */
+    protected const SPRYKER_MP_ROLE = 'SprykerMPRole';
+
+    /**
+     * @var string
+     */
+    protected const SPRYKER_USER_ID_KEY = 'spryker_user_id';
+
+    /**
+     * @var string
+     */
+    protected const MERCHANT_ID_KEY = 'merchant_id';
+
+    /**
+     * @var string
+     */
+    protected const BFX_TOKEN_SESSION_KEY = 'bfx_token';
+
+    /**
+     * @var string
+     */
+    protected const BFX_USER_COMPANY_ID_SESSION_KEY = 'bfx_company_id';
+
+    /**
+     * @var string
+     */
+    protected const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
 }
