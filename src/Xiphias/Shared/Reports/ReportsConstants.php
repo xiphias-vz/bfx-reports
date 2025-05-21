@@ -148,7 +148,7 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const MARKETPLACE_ONLY_CLASS = 'MerchantUser';
+    public const MARKETPLACE_ONLY_CLASS = 'Generated\Shared\Transfer\MerchantUserTransfer';
 
     /**
      * @var string

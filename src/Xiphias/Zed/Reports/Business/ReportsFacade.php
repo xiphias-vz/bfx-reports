@@ -32,9 +32,9 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
      *
      * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
+    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
-        return $this->getFactory()
+        $this->getFactory()
             ->createBladeFxAuthenticator()
             ->authenticate($request, $userTransfer);
     }

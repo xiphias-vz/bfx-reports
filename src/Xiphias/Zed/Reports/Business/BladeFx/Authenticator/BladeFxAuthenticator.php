@@ -76,10 +76,8 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
+    public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
         $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer)
             ? $this->getRootUserAuthenticationRequestTransfer()
@@ -92,17 +90,12 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 
             $this->executePostAuthenticationPlugins($authenticationResponseTransfer);
         } catch (Exception $exception) {
-            return false;
         }
-
-        return $authenticationResponseTransfer;
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
      */
     public function authenticateUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {

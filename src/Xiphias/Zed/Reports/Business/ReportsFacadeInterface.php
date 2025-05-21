@@ -25,10 +25,8 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool;
+    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
