@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Communication\Table;
 
 use Generated\Shared\Transfer\BladeFxReportTransfer;
+use InvalidArgumentException;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
@@ -51,12 +52,12 @@ class ReportsTable extends AbstractTable
     /**
      * @var string
      */
-    protected const EDIT_BUTTON_NAME = 'Preview';
+    protected const PREVIEW_BUTTON_NAME = 'Preview';
 
     /**
      * @var string
      */
-    protected const EDIT_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
+    protected const PREVIEW_URL_FORMAT = '/reports/index/report-iframe?repId=%s';
 
     /**
      * @var string
@@ -207,10 +208,7 @@ class ReportsTable extends AbstractTable
                 BladeFxReportTransfer::REP_NAME => $reportListItem->getRepName(),
                 BladeFxReportTransfer::REP_DESC => $reportListItem->getRepDesc(),
                 BladeFxReportTransfer::CAT_NAME => $reportListItem->getCatName(),
-                static::HEADER_ACTIONS => $this->getActionButtons(
-                    $reportListItem->getRepId(),
-                    $this->params,
-                ),
+                static::HEADER_ACTIONS => $this->getActionButtons($reportListItem,$this->params),
             ];
         }
 
@@ -237,12 +235,27 @@ class ReportsTable extends AbstractTable
      * @param string $columnIndex
      * @param string $sortDirection
      *
+     * @throws \InvalidArgumentException
+     *
      * @return array
      */
     protected function sortResults(array $results, string $columnIndex, string $sortDirection): array
     {
         $columns = $this->getCsvHeaders();
+
+        if (is_numeric($columnIndex)) {
+            $columnIndex = (int)$columnIndex;
+        }
+
+        if (!isset(array_keys($columns)[$columnIndex])) {
+            throw new InvalidArgumentException("Invalid column index: $columnIndex");
+        }
+
         usort($results, function ($a, $b) use ($sortDirection, $columns, $columnIndex) {
+            if (!array_key_exists(array_keys($columns)[$columnIndex], $a) || !array_key_exists(array_keys($columns)[$columnIndex], $b)) {
+                return 0;
+            }
+
             if ($sortDirection === static::SORT_DESCENDING) {
                 /** @var array<array<int|string>> $b*/
 
@@ -274,11 +287,11 @@ class ReportsTable extends AbstractTable
      *
      * @return string
      */
-    public function getActionButtons(int $reportId, ?array $params = []): string
+    public function getActionButtons(BladeFxReportTransfer $reportListItem, ?array $params = []): string
     {
         return $this->generateEditButton(
-            $this->buildEditUrl($reportId),
-            static::EDIT_BUTTON_NAME,
+            $this->buildEditUrl($reportListItem),
+            static::PREVIEW_BUTTON_NAME,
         );
     }
 
@@ -321,9 +334,9 @@ class ReportsTable extends AbstractTable
      *
      * @return string
      */
-    protected function buildEditUrl(int $repId): string
+    protected function buildEditUrl($reportListItem): string
     {
-        return sprintf(static::EDIT_URL_FORMAT, $repId);
+        return sprintf(static::PREVIEW_URL_FORMAT, $reportListItem->getRepId());
     }
 
     /**

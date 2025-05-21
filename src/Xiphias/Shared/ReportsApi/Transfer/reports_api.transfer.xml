@@ -164,7 +164,7 @@
         <property name="layoutId" type="int"/>
         <property name="imageFormat" type="string"/>
         <property name="fileFormat" type="string" />
-        <property name="params" type="BladeFxParameter"/>
+        <property name="params" type="BladeFxParameterList"/>
     </transfer>
 
     <transfer name="BladeFxGetReportByFormatResponse" strict="true">

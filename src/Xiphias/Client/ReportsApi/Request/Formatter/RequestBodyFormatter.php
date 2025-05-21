@@ -11,9 +11,16 @@ namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Xiphias\Client\ReportsApi\ReportsApiConfig;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
 {
+    private ReportsApiConfig $config;
+
+    public function __construct(ReportsApiConfig $config) {
+        $this->config = $config;
+    }
     /**
      * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
      *
@@ -36,7 +43,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return bool
      */
-    protected function parameterTransferIsValid(?BladeFxParameterTransfer $parameterTransfer): bool
+    public function parameterTransferIsValid(?BladeFxParameterTransfer $parameterTransfer): bool
     {
         if ($parameterTransfer) {
             if ($parameterTransfer->getParamName() && $parameterTransfer->getParamValue()) {
@@ -53,7 +60,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return array
      */
-    protected function mergeParametersWithData(array $data, ?BladeFxParameterTransfer $parameterTransfer): array
+    public function mergeParametersWithData(array $data, ?BladeFxParameterTransfer $parameterTransfer): array
     {
         $params = $parameterTransfer->toArray(true, true);
         $data['params'] = [$this->changeArrayFromCamelCaseToSnakeCase($params)];
@@ -67,12 +74,10 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
      *
      * @return array
      */
-    protected function changeArrayFromCamelCaseToSnakeCase(array $data): array
+    public function changeArrayFromCamelCaseToSnakeCase(array $data): array
     {
         $changedData = [];
-        $keysToChangeFromCamelCase = [
-            'repId' => 1, 'layoutId' => 1, 'paramId' => 1, 'hostAddress' => 1, 'userId' => 1, 'connId' => 1, //u getUserEntity UserId treba biti u camel caseu ali otom potom
-        ];
+        $keysToChangeFromCamelCase = $this->config->getKeysToChangeFromCamelCaseToSnakeCase();
 
         foreach ($data as $camelKey => $value) {
             if (array_key_exists($camelKey, $keysToChangeFromCamelCase)) {

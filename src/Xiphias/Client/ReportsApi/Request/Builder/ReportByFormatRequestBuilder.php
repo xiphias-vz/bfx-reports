@@ -94,9 +94,16 @@ class ReportByFormatRequestBuilder extends AbstractRequestBuilder
      */
     protected function getEncodedData(AbstractTransfer $requestTransfer): string
     {
-        $data = $this->bodyFormatter->formatDataBeforeEncoding(
-            $requestTransfer,
-        );
+        $data = $requestTransfer->toArray(true, true);
+        unset($data['params']);
+        $data = $this->bodyFormatter->changeArrayFromCamelCaseToSnakeCase($data);
+
+        foreach ($requestTransfer->getParams()->getParameterList() as $parameterTransfer) {
+            if ($this->bodyFormatter->parameterTransferIsValid($parameterTransfer)) {
+                $parameterArray = $parameterTransfer->toArray(true, true);
+                $data['params'][] = $this->bodyFormatter->changeArrayFromCamelCaseToSnakeCase($parameterArray);
+            }
+        }
 
         return $this->utilEncodingService->encodeJson($data);
     }

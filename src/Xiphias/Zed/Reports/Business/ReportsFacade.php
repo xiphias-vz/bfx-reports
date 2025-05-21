@@ -15,6 +15,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Generated\Shared\Transfer\MerchantUserTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
@@ -31,22 +32,22 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
      *
      * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool
+    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
-        return $this->getFactory()
+        $this->getFactory()
             ->createBladeFxAuthenticator()
             ->authenticate($request, $userTransfer);
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void
+    public function authenticateBladeFxUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {
-        $this->getFactory()->createBladeFxAuthenticator()->authenticateUserOnMerchantPortal($request, $merchantUserTransfer);
+        $this->getFactory()->createBladeFxAuthenticator()->authenticateUserOnMerchantPortal($request, $userTransfer);
     }
 
     /**
@@ -88,18 +89,18 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByIdInWantedFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterTransfer $parameterTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null,
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->getFactory()
             ->createBladeFxReportByFormatReader()
-            ->getReportByFormat($reportId, $format, $parameterTransfer);
+            ->getReportByFormat($reportId, $format, $paramListTransfer);
     }
 
     /**
@@ -134,14 +135,15 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
-     * @param array $userForm
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     * @param string $fileFormat
+     * @param int $reportId
+     * @param string $reportName
      *
-     * @return void
+     * @return array
      */
-    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void
+    public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array
     {
-        $this->getFactory()->createUserHandler()->createOrUpdateUserOnBladeFx($userForm, $userTransfer);
+        return $this->getFactory()->createDownloadHeadersBuilder()->buildDownloadHeaders($fileFormat, $reportId, $reportName);
     }
 
     /**

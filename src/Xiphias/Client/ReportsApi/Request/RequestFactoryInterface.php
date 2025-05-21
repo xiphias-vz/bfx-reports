@@ -108,4 +108,9 @@ interface RequestFactoryInterface
      * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
      */
     public function createCreateOrUpdateUserOnBladeFxRequestBuilder(): RequestBuilderInterface;
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createCreateOrUpdateUserOnBladeFxRequestValidator(): RequestValidatorInterface;
 }

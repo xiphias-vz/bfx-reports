@@ -40,6 +40,7 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
     public function convert(ResponseInterface $response): BladeFxApiResponseConversionResultTransfer
     {
         $responseData = $this->decodeResponse($response);
+        $responseData = $this->isResponseSuccessful($responseData) ? $responseData : [];
         $bladeFxApiResponseConversionResultTransfer = $this->createConversionResultTransfer();
 
         return $this->expandConversionResponseTransfer(
@@ -77,6 +78,34 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
         }
 
         return $this->utilEncodingService->decodeJson($bodyContent, true);
+    }
+
+    /**
+     * @param array $responseData
+     *
+     * @return bool
+     */
+    protected function isResponseSuccessful(array $responseData): bool
+    {
+        if (isset($responseData['success'])) {
+            if ($responseData['success'] === false) {
+                return false;
+            }
+        }
+
+        if (isset($responseData['status'])) {
+            if ($responseData['status'] !== 200) {
+                return false;
+            }
+        }
+
+        if (isset($responseData[0])) {
+            if (isset($responseData[0]['ErrCode'])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

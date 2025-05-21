@@ -64,8 +64,8 @@ interface ReportsFacadeInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByIdInWantedFormat(
-        int                           $reportId,
-        string                        $format,
+        int $reportId,
+        string $format,
         ?BladeFxParameterListTransfer $paramListTransfer,
     ): BladeFxGetReportByFormatResponseTransfer;
 

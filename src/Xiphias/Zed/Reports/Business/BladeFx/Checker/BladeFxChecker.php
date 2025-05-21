@@ -67,7 +67,7 @@ class BladeFxChecker implements BladeFxCheckerInterface
      */
     public function checkIfBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool
     {
-        return !$this->checkIfUserHasMerchant($userId) && $this->findBladeFxBOGroupById($groupRoles) && !$this->checkIfUserHasBfxBOGroup($userId);
+        return /** !$this->checkIfUserHasMerchant($userId) && */ $this->findBladeFxBOGroupById($groupRoles) && !$this->checkIfUserHasBfxBOGroup($userId);
     }
 
     /**
@@ -78,7 +78,7 @@ class BladeFxChecker implements BladeFxCheckerInterface
      */
     public function checkIfBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool
     {
-        return !$this->checkIfUserHasMerchant($userId) && $this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
+        return /** !$this->checkIfUserHasMerchant($userId) && */ $this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
     }
 
     /**
@@ -89,7 +89,7 @@ class BladeFxChecker implements BladeFxCheckerInterface
      */
     public function checkIfBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool
     {
-        return !$this->checkIfUserHasMerchant($userId) && !$this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
+        return /** !$this->checkIfUserHasMerchant($userId) && */ !$this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
     }
 
     /**

@@ -87,7 +87,7 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_ORDER_PARAM_NAME = '@order_id';
+    public const BLADE_FX_ORDER_PARAM_NAME = '@OrderID';
 
     /**
      * @var string
@@ -112,6 +112,22 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const CONTEXT_BLADE_FX_PARAMETER_NAME = '@context';
+
+    /**
+     * @var string
+     */
+
+    public const ID_BLADE_FX_PARAMETER_NAME = '@ID';
+
+    /**
+     * @var string
+     */
+    public const ENTRY_TEXT_REPORT_PREVIEW_PARAMETER_NAME = 'entryText';
+
+    /**
+     * @var string
+     */
     public const ATTRIBUTE = 'attribute';
 
     /**
@@ -123,4 +139,49 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+
+    /**
+     * @var string
+     */
+    public const MARKETPLACE_ONLY_CLASS = 'Generated\Shared\Transfer\MerchantUserTransfer';
+
+    /**
+     * @var string
+     */
+    public const SRYKER_BO_ROLE = 'SprykerBORole';
+
+    /**
+     * @var string
+     */
+    public const SPRYKER_MP_ROLE = 'SprykerMPRole';
+
+    /**
+     * @var string
+     */
+    public const SPRYKER_USER_ID_KEY = 'spryker_user_id';
+
+    /**
+     * @var string
+     */
+    public const MERCHANT_ID_KEY = 'merchant_id';
+
+    /**
+     * @var string
+     */
+    public const BFX_TOKEN_SESSION_KEY = 'bfx_token';
+
+    /**
+     * @var string
+     */
+    public const BFX_USER_COMPANY_ID_SESSION_KEY = 'bfx_company_id';
+
+    /**
+     * @var string
+     */
+    public const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
 }

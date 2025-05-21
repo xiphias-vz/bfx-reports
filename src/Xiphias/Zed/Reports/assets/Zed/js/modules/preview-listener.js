@@ -29,21 +29,17 @@ function PreviewListenerAdder() {
                         if (button !== null) {
                             button.addEventListener('click', async (e) => {
                                 e.preventDefault();
-                                displayModal();
-                                const iframeUrl = await getIframeUrl(button.href)
-                                $('.modal-body').attr('src', iframeUrl);
-                                $loader.addClass('hidden');
+                                await handleReportPreview(button);
                             });
 
                             row.addEventListener('dblclick', async () => {
-                                displayModal();
-                                const iframeUrl = await getIframeUrl(button.href)
-                                $('.modal-body').attr('src', iframeUrl);
-                                $loader.addClass('hidden');
+                                await handleReportPreview(button);
                             });
                         }
                     }
                 });
+
+                goToFirstPageIfCurrentPageEmpty(tableContainer, $reportsTable);
             });
         }, 10);
     }
@@ -55,6 +51,17 @@ function PreviewListenerAdder() {
         return responseJson.iframeUrl
     }
 
+    async function handleReportPreview(button) {
+        displayModal();
+        const iframeUrl = await getIframeUrl(button.href)
+        $loader.addClass('hidden');
+        $('.modal-body').attr('src', iframeUrl);
+
+        if (!iframeUrl) {
+            $previewModal.modal('close');
+        }
+    }
+
     function displayModal() {
         $('.modal-body').attr('src', null);
         $previewModal.modal('show');
@@ -62,7 +69,6 @@ function PreviewListenerAdder() {
     }
 
     function getTableContainer() {
-        let tableContainer;
         if (reportTab) {
             return reportTab.querySelector('div.dataTables_scrollBody')
         }
@@ -72,6 +78,12 @@ function PreviewListenerAdder() {
         }
 
         return document.querySelector('div.dataTables_scrollBody')
+    }
+
+    function goToFirstPageIfCurrentPageEmpty(tableContainer, $reportsTable) {
+        if (tableContainer.querySelector('.dataTables_empty')) {
+            $reportsTable.page('first').draw('false');
+        }
     }
 
     return {
