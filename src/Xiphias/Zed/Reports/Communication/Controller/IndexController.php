@@ -106,7 +106,7 @@ class IndexController extends AbstractController
      */
     public function previewAction(Request $request): JsonResponse
     {
-        $mapper = $this->getFactory()->createReportsCommunicationMapper();
+        $mapper = $this->getFactory()->createReportsMapper();
         $paramTransfer = $mapper->mapPreviewParametersToNewParameterTransfer($request);
         $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
 
@@ -132,7 +132,7 @@ class IndexController extends AbstractController
             return $this->RedirectResponse($request->headers->get('referer'));
         }
 
-        $paramListTransfer = $this->getFactory()->createReportsCommunicationMapper()->mapDownloadParametersToNewParameterListTransfer($request);
+        $paramListTransfer = $this->getFactory()->createReportsMapper()->mapDownloadParametersToNewParameterListTransfer($request);
         $responseTransfer = $this->getFacade()->getReportByIdInWantedFormat($reportId, $format, $paramListTransfer);
         $headers = $this->getFactory()->createDownloadHeadersBuilder()->buildDownloadHeaders($format, $reportId, $reportName);
 

@@ -99,7 +99,7 @@ class ReportsMapper implements ReportsMapperInterface
      *
      * @return string
      */
-    public function assembleUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string
+    public function assemblePreviewUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string
     {
         return $this->config->getParamFormRootUrl()
             . $this->config->getReportPreviewUrlPath()

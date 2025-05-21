@@ -102,9 +102,9 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsCommunicationMapper
+     * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper
      */
-    public function createReportsCommunicationMapper(): ReportsMapperInterface
+    public function createReportsMapper(): ReportsMapperInterface
     {
         return new ReportsMapper(
             $this->getConfig(),

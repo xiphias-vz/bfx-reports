@@ -27,5 +27,5 @@ interface ReportsMapperInterface
      *
      * @return string
      */
-    public function assembleUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string;
+    public function assemblePreviewUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string;
 }
