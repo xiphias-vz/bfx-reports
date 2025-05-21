@@ -7,7 +7,7 @@ use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
-interface ReportsCommunicationMapperInterface
+interface ReportsMapperInterface
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
