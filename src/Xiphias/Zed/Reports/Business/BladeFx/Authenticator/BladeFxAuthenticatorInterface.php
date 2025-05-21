@@ -19,16 +19,14 @@ interface BladeFxAuthenticatorInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool;
+    public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function authenticateUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
+    public function authenticateUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void;
 }

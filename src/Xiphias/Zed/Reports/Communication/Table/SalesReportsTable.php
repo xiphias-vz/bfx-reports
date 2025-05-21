@@ -22,7 +22,7 @@ class SalesReportsTable extends ReportsTable
     protected const HEADER_ACTIONS = 'actions';
 
     /**
-     * @var array|null
+     * @var array
      */
     protected array $params;
 
@@ -96,11 +96,14 @@ class SalesReportsTable extends ReportsTable
      *
      * @return string
      */
-    public function getActionButtons(int $reportId, ?array $params = []): string
+    public function getActionButtons(BladeFxReportTransfer $reportListItem, ?array $params = []): string
     {
         $buttons = [];
+        $reportId = $reportListItem->getRepId();
+        $reportName = $reportListItem->getRepName();
+
         $buttons[] = $this->createPreviewButton($reportId, $params);
-        $buttons[] = $this->createDownloadPDFButton($reportId, $params);
+        $buttons[] = $this->createDownloadPDFButton($reportId, $reportName, $params);
 
         return implode(' ', $buttons);
     }
@@ -147,13 +150,14 @@ class SalesReportsTable extends ReportsTable
      *
      * @return string
      */
-    protected function createDownloadPDFButton(int $reportId, ?array $params): string
+    protected function createDownloadPDFButton(int $reportId, string $reportName, ?array $params): string
     {
         $downloadUrl = Url::generate(
             '/reports/index/download',
             [
-                ReportsConstants::REPORT_ID => $reportId,
                 'format' => 'pdf',
+                ReportsConstants::REPORT_ID => $reportId,
+                BladeFxReportTransfer::REP_NAME => $reportName,
                 ReportsConstants::PARAMETER_NAME => $params[ReportsConstants::PARAMETER_NAME],
                 ReportsConstants::PARAMETER_VALUE => $params[ReportsConstants::PARAMETER_VALUE],
             ],

@@ -14,6 +14,8 @@ use Spryker\Zed\Kernel\Container;
 use Xiphias\Client\ReportsApi\ReportsApiClient;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandlerPostAuthenticationPlugin;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacade;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 class ReportsDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -21,6 +23,10 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      * @var string
      */
     public const BLADE_FX_CLIENT = 'BLADE_FX_CLIENT';
+    /**
+     * @var string
+     */
+    public const SPRYKER_BLADE_FX_FACADE = 'SPRYKER_BLADE_FX_FACADE';
 
     /**
      * @var string
@@ -38,6 +44,13 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     public const BLADE_FX_POST_AUTHENTICATION_PLUGINS = 'BLADE_FX_POST_AUTHENTICATION_PLUGINS';
 
     /**
+     * @uses \Spryker\Zed\Http\Communication\Plugin\Application\HttpApplicationPlugin::SERVICE_REQUEST_STACK
+     *
+     * @var string
+     */
+    public const SERVICE_REQUEST_STACK = 'request_stack';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -46,6 +59,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container = $this->addBladeFxClient($container);
         $container = $this->addSessionClient($container);
+        $container = $this->addSprykerBladeFxUserFacade($container);
         $container = $this->addMessengerFacade($container);
         $container = $this->addBladeFxPostAuthenticationPlugins($container);
 
@@ -60,6 +74,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = $this->addSessionClient($container);
+        $container = $this->addRequestStackService($container);
 
         return $container;
     }
@@ -86,10 +101,43 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
+    protected function addSprykerBladeFxUserFacade(Container $container): Container
+    {
+        $container->set(
+            static::SPRYKER_BLADE_FX_FACADE,
+            static function (): SprykerBladeFxUserFacadeInterface {
+                return new SprykerBladeFxUserFacade();
+            },
+        );
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
     protected function addSessionClient(Container $container): Container
     {
         $container->set(static::SESSION_CLIENT, function (Container $container) {
             return $container->getLocator()->session()->client();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addRequestStackService(Container $container): Container
+    {
+        $container->set(static::SERVICE_REQUEST_STACK, function (Container $container) {
+            return $container->hasApplicationService(static::SERVICE_REQUEST_STACK)
+                ? $container->getApplicationService(static::SERVICE_REQUEST_STACK)
+                : null;
         });
 
         return $container;

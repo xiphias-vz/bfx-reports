@@ -11,22 +11,30 @@ namespace Xiphias\Zed\Reports\Communication;
 
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatter;
 use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatterInterface;
-use Xiphias\Zed\Reports\Communication\Mapper\ParameterMapper;
+use Xiphias\Zed\Reports\Communication\Mapper\ReportsCommunicationMapper;
+use Xiphias\Zed\Reports\Communication\Mapper\ReportsCommunicationMapperInterface;
 use Xiphias\Zed\Reports\Communication\Table\ReportsTable;
 use Xiphias\Zed\Reports\Communication\Table\SalesReportsTable;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
+use Xiphias\Zed\Reports\Communication\TabCreator\TabCreator;
+use Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpander;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpanderInterface;
+use Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
  * @method \Xiphias\Zed\Reports\Business\ReportsFacadeInterface getFacade()
  */
 class ReportsCommunicationFactory extends AbstractCommunicationFactory
+    implements ViewExpanderTableFactoryInterface
 {
     /**
      * @return \Spryker\Client\Session\SessionClientInterface
@@ -34,6 +42,14 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     public function getSessionClient(): SessionClientInterface
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::SESSION_CLIENT);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RequestStack|null
+     */
+    public function getRequestStackService(): ?RequestStack
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::SERVICE_REQUEST_STACK);
     }
 
     /**
@@ -53,14 +69,6 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     public function createDownloadHeadersBuilder(): DownloadHeadersBuilderInterface
     {
         return new DownloadHeadersBuilder();
-    }
-
-    /**
-     * @return \Xiphias\Zed\Reports\Communication\Mapper\ParameterMapper
-     */
-    public function createParameterMapper(): ParameterMapper
-    {
-        return new ParameterMapper();
     }
 
     /**
@@ -91,5 +99,32 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     public function createCategoryTreeBuilder(): CategoryTreeBuilderInterface
     {
         return new CategoryTreeBuilder();
+    }
+
+    /**
+     * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsCommunicationMapper
+     */
+    public function createReportsCommunicationMapper(): ReportsCommunicationMapperInterface
+    {
+        return new ReportsCommunicationMapper(
+            $this->getConfig(),
+            $this->getSessionClient(),
+        );
+    }
+
+    /**
+     * @return TabCreatorInterface
+     */
+    public function createTabCreator(): TabCreatorInterface
+    {
+        return new TabCreator();
+    }
+
+    /**
+     * @return ReportsSalesOverviewExpanderInterface
+     */
+    public function createReportsSalesOverviewExpander(): ReportsSalesOverviewExpanderInterface
+    {
+        return new ReportsSalesOverviewExpander($this);
     }
 }
