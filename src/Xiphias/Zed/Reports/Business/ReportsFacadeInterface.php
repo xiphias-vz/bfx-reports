@@ -15,7 +15,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\MerchantUserTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,18 +24,16 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
-     *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
      */
-    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): BladeFxAuthenticationResponseTransfer|bool;
+    public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MerchantUserTransfer $merchantUserTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */
-    public function authenticateBladeFxUserOnMerchantPortal(Request $request, MerchantUserTransfer $merchantUserTransfer): void;
+    public function authenticateBladeFxUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -61,14 +59,14 @@ interface ReportsFacadeInterface
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByIdInWantedFormat(
-        int $reportId,
-        string $format,
-        ?BladeFxParameterTransfer $parameterTransfer,
+        int                           $reportId,
+        string                        $format,
+        ?BladeFxParameterListTransfer $paramListTransfer,
     ): BladeFxGetReportByFormatResponseTransfer;
 
     /**
@@ -95,10 +93,32 @@ interface ReportsFacadeInterface
     ): BladeFxGetReportPreviewResponseTransfer;
 
     /**
-     * @param array $userForm
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     * @param string $fileFormat
+     * @param int $reportId
+     * @param string $reportName
      *
-     * @return void
+     * @return array
      */
-    public function createOrUpdateUserOnBladeFx(array $userForm, UserTransfer $userTransfer): void;
+    public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array;
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Generated\Shared\Transfer\BladeFxParameterTransfer
+     */
+    public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer;
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return BladeFxParameterListTransfer
+     */
+    public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer;
+
+    /**
+     * @param BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     *
+     * @return string
+     */
+    public function assemblePreviewUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string;
 }

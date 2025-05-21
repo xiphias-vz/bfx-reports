@@ -143,4 +143,34 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     {
         $this->getFactory()->createUserHandler()->createOrUpdateUserOnBladeFx($userForm, $userTransfer);
     }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Generated\Shared\Transfer\BladeFxParameterTransfer
+     */
+    public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer
+    {
+        return $this->getFactory()->createReportsMapper()->mapPreviewParametersToNewParameterTransfer($request);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return BladeFxParameterListTransfer
+     */
+    public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
+    {
+        return $this->getFactory()->createReportsMapper()->mapDownloadParametersToNewParameterListTransfer($request);
+    }
+
+    /**
+     * @param BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     *
+     * @return string
+     */
+    public function assemblePreviewUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string
+    {
+        return $this->getFactory()->createReportsMapper()->assemblePreviewUrl($responseTransfer);
+    }
 }

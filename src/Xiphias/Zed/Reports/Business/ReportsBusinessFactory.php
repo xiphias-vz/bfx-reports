@@ -35,7 +35,12 @@ use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandler;
 use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface;
+use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
+use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
+use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper;
+use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapperInterface;
 use Xiphias\Zed\Reports\ReportsDependencyProvider;
+use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
@@ -67,7 +72,8 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->getSessionClient(),
             $this->getBladeFxPostAuthenticationPlugins(),
-            $this->createBladeFxChecker(),
+//            $this->createBladeFxChecker(),
+            $this->getSprykerBladeFxUserFacade(),
         );
     }
 
@@ -122,38 +128,6 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Client\ReportsApi\ReportsApiClientInterface
-     */
-    public function getBladeFxClient(): ReportsApiClientInterface
-    {
-        return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_CLIENT);
-    }
-
-    /**
-     * @return \Spryker\Client\Session\SessionClientInterface
-     */
-    public function getSessionClient(): SessionClientInterface
-    {
-        return $this->getProvidedDependency(ReportsDependencyProvider::SESSION_CLIENT);
-    }
-
-    /**
-     * @return array<\Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxPostAuthenticationPluginInterface>
-     */
-    public function getBladeFxPostAuthenticationPlugins(): array
-    {
-        return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_POST_AUTHENTICATION_PLUGINS);
-    }
-
-    /**
-     * @return \Spryker\Zed\Messenger\Business\MessengerFacadeInterface
-     */
-    public function getMessengerFacade(): MessengerFacadeInterface
-    {
-        return $this->getProvidedDependency(ReportsDependencyProvider::MESSENGER_FACADE);
-    }
-
-    /**
      * @return \Xiphias\Zed\Reports\Business\BladeFx\ReportListReader\BladeFxReportListReaderInterface
      */
     public function createBladeFxReportListReader(): BladeFxReportListReaderInterface
@@ -192,26 +166,71 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface
+     * @return DownloadHeadersBuilderInterface
      */
-    public function createUserHandler(): UserHandlerInterface
+    public function createDownloadHeadersBuilder(): DownloadHeadersBuilderInterface
     {
-        return new UserHandler(
-            $this->getBladeFxClient(),
-            $this->getSessionClient(),
-            $this->createTokenResolver(),
-            $this->createBladeFxChecker(),
+        return new DownloadHeadersBuilder();
+    }
+
+    /**
+     * @return ReportsMapperInterface
+     */
+    public function createReportsMapper(): ReportsMapperInterface
+    {
+        return new ReportsMapper(
             $this->getConfig(),
+            $this->getSessionClient(),
         );
     }
 
     /**
-     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
+     * @return \Xiphias\Client\ReportsApi\ReportsApiClientInterface
      */
-    public function createBladeFxChecker(): BladeFxCheckerInterface
+    public function getBladeFxClient(): ReportsApiClientInterface
     {
-        return new BladeFxChecker(
-            $this->getRepository(),
-        );
+        return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_CLIENT);
     }
+
+    /**
+     * @return \Spryker\Client\Session\SessionClientInterface
+     */
+    public function getSessionClient(): SessionClientInterface
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::SESSION_CLIENT);
+    }
+
+    /**
+     * @return array<\Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxPostAuthenticationPluginInterface>
+     */
+    public function getBladeFxPostAuthenticationPlugins(): array
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_POST_AUTHENTICATION_PLUGINS);
+    }
+
+    /**
+     * @return \Spryker\Zed\Messenger\Business\MessengerFacadeInterface
+     */
+    public function getMessengerFacade(): MessengerFacadeInterface
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::MESSENGER_FACADE);
+    }
+
+    /**
+     * @return SprykerBladeFxUserFacadeInterface
+     */
+    public function getSprykerBladeFxUserFacade(): SprykerBladeFxUserFacadeInterface
+    {
+        return $this->getProvidedDependency(ReportsDependencyProvider::SPRYKER_BLADE_FX_FACADE);
+    }
+//
+//    /**
+//     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
+//     */
+//    public function createBladeFxChecker(): BladeFxCheckerInterface
+//    {
+//        return new BladeFxChecker(
+//            $this->getRepository(),
+//        );
+//    }
 }
