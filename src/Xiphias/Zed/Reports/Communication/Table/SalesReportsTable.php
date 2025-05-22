@@ -119,7 +119,7 @@ class SalesReportsTable extends ReportsTable
         $previewUrl = Url::generate(
             '/reports/index/preview',
             [
-                ReportsConstants::REPORT_ID => $reportId,
+                BladeFxReportTransfer::REP_ID => $reportId,
                 ReportsConstants::PARAMETER_NAME => $params[ReportsConstants::PARAMETER_NAME],
                 ReportsConstants::PARAMETER_VALUE => $params[ReportsConstants::PARAMETER_VALUE],
             ],
@@ -156,7 +156,7 @@ class SalesReportsTable extends ReportsTable
             '/reports/index/download',
             [
                 'format' => 'pdf',
-                ReportsConstants::REPORT_ID => $reportId,
+                BladeFxReportTransfer::REP_ID => $reportId,
                 BladeFxReportTransfer::REP_NAME => $reportName,
                 ReportsConstants::PARAMETER_NAME => $params[ReportsConstants::PARAMETER_NAME],
                 ReportsConstants::PARAMETER_VALUE => $params[ReportsConstants::PARAMETER_VALUE],

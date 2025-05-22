@@ -55,7 +55,7 @@ class ReportsMapper implements ReportsMapperInterface
      */
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
     {
-        $reportId = (int)$request->get(ReportsConstants::REPORT_ID);
+        $reportId = (int)$request->get(BladeFxReportTransfer::REP_ID);
         $paramId = $request->query->get(ReportsConstants::PARAMETER_VALUE);
         $contextValue = $request->query->get(ReportsConstants::PARAMETER_NAME);
         $parameterTransfers = new BladeFxParameterListTransfer();
@@ -82,7 +82,7 @@ class ReportsMapper implements ReportsMapperInterface
      */
     public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer
     {
-        $reportId = (int)$request->query->get(ReportsConstants::REPORT_ID);
+        $reportId = (int)$request->query->get(BladeFxReportTransfer::REP_ID);
         $parameterName = $request->query->get(ReportsConstants::PARAMETER_NAME);
         $parameterValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
 

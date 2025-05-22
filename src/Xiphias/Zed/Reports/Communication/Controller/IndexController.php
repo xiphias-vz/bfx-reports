@@ -123,7 +123,7 @@ class IndexController extends AbstractController
     public function downloadAction(Request $request): Response
     {
         $reportName = $request->query->get(BladeFxReportTransfer::REP_NAME);
-        $reportId = $this->castId($request->query->get(ReportsConstants::REPORT_ID));
+        $reportId = $this->castId($request->query->get(BladeFxReportTransfer::REP_ID));
         $format = $request->query->get('format');
 
         if (!$format) {
@@ -150,7 +150,7 @@ class IndexController extends AbstractController
      */
     public function reportIframeAction(Request $request): JsonResponse
     {
-        $reportId = (int)$request->get('repId');
+        $reportId = (int)$request->get(BladeFxReportTransfer::REP_ID);
         $reportParamFormTransfer = $this->getFacade()->getReportParamForm($reportId);
 
         return $this->jsonResponse([
