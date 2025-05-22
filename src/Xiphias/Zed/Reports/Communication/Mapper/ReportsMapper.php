@@ -11,6 +11,7 @@ namespace Xiphias\Zed\Reports\Communication\Mapper;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
