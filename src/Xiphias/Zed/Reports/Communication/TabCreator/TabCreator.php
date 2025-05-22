@@ -18,9 +18,9 @@ class TabCreator implements TabCreatorInterface
     public const REPORT_TITLE = 'Reports';
 
     /**
-     * @param TabsViewTransfer $tabsViewTransfer
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
      *
-     * @return TabsViewTransfer
+     * @return \Generated\Shared\Transfer\TabsViewTransfer
      */
     public function createReportListTabForOrderOverview(TabsViewTransfer $tabsViewTransfer): TabsViewTransfer
     {

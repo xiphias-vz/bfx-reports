@@ -21,18 +21,19 @@ class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterf
      */
     public function __construct(
         ViewExpanderTableFactoryInterface $viewExpanderTableFactory
-    )
-    {
+    ) {
         $this->viewExpanderTableFactory = $viewExpanderTableFactory;
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
      */
     public function expandReportSalesViewData(Request $request): array
     {
+        $viewData = [];
+
         $reportsSalesTables = $this->viewExpanderTableFactory->createSalesReportsTable($this->viewExpanderTableFactory->createParameterFormatter()->formatRequestParameters($request));
         $viewData[static::SALES_REPORTS_TABLE] = $reportsSalesTables->render();
 

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User;
 
@@ -36,7 +32,8 @@ class DeleteUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSa
 
         $request = $this->getFactory()->getRequestStackService()?->getCurrentRequest();
 
-        if ($request
+        if (
+            $request
             && $request->isMethod(static::HTTP_METHOD_DELETE)
             && $this->getFacade()->hasUserBfxGroup($userTransfer->getIdUser())
         ) {

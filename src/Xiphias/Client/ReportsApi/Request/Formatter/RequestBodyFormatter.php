@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -12,15 +8,22 @@ namespace Xiphias\Client\ReportsApi\Request\Formatter;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
-use Xiphias\Shared\Reports\ReportsConstants;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
 {
+    /**
+     * @var \Xiphias\Client\ReportsApi\ReportsApiConfig
+     */
     private ReportsApiConfig $config;
 
-    public function __construct(ReportsApiConfig $config) {
+    /**
+     * @param \Xiphias\Client\ReportsApi\ReportsApiConfig $config
+     */
+    public function __construct(ReportsApiConfig $config)
+    {
         $this->config = $config;
     }
+
     /**
      * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
      *

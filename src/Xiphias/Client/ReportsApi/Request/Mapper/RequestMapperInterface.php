@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request\Mapper;
 
@@ -18,6 +14,6 @@ interface RequestMapperInterface
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestWithoutTokenTransfer
      */
     public function mapCreateOrUpdateUserRequestTransferWithoutToken(
-        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserRequestWithoutTokenTransfer;
 }

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\Checker;
 
@@ -11,30 +7,6 @@ use Generated\Shared\Transfer\UserTransfer;
 
 interface BladeFxCheckerInterface
 {
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
-
     /**
      * @param array $groupRoles
      * @param int $userId

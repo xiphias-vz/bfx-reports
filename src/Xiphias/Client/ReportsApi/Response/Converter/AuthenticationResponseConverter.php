@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Response\Converter;
 
@@ -20,7 +16,7 @@ class AuthenticationResponseConverter extends AbstractResponseConverter
      */
     protected function expandConversionResponseTransfer(
         BladeFxApiResponseConversionResultTransfer $apiResponseConversionResultTransfer,
-        array $responseData,
+        array $responseData
     ): BladeFxApiResponseConversionResultTransfer {
         $bladeFxAuthenticationResponseTransfer = new BladeFxAuthenticationResponseTransfer();
         $bladeFxAuthenticationResponseTransfer->fromArray($responseData, true);

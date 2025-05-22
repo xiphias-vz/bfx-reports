@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi;
 
@@ -119,10 +115,11 @@ class ReportsApiConfig extends AbstractBundleConfig
      * @var string
      */
     public const GER_REPORT_PARAMETER_FORM_API_RESOURCE = '/api/ReportData/GetReportURL';
+
     /**
      * @var array
      */
-    public CONST KEYS_TO_CHANGE_FROM_CAMEL_CASE = [
+    public const KEYS_TO_CHANGE_FROM_CAMEL_CASE = [
         'repId' => 1,
         'layoutId' => 1,
         'paramId' => 1,
@@ -300,7 +297,7 @@ class ReportsApiConfig extends AbstractBundleConfig
     }
 
     /**
-     * @return array|int[]
+     * @return array<int>
      */
     public function getKeysToChangeFromCamelCaseToSnakeCase(): array
     {

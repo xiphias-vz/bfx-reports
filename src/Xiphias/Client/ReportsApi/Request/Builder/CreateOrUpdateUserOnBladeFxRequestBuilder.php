@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request\Builder;
 
@@ -33,7 +29,7 @@ class CreateOrUpdateUserOnBladeFxRequestBuilder extends AbstractRequestBuilder
         ReportsApiConfig $apiClientConfig,
         UtilEncodingServiceInterface $utilEncodingService,
         RequestBodyFormatterInterface $requestBodyFormatter,
-        RequestMapperInterface $requestMapper,
+        RequestMapperInterface $requestMapper
     ) {
         parent::__construct($apiClientConfig, $utilEncodingService, $requestBodyFormatter);
         $this->requestMapper = $requestMapper;
@@ -68,7 +64,7 @@ class CreateOrUpdateUserOnBladeFxRequestBuilder extends AbstractRequestBuilder
      */
     public function buildRequest(
         string $resource,
-        AbstractTransfer|BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        AbstractTransfer|BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): RequestInterface {
         /** @var \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $createOrUpdateUserRequestTransfer */
         $createOrUpdateUserRequestTransfer = $requestTransfer;

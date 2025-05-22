@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 
@@ -20,20 +16,19 @@ use Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig;
 
 class BladeFxUserHandler implements BladeFxUserHandlerInterface
 {
-
-    /**
-     * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
-     * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $reportsApiClient
-     * @param array $bfxUserHandlerPlugins
-     * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
-     */
+ /**
+  * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
+  * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
+  * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $reportsApiClient
+  * @param array $bfxUserHandlerPlugins
+  * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
+  */
     public function __construct(
         protected BladeFXUserCheckerInterface $bladeFXUserChecker,
         protected SessionClientInterface $sessionClient,
         protected ReportsApiClientInterface $reportsApiClient,
         protected array $bfxUserHandlerPlugins,
-        protected SprykerBladeFxUserConfig $config,
+        protected SprykerBladeFxUserConfig $config
     ) {
     }
 
@@ -66,7 +61,6 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
-     * @param bool $isItFromBO
      *
      * @return void
      */
@@ -94,13 +88,12 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
-     * @param bool $isItFromBO
      *
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
      */
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
         UserTransfer $userTransfer,
-        bool $isActive = true,
+        bool $isActive = true
     ): BladeFxCreateOrUpdateUserRequestTransfer {
         return (new BladeFxCreateOrUpdateUserRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
@@ -116,7 +109,6 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
                 ->setFieldName($this->config->getSprykerUserIdKey())
                 ->setFieldValue((string)($userTransfer->getIdUser())));
     }
-
 
     /**
      * @return string|null

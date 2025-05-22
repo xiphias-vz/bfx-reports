@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request;
 
@@ -61,7 +57,7 @@ interface RequestManagerInterface
      */
     public function getReportParametersRequest(
         string $resource,
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer
     ): RequestInterface;
 
     /**
@@ -79,7 +75,7 @@ interface RequestManagerInterface
      */
     public function getReportByFormatRequest(
         string $resource,
-        BladeFxGetReportByFormatRequestTransfer $requestTransfer,
+        BladeFxGetReportByFormatRequestTransfer $requestTransfer
     ): RequestInterface;
 
     /**
@@ -90,7 +86,7 @@ interface RequestManagerInterface
      */
     public function getReportParamFormRequest(
         string $resource,
-        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer
     ): RequestInterface;
 
     /**
@@ -101,7 +97,7 @@ interface RequestManagerInterface
      */
     public function getReportPreview(
         string $resource,
-        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer
     ): RequestInterface;
 
     /**
@@ -112,6 +108,6 @@ interface RequestManagerInterface
      */
     public function getCreateOrUpdateUserOnBladeFxRequest(
         string $resource,
-        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): RequestInterface;
 }

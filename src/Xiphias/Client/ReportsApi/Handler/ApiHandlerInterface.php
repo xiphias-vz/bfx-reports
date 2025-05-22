@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Handler;
 
@@ -62,7 +58,7 @@ interface ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer
      */
     public function getParameterList(
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer
     ): BladeFxGetReportParameterListResponseTransfer;
 
     /**
@@ -71,7 +67,7 @@ interface ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByFormat(
-        BladeFxGetReportByFormatRequestTransfer $requestTransfer,
+        BladeFxGetReportByFormatRequestTransfer $requestTransfer
     ): BladeFxGetReportByFormatResponseTransfer;
 
     /**
@@ -80,7 +76,7 @@ interface ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreview(
-        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer
     ): BladeFxGetReportPreviewResponseTransfer;
 
     /**
@@ -89,7 +85,7 @@ interface ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
      */
     public function getReportParamForm(
-        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer
     ): BladeFxGetReportParamFormResponseTransfer;
 
     /**
@@ -98,6 +94,6 @@ interface ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
      */
     public function createOrUpdateUserOnBladeFx(
-        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserResponseTransfer;
 }

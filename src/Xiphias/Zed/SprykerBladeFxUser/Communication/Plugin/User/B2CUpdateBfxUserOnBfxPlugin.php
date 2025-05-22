@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User;
 
@@ -16,7 +12,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class B2CUpdateBfxUserOnBfxPlugin extends AbstractPlugin implements BfxUserHandlerPluginInterface
 {
     /**
-     * @param UserTransfer $userTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return bool
      */

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -129,7 +125,7 @@ class ResponseManager implements ResponseManagerInterface
      */
     public function getReportByFormatResponseTransfer(
         ?ResponseInterface $response,
-        string $format,
+        string $format
     ): BladeFxGetReportByFormatResponseTransfer {
         $this->validateRawResponse($response);
         $converterResultTransfer = $this->responseFactory->createReportByFormatResponseConverter()->decodeFromBase64($response);

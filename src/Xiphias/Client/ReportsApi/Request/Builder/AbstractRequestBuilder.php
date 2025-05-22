@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request\Builder;
 
@@ -57,7 +53,7 @@ abstract class AbstractRequestBuilder implements RequestBuilderInterface
     public function __construct(
         ReportsApiConfig $apiClientConfig,
         UtilEncodingServiceInterface $utilEncodingService,
-        RequestBodyFormatterInterface $requestBodyFormatter,
+        RequestBodyFormatterInterface $requestBodyFormatter
     ) {
         $this->apiClientConfig = $apiClientConfig;
         $this->utilEncodingService = $utilEncodingService;
@@ -72,7 +68,7 @@ abstract class AbstractRequestBuilder implements RequestBuilderInterface
      */
     public function buildRequest(
         string $resource,
-        AbstractTransfer $requestTransfer,
+        AbstractTransfer $requestTransfer
     ): RequestInterface {
         $uri = $this->buildUri($resource, []);
         $headers = $this->getCombinedHeaders($requestTransfer);

@@ -1,18 +1,14 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Mapper;
 
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\BladeFxParameterListTransfer;
-use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Generated\Shared\Transfer\BladeFxReportTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
@@ -41,18 +37,19 @@ class ReportsMapper implements ReportsMapperInterface
     protected const QUERY_PARAM_HASH = 'hash';
 
     /**
-     * @param ReportsConfig $config
-     * @param SessionClientInterface $sessionClient
+     * @param \Xiphias\Zed\Reports\ReportsConfig $config
+     * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      */
     public function __construct(
         protected ReportsConfig $config,
-        protected SessionClientInterface $sessionClient,
-    ) {}
+        protected SessionClientInterface $sessionClient
+    ) {
+    }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return BladeFxParameterListTransfer
+     * @return \Generated\Shared\Transfer\BladeFxParameterListTransfer
      */
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
     {
@@ -87,7 +84,6 @@ class ReportsMapper implements ReportsMapperInterface
         $parameterName = $request->query->get(ReportsConstants::PARAMETER_NAME);
         $parameterValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
 
-
         return (new BladeFxParameterTransfer())
             ->setParamName($parameterName)
             ->setParamValue($this->buildParameters($reportId, $parameterValue, $parameterName))
@@ -96,7 +92,7 @@ class ReportsMapper implements ReportsMapperInterface
     }
 
     /**
-     * @param BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransfer
      *
      * @return string
      */
@@ -110,7 +106,8 @@ class ReportsMapper implements ReportsMapperInterface
 
     /**
      * @param int $reportId
-     * @param string|null $parameter
+     * @param string|null $parameterValue
+     * @param string|null $parameterName
      *
      * @return string
      */

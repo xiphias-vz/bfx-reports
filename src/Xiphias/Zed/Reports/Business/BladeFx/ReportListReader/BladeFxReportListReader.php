@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -59,7 +55,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
         BladeFxAuthenticatorInterface $authenticator,
         ReportsApiClientInterface $apiClient,
         SessionClientInterface $sessionClient,
-        ReportsConfig $config,
+        ReportsConfig $config
     ) {
         $this->authenticator = $authenticator;
         $this->apiClient = $apiClient;
@@ -110,7 +106,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
      */
     protected function buildReportListRequestTransfer(
         string $token,
-        string $attribute = '',
+        string $attribute = ''
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($token))

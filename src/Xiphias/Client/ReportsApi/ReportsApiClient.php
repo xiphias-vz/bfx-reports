@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -58,7 +54,7 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
      * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
      */
     public function sendGetReportsListRequest(
-        BladeFxGetReportsListRequestTransfer $requestTransfer,
+        BladeFxGetReportsListRequestTransfer $requestTransfer
     ): BladeFxGetReportsListResponseTransfer {
         return $this->getFactory()->createApiHandler()->getReportsList($requestTransfer);
     }
@@ -79,7 +75,7 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function sendGetReportByFormatRequest(
-        BladeFxGetReportByFormatRequestTransfer $requestTransfer,
+        BladeFxGetReportByFormatRequestTransfer $requestTransfer
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->getFactory()->createApiHandler()->getReportByFormat($requestTransfer);
     }
@@ -100,7 +96,7 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function sendGetReportPreviewRequest(
-        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer
     ): BladeFxGetReportPreviewResponseTransfer {
         return $this->getFactory()->createApiHandler()->getReportPreview($requestTransfer);
     }
@@ -111,7 +107,7 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
      * @return \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer
      */
     public function sendGetReportParameterListRequest(
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer
     ): BladeFxGetReportParameterListResponseTransfer {
         return $this->getFactory()->createApiHandler()->getParameterList($requestTransfer);
     }
@@ -122,7 +118,7 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
      * @return void
      */
     public function sendCreateOrUpdateUserOnBfxRequest(
-        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): void {
         $this->getFactory()->createApiHandler()->createOrUpdateUserOnBladeFx($requestTransfer);
     }

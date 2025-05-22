@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -20,21 +16,20 @@ use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatter;
 use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatterInterface;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapperInterface;
-use Xiphias\Zed\Reports\Communication\Table\ReportsTable;
-use Xiphias\Zed\Reports\Communication\Table\SalesReportsTable;
-use Xiphias\Zed\Reports\ReportsDependencyProvider;
 use Xiphias\Zed\Reports\Communication\TabCreator\TabCreator;
 use Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface;
+use Xiphias\Zed\Reports\Communication\Table\ReportsTable;
+use Xiphias\Zed\Reports\Communication\Table\SalesReportsTable;
 use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpander;
 use Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpanderInterface;
 use Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface;
+use Xiphias\Zed\Reports\ReportsDependencyProvider;
 
 /**
  * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
  * @method \Xiphias\Zed\Reports\Business\ReportsFacadeInterface getFacade()
  */
-class ReportsCommunicationFactory extends AbstractCommunicationFactory
-    implements ViewExpanderTableFactoryInterface
+class ReportsCommunicationFactory extends AbstractCommunicationFactory implements ViewExpanderTableFactoryInterface
 {
     /**
      * @return \Spryker\Client\Session\SessionClientInterface
@@ -113,7 +108,7 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return TabCreatorInterface
+     * @return \Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface
      */
     public function createTabCreator(): TabCreatorInterface
     {
@@ -121,7 +116,7 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @return ReportsSalesOverviewExpanderInterface
+     * @return \Xiphias\Zed\Reports\Communication\ViewExpander\ReportsSalesOverviewExpanderInterface
      */
     public function createReportsSalesOverviewExpander(): ReportsSalesOverviewExpanderInterface
     {

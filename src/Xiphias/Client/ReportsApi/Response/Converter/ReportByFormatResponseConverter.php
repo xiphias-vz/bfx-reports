@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -46,7 +42,7 @@ class ReportByFormatResponseConverter extends AbstractResponseConverter
      */
     public function expandConversionResponseTransfer(
         BladeFxApiResponseConversionResultTransfer $apiResponseConversionResultTransfer,
-        array $responseData,
+        array $responseData
     ): BladeFxApiResponseConversionResultTransfer {
         $bladeFxReportPreviewResponseTransfer = new BladeFxGetReportByFormatResponseTransfer();
         $bladeFxReportPreviewResponseTransfer->setReport(

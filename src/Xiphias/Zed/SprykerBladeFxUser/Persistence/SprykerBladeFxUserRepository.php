@@ -1,14 +1,10 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 
-use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Generated\Shared\Transfer\UserTransfer;
+use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserPersistenceFactory getFactory();

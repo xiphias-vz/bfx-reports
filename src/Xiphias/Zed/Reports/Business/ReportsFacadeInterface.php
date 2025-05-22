@@ -1,21 +1,16 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,6 +19,8 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return void
      */
     public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void;
 
@@ -66,7 +63,7 @@ interface ReportsFacadeInterface
     public function getReportByIdInWantedFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterListTransfer $paramListTransfer,
+        ?BladeFxParameterListTransfer $paramListTransfer
     ): BladeFxGetReportByFormatResponseTransfer;
 
     /**
@@ -89,7 +86,7 @@ interface ReportsFacadeInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreviewURL(
-        BladeFxParameterTransfer $parameterTransfer,
+        BladeFxParameterTransfer $parameterTransfer
     ): BladeFxGetReportPreviewResponseTransfer;
 
     /**
@@ -111,12 +108,12 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return BladeFxParameterListTransfer
+     * @return \Generated\Shared\Transfer\BladeFxParameterListTransfer
      */
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer;
 
     /**
-     * @param BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransfer
      *
      * @return string
      */

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -208,7 +204,7 @@ class ReportsTable extends AbstractTable
                 BladeFxReportTransfer::REP_NAME => $reportListItem->getRepName(),
                 BladeFxReportTransfer::REP_DESC => $reportListItem->getRepDesc(),
                 BladeFxReportTransfer::CAT_NAME => $reportListItem->getCatName(),
-                static::HEADER_ACTIONS => $this->getActionButtons($reportListItem,$this->params),
+                static::HEADER_ACTIONS => $this->getActionButtons($reportListItem, $this->params),
             ];
         }
 
@@ -282,7 +278,7 @@ class ReportsTable extends AbstractTable
     }
 
     /**
-     * @param int $reportId
+     * @param \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
      * @param array|null $params
      *
      * @return string
@@ -330,11 +326,11 @@ class ReportsTable extends AbstractTable
     }
 
     /**
-     * @param int $repId
+     * @param \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
      *
      * @return string
      */
-    protected function buildEditUrl($reportListItem): string
+    protected function buildEditUrl(BladeFxReportTransfer $reportListItem): string
     {
         return sprintf(static::PREVIEW_URL_FORMAT, $reportListItem->getRepId());
     }

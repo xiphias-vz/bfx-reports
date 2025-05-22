@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -17,8 +13,6 @@ use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticator;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReader;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReaderInterface;
-use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxChecker;
-use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReader;
 use Xiphias\Zed\Reports\Business\BladeFx\PreviewReader\BladeFxPreviewReaderInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReader;
@@ -33,8 +27,6 @@ use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessor;
 use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
-use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandler;
-use Xiphias\Zed\Reports\Business\BladeFx\UserHandler\UserHandlerInterface;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper;
@@ -72,7 +64,7 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->getSessionClient(),
             $this->getBladeFxPostAuthenticationPlugins(),
-//            $this->createBladeFxChecker(),
+            //            $this->createBladeFxChecker(),
             $this->getSprykerBladeFxUserFacade(),
         );
     }
@@ -166,7 +158,7 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return DownloadHeadersBuilderInterface
+     * @return \Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface
      */
     public function createDownloadHeadersBuilder(): DownloadHeadersBuilderInterface
     {
@@ -174,7 +166,7 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return ReportsMapperInterface
+     * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsMapperInterface
      */
     public function createReportsMapper(): ReportsMapperInterface
     {
@@ -217,13 +209,13 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return SprykerBladeFxUserFacadeInterface
+     * @return \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface
      */
     public function getSprykerBladeFxUserFacade(): SprykerBladeFxUserFacadeInterface
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::SPRYKER_BLADE_FX_FACADE);
     }
-//
+
 //    /**
 //     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
 //     */

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Handler;
 
@@ -34,27 +30,27 @@ use Xiphias\Client\ReportsApi\Response\ResponseManagerInterface;
 class ApiHandler implements ApiHandlerInterface
 {
     /**
-     * @var RequestManagerInterface
+     * @var \Xiphias\Client\ReportsApi\Request\RequestManagerInterface
      */
     private RequestManagerInterface $requestManager;
 
     /**
-     * @var ResponseManagerInterface
+     * @var \Xiphias\Client\ReportsApi\Response\ResponseManagerInterface
      */
     private ResponseManagerInterface $responseManager;
 
     /**
-     * @var HttpApiClientInterface
+     * @var \Xiphias\Client\ReportsApi\Http\Client\HttpApiClientInterface
      */
     private HttpApiClientInterface $httpClient;
 
     /**
-     * @var ReportsApiConfig
+     * @var \Xiphias\Client\ReportsApi\ReportsApiConfig
      */
     private ReportsApiConfig $apiClientConfig;
 
     /**
-     * @var RequestFactoryInterface
+     * @var \Xiphias\Client\ReportsApi\Request\RequestFactoryInterface
      */
     private RequestFactoryInterface $requestFactory;
 
@@ -70,7 +66,7 @@ class ApiHandler implements ApiHandlerInterface
         ResponseManagerInterface $responseManager,
         HttpApiClientInterface $httpClient,
         ReportsApiConfig $apiClientConfig,
-        RequestFactoryInterface $requestFactory,
+        RequestFactoryInterface $requestFactory
     ) {
         $this->requestManager = $requestManager;
         $this->responseManager = $responseManager;
@@ -127,7 +123,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
      */
     public function getReportsList(
-        BladeFxGetReportsListRequestTransfer $requestTransfer,
+        BladeFxGetReportsListRequestTransfer $requestTransfer
     ): BladeFxGetReportsListResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createReportsListRequestBuilder(),
@@ -170,7 +166,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportParameterListResponseTransfer
      */
     public function getParameterList(
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer
     ): BladeFxGetReportParameterListResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createReportParameterListRequestBuilder(),
@@ -192,7 +188,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByFormat(
-        BladeFxGetReportByFormatRequestTransfer $requestTransfer,
+        BladeFxGetReportByFormatRequestTransfer $requestTransfer
     ): BladeFxGetReportByFormatResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createReportByFormatRequestBuilder(),
@@ -217,7 +213,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
      */
     public function getReportParamForm(
-        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer
     ): BladeFxGetReportParamFormResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createReportParamFormRequestBuilder(),
@@ -239,7 +235,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreview(
-        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer
     ): BladeFxGetReportPreviewResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createReportPreviewRequestBuilder(),
@@ -261,7 +257,7 @@ class ApiHandler implements ApiHandlerInterface
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
      */
     public function createOrUpdateUserOnBladeFx(
-        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer,
+        BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserResponseTransfer {
         $this->requestManager->setRequestBuilder(
             $this->requestFactory->createCreateOrUpdateUserOnBladeFxRequestBuilder(),

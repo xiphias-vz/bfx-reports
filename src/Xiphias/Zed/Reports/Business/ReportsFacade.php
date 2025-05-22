@@ -1,22 +1,16 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
-use Generated\Shared\Transfer\MerchantUserTransfer;
+use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +24,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer|bool
+     * @return void
      */
     public function authenticateBladeFxUser(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
@@ -96,7 +90,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     public function getReportByIdInWantedFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterListTransfer $paramListTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->getFactory()
             ->createBladeFxReportByFormatReader()
@@ -109,7 +103,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreviewURL(
-        BladeFxParameterTransfer $parameterTransfer,
+        BladeFxParameterTransfer $parameterTransfer
     ): BladeFxGetReportPreviewResponseTransfer {
         return $this->getFactory()->createBladeFxPreviewReader()->getReportsPreview($parameterTransfer);
     }
@@ -159,7 +153,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return BladeFxParameterListTransfer
+     * @return \Generated\Shared\Transfer\BladeFxParameterListTransfer
      */
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
     {
@@ -167,7 +161,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
-     * @param BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransfer
      *
      * @return string
      */

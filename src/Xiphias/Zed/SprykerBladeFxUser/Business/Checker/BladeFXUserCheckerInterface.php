@@ -4,57 +4,8 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Business\Checker;
 
 use Generated\Shared\Transfer\UserTransfer;
 
-
 interface BladeFXUserCheckerInterface
 {
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool;
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool;
-
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *

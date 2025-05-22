@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Zed\Reports\Communication\Builder;
 
@@ -11,8 +7,10 @@ class DownloadHeadersBuilder implements DownloadHeadersBuilderInterface
 {
     /**
      * @param string $fileFormat
+     * @param int $reportId
+     * @param string $reportName
      *
-     * @return array<string, string>
+     * @return array<string>
      */
     public function buildDownloadHeaders(string $fileFormat, int $reportId, string $reportName): array
     {

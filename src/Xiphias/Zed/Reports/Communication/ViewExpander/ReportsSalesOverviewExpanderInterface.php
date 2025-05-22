@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 interface ReportsSalesOverviewExpanderInterface
 {
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
      */

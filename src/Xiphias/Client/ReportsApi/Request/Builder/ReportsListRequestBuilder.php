@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request\Builder;
 
@@ -43,7 +39,7 @@ class ReportsListRequestBuilder extends AbstractRequestBuilder
      */
     public function buildRequest(
         string $resource,
-        AbstractTransfer|BladeFxGetReportsListRequestTransfer $requestTransfer,
+        AbstractTransfer|BladeFxGetReportsListRequestTransfer $requestTransfer
     ): RequestInterface {
         $uri = $this->buildUri($resource, $this->getQueryParamsFromRequestTransfer(
             $requestTransfer,

@@ -8,76 +8,11 @@ use Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserRepositoryInter
 class BladeFXUserChecker implements BladeFXUserCheckerInterface
 {
     /**
-     * @param SprykerBladeFxUserRepositoryInterface $sprykerBladeFxUserRepository
+     * @param \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserRepositoryInterface $sprykerBladeFxUserRepository
      */
     public function __construct(
         protected SprykerBladeFxUserRepositoryInterface $sprykerBladeFxUserRepository
-    ) {}
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool
-    {
-        return $this->checkIfUserHasMerchant($userId) && $this->findBladeFxGroupById($groupRoles) && !$this->checkIfUserHasBfxMPGroup($userId);
-    }
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool
-    {
-        return $this->checkIfUserHasMerchant($userId) && $this->findBladeFxGroupById($groupRoles) && $this->checkIfUserHasBfxMPGroup($userId);
-    }
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMerchantPortalUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool
-    {
-        return $this->checkIfUserHasMerchant($userId) && !$this->findBladeFxGroupById($groupRoles) && $this->checkIfUserHasBfxMPGroup($userId);
-    }
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForCreationOnBfx(array $groupRoles, int $userId): bool
-    {
-        return !$this->checkIfUserHasMerchant($userId) && $this->findBladeFxBOGroupById($groupRoles) && !$this->checkIfUserHasBfxBOGroup($userId);
-    }
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForUpdateOnBfx(array $groupRoles, int $userId): bool
-    {
-        return !$this->checkIfUserHasMerchant($userId) && $this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
-    }
-
-    /**
-     * @param array $groupRoles
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfMarketplaceBackofficeUserApplicableForDeleteOnBfx(array $groupRoles, int $userId): bool
-    {
-        return !$this->checkIfUserHasMerchant($userId) && !$this->findBladeFxBOGroupById($groupRoles) && $this->checkIfUserHasBfxBOGroup($userId);
+    ) {
     }
 
     /**

@@ -10,7 +10,7 @@ interface ViewExpanderTableFactoryInterface
     /**
      * @param array $params
      *
-     * @return SalesReportsTable
+     * @return \Xiphias\Zed\Reports\Communication\Table\SalesReportsTable
      */
     public function createSalesReportsTable(array $params = []): SalesReportsTable;
 

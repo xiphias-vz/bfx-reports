@@ -1,19 +1,14 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader;
 
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\BladeFxParameterListTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
+use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
+use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
@@ -25,20 +20,24 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
      * @var string
      */
     protected const DEFAULT_DATA_RETURN_TYPE = 'string';
+
     /**
-     * @var BladeFxAuthenticatorInterface
+     * @var \Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface
      */
     protected BladeFxAuthenticatorInterface $authenticator;
+
     /**
-     * @var ReportsApiClientInterface
+     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
      */
     protected ReportsApiClientInterface $apiClient;
+
     /**
-     * @var SessionClientInterface
+     * @var \Spryker\Client\Session\SessionClientInterface
      */
     protected SessionClientInterface $sessionClient;
+
     /**
-     * @var ReportsConfig
+     * @var \Xiphias\Zed\Reports\ReportsConfig
      */
     protected ReportsConfig $config;
 
@@ -52,7 +51,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         BladeFxAuthenticatorInterface $authenticator,
         ReportsApiClientInterface $apiClient,
         SessionClientInterface $sessionClient,
-        ReportsConfig $config,
+        ReportsConfig $config
     ) {
         $this->authenticator = $authenticator;
         $this->apiClient = $apiClient;
@@ -70,7 +69,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     public function getReportByFormat(
         int $reportId,
         string $format,
-        ?BladeFxParameterListTransfer $paramListTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->apiClient->sendGetReportByFormatRequest(
             $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format, $paramListTransfer),
@@ -80,14 +79,14 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer|null $parameterTransfer
+     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer
      */
     protected function buildAuthenticatedReportByFormatRequestTransfer(
         int $reportId,
         string $format,
-        ?BladeFxParameterListTransfer $paramListTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null
     ): BladeFxGetReportByFormatRequestTransfer {
         return $this->buildReportByFormatRequestTransfer(
             $this->getUserToken(),
@@ -119,7 +118,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
         string $token,
         int $reportId,
         string $format,
-        ?BladeFxParameterListTransfer $paramListTransfer = null,
+        ?BladeFxParameterListTransfer $paramListTransfer = null
     ): BladeFxGetReportByFormatRequestTransfer {
         return (new BladeFxGetReportByFormatRequestTransfer())
             ->setRepId($reportId)

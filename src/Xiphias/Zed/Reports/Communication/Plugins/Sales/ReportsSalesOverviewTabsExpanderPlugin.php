@@ -10,6 +10,11 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  */
 class ReportsSalesOverviewTabsExpanderPlugin extends AbstractPlugin implements ReportsSalesOverviewTabsExpanderPluginInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
+     *
+     * @return \Generated\Shared\Transfer\TabsViewTransfer
+     */
     public function expand(TabsViewTransfer $tabsViewTransfer): TabsViewTransfer
     {
         return $this->getFactory()->createTabCreator()->createReportListTabForOrderOverview($tabsViewTransfer);

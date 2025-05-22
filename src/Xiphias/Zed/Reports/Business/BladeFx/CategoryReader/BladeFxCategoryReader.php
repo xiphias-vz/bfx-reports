@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -42,7 +38,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     public function __construct(
         ReportsApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
-        ReportsConfig $config,
+        ReportsConfig $config
     ) {
         $this->apiClient = $apiClient;
         $this->tokenResolver = $tokenResolver;
@@ -79,7 +75,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
      * @return \Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer
      */
     protected function buildAuthenticatedCategoriesListRequestTransfer(
-        CategoryReaderRequestTransfer $readerRequestTransfer,
+        CategoryReaderRequestTransfer $readerRequestTransfer
     ): BladeFxGetCategoriesListRequestTransfer {
         return (new BladeFxGetCategoriesListRequestTransfer())
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())

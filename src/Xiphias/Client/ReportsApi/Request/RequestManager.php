@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 namespace Xiphias\Client\ReportsApi\Request;
 
@@ -58,7 +54,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getAuthenticateUserRequest(
         string $resource,
-        BladeFxAuthenticationRequestTransfer $requestTransfer,
+        BladeFxAuthenticationRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createAuthenticationRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -74,7 +70,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getCategoriesListRequest(
         string $resource,
-        BladeFxGetCategoriesListRequestTransfer $requestTransfer,
+        BladeFxGetCategoriesListRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createCategoriesListRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -104,7 +100,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getReportsListRequest(
         string $resource,
-        BladeFxGetReportsListRequestTransfer $requestTransfer,
+        BladeFxGetReportsListRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createReportsListRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -120,7 +116,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getReportParametersRequest(
         string $resource,
-        BladeFxGetReportParameterListRequestTransfer $requestTransfer,
+        BladeFxGetReportParameterListRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createReportParameterListRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -136,7 +132,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getReportByFormatRequest(
         string $resource,
-        BladeFxGetReportByFormatRequestTransfer $requestTransfer,
+        BladeFxGetReportByFormatRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createReportByFormatRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -152,7 +148,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getReportParamFormRequest(
         string $resource,
-        BladeFxGetReportParamFormRequestTransfer $requestTransfer,
+        BladeFxGetReportParamFormRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createReportParamFormRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
@@ -168,7 +164,7 @@ class RequestManager implements RequestManagerInterface
      */
     public function getReportPreview(
         string $resource,
-        BladeFxGetReportPreviewRequestTransfer $requestTransfer,
+        BladeFxGetReportPreviewRequestTransfer $requestTransfer
     ): RequestInterface {
         $validator = $this->requestFactory->createReportPreviewRequestValidator();
         $this->validateRequest($validator, $requestTransfer);

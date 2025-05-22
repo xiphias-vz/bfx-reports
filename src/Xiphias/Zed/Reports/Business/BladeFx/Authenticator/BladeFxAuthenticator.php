@@ -1,9 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Commerce OS.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
 
 declare(strict_types=1);
 
@@ -12,7 +8,6 @@ namespace Xiphias\Zed\Reports\Business\BladeFx\Authenticator;
 use Exception;
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
-use Generated\Shared\Transfer\MerchantUserTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,16 +48,16 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins
-//     * @param \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface $bladeFxChecker
-     * @param SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
+// * @param \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface $bladeFxChecker
+     * @param \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
      */
     public function __construct(
         ReportsApiClientInterface $apiClient,
         ReportsConfig $config,
         SessionClientInterface $sessionClient,
         array $bladeFxPostAuthenticationPlugins,
-//        BladeFxCheckerInterface $bladeFxChecker,
-        SprykerBladeFxUserFacadeInterface $bladeFxUserFacade,
+        //        BladeFxCheckerInterface $bladeFxChecker,
+        SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
     ) {
         $this->apiClient = $apiClient;
         $this->config = $config;
@@ -70,12 +65,13 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
         $this->bladeFxPostAuthenticationPlugins = $bladeFxPostAuthenticationPlugins;
 //        $this->bladeFxChecker = $bladeFxChecker;
         $this->bladeFxUserFacade = $bladeFxUserFacade;
-
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param \Generated\Shared\Transfer\UserTransfer|null $userTransfer
+     *
+     * @return void
      */
     public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
@@ -96,6 +92,8 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return void
      */
     public function authenticateUserOnMerchantPortal(Request $request, UserTransfer $userTransfer): void
     {
