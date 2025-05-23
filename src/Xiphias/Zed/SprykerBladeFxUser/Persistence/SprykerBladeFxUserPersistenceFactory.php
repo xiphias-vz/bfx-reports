@@ -19,14 +19,6 @@ class SprykerBladeFxUserPersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \Orm\Zed\MerchantUser\Persistence\SpyMerchantUserQuery
-     */
-    public function createMerchantUserQuery(): SpyMerchantUserQuery
-    {
-        return new SpyMerchantUserQuery();
-    }
-
-    /**
      * @return \Orm\Zed\Acl\Persistence\SpyAclUserHasGroupQuery
      */
     public function createAclUserHasGroups(): SpyAclUserHasGroupQuery

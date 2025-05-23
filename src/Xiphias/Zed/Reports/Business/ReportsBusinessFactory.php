@@ -215,14 +215,4 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::SPRYKER_BLADE_FX_FACADE);
     }
-
-//    /**
-//     * @return \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
-//     */
-//    public function createBladeFxChecker(): BladeFxCheckerInterface
-//    {
-//        return new BladeFxChecker(
-//            $this->getRepository(),
-//        );
-//    }
 }

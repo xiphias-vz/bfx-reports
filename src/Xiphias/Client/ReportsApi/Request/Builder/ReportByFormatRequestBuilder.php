@@ -94,7 +94,10 @@ class ReportByFormatRequestBuilder extends AbstractRequestBuilder
         unset($data['params']);
         $data = $this->bodyFormatter->changeArrayFromCamelCaseToSnakeCase($data);
 
-        foreach ($requestTransfer->getParams()->getParameterList() as $parameterTransfer) {
+        /** @var \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $reportByFormatRequestTransfer */
+        $reportByFormatRequestTransfer = $requestTransfer;
+
+        foreach ($reportByFormatRequestTransfer->getParams()->getParameterList() as $parameterTransfer) {
             if ($this->bodyFormatter->parameterTransferIsValid($parameterTransfer)) {
                 $parameterArray = $parameterTransfer->toArray(true, true);
                 $data['params'][] = $this->bodyFormatter->changeArrayFromCamelCaseToSnakeCase($parameterArray);

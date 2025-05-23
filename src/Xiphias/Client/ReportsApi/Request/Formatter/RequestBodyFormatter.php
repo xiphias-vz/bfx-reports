@@ -25,7 +25,7 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
      *
      * @return array
      */

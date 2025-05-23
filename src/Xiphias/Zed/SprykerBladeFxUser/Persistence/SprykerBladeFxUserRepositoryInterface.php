@@ -5,22 +5,11 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 
 interface SprykerBladeFxUserRepositoryInterface
 {
-    /**
-     * @param int $userId
-     *
-     * @return string
-     */
-    public function getUserMerchantId(int $userId): string;
 
     /**
      * @return int
      */
     public function getBladeFxBOGroupId(): int;
-
-    /**
-     * @return int
-     */
-    public function getBladeFxMPGroupId(): int;
 
     /**
      * @param string $groupName
@@ -37,13 +26,6 @@ interface SprykerBladeFxUserRepositoryInterface
     public function findBladeFxBOGroupById(array $groupRoles): bool;
 
     /**
-     * @param array $groupRoles
-     *
-     * @return bool
-     */
-    public function findBladeFxMPGroupById(array $groupRoles): bool;
-
-    /**
      * @param int $userId
      * @param int $groupId
      *
@@ -56,19 +38,5 @@ interface SprykerBladeFxUserRepositoryInterface
      *
      * @return bool
      */
-    public function checkIfUserHasBfxMPGroup(int $userId): bool;
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
     public function checkIfUserHasBfxBOGroup(int $userId): bool;
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasMerchant(int $userId): bool;
 }

@@ -13,32 +13,11 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class SprykerBladeFxUserRepository extends AbstractRepository implements SprykerBladeFxUserRepositoryInterface
 {
     /**
-     * @param int $userId
-     *
-     * @return string
-     */
-    public function getUserMerchantId(int $userId): string
-    {
-        $merchantUserQuery = $this->getFactory()->createMerchantUserQuery();
-        $userMerchantId = $merchantUserQuery->findByFkUser($userId)->getIterator()->current();
-
-        return $userMerchantId->getFkMerchant();
-    }
-
-    /**
      * @return int
      */
     public function getBladeFxBOGroupId(): int
     {
         return $this->findWantedGroupId($this->getFactory()->getReportsSharedConfig()->getBladeFxBOGroupName());
-    }
-
-    /**
-     * @return int
-     */
-    public function getBladeFxMPGroupId(): int
-    {
-        return $this->findWantedGroupId($this->getFactory()->getReportsSharedConfig()->getBladeFxMerchantPortalGroupName());
     }
 
     /**
@@ -75,22 +54,6 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
     }
 
     /**
-     * @param array $groupRoles
-     *
-     * @return bool
-     */
-    public function findBladeFxMPGroupById(array $groupRoles): bool
-    {
-        $bfxGroupId = $this->getBladeFxMPGroupId();
-
-        if (in_array($bfxGroupId, $groupRoles)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * @param int $userId
      * @param int $groupId
      *
@@ -116,40 +79,11 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
      *
      * @return bool
      */
-    public function checkIfUserHasBfxMPGroup(int $userId): bool
-    {
-        $bfxGroupId = $this->getBladeFxMPGroupId();
-
-        return $this->checkIfUserHasWantedGroup($userId, $bfxGroupId);
-    }
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
     public function checkIfUserHasBfxBOGroup(int $userId): bool
     {
         $bfxGroupBOId = $this->getBladeFxBOGroupId();
 
         return $this->checkIfUserHasWantedGroup($userId, $bfxGroupBOId);
-    }
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasMerchant(int $userId): bool
-    {
-        $merchantUserQuery = $this->getFactory()->createMerchantUserQuery();
-        $ifUserHasMerchant = $merchantUserQuery->findByFkUser($userId)->getIterator()->current() ?? false;
-
-        if ($ifUserHasMerchant) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

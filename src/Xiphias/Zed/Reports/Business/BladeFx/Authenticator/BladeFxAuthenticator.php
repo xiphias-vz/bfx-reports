@@ -44,6 +44,11 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     protected BladeFxCheckerInterface $bladeFxChecker;
 
     /**
+     * @var SprykerBladeFxUserFacadeInterface
+     */
+    private SprykerBladeFxUserFacadeInterface $bladeFxUserFacade;
+
+    /**
      * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
