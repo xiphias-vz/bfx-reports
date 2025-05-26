@@ -3,12 +3,13 @@
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 
+use Generated\Shared\Transfer\UserTransfer;
+
 interface SprykerBladeFxUserRepositoryInterface
 {
-
-    /**
-     * @return int
-     */
+ /**
+  * @return int
+  */
     public function getBladeFxBOGroupId(): int;
 
     /**
@@ -39,4 +40,11 @@ interface SprykerBladeFxUserRepositoryInterface
      * @return bool
      */
     public function checkIfUserHasBfxBOGroup(int $userId): bool;
+
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     *
+     * @return bool
+     */
+    public function checkIfUserHasAdminGroup(UserTransfer $userTransfer): bool;
 }

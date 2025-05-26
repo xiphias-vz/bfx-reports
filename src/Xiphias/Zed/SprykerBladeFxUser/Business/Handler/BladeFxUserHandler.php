@@ -69,7 +69,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive);
 
         try {
-            $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
+//            $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
         } catch (Exception $exception) {
             return;
         }

@@ -29,8 +29,8 @@ class DeleteUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSa
         if (class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS)) {
             return $userTransfer;
         }
-
-        $request = $this->getFactory()->getRequestStackService()?->getCurrentRequest();
+        $requestStackService = $this->getFactory()->getRequestStackService();
+        $request = $requestStackService ? $requestStackService->getCurrentRequest() : null;
 
         if (
             $request

@@ -56,16 +56,6 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
     }
 
     /**
-     * @param array $groupRoles
-     *
-     * @return bool
-     */
-    public function findBladeFxGroupById(array $groupRoles): bool
-    {
-        return $this->sprykerBladeFxUserRepository->findBladeFxMPGroupById($groupRoles);
-    }
-
-    /**
      * @param $userInt
      *
      * @return bool
@@ -76,26 +66,6 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
     }
 
     /**
-     * @param $userInt
-     *
-     * @return bool
-     */
-    public function checkIfUserHasBfxMPGroup($userInt): bool
-    {
-        return $this->sprykerBladeFxUserRepository->checkIfUserHasBfxMPGroup($userInt);
-    }
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasMerchant(int $userId): bool
-    {
-        return $this->sprykerBladeFxUserRepository->checkIfUserHasMerchant($userId);
-    }
-
-    /**
      * @param string|null $password
      *
      * @return bool
@@ -103,16 +73,6 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
     public function checkIfPasswordExists(?string $password): bool
     {
         return (bool)$password;
-    }
-
-    /**
-     * @param int $userId
-     *
-     * @return string
-     */
-    public function getUserMerchantId(int $userId): string
-    {
-        return $this->sprykerBladeFxUserRepository->getUserMerchantId($userId);
     }
 
     /**

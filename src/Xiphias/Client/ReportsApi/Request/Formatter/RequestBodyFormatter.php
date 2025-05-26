@@ -6,7 +6,6 @@ declare(strict_types=1);
 namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
 
 class RequestBodyFormatter implements RequestBodyFormatterInterface
@@ -25,11 +24,11 @@ class RequestBodyFormatter implements RequestBodyFormatterInterface
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
      *
      * @return array
      */
-    public function formatDataBeforeEncoding(AbstractTransfer $requestTransfer): array
+    public function formatDataBeforeEncoding(BladeFxGetReportPreviewRequestTransfer $requestTransfer): array
     {
         $data = $requestTransfer->toArray(true, true);
 

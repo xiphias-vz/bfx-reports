@@ -4,16 +4,15 @@
 namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface RequestBodyFormatterInterface
 {
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
+     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer $requestTransfer
      *
      * @return array
      */
-    public function formatDataBeforeEncoding(AbstractTransfer $requestTransfer): array;
+    public function formatDataBeforeEncoding(BladeFxGetReportPreviewRequestTransfer $requestTransfer): array;
 
     /**
      * @param array $data

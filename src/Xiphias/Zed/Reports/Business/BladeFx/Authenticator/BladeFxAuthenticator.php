@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
-use Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
@@ -39,12 +38,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     protected array $bladeFxPostAuthenticationPlugins;
 
     /**
-     * @var \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface
-     */
-    protected BladeFxCheckerInterface $bladeFxChecker;
-
-    /**
-     * @var SprykerBladeFxUserFacadeInterface
+     * @var \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface
      */
     private SprykerBladeFxUserFacadeInterface $bladeFxUserFacade;
 
@@ -53,7 +47,6 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins
-// * @param \Xiphias\Zed\Reports\Business\BladeFx\Checker\BladeFxCheckerInterface $bladeFxChecker
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
      */
     public function __construct(
@@ -61,14 +54,12 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
         ReportsConfig $config,
         SessionClientInterface $sessionClient,
         array $bladeFxPostAuthenticationPlugins,
-        //        BladeFxCheckerInterface $bladeFxChecker,
         SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
     ) {
         $this->apiClient = $apiClient;
         $this->config = $config;
         $this->sessionClient = $sessionClient;
         $this->bladeFxPostAuthenticationPlugins = $bladeFxPostAuthenticationPlugins;
-//        $this->bladeFxChecker = $bladeFxChecker;
         $this->bladeFxUserFacade = $bladeFxUserFacade;
     }
 

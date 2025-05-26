@@ -35,32 +35,11 @@ interface BladeFXUserCheckerInterface
     public function findBladeFxBOGroupById(array $groupRoles): bool;
 
     /**
-     * @param array $groupRoles
-     *
-     * @return bool
-     */
-    public function findBladeFxGroupById(array $groupRoles): bool;
-
-    /**
      * @param $userInt
      *
      * @return bool
      */
     public function checkIfUserHasBfxBOGroup($userInt): bool;
-
-    /**
-     * @param $userInt
-     *
-     * @return bool
-     */
-    public function checkIfUserHasBfxMPGroup($userInt): bool;
-
-    /**
-     * @param int $userId
-     *
-     * @return bool
-     */
-    public function checkIfUserHasMerchant(int $userId): bool;
 
     /**
      * @param string|null $password
@@ -75,11 +54,4 @@ interface BladeFXUserCheckerInterface
      * @return bool
      */
     public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool;
-
-    /**
-     * @param int $userId
-     *
-     * @return string
-     */
-    public function getUserMerchantId(int $userId): string;
 }

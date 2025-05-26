@@ -47,12 +47,10 @@ class BfxMerchantPortalAclRoleCreator implements BfxMerchantPortalAclRoleCreator
     protected function createRole(): RoleTransfer
     {
         $groupTransfer = (new GroupTransfer())
-            ->setName($this->config->getBfxMerchantPortalGroupName())
-            ->setReference($this->config->getBfxMerchantPortalGroupReference());
+            ->setName($this->config->getBfxMerchantPortalGroupName());
 
         return (new RoleTransfer())
             ->setName($this->config->getBfxMerchantPortalGroupName())
-            ->setReference($this->config->getBfxMerchantPortalGroupReference())
             ->setAclRules($this->getAclRoleRules())
             ->setAclGroup($groupTransfer);
     }
@@ -63,8 +61,7 @@ class BfxMerchantPortalAclRoleCreator implements BfxMerchantPortalAclRoleCreator
     protected function createGroup(): GroupTransfer
     {
         return (new GroupTransfer())
-            ->setName($this->config->getBfxMerchantPortalGroupName())
-            ->setReference($this->config->getBfxMerchantPortalGroupReference());
+            ->setName($this->config->getBfxMerchantPortalGroupName());
     }
 
     /**
