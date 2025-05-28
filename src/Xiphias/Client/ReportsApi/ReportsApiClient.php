@@ -9,6 +9,7 @@ use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
@@ -115,11 +116,22 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
     /**
      * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
      *
-     * @return void
+     * @return BladeFxCreateOrUpdateUserResponseTransfer
      */
     public function sendCreateOrUpdateUserOnBfxRequest(
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
-    ): void {
-        $this->getFactory()->createApiHandler()->createOrUpdateUserOnBladeFx($requestTransfer);
+    ): BladeFxCreateOrUpdateUserResponseTransfer {
+        return $this->getFactory()->createApiHandler()->createOrUpdateUserOnBladeFx($requestTransfer);
+    }
+
+    /**
+     * @param BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     *
+     * @return BladeFxUpdatePasswordResponseTransfer
+     */
+    public function sendUpdatePasswordOnBladeFxRequest(
+        BladeFxUpdatePasswordRequestTransfer $requestTransfer
+    ): BladeFxUpdatePasswordResponseTransfer {
+        return $this->getFactory()->createApiHandler()->sendUpdatePasswordOnBladeFxRequest($requestTransfer);
     }
 }

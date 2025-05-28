@@ -96,4 +96,8 @@ interface ApiHandlerInterface
     public function createOrUpdateUserOnBladeFx(
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserResponseTransfer;
+
+    public function sendUpdatePasswordOnBladeFxRequest(
+        BladeFxUpdatePasswordRequestTransfer $requestTransfer
+    ): BladeFxUpdatePasswordResponseTransfer;
 }

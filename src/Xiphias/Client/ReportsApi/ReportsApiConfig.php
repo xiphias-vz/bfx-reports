@@ -114,8 +114,12 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const GER_REPORT_PARAMETER_FORM_API_RESOURCE = '/api/ReportData/GetReportURL';
+    public const GET_REPORT_PARAMETER_FORM_API_RESOURCE = '/api/ReportData/GetReportURL';
 
+    /**
+     * @var string
+     */
+    public const GET_UPDATE_PASSWORD_API_RESOURCE = 'GET_UPDATE_PASSWORD_API_RESOURCE';
     /**
      * @var array
      */
@@ -293,7 +297,15 @@ class ReportsApiConfig extends AbstractBundleConfig
      */
     public function getReportParamFormResourceParameter(): string
     {
-        return static::GER_REPORT_PARAMETER_FORM_API_RESOURCE;
+        return static::GET_REPORT_PARAMETER_FORM_API_RESOURCE;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatePasswordResourceParameter(): string
+    {
+        return static::GET_UPDATE_PASSWORD_API_RESOURCE;
     }
 
     /**

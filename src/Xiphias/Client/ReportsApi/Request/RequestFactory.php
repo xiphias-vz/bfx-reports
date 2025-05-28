@@ -106,6 +106,22 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
         return new CreateOrUpdateUserOnBladeFxRequestValidator();
     }
 
+    public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestValidator();
+    }
+
+
+    public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestBuilder(
+            $this->getConfig(),
+            $this->getUtilEncodingService(),
+            $this->createRequestBodyFormatter(),
+        );
+    }
+
+
     /**
      * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
      */

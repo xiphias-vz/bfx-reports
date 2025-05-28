@@ -181,6 +181,21 @@ class ResponseManager implements ResponseManagerInterface
     }
 
     /**
+     * @param ResponseInterface|null $response
+     *
+     * @return BladeFxUpdatePasswordResponseTransfer
+     */
+    public function getUpdatePasswordOnBladeFxRequest(?ResponseInterface $response): BladeFxUpdatePasswordResponseTransfer
+    {
+        $this->validateRawResponse($response);
+        $converterResultTransfer = $this->responseFactory->createUpdatePasswordOnBladeFxResponseConverter()->convert($response);
+        $validator = $this->responseFactory->createUpdatePasswordOnBladeFxResponseValidator();
+        $this->validateResponse($validator, $converterResultTransfer->getBladeFxUpdatePasswordResponse());
+
+        return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
+    }
+
+    /**
      * @param \Psr\Http\Message\ResponseInterface|null $response
      *
      * @throws \Xiphias\Client\ReportsApi\Exception\ReportsResponseException

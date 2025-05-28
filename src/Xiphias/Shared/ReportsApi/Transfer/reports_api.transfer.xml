@@ -238,6 +238,29 @@
         <property name="licenceIssue" type="bool" />
     </transfer>
 
+    <transfer name="BladeFxUpdatePasswordRequest">
+        <property name="token" type="BladeFxToken" />
+        <property name="email" type="string" />
+        <property name="firstName" type="string" />
+        <property name="lastName" type="string" />
+        <property name="password" type="string" />
+        <property name="roleName" type="string" />
+        <property name="companyId" type="int" />
+        <property name="languageId" type="int" />
+        <property name="isActive" type="bool"/>
+    </transfer>
+
+    <transfer name="BladeFxUpdatePasswordResponse">
+        <property name="statusCode" type="int" />
+        <property name="success" type="bool"/>
+        <property name="rMessage" type="string" />
+        <property name="causer" type="string" />
+        <property name="id" type="int" />
+        <property name="areUsure" type="bool" />
+        <property name="optionValue" type="string" />
+        <property name="licenceIssue" type="bool" />
+    </transfer>
+
     <!--       BladeFx api shared transfers -->
     <transfer name="BladeFxApiResponseConversionResult" strict="true">
         <property name="bladeFxAuthenticationResponse" type="BladeFxAuthenticationResponse"/>
@@ -252,6 +275,7 @@
         <property name="bladeFxGetReportByFormatResponse" type="BladeFxGetReportByFormatResponse"/>
         <property name="bladeFxGetReportParamFormResponse" type="BladeFxGetReportParamFormResponse"/>
         <property name="bladeFxCreateOrUpdateUserResponse" type="BladeFxCreateOrUpdateUserResponse"/>
+        <property name="bladeFxUpdatePasswordResponse" type="BladeFxUpdatePasswordResponse" />
     </transfer>
 
     <transfer name="BladeFxGetReportParamFormRequest" >

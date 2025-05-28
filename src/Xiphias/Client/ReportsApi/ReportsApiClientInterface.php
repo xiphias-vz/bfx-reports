@@ -7,6 +7,7 @@ use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
 use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
@@ -129,9 +130,13 @@ interface ReportsApiClientInterface
     /**
      * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
      *
-     * @return void
+     * @return BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
      */
     public function sendCreateOrUpdateUserOnBfxRequest(
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
-    ): void;
+    ): BladeFxCreateOrUpdateUserResponseTransfer;
+
+    public function sendUpdatePasswordOnBladeFxRequest(
+        BladeFxUpdatePasswordRequestTransfer $requestTransfer
+    ): BladeFxUpdatePasswordResponseTransfer;
 }

@@ -102,6 +102,14 @@ class ResponseFactory implements ResponseFactoryInterface
     }
 
     /**
+     * @return ResponseConverterInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseConverter(): ResponseConverterInterface
+    {
+        return new UpdatePasswordOnBladeFxResponseConverter($this->utilEncodingService);
+    }
+
+    /**
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createAuthenticationResponseValidator(): ResponseValidatorInterface
@@ -179,5 +187,13 @@ class ResponseFactory implements ResponseFactoryInterface
     public function createCreateOrUpdateUserOnBfxResponseValidator(): ResponseValidatorInterface
     {
         return new CreateOrUpdateUserOnBladeFxResponseValidator();
+    }
+
+    /**
+     * @return ResponseValidatorInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseValidator(): ResponseValidatorInterface
+    {
+        return new UpdatePasswordOnBladeFxResponseValidator();
     }
 }
