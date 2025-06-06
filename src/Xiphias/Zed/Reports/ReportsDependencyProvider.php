@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports;
@@ -83,29 +82,23 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addBladeFxClient(Container $container): Container
     {
-        $container->set(
-            static::BLADE_FX_CLIENT,
-            static function (): ReportsApiClientInterface {
-                return new ReportsApiClient();
-            },
-        );
+        $container->set(static::BLADE_FX_CLIENT,function (Container $container): ReportsApiClientInterface {
+              return $container->getLocator()->ReportsApi()->client();
+        });
 
         return $container;
     }
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
+     * @param Container $container
      *
-     * @return \Spryker\Zed\Kernel\Container
+     * @return Container
      */
     protected function addSprykerBladeFxUserFacade(Container $container): Container
     {
-        $container->set(
-            static::SPRYKER_BLADE_FX_FACADE,
-            static function (): SprykerBladeFxUserFacadeInterface {
-                return new SprykerBladeFxUserFacade();
-            },
-        );
+        $container->set(static::SPRYKER_BLADE_FX_FACADE, function (Container $container) {
+            $container->getLocator()->sprykerBladeFxUser()->facade();
+        });
 
         return $container;
     }
