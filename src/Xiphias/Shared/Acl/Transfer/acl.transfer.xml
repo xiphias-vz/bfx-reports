@@ -5,8 +5,9 @@
         <property name="isBfxRole" type="bool" />
         <property name="bfxRoleKey" type="bool" />
     </transfer>
+
     <transfer name="BfxAclRole">
-        <property name="role" type="Role" />
+        <property name="roles" type="Role[]" singular="Role" />
         <property name="group" type="Group" />
     </transfer>
 </transfers>

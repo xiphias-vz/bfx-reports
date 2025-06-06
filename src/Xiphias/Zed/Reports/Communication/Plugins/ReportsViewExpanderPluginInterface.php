@@ -1,15 +1,17 @@
 <?php
 
-namespace Xiphias\Zed\Reports\Communication\Plugins\Sales;
+declare(strict_types=1);
+
+namespace Xiphias\Zed\Reports\Communication\Plugins;
 
 use Symfony\Component\HttpFoundation\Request;
 
-interface ReportsSalesOverviewViewExpanderPluginInterface
+interface ReportsViewExpanderPluginInterface
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array
+     * @return array<string, string>
      */
     public function expand(Request $request): array;
 }

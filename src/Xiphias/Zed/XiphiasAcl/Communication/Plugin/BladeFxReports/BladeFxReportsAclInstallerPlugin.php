@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Xiphias\Zed\XiphiasAcl\Communication\Plugin\BladeFxReports;
 
@@ -17,11 +18,7 @@ class BladeFxReportsAclInstallerPlugin extends AbstractPlugin implements AclInst
      */
     public function getRoles(): array
     {
-        $roles = [];
-        $roles[] = $this->getFacade()->createBfxAclRoleAndGroup()->getRole();
-//        $roles[] = $this->getFacade()->createBfxMerchantPortalAclRoleAndGroup()->getRole();
-
-        return $roles;
+       return $this->getFacade()->createBfxAclRoleAndGroup()->getRoles();
     }
 
     /**
