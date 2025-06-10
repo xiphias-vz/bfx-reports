@@ -36,16 +36,16 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
         $bfxAclRoleTransfer = new BfxAclRoleTransfer();
 
         $bfxAclRoleTransfer
-            ->setRole($this->createRoles())
+            ->setRoles($this->createRoles())
             ->setGroup($this->createGroup());
 
         return $bfxAclRoleTransfer;
     }
 
     /**
-     * @return array<\Generated\Shared\Transfer\RoleTransfer>
+     * @return ArrayObject<\Generated\Shared\Transfer\RoleTransfer>
      */
-    protected function createRoles(): array
+    protected function createRoles(): ArrayObject
     {
         $roles = [];
         $rules = $this->getAclRoleRules();
@@ -59,11 +59,11 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
 
             $roles[] = (new RoleTransfer())
                 ->setName($roleName)
-                ->setAclRules($ruleTransfer->getAclRules())
+                ->setAclRules(new ArrayObject([$ruleTransfer]))
                 ->setAclGroup($groupTransfer);
         }
 
-        return $roles;
+        return new ArrayObject($roles);
     }
 
     /**
@@ -72,11 +72,12 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
     protected function createGroup(): GroupTransfer
     {
         return (new GroupTransfer())
-            ->setName($this->config->getBfxGroupName());
+            ->setName($this->config->getBfxGroupName())
+            ->setReference($this->config->getBfxGroupReference());
     }
 
     /**
-     * @return \ArrayObject
+     * @return ArrayObject
      */
     protected function getAclRoleRules(): ArrayObject
     {

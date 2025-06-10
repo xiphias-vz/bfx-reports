@@ -139,7 +139,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+    public const BLADE_FX_GROUP_NAME = 'BladeFx Reports';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_GROUP_REFERENCE = 'bladefx-reports';
 
     /**
      * @var string

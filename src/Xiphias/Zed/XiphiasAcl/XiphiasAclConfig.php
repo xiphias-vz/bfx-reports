@@ -31,6 +31,14 @@ class XiphiasAclConfig extends AbstractBundleConfig
     }
 
     /**
+     * @return string
+     */
+    public function getBfxGroupReference(): string
+    {
+        return ReportsConstants::BLADE_FX_GROUP_REFERENCE;
+    }
+
+    /**
      * @return array
      */
     public function getMerchantPortalGuiBundles(): array
