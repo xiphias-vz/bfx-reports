@@ -97,7 +97,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
     protected function addSprykerBladeFxUserFacade(Container $container): Container
     {
         $container->set(static::SPRYKER_BLADE_FX_FACADE, function (Container $container) {
-            $container->getLocator()->sprykerBladeFxUser()->facade();
+            return $container->getLocator()->sprykerBladeFxUser()->facade();
         });
 
         return $container;
