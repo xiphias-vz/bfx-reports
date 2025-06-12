@@ -55,6 +55,20 @@ interface ReportsFacadeInterface
     public function processGetReportsRequest(Request $request, ?string $attribute = ''): array;
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array<int, mixed>
+     */
+    public function buildCategoryTree(Request $request): array;
+
+    /**
+     * @param array<int, mixed> $categories
+     *
+     * @return array<int, mixed>
+     */
+    public function assembleCategoryTree(array $categories): array;
+
+    /**
      * @param int $reportId
      * @param string $format
      * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer

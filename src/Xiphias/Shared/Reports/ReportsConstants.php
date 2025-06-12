@@ -189,5 +189,5 @@ class ReportsConstants
     /**
      * @var int
      */
-    protected const DEFAULT_CATEGORY_INDEX = -1;
+    public const DEFAULT_CATEGORY_INDEX = -1;
 }

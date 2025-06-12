@@ -67,6 +67,16 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
+     * @param array<int, mixed> $categories
+     *
+     * @return array<int, mixed>
+     */
+    public function assembleCategoryTree(array $categories): array
+    {
+        return $this->getFactory()->createCategoryTreeBuilder()->assembleCategoryTree($categories);
+    }
+
+    /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return void
