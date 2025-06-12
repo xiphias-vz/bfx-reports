@@ -11,7 +11,7 @@ use Xiphias\Zed\Reports\Communication\Plugins\ReportsViewExpanderPluginInterface
 /**
  * @method \Xiphias\Zed\Reports\Communication\ReportsCommunicationFactory getFactory()
  */
-class ReportsTableExpanderPlugin extends AbstractPlugin implements ReportsViewExpanderPluginInterface
+class SalesReportsTableViewExpanderPlugin extends AbstractPlugin implements ReportsViewExpanderPluginInterface
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request

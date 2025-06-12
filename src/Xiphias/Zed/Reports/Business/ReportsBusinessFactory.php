@@ -27,6 +27,8 @@ use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessor;
 use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolver;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
+use Xiphias\Zed\Reports\Business\Builder\CategoryTreeBuilder;
+use Xiphias\Zed\Reports\Business\Builder\CategoryTreeBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper;
@@ -182,6 +184,17 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     public function getBladeFxClient(): ReportsApiClientInterface
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_CLIENT);
+    }
+
+
+    /**
+     * @return \Xiphias\Zed\Reports\Business\Builder\CategoryTreeBuilderInterface
+     */
+    public function createCategoryTreeBuilder(): CategoryTreeBuilderInterface
+    {
+        return new CategoryTreeBuilder(
+            $this->createRequestProcessor()
+        );
     }
 
     /**

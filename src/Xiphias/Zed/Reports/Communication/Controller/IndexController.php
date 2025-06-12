@@ -30,14 +30,9 @@ class IndexController extends AbstractController
      */
     public function indexAction(Request $request): array
     {
-        $categories = $this
-            ->getFacade()
-            ->processCategoryTreeListRequest($request);
-
         $categoryTree = $this
-            ->getFactory()
-            ->createCategoryTreeBuilder()
-            ->buildCategoryTree($categories);
+            ->getFacade()
+            ->buildCategoryTree($request);
 
         $reportsTable = $this->getFactory()
             ->createReportsTable();

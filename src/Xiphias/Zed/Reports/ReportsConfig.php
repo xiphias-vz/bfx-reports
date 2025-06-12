@@ -78,11 +78,6 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var int
      */
-    protected const DEFAULT_CATEGORY_INDEX = -1;
-
-    /**
-     * @var int
-     */
     protected const DEFAULT_LAYOUT = 0;
 
     /**
@@ -140,7 +135,7 @@ class ReportsConfig extends AbstractBundleConfig
      */
     public function getDefaultCategoryIndex(): int
     {
-        return static::DEFAULT_CATEGORY_INDEX;
+        return ReportsConstants::DEFAULT_CATEGORY_INDEX;
     }
 
     /**

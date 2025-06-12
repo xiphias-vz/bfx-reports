@@ -7,8 +7,6 @@ namespace Xiphias\Zed\Reports\Communication;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilder;
-use Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilder;
 use Xiphias\Zed\Reports\Communication\Builder\DownloadHeadersBuilderInterface;
 use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatter;
@@ -72,13 +70,6 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory implement
         return new ParameterFormatter();
     }
 
-    /**
-     * @return \Xiphias\Zed\Reports\Communication\Builder\CategoryTreeBuilderInterface
-     */
-    public function createCategoryTreeBuilder(): CategoryTreeBuilderInterface
-    {
-        return new CategoryTreeBuilder();
-    }
 
     /**
      * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper

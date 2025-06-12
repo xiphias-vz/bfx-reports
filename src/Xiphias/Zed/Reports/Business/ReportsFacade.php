@@ -45,6 +45,16 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function buildCategoryTree(Request $request): array
+    {
+       return $this->getFactory()->createCategoryTreeBuilder()->buildCategoryTree($request);
+    }
+
+    /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
@@ -66,18 +76,6 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
         $this->getFactory()
             ->createRequestProcessor()
             ->processSetFavoriteReportRequest($request);
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
-    public function processGetReportsRequest(Request $request): array
-    {
-        return $this->getFactory()
-            ->createRequestProcessor()
-            ->processGetReportsRequest($request);
     }
 
     /**
@@ -116,6 +114,19 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     public function getAllReports(?string $attribute = ''): BladeFxGetReportsListResponseTransfer
     {
         return $this->getFactory()->createBladeFxReportListReader()->getReportList($attribute);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string|null $attribute
+     *
+     * @return array
+     */
+    public function processGetReportsRequest(Request $request, ?string $attribute = ''): array
+    {
+        return $this->getFactory()
+            ->createRequestProcessor()
+            ->processGetReportsRequest($request, $attribute);
     }
 
     /**
