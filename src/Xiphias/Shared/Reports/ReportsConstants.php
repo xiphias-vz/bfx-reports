@@ -185,4 +185,9 @@ class ReportsConstants
      * @var string
      */
     public const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
+
+    /**
+     * @var int
+     */
+    protected const DEFAULT_CATEGORY_INDEX = -1;
 }

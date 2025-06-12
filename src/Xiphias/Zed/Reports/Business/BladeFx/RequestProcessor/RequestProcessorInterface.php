@@ -25,8 +25,9 @@ interface RequestProcessorInterface
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string|null $attribute
      *
      * @return array
      */
-    public function processGetReportsRequest(Request $request): array;
+    public function processGetReportsRequest(Request $request, ?string $attribute = ''): array;
 }

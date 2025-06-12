@@ -13,10 +13,11 @@ interface ReportsReaderInterface
 {
     /**
      * @param \Generated\Shared\Transfer\ReportsReaderRequestTransfer $readerRequestTransfer
+     * @param string|null $attribute
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
      */
-    public function getReportsList(ReportsReaderRequestTransfer $readerRequestTransfer): BladeFxGetReportsListResponseTransfer;
+    public function getReportsList(ReportsReaderRequestTransfer $readerRequestTransfer, ?string $attribute): BladeFxGetReportsListResponseTransfer;
 
     /**
      * @param int $reportId

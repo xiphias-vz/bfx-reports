@@ -8,10 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterface
 {
-    /**
-     * @var string
-     */
-    protected const SALES_REPORTS_TABLE = 'reports_sales_table';
 
     /**
      * @param \Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface $viewExpanderTableFactory
@@ -30,7 +26,7 @@ class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterf
         $viewData = [];
 
         $reportsSalesTables = $this->viewExpanderTableFactory->createSalesReportsTable($this->viewExpanderTableFactory->createParameterFormatter()->formatRequestParameters($request));
-        $viewData[static::SALES_REPORTS_TABLE] = $reportsSalesTables->render();
+        $viewData['reportsTable'] = $reportsSalesTables->render();
 
         return $viewData;
     }
@@ -43,7 +39,7 @@ class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterf
     public function expandReportTabsViewData(string $resource): array
     {
         $viewData = [];
-        $viewdata['overviewTabs'] = $this->viewExpanderTableFactory->createOverviewTabs($resource)->createView();
+        $viewData['overviewTabs'] = $this->viewExpanderTableFactory->createOverviewTabs($resource)->createView();
 
         return $viewData;
     }
