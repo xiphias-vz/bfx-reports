@@ -13,8 +13,6 @@ use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatter;
 use Xiphias\Zed\Reports\Communication\Formatter\ParameterFormatterInterface;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper;
 use Xiphias\Zed\Reports\Communication\Mapper\ReportsMapperInterface;
-use Xiphias\Zed\Reports\Communication\TabCreator\TabCreator;
-use Xiphias\Zed\Reports\Communication\TabCreator\TabCreatorInterface;
 use Xiphias\Zed\Reports\Communication\Table\ReportsTable;
 use Xiphias\Zed\Reports\Communication\Table\SalesReportsTable;
 use Xiphias\Zed\Reports\Communication\Tabs\OrderOverviewTabs;
@@ -70,7 +68,6 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory implement
         return new ParameterFormatter();
     }
 
-
     /**
      * @return \Xiphias\Zed\Reports\Communication\Mapper\ReportsMapper
      */
@@ -93,7 +90,7 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory implement
     /**
      * @param string $resource
      *
-     * @return OrderOverviewTabs
+     * @return \Xiphias\Zed\Reports\Communication\Tabs\OrderOverviewTabs
      */
     public function createOverviewTabs(string $resource): OrderOverviewTabs
     {
@@ -115,5 +112,4 @@ class ReportsCommunicationFactory extends AbstractCommunicationFactory implement
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::SERVICE_REQUEST_STACK);
     }
-
 }

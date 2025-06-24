@@ -186,14 +186,13 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_CLIENT);
     }
 
-
     /**
      * @return \Xiphias\Zed\Reports\Business\Builder\CategoryTreeBuilderInterface
      */
     public function createCategoryTreeBuilder(): CategoryTreeBuilderInterface
     {
         return new CategoryTreeBuilder(
-            $this->createRequestProcessor()
+            $this->createRequestProcessor(),
         );
     }
 

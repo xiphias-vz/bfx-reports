@@ -25,7 +25,7 @@ interface ViewExpanderTableFactoryInterface
     /**
      * @param string $resource
      *
-     * @return OrderOverviewTabs
+     * @return \Xiphias\Zed\Reports\Communication\Tabs\OrderOverviewTabs
      */
     public function createOverviewTabs(string $resource): OrderOverviewTabs;
 }

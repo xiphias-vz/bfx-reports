@@ -43,7 +43,7 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
     }
 
     /**
-     * @return ArrayObject<\Generated\Shared\Transfer\RoleTransfer>
+     * @return \ArrayObject<\Generated\Shared\Transfer\RoleTransfer>
      */
     protected function createRoles(): ArrayObject
     {
@@ -77,7 +77,7 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
     }
 
     /**
-     * @return ArrayObject
+     * @return \ArrayObject
      */
     protected function getAclRoleRules(): ArrayObject
     {

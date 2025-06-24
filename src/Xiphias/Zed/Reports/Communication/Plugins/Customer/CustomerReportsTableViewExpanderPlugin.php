@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Plugins\Customer;
 
-use Symfony\Component\HttpFoundation\Request;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
+use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Zed\Reports\Communication\Plugins\ReportsViewExpanderPluginInterface;
 
 /**

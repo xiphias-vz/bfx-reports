@@ -45,13 +45,13 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
      */
     public function buildCategoryTree(Request $request): array
     {
-       return $this->getFactory()->createCategoryTreeBuilder()->buildCategoryTree($request);
+        return $this->getFactory()->createCategoryTreeBuilder()->buildCategoryTree($request);
     }
 
     /**

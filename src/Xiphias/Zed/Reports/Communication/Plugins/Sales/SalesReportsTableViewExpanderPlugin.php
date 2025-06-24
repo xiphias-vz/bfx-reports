@@ -15,6 +15,7 @@ class SalesReportsTableViewExpanderPlugin extends AbstractPlugin implements Repo
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $viewData
      *
      * @return array<string, string>
      */

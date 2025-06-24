@@ -26,7 +26,8 @@ class DeleteUserOnBfxPostSavePlugin extends AbstractPlugin implements UserPostSa
      */
     public function postSave(UserTransfer $userTransfer): UserTransfer
     {
-        if (!class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS)
+        if (
+            !class_exists(ReportsConstants::MARKETPLACE_ONLY_CLASS)
             && $userTransfer->getStatus() === 'deleted'
             && $this->getFacade()->hasUserBfxGroup($userTransfer->getIdUser())
         ) {

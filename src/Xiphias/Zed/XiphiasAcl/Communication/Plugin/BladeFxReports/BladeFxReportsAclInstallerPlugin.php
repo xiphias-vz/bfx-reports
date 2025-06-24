@@ -18,7 +18,7 @@ class BladeFxReportsAclInstallerPlugin extends AbstractPlugin implements AclInst
      */
     public function getRoles(): array
     {
-       return $this->getFacade()->createBfxAclRoleAndGroup()->getRoles()->getArrayCopy();
+        return $this->getFacade()->createBfxAclRoleAndGroup()->getRoles()->getArrayCopy();
     }
 
     /**

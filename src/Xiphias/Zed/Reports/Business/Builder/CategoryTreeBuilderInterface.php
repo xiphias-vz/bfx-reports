@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 interface CategoryTreeBuilderInterface
 {
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
      */

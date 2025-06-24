@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\Reports\Communication\Plugins\ReportsViewExpanderPluginInterface;
 
-
 /**
  * @method \Xiphias\Zed\Reports\Communication\ReportsCommunicationFactory getFactory()
  */

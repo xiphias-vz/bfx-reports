@@ -11,7 +11,7 @@ interface ReportsViewExpanderPluginInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array $viewData
- *
+     *
      * @return array<string, string>
      */
     public function expand(Request $request, array $viewData): array;

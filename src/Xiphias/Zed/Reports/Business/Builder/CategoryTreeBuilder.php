@@ -9,7 +9,7 @@ use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterf
 class CategoryTreeBuilder implements CategoryTreeBuilderInterface
 {
     /**
-     * @param RequestProcessorInterface $requestProcessor
+     * @param \Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface $requestProcessor
      */
     public function __construct(
         protected RequestProcessorInterface $requestProcessor
@@ -31,9 +31,8 @@ class CategoryTreeBuilder implements CategoryTreeBuilderInterface
      */
     public const KEY_PARENT_COUNT = 'parentCount';
 
-
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array
      */

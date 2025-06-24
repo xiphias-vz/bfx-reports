@@ -11,8 +11,12 @@ use Xiphias\Shared\Reports\ReportsConstants;
 
 class OrderOverviewTabs extends AbstractTabs
 {
+    /**
+     * @param string $resource
+     */
     public function __construct(protected string $resource)
-    {}
+    {
+    }
 
     /**
      * @var string
@@ -53,7 +57,8 @@ class OrderOverviewTabs extends AbstractTabs
     {
         match ($this->resource) {
             ReportsConstants::BLADE_FX_ORDER_PARAM_NAME => $this->addOrderOverviewTab($tabsViewTransfer),
-            ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME => $this->addCustomerOverviewTab($tabsViewTransfer)
+            ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME => $this->addCustomerOverviewTab($tabsViewTransfer),
+            default => null
         };
 
         $this->addReportTableTab($tabsViewTransfer);
@@ -81,7 +86,7 @@ class OrderOverviewTabs extends AbstractTabs
     }
 
     /**
-     * @param TabsViewTransfer $tabsViewTransfer
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
      *
      * @return $this
      */

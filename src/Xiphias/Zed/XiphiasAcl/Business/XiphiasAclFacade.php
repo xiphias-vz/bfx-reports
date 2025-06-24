@@ -20,14 +20,4 @@ class XiphiasAclFacade extends AbstractFacade implements XiphiasAclFacadeInterfa
             ->createBfxAclRoleCreator()
             ->createBfxAclRoleAndGroup();
     }
-
-    /**
-     * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
-     */
-    public function createBfxMerchantPortalAclRoleAndGroup(): BfxAclRoleTransfer
-    {
-        return $this->getFactory()
-            ->createBfxMerchantPortalAclRoleCreator()
-            ->createBfxMerchantPortalAclRoleAndGroup();
-    }
 }
