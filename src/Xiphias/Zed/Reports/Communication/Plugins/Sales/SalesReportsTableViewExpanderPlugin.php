@@ -18,8 +18,8 @@ class SalesReportsTableViewExpanderPlugin extends AbstractPlugin implements Repo
      *
      * @return array<string, string>
      */
-    public function expand(Request $request): array
+    public function expand(Request $request, array $viewData): array
     {
-        return $this->getFactory()->createReportsSalesOverviewExpander()->expandReportSalesTableViewData($request);
+        return $this->getFactory()->createReportsSalesOverviewExpander()->expandReportSalesTableViewData($request, $viewData);
     }
 }

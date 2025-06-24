@@ -10,15 +10,17 @@ interface ReportsSalesOverviewExpanderInterface
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $viewData
      *
      * @return array<string, string>
      */
-    public function expandReportSalesTableViewData(Request $request): array;
+    public function expandReportSalesTableViewData(Request $request, array $viewData): array;
 
     /**
      * @param string $resource
+     * @param array $viewData
      *
      * @return array<string, string>
      */
-    public function expandReportTabsViewData(string $resource): array;
+    public function expandReportTabsViewData(string $resource, array $viewData): array;
 }

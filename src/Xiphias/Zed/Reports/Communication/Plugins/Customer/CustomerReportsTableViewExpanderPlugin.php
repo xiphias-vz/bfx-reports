@@ -15,11 +15,12 @@ class CustomerReportsTableViewExpanderPlugin extends AbstractPlugin implements R
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $viewData
      *
      * @return array<string, string>
      */
-    public function expand(Request $request): array
+    public function expand(Request $request, array $viewData): array
     {
-        return $this->getFactory()->createReportsSalesOverviewExpander()->expandReportSalesTableViewData($request);
+        return $this->getFactory()->createReportsSalesOverviewExpander()->expandReportSalesTableViewData($request, $viewData);
     }
 }

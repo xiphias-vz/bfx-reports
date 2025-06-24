@@ -16,11 +16,15 @@ class SalesReportsTabsViewExpanderPlugin extends AbstractPlugin implements Repor
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $viewData
      *
      * @return array
      */
-    public function expand(Request $request): array
+    public function expand(Request $request, array $viewData): array
     {
-        return $this->getFactory()->createReportsSalesOverviewExpander()->expandReportTabsViewData(ReportsConstants::BLADE_FX_ORDER_PARAM_NAME);
+        return $this
+            ->getFactory()
+            ->createReportsSalesOverviewExpander()
+            ->expandReportTabsViewData(ReportsConstants::BLADE_FX_ORDER_PARAM_NAME, $viewData);
     }
 }

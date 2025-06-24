@@ -1,6 +1,6 @@
 {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Reports' | trans } %}
     {% block widget_content %}
-        {{ salesReportsTable | raw }}
+        {{ bfxReportsTable | raw }}
 
         {% include '@Reports/_partials/modal.twig' %}
         <script src="{{ assetsPath('js/reports.js') }}"></script>

@@ -21,12 +21,10 @@ class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterf
      *
      * @return array
      */
-    public function expandReportSalesTableViewData(Request $request): array
+    public function expandReportSalesTableViewData(Request $request, $viewData): array
     {
-        $viewData = [];
-
         $reportsSalesTables = $this->viewExpanderTableFactory->createSalesReportsTable($this->viewExpanderTableFactory->createParameterFormatter()->formatRequestParameters($request));
-        $viewData['reportsTable'] = $reportsSalesTables->render();
+        $viewData['bfxReportsTable'] = $reportsSalesTables->render();
 
         return $viewData;
     }
@@ -36,10 +34,9 @@ class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterf
      *
      * @return array<string, string>
      */
-    public function expandReportTabsViewData(string $resource): array
+    public function expandReportTabsViewData(string $resource, array $viewData): array
     {
-        $viewData = [];
-        $viewData['overviewTabs'] = $this->viewExpanderTableFactory->createOverviewTabs($resource)->createView();
+        $viewData['bfxOverviewTabs'] = $this->viewExpanderTableFactory->createOverviewTabs($resource)->createView();
 
         return $viewData;
     }
