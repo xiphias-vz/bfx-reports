@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 use Psr\Http\Message\ResponseInterface;
 
 interface ResponseManagerInterface
@@ -82,4 +83,11 @@ interface ResponseManagerInterface
      * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer
      */
     public function getCreateOrUpdateUserOnBladeFxResponseTransfer(?ResponseInterface $response): BladeFxCreateOrUpdateUserResponseTransfer;
+
+    /**
+     * @param ResponseInterface|null $response
+     *
+     * @return BladeFxUpdatePasswordResponseTransfer
+     */
+    public function getUpdatePasswordOnBladeFxRequest(?ResponseInterface $response): BladeFxUpdatePasswordResponseTransfer;
 }

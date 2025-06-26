@@ -22,6 +22,8 @@ use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
 use Xiphias\Client\ReportsApi\Http\Client\HttpApiClientInterface;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
 use Xiphias\Client\ReportsApi\Request\RequestFactoryInterface;
 use Xiphias\Client\ReportsApi\Request\RequestManagerInterface;
@@ -271,6 +273,23 @@ class ApiHandler implements ApiHandlerInterface
         $response = $this->httpClient->sendRequest($request);
 
         return $this->responseManager->getCreateOrUpdateUserOnBladeFxResponseTransfer($response);
+    }
+
+    public function sendUpdatePasswordOnBladeFxRequest(
+        BladeFxUpdatePasswordRequestTransfer $requestTransfer
+    ): BladeFxUpdatePasswordResponseTransfer {
+        $this->requestManager->setRequestBuilder(
+            $this->requestFactory->createUpdatePasswordOnBladeFxRequestBuilder(),
+        );
+
+        $request = $this->requestManager->getUpdatePasswordOnBladeFxRequest(
+            $this->apiClientConfig->getUpdatePasswordOnBladeFxResourceParameter(),
+            $requestTransfer,
+        );
+
+        $response = $this->httpClient->sendRequest($request);
+
+        return $this->responseManager->getUpdatePasswordOnBladeFxRequest($response);
     }
 
     /**

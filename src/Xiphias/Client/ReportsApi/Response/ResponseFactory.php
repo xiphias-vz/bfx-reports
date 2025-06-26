@@ -24,6 +24,7 @@ use Xiphias\Client\ReportsApi\Response\Validator\ReportPreviewResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ReportsListResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface;
 use Xiphias\Client\ReportsApi\Response\Validator\SetFavoriteReportResponseValidator;
+use Xiphias\Client\ReportsApi\Response\Validator\UpdatePasswordOnBladeFxResponseValidator;
 
 class ResponseFactory implements ResponseFactoryInterface
 {
@@ -99,6 +100,14 @@ class ResponseFactory implements ResponseFactoryInterface
     public function createCreateOrUpdateUserOnBfxResponseConverter(): ResponseConverterInterface
     {
         return new CreateOrUpdateUserOnBladeFxResponseConverter($this->utilEncodingService);
+    }
+
+    /**
+     * @return ResponseConverterInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseConverter(): ResponseConverterInterface
+    {
+        return new UpdatePasswordOnBladeFxResponseConverter($this->utilEncodingService);
     }
 
     /**
@@ -179,5 +188,13 @@ class ResponseFactory implements ResponseFactoryInterface
     public function createCreateOrUpdateUserOnBfxResponseValidator(): ResponseValidatorInterface
     {
         return new CreateOrUpdateUserOnBladeFxResponseValidator();
+    }
+
+    /**
+     * @return ResponseValidatorInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseValidator(): ResponseValidatorInterface
+    {
+        return new UpdatePasswordOnBladeFxResponseValidator();
     }
 }

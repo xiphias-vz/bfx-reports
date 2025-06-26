@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 use Psr\Http\Message\ResponseInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Log\LoggerTrait;
@@ -176,6 +177,21 @@ class ResponseManager implements ResponseManagerInterface
         $converterResultTransfer = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseConverter()->convert($response);
         $validator = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseValidator();
         $this->validateResponse($validator, $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse());
+
+        return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
+    }
+
+    /**
+     * @param ResponseInterface|null $response
+     *
+     * @return BladeFxUpdatePasswordResponseTransfer
+     */
+    public function getUpdatePasswordOnBladeFxRequest(?ResponseInterface $response): BladeFxUpdatePasswordResponseTransfer
+    {
+        $this->validateRawResponse($response);
+        $converterResultTransfer = $this->responseFactory->createUpdatePasswordOnBladeFxResponseConverter()->convert($response);
+        $validator = $this->responseFactory->createUpdatePasswordOnBladeFxResponseValidator();
+        $this->validateResponse($validator, $converterResultTransfer->getBladeFxUpdatePasswordResponse());
 
         return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
     }

@@ -109,4 +109,12 @@ interface RequestFactoryInterface
      * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
      */
     public function createCreateOrUpdateUserOnBladeFxRequestValidator(): RequestValidatorInterface;
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
+     */
+    public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface;
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
+    public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface;
 }
