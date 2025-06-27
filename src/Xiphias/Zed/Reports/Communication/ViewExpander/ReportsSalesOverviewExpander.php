@@ -1,41 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Xiphias\Zed\Reports\Communication\ViewExpander;
 
 use Symfony\Component\HttpFoundation\Request;
 
 class ReportsSalesOverviewExpander implements ReportsSalesOverviewExpanderInterface
 {
-    /**
-     * @var string
-     */
-    protected const SALES_REPORTS_TABLE = 'reports_sales_table';
-
-    /**
-     * @var \Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface
-     */
-    protected $viewExpanderTableFactory;
-
-    /**
-     * @param \Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface $viewExpanderTableFactory
-     */
-    public function __construct(
-        ViewExpanderTableFactoryInterface $viewExpanderTableFactory
-    ) {
-        $this->viewExpanderTableFactory = $viewExpanderTableFactory;
+ /**
+  * @param \Xiphias\Zed\Reports\Communication\ViewExpander\ViewExpanderTableFactoryInterface $viewExpanderTableFactory
+  */
+    public function __construct(protected ViewExpanderTableFactoryInterface $viewExpanderTableFactory)
+    {
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $viewData
      *
-     * @return array
+     * @return array<string, string>
      */
-    public function expandReportSalesViewData(Request $request): array
+    public function expandReportSalesTableViewData(Request $request, array $viewData): array
     {
-        $viewData = [];
-
         $reportsSalesTables = $this->viewExpanderTableFactory->createSalesReportsTable($this->viewExpanderTableFactory->createParameterFormatter()->formatRequestParameters($request));
-        $viewData[static::SALES_REPORTS_TABLE] = $reportsSalesTables->render();
+        $viewData['bfxReportsTable'] = $reportsSalesTables->render();
+
+        return $viewData;
+    }
+
+    /**
+     * @param string $resource
+     * @param array $viewData
+     *
+     * @return array<string, string>
+     */
+    public function expandReportTabsViewData(string $resource, array $viewData): array
+    {
+        $viewData['bfxOverviewTabs'] = $this->viewExpanderTableFactory->createOverviewTabs($resource)->createView();
 
         return $viewData;
     }

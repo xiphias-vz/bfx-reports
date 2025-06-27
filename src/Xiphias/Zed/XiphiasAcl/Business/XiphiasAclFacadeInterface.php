@@ -11,9 +11,4 @@ interface XiphiasAclFacadeInterface
      * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
      */
     public function createBfxAclRoleAndGroup(): BfxAclRoleTransfer;
-
-    /**
-     * @return \Generated\Shared\Transfer\BfxAclRoleTransfer
-     */
-    public function createBfxMerchantPortalAclRoleAndGroup(): BfxAclRoleTransfer;
 }

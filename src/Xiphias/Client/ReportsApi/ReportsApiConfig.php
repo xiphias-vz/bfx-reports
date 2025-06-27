@@ -119,7 +119,7 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const GET_UPDATE_PASSWORD_API_RESOURCE = 'GET_UPDATE_PASSWORD_API_RESOURCE';
+    public const GET_UPDATE_PASSWORD_API_RESOURCE = 'api/Users/UserSetNewPwdClean';
     /**
      * @var array
      */
@@ -220,6 +220,11 @@ class ReportsApiConfig extends AbstractBundleConfig
         return static::GET_CREATE_OR_UPDATE_USER_ON_BFX_API_RESOURCE;
     }
 
+    public function getUpdatePasswordOnBladeFxResourceParameter(): string
+    {
+        return static::GET_UPDATE_PASSWORD_API_RESOURCE;
+    }
+
     /**
      * @return string
      */
@@ -298,14 +303,6 @@ class ReportsApiConfig extends AbstractBundleConfig
     public function getReportParamFormResourceParameter(): string
     {
         return static::GET_REPORT_PARAMETER_FORM_API_RESOURCE;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUpdatePasswordResourceParameter(): string
-    {
-        return static::GET_UPDATE_PASSWORD_API_RESOURCE;
     }
 
     /**

@@ -23,6 +23,8 @@ use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
 use Spryker\Client\Kernel\AbstractClient;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 
 /**
  * @method \Xiphias\Client\ReportsApi\ReportsApiFactory getFactory()

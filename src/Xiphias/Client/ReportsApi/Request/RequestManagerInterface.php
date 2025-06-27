@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Psr\Http\Message\RequestInterface;
 use Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 
@@ -109,5 +110,10 @@ interface RequestManagerInterface
     public function getCreateOrUpdateUserOnBladeFxRequest(
         string $resource,
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
+    ): RequestInterface;
+
+    public function getUpdatePasswordOnBladeFxRequest(
+        string $resource,
+        BladeFxUpdatePasswordRequestTransfer $requestTransfer
     ): RequestInterface;
 }

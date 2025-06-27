@@ -3,6 +3,7 @@
 
 namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 
 interface RequestBodyFormatterInterface

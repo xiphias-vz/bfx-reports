@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Xiphias\Zed\XiphiasAcl\Business\BfxAclRoleCreator;
 
@@ -35,24 +36,34 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
         $bfxAclRoleTransfer = new BfxAclRoleTransfer();
 
         $bfxAclRoleTransfer
-            ->setRole($this->createRole())
+            ->setRoles($this->createRoles())
             ->setGroup($this->createGroup());
 
         return $bfxAclRoleTransfer;
     }
 
     /**
-     * @return \Generated\Shared\Transfer\RoleTransfer
+     * @return \ArrayObject<\Generated\Shared\Transfer\RoleTransfer>
      */
-    protected function createRole(): RoleTransfer
+    protected function createRoles(): ArrayObject
     {
+        $roles = [];
+        $rules = $this->getAclRoleRules();
         $groupTransfer = (new GroupTransfer())
             ->setName($this->config->getBfxGroupName());
 
-        return (new RoleTransfer())
-            ->setName($this->config->getBfxGroupName())
-            ->setAclRules($this->getAclRoleRules())
-            ->setAclGroup($groupTransfer);
+        foreach ($rules as $ruleTransfer) {
+            $groupName = $this->config->getBfxGroupName();
+            $roleName = $ruleTransfer->getBundle() === AclConstants::BFX_REPORTS_GUI
+                ? $groupName : $groupName . ' MP';
+
+            $roles[] = (new RoleTransfer())
+                ->setName($roleName)
+                ->setAclRules(new ArrayObject([$ruleTransfer]))
+                ->setAclGroup($groupTransfer);
+        }
+
+        return new ArrayObject($roles);
     }
 
     /**
@@ -61,7 +72,8 @@ class BfxAclRoleCreator implements BfxAclRoleCreatorInterface
     protected function createGroup(): GroupTransfer
     {
         return (new GroupTransfer())
-            ->setName($this->config->getBfxGroupName());
+            ->setName($this->config->getBfxGroupName())
+            ->setReference($this->config->getBfxGroupReference());
     }
 
     /**

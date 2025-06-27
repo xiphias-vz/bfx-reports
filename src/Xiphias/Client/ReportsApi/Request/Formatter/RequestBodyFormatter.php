@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Client\ReportsApi\Request\Formatter;
 
+use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
 

@@ -53,7 +53,7 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    protected const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+    protected const BLADE_FX_GROUP_NAME = 'BladeFx Reports';
 
     /**
      * @var string
@@ -74,11 +74,6 @@ class ReportsConfig extends AbstractBundleConfig
      * @var string
      */
     protected const DEFAULT_CATEGORY_QUERY_KEY = 'category';
-
-    /**
-     * @var int
-     */
-    protected const DEFAULT_CATEGORY_INDEX = -1;
 
     /**
      * @var int
@@ -140,7 +135,7 @@ class ReportsConfig extends AbstractBundleConfig
      */
     public function getDefaultCategoryIndex(): int
     {
-        return static::DEFAULT_CATEGORY_INDEX;
+        return ReportsConstants::DEFAULT_CATEGORY_INDEX;
     }
 
     /**

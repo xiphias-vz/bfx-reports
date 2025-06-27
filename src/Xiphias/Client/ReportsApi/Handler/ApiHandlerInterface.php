@@ -21,6 +21,8 @@ use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 
 interface ApiHandlerInterface
 {

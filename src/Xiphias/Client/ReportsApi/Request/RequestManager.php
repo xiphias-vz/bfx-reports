@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Psr\Http\Message\RequestInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Log\LoggerTrait;
@@ -181,6 +182,14 @@ class RequestManager implements RequestManagerInterface
     public function getCreateOrUpdateUserOnBladeFxRequest(string $resource, BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer): RequestInterface
     {
         $validator = $this->requestFactory->createCreateOrUpdateUserOnBladeFxRequestValidator();
+        $this->validateRequest($validator, $requestTransfer);
+
+        return $this->requestBuilder->buildRequest($resource, $requestTransfer);
+    }
+
+    public function getUpdatePasswordOnBladeFxRequest(string $resource, BladeFxUpdatePasswordRequestTransfer $requestTransfer): RequestInterface
+    {
+        $validator = $this->requestFactory->createUpdatePasswordOnBladeFxRequestValidator();
         $this->validateRequest($validator, $requestTransfer);
 
         return $this->requestBuilder->buildRequest($resource, $requestTransfer);

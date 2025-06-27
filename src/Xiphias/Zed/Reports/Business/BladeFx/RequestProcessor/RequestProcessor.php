@@ -94,10 +94,11 @@ class RequestProcessor implements RequestProcessorInterface
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string|null $attribute
      *
      * @return array
      */
-    public function processGetReportsRequest(Request $request): array
+    public function processGetReportsRequest(Request $request, ?string $attribute = ''): array
     {
         $categoryId = $request->query->getInt(
             $this->config->getCategoryQueryKey(),
@@ -107,7 +108,7 @@ class RequestProcessor implements RequestProcessorInterface
         $reportsReaderRequestTransfer = (new ReportsReaderRequestTransfer())->setActiveCategory($categoryId);
 
         return $this->reportsReader
-            ->getReportsList($reportsReaderRequestTransfer)
+            ->getReportsList($reportsReaderRequestTransfer, $attribute)
             ->getReportsList()
             ->getArrayCopy();
     }

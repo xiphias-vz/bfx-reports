@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Tabs;
@@ -8,9 +7,17 @@ namespace Xiphias\Zed\Reports\Communication\Tabs;
 use Generated\Shared\Transfer\TabItemTransfer;
 use Generated\Shared\Transfer\TabsViewTransfer;
 use Spryker\Zed\Gui\Communication\Tabs\AbstractTabs;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 class OrderOverviewTabs extends AbstractTabs
 {
+    /**
+     * @param string $resource
+     */
+    public function __construct(protected string $resource)
+    {
+    }
+
     /**
      * @var string
      */
@@ -20,6 +27,16 @@ class OrderOverviewTabs extends AbstractTabs
      * @var string
      */
     public const ORDER_TITLE = 'Order Overview';
+
+    /**
+     * @var string
+     */
+    public const CUSTOMER_NAME = 'customer';
+
+    /**
+     * @var string
+     */
+    public const CUSTOMER_TITLE = 'Customer Overview';
 
     /**
      * @var string
@@ -38,12 +55,14 @@ class OrderOverviewTabs extends AbstractTabs
      */
     protected function build(TabsViewTransfer $tabsViewTransfer): TabsViewTransfer
     {
-        $this
-            ->addOrderOverviewTab($tabsViewTransfer)
-            ->addReportTableTab($tabsViewTransfer);
+        match ($this->resource) {
+            ReportsConstants::BLADE_FX_ORDER_PARAM_NAME => $this->addOrderOverviewTab($tabsViewTransfer),
+            ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME => $this->addCustomerOverviewTab($tabsViewTransfer),
+            default => null
+        };
 
-        $tabsViewTransfer
-            ->setIsNavigable(true);
+        $this->addReportTableTab($tabsViewTransfer);
+        $tabsViewTransfer->setIsNavigable(true);
 
         return $tabsViewTransfer;
     }
@@ -60,6 +79,24 @@ class OrderOverviewTabs extends AbstractTabs
             ->setName(static::ORDER_NAME)
             ->setTitle(static::ORDER_TITLE)
             ->setTemplate($this->getOrderTemplate());
+
+        $tabsViewTransfer->addTab($tabItemTransfer);
+
+        return $this;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
+     *
+     * @return $this
+     */
+    protected function addCustomerOverviewTab(TabsViewTransfer $tabsViewTransfer)
+    {
+        $tabItemTransfer = new TabItemTransfer();
+        $tabItemTransfer
+            ->setName(static::CUSTOMER_NAME)
+            ->setTitle(static::CUSTOMER_TITLE)
+            ->setTemplate($this->getCustomerTemplate());
 
         $tabsViewTransfer->addTab($tabItemTransfer);
 
@@ -95,8 +132,16 @@ class OrderOverviewTabs extends AbstractTabs
     /**
      * @return string
      */
+    protected function getCustomerTemplate(): string
+    {
+        return '@Customer/_partials/_tabs/customer-overview.twig';
+    }
+
+    /**
+     * @return string
+     */
     protected function getReportsTemplate(): string
     {
-        return '@Sales/_partials/_tabs/report-list.twig';
+        return '@Reports/_partials/_tabs/report-list.twig';
     }
 }

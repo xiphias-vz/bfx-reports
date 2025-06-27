@@ -24,6 +24,7 @@ use Xiphias\Client\ReportsApi\Response\Validator\ReportPreviewResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ReportsListResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface;
 use Xiphias\Client\ReportsApi\Response\Validator\SetFavoriteReportResponseValidator;
+use Xiphias\Client\ReportsApi\Response\Validator\UpdatePasswordOnBladeFxResponseValidator;
 
 class ResponseFactory implements ResponseFactoryInterface
 {

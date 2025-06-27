@@ -50,4 +50,20 @@ class UpdatePasswordOnBladeFxRequestBuilder extends AbstractRequestBuilder
 
         return new Request($this->getMethodName(), $uri, $headers, $encodedData);
     }
+
+    /**
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $requestTransfer
+     *
+     * @return array
+     */
+    protected function getUrlParamsFromRequestTransfer(AbstractTransfer $requestTransfer): array
+    {
+        /** @var \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $reportParamFormRequestTransfer */
+        $reportParamFormRequestTransfer = $requestTransfer;
+
+        return [
+            'user_id' => $reportParamFormRequestTransfer->getBladeFxUserId(),
+            'password' => $reportParamFormRequestTransfer->getPassword(),
+        ];
+    }
 }

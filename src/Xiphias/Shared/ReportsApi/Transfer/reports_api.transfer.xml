@@ -240,14 +240,8 @@
 
     <transfer name="BladeFxUpdatePasswordRequest">
         <property name="token" type="BladeFxToken" />
-        <property name="email" type="string" />
-        <property name="firstName" type="string" />
-        <property name="lastName" type="string" />
+        <property name="bladeFxUserId" type="int" />
         <property name="password" type="string" />
-        <property name="roleName" type="string" />
-        <property name="companyId" type="int" />
-        <property name="languageId" type="int" />
-        <property name="isActive" type="bool"/>
     </transfer>
 
     <transfer name="BladeFxUpdatePasswordResponse">

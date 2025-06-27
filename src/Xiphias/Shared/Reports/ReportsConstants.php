@@ -139,7 +139,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+    public const BLADE_FX_GROUP_NAME = 'BladeFx Reports';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_GROUP_REFERENCE = 'bladefx-reports';
 
     /**
      * @var string
@@ -180,4 +185,9 @@ class ReportsConstants
      * @var string
      */
     public const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
+
+    /**
+     * @var int
+     */
+    public const DEFAULT_CATEGORY_INDEX = -1;
 }

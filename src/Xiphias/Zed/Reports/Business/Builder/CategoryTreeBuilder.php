@@ -1,10 +1,21 @@
 <?php
 
 
-namespace Xiphias\Zed\Reports\Communication\Builder;
+namespace Xiphias\Zed\Reports\Business\Builder;
+
+use Symfony\Component\HttpFoundation\Request;
+use Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface;
 
 class CategoryTreeBuilder implements CategoryTreeBuilderInterface
 {
+    /**
+     * @param \Xiphias\Zed\Reports\Business\BladeFx\RequestProcessor\RequestProcessorInterface $requestProcessor
+     */
+    public function __construct(
+        protected RequestProcessorInterface $requestProcessor
+    ) {
+    }
+
     /**
      * @var string
      */
@@ -21,11 +32,23 @@ class CategoryTreeBuilder implements CategoryTreeBuilderInterface
     public const KEY_PARENT_COUNT = 'parentCount';
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
+    public function buildCategoryTree(Request $request): array
+    {
+        $categories = $this->requestProcessor->processCategoryTreeListRequest($request);
+
+        return $this->assembleCategoryTree($categories);
+    }
+
+    /**
      * @param array $categories
      *
      * @return array
      */
-    public function buildCategoryTree(array $categories): array
+    public function assembleCategoryTree(array $categories): array
     {
         $categoryTree = [];
         foreach ($categories as $category) {

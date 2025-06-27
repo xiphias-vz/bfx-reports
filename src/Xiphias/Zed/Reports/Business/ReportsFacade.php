@@ -49,11 +49,31 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
      *
      * @return array
      */
+    public function buildCategoryTree(Request $request): array
+    {
+        return $this->getFactory()->createCategoryTreeBuilder()->buildCategoryTree($request);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
     public function processCategoryTreeListRequest(Request $request): array
     {
         return $this->getFactory()
             ->createRequestProcessor()
             ->processCategoryTreeListRequest($request);
+    }
+
+    /**
+     * @param array<int, mixed> $categories
+     *
+     * @return array<int, mixed>
+     */
+    public function assembleCategoryTree(array $categories): array
+    {
+        return $this->getFactory()->createCategoryTreeBuilder()->assembleCategoryTree($categories);
     }
 
     /**
@@ -66,18 +86,6 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
         $this->getFactory()
             ->createRequestProcessor()
             ->processSetFavoriteReportRequest($request);
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
-    public function processGetReportsRequest(Request $request): array
-    {
-        return $this->getFactory()
-            ->createRequestProcessor()
-            ->processGetReportsRequest($request);
     }
 
     /**
@@ -116,6 +124,19 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     public function getAllReports(?string $attribute = ''): BladeFxGetReportsListResponseTransfer
     {
         return $this->getFactory()->createBladeFxReportListReader()->getReportList($attribute);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string|null $attribute
+     *
+     * @return array
+     */
+    public function processGetReportsRequest(Request $request, ?string $attribute = ''): array
+    {
+        return $this->getFactory()
+            ->createRequestProcessor()
+            ->processGetReportsRequest($request, $attribute);
     }
 
     /**
