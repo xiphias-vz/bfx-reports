@@ -4,9 +4,10 @@
 namespace Xiphias\Client\ReportsApi\Response\Converter;
 
 use Generated\Shared\Transfer\BladeFxApiResponseConversionResultTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 
-class CreateOrUpdateUserOnBladeFxResponseConverter extends AbstractResponseConverter
+class UpdatePasswordOnBladeFxResponseConverter extends AbstractResponseConverter
 {
     /**
      * @param \Generated\Shared\Transfer\BladeFxApiResponseConversionResultTransfer $apiResponseConversionResultTransfer
@@ -18,10 +19,9 @@ class CreateOrUpdateUserOnBladeFxResponseConverter extends AbstractResponseConve
         BladeFxApiResponseConversionResultTransfer $apiResponseConversionResultTransfer,
         array $responseData
     ): BladeFxApiResponseConversionResultTransfer {
-        $bladeFxCreateOrUpdateUserOnBfx = new BladeFxCreateOrUpdateUserResponseTransfer();
+        $bladeFxUpdatePassword = new BladeFxUpdatePasswordResponseTransfer();
+        $bladeFxUpdatePassword->fromArray($responseData);
 
-        $bladeFxCreateOrUpdateUserOnBfx->fromArray($responseData);
-
-        return $apiResponseConversionResultTransfer->setBladeFxCreateOrUpdateUserResponse($bladeFxCreateOrUpdateUserOnBfx);
+        return $apiResponseConversionResultTransfer->setBladeFxUpdatePasswordResponse($bladeFxUpdatePassword);
     }
 }

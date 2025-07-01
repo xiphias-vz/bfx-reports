@@ -14,6 +14,7 @@ use Xiphias\Client\ReportsApi\Response\Converter\ReportPreviewResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\ReportsListResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface;
 use Xiphias\Client\ReportsApi\Response\Converter\SetFavoriteReportResponseConverter;
+use Xiphias\Client\ReportsApi\Response\Converter\UpdatePasswordOnBladeFxResponseConverter;
 use Xiphias\Client\ReportsApi\Response\Validator\AuthenticationResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\CategoriesListResponseValidator;
 use Xiphias\Client\ReportsApi\Response\Validator\CreateOrUpdateUserOnBladeFxResponseValidator;

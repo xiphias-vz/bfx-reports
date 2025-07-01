@@ -6,6 +6,7 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 use Exception;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\UserTransfer;
@@ -87,7 +88,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     {
         return (new BladeFxUpdatePasswordRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
-            ->setUserId($responseTransfer->getId())
+            ->setBladeFxUserId($responseTransfer->getId())
             ->setPassword($userTransfer->getPassword());
     }
 

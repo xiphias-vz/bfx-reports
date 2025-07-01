@@ -3,7 +3,7 @@
 
 namespace Xiphias\Client\ReportsApi\Request\Validator;
 
-use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException;
 
@@ -32,8 +32,8 @@ class UpdatePasswordOnBladeFxRequestValidator extends AbstractRequestValidator
 
             $requestTransferCasted
                 ->requireToken()
-                ->requireRepId()
-                ->requireUserId();
+                ->requirePassword()
+                ->requireBladeFxUserId();
         } catch (RequiredTransferPropertyException) {
             return false;
         }

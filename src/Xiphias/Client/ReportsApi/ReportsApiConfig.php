@@ -119,7 +119,7 @@ class ReportsApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const GET_UPDATE_PASSWORD_API_RESOURCE = 'api/Users/UserSetNewPwdClean';
+    public const GET_UPDATE_PASSWORD_API_RESOURCE = '/api/Users/UserSetNewPwdClean';
     /**
      * @var array
      */

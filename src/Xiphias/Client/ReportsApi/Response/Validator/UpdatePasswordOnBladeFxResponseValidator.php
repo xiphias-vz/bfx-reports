@@ -3,7 +3,7 @@
 
 namespace Xiphias\Client\ReportsApi\Response\Validator;
 
-use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException;
 
@@ -23,11 +23,11 @@ class UpdatePasswordOnBladeFxResponseValidator extends AbstractResponseValidator
      *
      * @return bool
      */
-    protected function validateResponse(AbstractTransfer|BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer): bool
+    protected function validateResponse(AbstractTransfer|BladeFxUpdatePasswordResponseTransfer $responseTransfer): bool
     {
         try {
             /**
-             * @var \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransferCasted
+             * @var \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer $responseTransferCasted
              */
             $responseTransferCasted = $responseTransfer;
 

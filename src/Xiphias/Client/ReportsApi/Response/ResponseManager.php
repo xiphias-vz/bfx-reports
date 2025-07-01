@@ -193,7 +193,7 @@ class ResponseManager implements ResponseManagerInterface
         $validator = $this->responseFactory->createUpdatePasswordOnBladeFxResponseValidator();
         $this->validateResponse($validator, $converterResultTransfer->getBladeFxUpdatePasswordResponse());
 
-        return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
+        return $converterResultTransfer->getBladeFxUpdatePasswordResponse();
     }
 
     /**
