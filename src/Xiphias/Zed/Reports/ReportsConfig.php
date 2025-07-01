@@ -53,7 +53,7 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    protected const BLADE_FX_GROUP_NAME = 'BladeFx-Reports';
+    protected const BLADE_FX_GROUP_NAME = 'BladeFx Reports';
 
     /**
      * @var string

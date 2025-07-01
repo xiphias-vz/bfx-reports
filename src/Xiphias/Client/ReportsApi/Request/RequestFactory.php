@@ -17,6 +17,7 @@ use Xiphias\Client\ReportsApi\Request\Builder\ReportPreviewRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\ReportsListRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 use Xiphias\Client\ReportsApi\Request\Builder\SetFavoriteReportRequestBuilder;
+use Xiphias\Client\ReportsApi\Request\Builder\UpdatePasswordOnBladeFxRequestBuilder;
 use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatter;
 use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
 use Xiphias\Client\ReportsApi\Request\Mapper\RequestMapper;
@@ -31,6 +32,7 @@ use Xiphias\Client\ReportsApi\Request\Validator\ReportPreviewRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\ReportsListRequestValidator;
 use Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface;
 use Xiphias\Client\ReportsApi\Request\Validator\SetFavoriteReportRequestValidator;
+use Xiphias\Client\ReportsApi\Request\Validator\UpdatePasswordOnBladeFxRequestValidator;
 
 class RequestFactory extends ReportsApiFactory implements RequestFactoryInterface
 {
@@ -105,6 +107,43 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
     {
         return new CreateOrUpdateUserOnBladeFxRequestValidator();
     }
+
+    public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestValidator();
+    }
+
+
+    public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestBuilder(
+            $this->getConfig(),
+            $this->getUtilEncodingService(),
+            $this->createRequestBodyFormatter(),
+        );
+    }
+
+
+    /**
+     * @return RequestValidatorInterface
+     */
+    public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestValidator();
+    }
+
+    /**
+     * @return RequestBuilderInterface
+     */
+    public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface
+    {
+        return new UpdatePasswordOnBladeFxRequestBuilder(
+            $this->getConfig(),
+            $this->getUtilEncodingService(),
+            $this->createRequestBodyFormatter(),
+        );
+    }
+
 
     /**
      * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface

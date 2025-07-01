@@ -22,7 +22,10 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
      */
     public function checkIfB2CBackofficeUserApplicableForCreationOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->findBladeFxBOGroupById($userTransfer->getGroup()) && !$this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
+        $groups = $userTransfer->getGroup();
+        if (!$groups) return false;
+
+        return $this->findBladeFxBOGroupById($groups) && !$this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**
@@ -32,7 +35,10 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
      */
     public function checkIfB2CBackofficeUserApplicableForUpdateOnBfx(UserTransfer $userTransfer): bool
     {
-        return $this->findBladeFxBOGroupById($userTransfer->getGroup()) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
+        $groups = $userTransfer->getGroup();
+        if (!$groups) return false;
+
+        return $this->findBladeFxBOGroupById($groups) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**
@@ -42,7 +48,10 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
      */
     public function checkIfB2CBackofficeUserApplicableForDeleteOnBfx(UserTransfer $userTransfer): bool
     {
-        return !$this->findBladeFxBOGroupById($userTransfer->getGroup()) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
+        $groups = $userTransfer->getGroup();
+        if (!$groups) return false;
+
+        return !$this->findBladeFxBOGroupById($groups) && $this->checkIfUserHasBfxBOGroup($userTransfer->getIdUser());
     }
 
     /**

@@ -6,6 +6,8 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 use Exception;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
@@ -69,10 +71,25 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         $requestTransfer = $this->generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer($userTransfer, $isActive);
 
         try {
-//            $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
+            $responseTransfer = $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
+            if ($isActive && $responseTransfer->getSuccess()) {
+                $passwordUpdateRequestTransfer = $this->generateAuthenticatedUpdatePasswordOnBladeFxRequest($userTransfer, $responseTransfer);
+                $this->reportsApiClient->sendUpdatePasswordOnBladeFxRequest($passwordUpdateRequestTransfer);
+            }
         } catch (Exception $exception) {
             return;
         }
+    }
+
+    public function generateAuthenticatedUpdatePasswordOnBladeFxRequest(
+        UserTransfer $userTransfer,
+        BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
+    ): BladeFxUpdatePasswordRequestTransfer
+    {
+        return (new BladeFxUpdatePasswordRequestTransfer())
+            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
+            ->setBladeFxUserId($responseTransfer->getId())
+            ->setPassword($userTransfer->getPassword());
     }
 
     /**
