@@ -1,8 +1,14 @@
-{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Reports' | trans } %}
-    {% block widget_content %}
-        {{ bfxReportsTable | raw }}
+{% if isLoggedInBladeFx %}
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Reports' | trans } %}
+        {% block widget_content %}
+            {{ bfxReportsTable | raw }}
 
-        {% include '@Reports/_partials/modal.twig' %}
-        <script src="{{ assetsPath('js/reports.js') }}"></script>
-    {% endblock %}
-{% endembed %}
+            {% include '@Reports/_partials/modal.twig' %}
+            <script src="{{ assetsPath('js/reports.js') }}"></script>
+        {% endblock %}
+    {% endembed %}
+{% else %}
+    <div>
+        <h2> {{ 'bfx.reports.no_access' | trans }} </h2>
+    </div>
+{% endif %}

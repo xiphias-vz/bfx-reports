@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Communication\Controller;
 
 use Generated\Shared\Transfer\BladeFxReportTransfer;
+use Generated\Shared\Transfer\MessageTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -41,6 +42,10 @@ class IndexController extends AbstractController
 
         $categoryQueryKey = $config->getCategoryQueryKey();
         $defaultCategoryIndex = $config->getDefaultCategoryIndex();
+
+        if (!$this->isLoggedInBladeFx()) {
+            $this->createErrorMessage();
+        }
 
         return $this->viewResponse([
             'categoryTree' => $categoryTree,
@@ -156,5 +161,26 @@ class IndexController extends AbstractController
     protected function formatRequestParameters(Request $request): array
     {
         return $this->getFactory()->createParameterFormatter()->formatRequestParameters($request);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isLoggedInBladeFx(): bool
+    {
+        return $this->getFactory()->getSessionClient()->has(
+            $this->getFactory()->getConfig()->getBfxTokenSessionKey()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    protected function createErrorMessage(): void
+    {
+        $this->addErrorMessage(
+            (new MessageTransfer())
+                ->setValue('bfx.reports.login_failed')
+        );
     }
 }
