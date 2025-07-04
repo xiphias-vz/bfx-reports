@@ -1,3 +1,5 @@
 "BladeFx Reports","BladeFx Reports"
 bfx.reports.add_to_favorites.success,Report added to favorites
 bfx.reports.remove_from_favorites.success,Report removed from favorites
+bfx.reports.no_access,You're currently not logged into BladeFx. Please contact your admin if you'd like access to BladeFx functionalities.
+bfx.reports.login_failed,"Login on BladeFx failed, to use BladeFx features try logging in with a different user or at a later time"

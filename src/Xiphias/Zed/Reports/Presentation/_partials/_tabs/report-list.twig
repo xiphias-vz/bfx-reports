@@ -1,8 +1,14 @@
-{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Reports' | trans } %}
-    {% block widget_content %}
-        {{ bfxReportsTable | raw }}
+{% if isLoggedInBladeFx %}
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Reports' | trans } %}
+        {% block widget_content %}
+            {{ bfxReportsTable | raw }}
 
-        {% include '@Reports/_partials/modal.twig' %}
-        <script src="{{ assetsPath('js/reports.js') }}"></script>
-    {% endblock %}
-{% endembed %}
+            {% include '@Reports/_partials/modal.twig' %}
+            <script src="{{ assetsPath('js/reports.js') }}"></script>
+        {% endblock %}
+    {% endembed %}
+{% else %}
+    <div>
+        <h6>You're currently not logged into BladeFx. Please contact your admin if you'd like access to BladeFx functionalities.</h6>
+    </div>
+{% endif %}
