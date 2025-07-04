@@ -178,9 +178,6 @@ class IndexController extends AbstractController
      */
     protected function createErrorMessage(): void
     {
-        $this->addErrorMessage(
-            (new MessageTransfer())
-                ->setValue('bfx.reports.login_failed')
-        );
+        $this->addErrorMessage('bfx.reports.login_failed');
     }
 }

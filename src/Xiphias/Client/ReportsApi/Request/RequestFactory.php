@@ -113,25 +113,6 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
         return new UpdatePasswordOnBladeFxRequestValidator();
     }
 
-
-    public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface
-    {
-        return new UpdatePasswordOnBladeFxRequestBuilder(
-            $this->getConfig(),
-            $this->getUtilEncodingService(),
-            $this->createRequestBodyFormatter(),
-        );
-    }
-
-
-    /**
-     * @return RequestValidatorInterface
-     */
-    public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface
-    {
-        return new UpdatePasswordOnBladeFxRequestValidator();
-    }
-
     /**
      * @return RequestBuilderInterface
      */
