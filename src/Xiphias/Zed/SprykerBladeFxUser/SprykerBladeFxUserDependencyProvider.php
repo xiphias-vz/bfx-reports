@@ -24,6 +24,16 @@ class SprykerBladeFxUserDependencyProvider extends AbstractBundleDependencyProvi
     /**
      * @var string
      */
+    public const MESSENGER_FACADE = 'MESSENGER_FACADE';
+
+    /**
+     * @var string
+     */
+    public const EVENT_FACADE = 'EVENT_FACADE';
+
+    /**
+     * @var string
+     */
     public const SESSION_CLIENT = 'SESSION_CLIENT';
 
     /**
@@ -47,6 +57,8 @@ class SprykerBladeFxUserDependencyProvider extends AbstractBundleDependencyProvi
     {
         $container = $this->addBladeFxClient($container);
         $container = $this->addSessionClient($container);
+        $container = $this->addMessengerFacade($container);
+        $container = $this->addEventFacade($container);
         $container = $this->addBladeFxUserHandlerPlugins($container);
 
         return $container;
@@ -97,6 +109,35 @@ class SprykerBladeFxUserDependencyProvider extends AbstractBundleDependencyProvi
 
         return $container;
     }
+
+    /**
+     * @param Container $container
+     *
+     * @return Container
+     */
+    protected function addMessengerFacade(Container $container): Container
+    {
+        $container->set(static::MESSENGER_FACADE, static function (Container $container) {
+            return $container->getLocator()->messenger()->facade();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param Container $container
+     *
+     * @return Container
+     */
+    protected function addEventFacade(Container $container): Container
+    {
+        $container->set(static::EVENT_FACADE, static function (Container $container) {
+            return $container->getLocator()->event()->facade();
+        });
+
+        return $container;
+    }
+
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container

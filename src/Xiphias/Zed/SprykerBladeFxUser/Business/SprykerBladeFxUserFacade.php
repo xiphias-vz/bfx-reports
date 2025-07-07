@@ -91,4 +91,14 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     {
         $this->getFactory()->createBladeFxUserHandler()->executeCreateOrUpdateUserOnBladeFx($userTransfer);
     }
+
+    /**
+     * @param UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function removeBladeFxGroupFromUser(UserTransfer $userTransfer): void
+    {
+        $this->getFactory()->createBladeFxUserHandler()->removeBladeFxGroupFromUser($userTransfer);
+    }
 }

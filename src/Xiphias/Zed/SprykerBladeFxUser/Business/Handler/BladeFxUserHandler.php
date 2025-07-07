@@ -10,10 +10,14 @@ use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\UserTransfer;
+use Generated\Shared\Transfer\MessageTransfer;
 use Spryker\Client\Session\SessionClientInterface;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
+use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
+use Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface;
 use Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig;
 
 class BladeFxUserHandler implements BladeFxUserHandlerInterface
@@ -30,7 +34,10 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         protected SessionClientInterface $sessionClient,
         protected ReportsApiClientInterface $reportsApiClient,
         protected array $bfxUserHandlerPlugins,
-        protected SprykerBladeFxUserConfig $config
+        protected SprykerBladeFxUserConfig $config,
+        protected SprykerBladeFxUserEntityManagerInterface $entityManager,
+        protected MessengerFacadeInterface $messengerFacade,
+        protected EventFacadeInterface $eventFacade,
     ) {
     }
 
@@ -72,9 +79,16 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
 
         try {
             $responseTransfer = $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
-            if ($isActive && $responseTransfer->getSuccess()) {
-                $passwordUpdateRequestTransfer = $this->generateAuthenticatedUpdatePasswordOnBladeFxRequest($userTransfer, $responseTransfer);
-                $this->reportsApiClient->sendUpdatePasswordOnBladeFxRequest($passwordUpdateRequestTransfer);
+            if ($isActive) {
+                if ($responseTransfer->getSuccess()) {
+                    $passwordUpdateRequestTransfer = $this->generateAuthenticatedUpdatePasswordOnBladeFxRequest($userTransfer, $responseTransfer);
+                    $this->reportsApiClient->sendUpdatePasswordOnBladeFxRequest($passwordUpdateRequestTransfer);
+                }
+
+                if (!$responseTransfer->getSuccess() && $responseTransfer->getLicenceIssue()) {
+                    $this->addErrorMessage(ReportsConstants::USER_CREATE_FAILED_USER_CAP);
+                    $this->eventFacade->trigger(ReportsConstants::EVENT_USER_POST_SAVE_LICENSE_ISSUE, $userTransfer);
+                }
             }
         } catch (Exception $exception) {
             return;
@@ -125,6 +139,29 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
             ->addCustomFields((new BladeFxCreateOrUpdateUserCustomFieldsTransfer())
                 ->setFieldName($this->config->getSprykerUserIdKey())
                 ->setFieldValue((string)($userTransfer->getIdUser())));
+    }
+
+    /**
+     * @param UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function removeBladeFxGroupFromUser(UserTransfer $userTransfer): void
+    {
+        $this->entityManager->deleteUserHasGroupsByUserIdAndGroupId(
+            $userTransfer->getIdUser(),
+            $this->bladeFXUserChecker->getBladeFxGroupId(),
+        );
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    public function addErrorMessage(string $message): void
+    {
+        $this->messengerFacade->addErrorMessage((new MessageTransfer())->setValue($message));
     }
 
     /**

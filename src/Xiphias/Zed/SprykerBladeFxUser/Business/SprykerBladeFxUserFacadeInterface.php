@@ -62,4 +62,11 @@ interface SprykerBladeFxUserFacadeInterface
      * @return void
      */
     public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void;
+
+    /**
+     * @param UserTransfer $userTransfer
+     *
+     * @return void
+     */
+    public function removeBladeFxGroupFromUser(UserTransfer $userTransfer): void;
 }

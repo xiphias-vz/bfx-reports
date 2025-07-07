@@ -54,4 +54,9 @@ interface BladeFXUserCheckerInterface
      * @return bool
      */
     public function checkIfUserIsAdmin(?UserTransfer $userTransfer = null): bool;
+
+    /**
+     * @return int
+     */
+    public function getBladeFxGroupId(): int;
 }

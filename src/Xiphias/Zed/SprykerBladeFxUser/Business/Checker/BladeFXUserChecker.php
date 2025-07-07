@@ -97,4 +97,12 @@ class BladeFXUserChecker implements BladeFXUserCheckerInterface
 
         return $this->sprykerBladeFxUserRepository->checkIfUserHasAdminGroup($userTransfer);
     }
+
+    /**
+     * @return int
+     */
+    public function getBladeFxGroupId(): int
+    {
+        return $this->sprykerBladeFxUserRepository->getBladeFxBOGroupId();
+    }
 }

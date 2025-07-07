@@ -3,6 +3,8 @@
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Business;
 
+use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
@@ -15,6 +17,7 @@ use Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserDependencyProvider;
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig getConfig()
  * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserRepositoryInterface getRepository();
+ * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface getEntityManager();
  */
 class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
 {
@@ -29,6 +32,9 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
             $this->getBladeFxClient(),
             $this->getBladeFxUserHandlerPlugins(),
             $this->getConfig(),
+            $this->getEntityManager(),
+            $this->getMessengerFacade(),
+            $this->getEventFacade(),
         );
     }
 
@@ -56,6 +62,23 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
     protected function getBladeFxClient(): ReportsApiClientInterface
     {
         return $this->getProvidedDependency(SprykerBladeFxUserDependencyProvider::BLADE_FX_CLIENT);
+    }
+
+    /**
+     * @return MessengerFacadeInterface
+     */
+    protected function getMessengerFacade(): MessengerFacadeInterface
+    {
+        return $this->getProvidedDependency(SprykerBladeFxUserDependencyProvider::MESSENGER_FACADE);
+    }
+
+    /**
+     * @return EventFacadeInterface
+     */
+    protected function getEventFacade(): EventFacadeInterface
+    {
+        return $this->getProvidedDependency(SprykerBladeFxUserDependencyProvider::EVENT_FACADE);
+
     }
 
     /**
