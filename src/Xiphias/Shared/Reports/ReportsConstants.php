@@ -190,4 +190,14 @@ class ReportsConstants
      * @var int
      */
     public const DEFAULT_CATEGORY_INDEX = -1;
+
+    /**
+     * @var string
+     */
+    public const EVENT_USER_POST_SAVE_LICENSE_ISSUE = 'SprykerBladeFxUser.user.post_save.license_issue';
+
+    /**
+     * @var string
+     */
+    public const USER_CREATE_FAILED_USER_CAP = 'bfx.reports.create_failed.user_cap';
 }
