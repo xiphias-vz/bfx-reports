@@ -48,16 +48,6 @@ class ReportsConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    protected const BLADE_FX_MERCHANT_PORTAL_GROUP_NAME = 'BladeFx-Reports-MP';
-
-    /**
-     * @var string
-     */
-    protected const BLADE_FX_GROUP_NAME = 'BladeFx Reports';
-
-    /**
-     * @var string
-     */
     protected const MERCHANT_ID_KEY = 'merchant_id';
 
     /**
@@ -264,22 +254,6 @@ class ReportsConfig extends AbstractBundleConfig
     public function getParamFormRootUrl(): string
     {
         return $this->get(ReportsConstants::BLADE_FX_ROOT_URL);
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxBOGroupName(): string
-    {
-        return static::BLADE_FX_GROUP_NAME;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBladeFxMerchantPortalGroupName(): string
-    {
-        return static::BLADE_FX_MERCHANT_PORTAL_GROUP_NAME;
     }
 
     /**

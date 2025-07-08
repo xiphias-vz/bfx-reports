@@ -2,5 +2,6 @@
 bfx.reports.add_to_favorites.success,Bericht zu Favoriten hinzugefügt
 bfx.reports.remove_from_favorites.success,Bericht aus Favoriten entfernt
 bfx.reports.no_access,"Sie sind derzeit nicht bei BladeFx angemeldet. Bitte wenden Sie sich an Ihren Administrator, wenn Sie Zugriff auf die BladeFx-Funktionen wünschen."
-bfx.reports.create_failed.user_cap,"Der BladeFx-Benutzer konnte nicht erstellt werden. Sie haben die maximale Benutzeranzahl für Ihre Lizenz erreicht. Entfernen Sie aktive Benutzer auf BladeFx, indem Sie sie bearbeiten und die Gruppe %s abwählen. Versuchen Sie es dann erneut."
+bfx.reports.create_update_delete.failed,"Beim Aktualisieren des Benutzers auf BladeFx ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut."
+bfx.reports.create_update_delete.failed.user_cap,"Der BladeFx-Benutzer konnte nicht erstellt werden. Sie haben die maximale Benutzeranzahl für Ihre Lizenz erreicht. Entfernen Sie aktive Benutzer auf BladeFx, indem Sie sie bearbeiten und die Gruppe %s abwählen. Versuchen Sie es dann erneut."
 bfx.reports.login_failed,"Die Anmeldung bei BladeFx ist fehlgeschlagen. Um die BladeFx-Funktionen zu verwenden, versuchen Sie, sich mit einem anderen Benutzer oder zu einem späteren Zeitpunkt anzumelden."

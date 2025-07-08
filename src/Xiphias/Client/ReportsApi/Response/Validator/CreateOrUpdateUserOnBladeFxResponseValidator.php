@@ -31,6 +31,9 @@ class CreateOrUpdateUserOnBladeFxResponseValidator extends AbstractResponseValid
             $responseTransferCasted = $responseTransfer;
 
             $responseTransferCasted->requireSuccess();
+            $responseTransferCasted->requireId();
+            $responseTransferCasted->requireLicenceIssue();
+            $responseTransferCasted->requireStatusCode();
         } catch (RequiredTransferPropertyException) {
             return false;
         }

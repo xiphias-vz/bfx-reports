@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Xiphias\Client\ReportsApi\Response\Converter;
 
@@ -18,6 +19,9 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
      */
     protected const ERROR_INVALID_RESPONSE_MISSING_PROPERTY = '%s Invalid Response: Missing response property values.';
 
+    /**
+     * @var UtilEncodingServiceInterface
+     */
     private UtilEncodingServiceInterface $utilEncodingService;
 
     /**
@@ -36,7 +40,7 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
     public function convert(ResponseInterface $response): BladeFxApiResponseConversionResultTransfer
     {
         $responseData = $this->decodeResponse($response);
-        $responseData = $this->isResponseSuccessful($responseData) ? $responseData : [];
+        $responseData = is_array($responseData) ? $responseData: [$responseData];
         $bladeFxApiResponseConversionResultTransfer = $this->createConversionResultTransfer();
 
         return $this->expandConversionResponseTransfer(
@@ -59,9 +63,9 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return array
+     * @return array|string|null
      */
-    private function decodeResponse(ResponseInterface $response): array
+    private function decodeResponse(ResponseInterface $response): array|string|null
     {
         $bodyContent = $response->getBody()->getContents();
         if (!$bodyContent) {
@@ -74,34 +78,6 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
         }
 
         return $this->utilEncodingService->decodeJson($bodyContent, true);
-    }
-
-    /**
-     * @param array $responseData
-     *
-     * @return bool
-     */
-    protected function isResponseSuccessful(array $responseData): bool
-    {
-        if (isset($responseData['success'])) {
-            if ($responseData['success'] === false) {
-                return false;
-            }
-        }
-
-        if (isset($responseData['status'])) {
-            if ($responseData['status'] !== 200) {
-                return false;
-            }
-        }
-
-        if (isset($responseData[0])) {
-            if (isset($responseData[0]['ErrCode'])) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**
