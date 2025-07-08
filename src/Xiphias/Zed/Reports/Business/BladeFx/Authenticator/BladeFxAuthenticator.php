@@ -71,17 +71,22 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
      */
     public function authenticate(?Request $request = null, ?UserTransfer $userTransfer = null): void
     {
-        $validatedAuthenticationRequestTransfer = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer)
-            ? $this->getRootUserAuthenticationRequestTransfer()
-            : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
+        $isAdmin = $this->bladeFxUserFacade->checkIfUserIsAdmin($userTransfer);
+        $hasBfxGroup = $this->bladeFxUserFacade->hasUserBfxGroup($userTransfer->getIdUser());
 
-        try {
-            $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
-                $validatedAuthenticationRequestTransfer,
-            );
+        if ($isAdmin || $hasBfxGroup) {
+            $validatedAuthenticationRequestTransfer = $isAdmin
+                ? $this->getRootUserAuthenticationRequestTransfer()
+                : $this->getAuthenticationRequestTransfer($request->request->getIterator()->current());
 
-            $this->executePostAuthenticationPlugins($authenticationResponseTransfer);
-        } catch (Exception $exception) {
+            try {
+                $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
+                    $validatedAuthenticationRequestTransfer,
+                );
+
+                $this->executePostAuthenticationPlugins($authenticationResponseTransfer);
+            } catch (Exception $exception) {
+            }
         }
     }
 

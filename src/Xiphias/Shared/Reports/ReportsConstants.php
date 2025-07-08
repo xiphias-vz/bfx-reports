@@ -149,7 +149,7 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const MARKETPLACE_ONLY_CLASS = 'Generated\Shared\Transfer\MerchantUserTransfer';
+    public const MARKETPLACE_ONLY_CLASS = 'Xiphias\Zed\BfxReportsMerchantPortalGui\BfxReportsMerchantPortalGuiDependencyProvider';
 
     /**
      * @var string
@@ -199,5 +199,10 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const USER_CREATE_FAILED_USER_CAP = 'bfx.reports.create_failed.user_cap';
+    public const USER_CREATE_FAILED_USER_CAP_ERROR = 'bfx.reports.create_update_delete.failed.user_cap';
+
+    /**
+     * @var string
+     */
+    public const USER_CREATE_UPDATE_DELETE_FAILED_GENERAL_ERROR = 'bfx.reports.create_update_delete.failed';
 }

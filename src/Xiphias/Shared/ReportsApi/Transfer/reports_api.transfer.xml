@@ -172,7 +172,6 @@
         <property name="report" type="string"/>
     </transfer>
 
-
     <transfer name="BladeFxReport" strict="true">
         <property name="repId" type="int"/>
         <property name="repName" type="string" />
@@ -229,13 +228,14 @@
 
     <transfer name="BladeFxCreateOrUpdateUserResponse">
         <property name="statusCode" type="int" />
-        <property name="success" type="bool"/>
+        <property name="success" type="bool" />
         <property name="rMessage" type="string" />
         <property name="causer" type="string" />
         <property name="id" type="int" />
         <property name="areUsure" type="bool" />
         <property name="optionValue" type="string" />
         <property name="licenceIssue" type="bool" />
+        <property name="errorMessage" type="string" />
     </transfer>
 
     <transfer name="BladeFxUpdatePasswordRequest">
@@ -246,7 +246,7 @@
 
     <transfer name="BladeFxUpdatePasswordResponse">
         <property name="statusCode" type="int" />
-        <property name="success" type="bool"/>
+        <property name="success" type="bool" />
         <property name="rMessage" type="string" />
         <property name="causer" type="string" />
         <property name="id" type="int" />
@@ -261,7 +261,6 @@
         <property name="bladeFxCategoriesListResponse" type="BladeFxCategoriesListResponse"/>
         <property name="bladeFxGetReportsListResponse" type="BladeFxGetReportsListResponse" />
         <property name="bladeFxSetFavoriteReportResponse" type="BladeFxSetFavoriteReportResponse" />
-        <property name="bladeFxAuthenticationResponse" type="BladeFxAuthenticationResponse"/>
         <property name="bladeFxCategoriesListResponse" type="BladeFxCategoriesListResponse"/>
         <property name="bladeFxGetReportsListResponse" type="BladeFxGetReportsListResponse" />
         <property name="bladeFxGetReportParameterListResponse" type="BladeFxGetReportParameterListResponse"/>

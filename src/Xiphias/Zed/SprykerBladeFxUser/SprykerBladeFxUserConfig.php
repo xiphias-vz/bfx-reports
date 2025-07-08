@@ -22,31 +22,6 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
     protected const ROOT_ADMIN_ID = 1;
 
     /**
-     * @var string
-     */
-    protected const SPRYKER_USER_ID_KEY = 'spryker_user_id';
-
-    /**
-     * @var string
-     */
-    protected const MERCHANT_ID_KEY = 'merchant_id';
-
-    /**
-     * @var string
-     */
-    protected const BFX_TOKEN_SESSION_KEY = 'bfx_token';
-
-    /**
-     * @var string
-     */
-    protected const BFX_USER_COMPANY_ID_SESSION_KEY = 'bfx_company_id';
-
-    /**
-     * @var string
-     */
-    protected const BFX_USER_LANGUAGE_ID_SESSION_KEY = 'bfx_language_id';
-
-    /**
      * @return string
      */
     public function getSprykerUserIdKey(): string
@@ -84,6 +59,14 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
     public function getBfxUserLanguageIdSessionKey(): string
     {
         return ReportsConstants::BFX_USER_LANGUAGE_ID_SESSION_KEY;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBladeFxGroupName(): string
+    {
+        return ReportsConstants::BLADE_FX_GROUP_NAME;
     }
 
     /**

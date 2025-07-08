@@ -79,16 +79,27 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
 
         try {
             $responseTransfer = $this->reportsApiClient->sendCreateOrUpdateUserOnBfxRequest($requestTransfer);
+
             if ($isActive) {
                 if ($responseTransfer->getSuccess()) {
                     $passwordUpdateRequestTransfer = $this->generateAuthenticatedUpdatePasswordOnBladeFxRequest($userTransfer, $responseTransfer);
                     $this->reportsApiClient->sendUpdatePasswordOnBladeFxRequest($passwordUpdateRequestTransfer);
+
+                    return;
                 }
 
-                if (!$responseTransfer->getSuccess() && $responseTransfer->getLicenceIssue()) {
-                    $this->addErrorMessage(ReportsConstants::USER_CREATE_FAILED_USER_CAP);
+                if ($responseTransfer->getLicenceIssue()) {
+                    $this->addErrorMessage(
+                        sprintf(
+                            ReportsConstants::USER_CREATE_FAILED_USER_CAP_ERROR,
+                            $this->config->getBladeFxGroupName()
+                    ));
                     $this->eventFacade->trigger(ReportsConstants::EVENT_USER_POST_SAVE_LICENSE_ISSUE, $userTransfer);
                 }
+            }
+
+            if ($responseTransfer->getErrorMessage()) {
+                $this->addErrorMessage($responseTransfer->getErrorMessage());
             }
         } catch (Exception $exception) {
             return;

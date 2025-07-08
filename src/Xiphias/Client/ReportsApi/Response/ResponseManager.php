@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Xiphias\Client\ReportsApi\Exception\ReportsResponseException;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
 use Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface;
+use Xiphias\Shared\Reports\ReportsConstants;
 
 class ResponseManager implements ResponseManagerInterface
 {
@@ -32,6 +33,9 @@ class ResponseManager implements ResponseManagerInterface
      */
     private const ERROR_INVALID_RESPONSE_GENERIC = '%s Invalid Response.';
 
+    /**
+     * @var ResponseFactoryInterface
+     */
     private ResponseFactoryInterface $responseFactory;
 
     /**
@@ -52,7 +56,11 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateRawResponse($response);
         $converterResultTransfer = $this->responseFactory->createAuthenticationResponseConverter()->convert($response);
         $validator = $this->responseFactory->createAuthenticationResponseValidator();
-        $this->validateResponse($validator, $converterResultTransfer->getBladeFxAuthenticationResponse());
+
+        try {
+            $this->validateResponse($validator, $converterResultTransfer->getBladeFxAuthenticationResponse());
+        } catch (ReportsResponseException $e) {
+        }
 
         return $converterResultTransfer->getBladeFxAuthenticationResponse();
     }
@@ -67,7 +75,11 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateRawResponse($response);
         $converterResultTransfer = $this->responseFactory->createCategoriesListResponseConverter()->convert($response);
         $validator = $this->responseFactory->createCategoriesListResponseValidator();
-        $this->validateResponse($validator, $converterResultTransfer->getBladeFxCategoriesListResponse());
+
+        try {
+            $this->validateResponse($validator, $converterResultTransfer->getBladeFxCategoriesListResponse());
+        } catch (ReportsResponseException $e) {
+        }
 
         return $converterResultTransfer->getBladeFxCategoriesListResponse();
     }
@@ -97,9 +109,11 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateRawResponse($response);
         $converterResultTransfer = $this->responseFactory->createSetFavoriteReportResponseConverter()->convert($response);
         $validator = $this->responseFactory->createSetFavoriteReportResponseValidator();
-
-        $this->validateResponse($validator, $converterResultTransfer->getBladeFxSetFavoriteReportResponse());
-
+        try {
+            $this->validateResponse($validator, $converterResultTransfer->getBladeFxSetFavoriteReportResponse());
+        } catch (ReportsResponseException $e) {
+            $converterResultTransfer->getBladeFxSetFavoriteReportResponse()->setSuccess(false);
+        }
         return $converterResultTransfer->getBladeFxSetFavoriteReportResponse();
     }
 
@@ -176,7 +190,12 @@ class ResponseManager implements ResponseManagerInterface
         $this->validateRawResponse($response);
         $converterResultTransfer = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseConverter()->convert($response);
         $validator = $this->responseFactory->createCreateOrUpdateUserOnBfxResponseValidator();
-        $this->validateResponse($validator, $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse());
+        try {
+            $this->validateResponse($validator, $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse());
+        } catch (ReportsResponseException $e) {
+            $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse()->setSuccess(false);
+            $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse()->setErrorMessage(ReportsConstants::USER_CREATE_UPDATE_DELETE_FAILED_GENERAL_ERROR);
+        }
 
         return $converterResultTransfer->getBladeFxCreateOrUpdateUserResponse();
     }
@@ -210,8 +229,6 @@ class ResponseManager implements ResponseManagerInterface
                 self::ERROR_INVALID_RESPONSE_GENERIC,
                 $response,
             );
-
-            throw new ReportsResponseException();
         }
     }
 
