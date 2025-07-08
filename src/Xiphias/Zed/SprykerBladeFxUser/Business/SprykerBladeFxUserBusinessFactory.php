@@ -78,7 +78,6 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
     protected function getEventFacade(): EventFacadeInterface
     {
         return $this->getProvidedDependency(SprykerBladeFxUserDependencyProvider::EVENT_FACADE);
-
     }
 
     /**
