@@ -30,7 +30,7 @@ interface BladeFxUserHandlerInterface
     public function executeCreateOrUpdateUserOnBladeFx(UserTransfer $userTransfer): void;
 
     /**
-     * @param UserTransfer $userTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */

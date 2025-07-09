@@ -7,10 +7,10 @@ use Exception;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Generated\Shared\Transfer\UserTransfer;
+use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
+use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
@@ -22,13 +22,16 @@ use Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig;
 
 class BladeFxUserHandler implements BladeFxUserHandlerInterface
 {
- /**
-  * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
-  * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
-  * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $reportsApiClient
-  * @param array $bfxUserHandlerPlugins
-  * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
-  */
+    /**
+     * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
+     * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
+     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $reportsApiClient
+     * @param array $bfxUserHandlerPlugins
+     * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
+     * @param \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface $entityManager
+     * @param \Spryker\Zed\Messenger\Business\MessengerFacadeInterface $messengerFacade
+     * @param \Spryker\Zed\Event\Business\EventFacadeInterface $eventFacade
+     */
     public function __construct(
         protected BladeFXUserCheckerInterface $bladeFXUserChecker,
         protected SessionClientInterface $sessionClient,
@@ -37,7 +40,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         protected SprykerBladeFxUserConfig $config,
         protected SprykerBladeFxUserEntityManagerInterface $entityManager,
         protected MessengerFacadeInterface $messengerFacade,
-        protected EventFacadeInterface $eventFacade,
+        protected EventFacadeInterface $eventFacade
     ) {
     }
 
@@ -89,11 +92,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
                 }
 
                 if ($responseTransfer->getLicenceIssue()) {
-                    $this->addErrorMessage(
-                        sprintf(
-                            ReportsConstants::USER_CREATE_FAILED_USER_CAP_ERROR,
-                            $this->config->getBladeFxGroupName()
-                    ));
+                    $this->addErrorMessage(ReportsConstants::USER_CREATE_FAILED_USER_CAP_ERROR);
                     $this->eventFacade->trigger(ReportsConstants::EVENT_USER_POST_SAVE_LICENSE_ISSUE, $userTransfer);
                 }
             }
@@ -106,11 +105,16 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         }
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
+     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer
+     */
     public function generateAuthenticatedUpdatePasswordOnBladeFxRequest(
         UserTransfer $userTransfer,
         BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
-    ): BladeFxUpdatePasswordRequestTransfer
-    {
+    ): BladeFxUpdatePasswordRequestTransfer {
         return (new BladeFxUpdatePasswordRequestTransfer())
             ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
             ->setBladeFxUserId($responseTransfer->getId())
@@ -153,7 +157,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     }
 
     /**
-     * @param UserTransfer $userTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */

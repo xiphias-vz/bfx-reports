@@ -104,7 +104,7 @@ class ResponseFactory implements ResponseFactoryInterface
     }
 
     /**
-     * @return ResponseConverterInterface
+     * @return \Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface
      */
     public function createUpdatePasswordOnBladeFxResponseConverter(): ResponseConverterInterface
     {
@@ -192,7 +192,7 @@ class ResponseFactory implements ResponseFactoryInterface
     }
 
     /**
-     * @return ResponseValidatorInterface
+     * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createUpdatePasswordOnBladeFxResponseValidator(): ResponseValidatorInterface
     {

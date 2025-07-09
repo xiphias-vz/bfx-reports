@@ -187,6 +187,12 @@ class RequestManager implements RequestManagerInterface
         return $this->requestBuilder->buildRequest($resource, $requestTransfer);
     }
 
+    /**
+     * @param string $resource
+     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     */
     public function getUpdatePasswordOnBladeFxRequest(string $resource, BladeFxUpdatePasswordRequestTransfer $requestTransfer): RequestInterface
     {
         $validator = $this->requestFactory->createUpdatePasswordOnBladeFxRequestValidator();

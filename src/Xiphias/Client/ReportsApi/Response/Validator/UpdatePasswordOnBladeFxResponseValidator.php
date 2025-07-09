@@ -17,7 +17,6 @@ class UpdatePasswordOnBladeFxResponseValidator extends AbstractResponseValidator
         return BladeFxUpdatePasswordResponseTransfer::class;
     }
 
-
     /**
      * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
      *

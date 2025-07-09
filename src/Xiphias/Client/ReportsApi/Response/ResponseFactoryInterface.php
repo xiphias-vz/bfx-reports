@@ -69,6 +69,11 @@ interface ResponseFactoryInterface
     public function createCreateOrUpdateUserOnBfxResponseConverter(): ResponseConverterInterface;
 
     /**
+     * @return \Xiphias\Client\ReportsApi\Response\Converter\ResponseConverterInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseConverter(): ResponseConverterInterface;
+
+    /**
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createReportByFormatResponseValidator(): ResponseValidatorInterface;
@@ -97,4 +102,9 @@ interface ResponseFactoryInterface
      * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
      */
     public function createCreateOrUpdateUserOnBfxResponseValidator(): ResponseValidatorInterface;
+
+    /**
+     * @return \Xiphias\Client\ReportsApi\Response\Validator\ResponseValidatorInterface
+     */
+    public function createUpdatePasswordOnBladeFxResponseValidator(): ResponseValidatorInterface;
 }

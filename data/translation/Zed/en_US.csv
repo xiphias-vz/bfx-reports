@@ -3,5 +3,5 @@ bfx.reports.add_to_favorites.success,Report added to favorites
 bfx.reports.remove_from_favorites.success,Report removed from favorites
 bfx.reports.no_access,You're currently not logged into BladeFx. Please contact your admin if you'd like access to BladeFx functionalities.
 bfx.reports.create_update_delete.failed,"There's been an issue with updating the user on BladeFx, please try again at a later time"
-bfx.reports.create_update_delete.failed.user_cap,"BladeFx user couldn't be created, you've reached the maximum number of users for your license. Remove active users on BladeFx by editing them and de-selecting the %s group and try again"
+bfx.reports.create_update_delete.failed.user_cap,"BladeFx user couldn't be created, you've reached the maximum number of users for your license. Remove active users on BladeFx by editing them and de-selecting the BladeFx Reports group and try again"
 bfx.reports.login_failed,"Login on BladeFx failed, to use BladeFx features try logging in with a different user or at a later time"

@@ -3,10 +3,10 @@
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Business;
 
-use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Client\Session\SessionClientInterface;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
 use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserChecker;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
@@ -65,7 +65,7 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return MessengerFacadeInterface
+     * @return \Spryker\Zed\Messenger\Business\MessengerFacadeInterface
      */
     protected function getMessengerFacade(): MessengerFacadeInterface
     {
@@ -73,7 +73,7 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return EventFacadeInterface
+     * @return \Spryker\Zed\Event\Business\EventFacadeInterface
      */
     protected function getEventFacade(): EventFacadeInterface
     {

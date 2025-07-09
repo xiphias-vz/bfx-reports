@@ -8,6 +8,9 @@ use Orm\Zed\Acl\Persistence\SpyAclUserHasGroupQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use Xiphias\Shared\Reports\ReportsConfig;
 
+/**
+ * @method \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig getConfig()
+ */
 class SprykerBladeFxUserPersistenceFactory extends AbstractPersistenceFactory
 {
     /**

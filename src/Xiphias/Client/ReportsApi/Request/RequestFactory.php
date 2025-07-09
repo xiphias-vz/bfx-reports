@@ -108,13 +108,16 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
         return new CreateOrUpdateUserOnBladeFxRequestValidator();
     }
 
+    /**
+     * @return \Xiphias\Client\ReportsApi\Request\Validator\RequestValidatorInterface
+     */
     public function createUpdatePasswordOnBladeFxRequestValidator(): RequestValidatorInterface
     {
         return new UpdatePasswordOnBladeFxRequestValidator();
     }
 
     /**
-     * @return RequestBuilderInterface
+     * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface
      */
     public function createUpdatePasswordOnBladeFxRequestBuilder(): RequestBuilderInterface
     {
@@ -124,7 +127,6 @@ class RequestFactory extends ReportsApiFactory implements RequestFactoryInterfac
             $this->createRequestBodyFormatter(),
         );
     }
-
 
     /**
      * @return \Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface

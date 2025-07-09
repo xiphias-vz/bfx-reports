@@ -5,7 +5,6 @@ namespace Xiphias\Client\ReportsApi\Response\Converter;
 
 use Generated\Shared\Transfer\BladeFxApiResponseConversionResultTransfer;
 use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
 
 class UpdatePasswordOnBladeFxResponseConverter extends AbstractResponseConverter
 {

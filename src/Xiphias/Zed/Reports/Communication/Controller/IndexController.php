@@ -6,7 +6,6 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Communication\Controller;
 
 use Generated\Shared\Transfer\BladeFxReportTransfer;
-use Generated\Shared\Transfer\MessageTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -169,7 +168,7 @@ class IndexController extends AbstractController
     protected function isLoggedInBladeFx(): bool
     {
         return $this->getFactory()->getSessionClient()->has(
-            $this->getFactory()->getConfig()->getBfxTokenSessionKey()
+            $this->getFactory()->getConfig()->getBfxTokenSessionKey(),
         );
     }
 

@@ -20,7 +20,7 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
     protected const ERROR_INVALID_RESPONSE_MISSING_PROPERTY = '%s Invalid Response: Missing response property values.';
 
     /**
-     * @var UtilEncodingServiceInterface
+     * @var \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface
      */
     private UtilEncodingServiceInterface $utilEncodingService;
 
@@ -40,7 +40,7 @@ abstract class AbstractResponseConverter implements ResponseConverterInterface
     public function convert(ResponseInterface $response): BladeFxApiResponseConversionResultTransfer
     {
         $responseData = $this->decodeResponse($response);
-        $responseData = is_array($responseData) ? $responseData: [$responseData];
+        $responseData = is_array($responseData) ? $responseData : [$responseData];
         $bladeFxApiResponseConversionResultTransfer = $this->createConversionResultTransfer();
 
         return $this->expandConversionResponseTransfer(

@@ -85,9 +85,9 @@ interface ResponseManagerInterface
     public function getCreateOrUpdateUserOnBladeFxResponseTransfer(?ResponseInterface $response): BladeFxCreateOrUpdateUserResponseTransfer;
 
     /**
-     * @param ResponseInterface|null $response
+     * @param \Psr\Http\Message\ResponseInterface|null $response
      *
-     * @return BladeFxUpdatePasswordResponseTransfer
+     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
      */
     public function getUpdatePasswordOnBladeFxRequest(?ResponseInterface $response): BladeFxUpdatePasswordResponseTransfer;
 }

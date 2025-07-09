@@ -99,6 +99,11 @@ interface ApiHandlerInterface
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserResponseTransfer;
 
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
+     */
     public function sendUpdatePasswordOnBladeFxRequest(
         BladeFxUpdatePasswordRequestTransfer $requestTransfer
     ): BladeFxUpdatePasswordResponseTransfer;

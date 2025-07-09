@@ -93,7 +93,7 @@ class SprykerBladeFxUserFacade extends AbstractFacade implements SprykerBladeFxU
     }
 
     /**
-     * @param UserTransfer $userTransfer
+     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return void
      */

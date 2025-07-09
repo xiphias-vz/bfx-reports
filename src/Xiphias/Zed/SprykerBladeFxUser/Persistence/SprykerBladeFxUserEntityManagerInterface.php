@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\SprykerBladeFxUser\Persistence;
 
-use Generated\Shared\Transfer\UserTransfer;
-use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
-
 interface SprykerBladeFxUserEntityManagerInterface
 {
     /**

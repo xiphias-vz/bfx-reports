@@ -5,11 +5,7 @@ namespace Xiphias\Client\ReportsApi\Request\Builder;
 
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
-use Spryker\Service\UtilEncoding\UtilEncodingServiceInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
-use Xiphias\Client\ReportsApi\ReportsApiConfig;
-use Xiphias\Client\ReportsApi\Request\Formatter\RequestBodyFormatterInterface;
-use Xiphias\Shared\Reports\ReportsConstants;
 
 class UpdatePasswordOnBladeFxRequestBuilder extends AbstractRequestBuilder
 {

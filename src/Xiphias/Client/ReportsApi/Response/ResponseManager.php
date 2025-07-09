@@ -34,7 +34,7 @@ class ResponseManager implements ResponseManagerInterface
     private const ERROR_INVALID_RESPONSE_GENERIC = '%s Invalid Response.';
 
     /**
-     * @var ResponseFactoryInterface
+     * @var \Xiphias\Client\ReportsApi\Response\ResponseFactoryInterface
      */
     private ResponseFactoryInterface $responseFactory;
 
@@ -114,6 +114,7 @@ class ResponseManager implements ResponseManagerInterface
         } catch (ReportsResponseException $e) {
             $converterResultTransfer->getBladeFxSetFavoriteReportResponse()->setSuccess(false);
         }
+
         return $converterResultTransfer->getBladeFxSetFavoriteReportResponse();
     }
 
@@ -201,9 +202,9 @@ class ResponseManager implements ResponseManagerInterface
     }
 
     /**
-     * @param ResponseInterface|null $response
+     * @param \Psr\Http\Message\ResponseInterface|null $response
      *
-     * @return BladeFxUpdatePasswordResponseTransfer
+     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
      */
     public function getUpdatePasswordOnBladeFxRequest(?ResponseInterface $response): BladeFxUpdatePasswordResponseTransfer
     {
@@ -217,8 +218,6 @@ class ResponseManager implements ResponseManagerInterface
 
     /**
      * @param \Psr\Http\Message\ResponseInterface|null $response
-     *
-     * @throws \Xiphias\Client\ReportsApi\Exception\ReportsResponseException
      *
      * @return void
      */

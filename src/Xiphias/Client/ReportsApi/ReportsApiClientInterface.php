@@ -132,12 +132,17 @@ interface ReportsApiClientInterface
     /**
      * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
      *
-     * @return BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
+     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
      */
     public function sendCreateOrUpdateUserOnBfxRequest(
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): BladeFxCreateOrUpdateUserResponseTransfer;
 
+    /**
+     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
+     */
     public function sendUpdatePasswordOnBladeFxRequest(
         BladeFxUpdatePasswordRequestTransfer $requestTransfer
     ): BladeFxUpdatePasswordResponseTransfer;

@@ -112,6 +112,12 @@ interface RequestManagerInterface
         BladeFxCreateOrUpdateUserRequestTransfer $requestTransfer
     ): RequestInterface;
 
+    /**
+     * @param string $resource
+     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     */
     public function getUpdatePasswordOnBladeFxRequest(
         string $resource,
         BladeFxUpdatePasswordRequestTransfer $requestTransfer

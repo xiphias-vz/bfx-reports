@@ -8,7 +8,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
  * @method \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserPersistenceFactory getFactory();
- * @method \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig getConfig();
  */
 class SprykerBladeFxUserRepository extends AbstractRepository implements SprykerBladeFxUserRepositoryInterface
 {
