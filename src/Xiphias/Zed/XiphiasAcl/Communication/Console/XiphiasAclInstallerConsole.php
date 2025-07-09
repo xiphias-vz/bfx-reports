@@ -27,7 +27,7 @@ class XiphiasAclInstallerConsole extends Console
     {
         $this
             ->setName(static::COMMAND_NAME)
-            ->setDescription('Install from Acl installer plugins');
+            ->setDescription('Install groups and roles from Acl installer plugins');
     }
 
     /**
