@@ -23,9 +23,11 @@ class CategoriesListResponseConverter extends AbstractResponseConverter
         $bladeFxCategoriesListResponseTransfer = new BladeFxCategoriesListResponseTransfer();
         $bladeFxCategoryList = [];
         foreach ($responseData as $category) {
-            $bladeFxCategory = new BladeFxCategoryTransfer();
-            $bladeFxCategory->fromArray($category);
-            $bladeFxCategoryList[] = $bladeFxCategory;
+            if (is_array($category)) {
+                $bladeFxCategory = new BladeFxCategoryTransfer();
+                $bladeFxCategory->fromArray($category);
+                $bladeFxCategoryList[] = $bladeFxCategory;
+            }
         }
 
         $bladeFxCategoriesListResponseTransfer->setCategoriesList(new ArrayObject($bladeFxCategoryList));

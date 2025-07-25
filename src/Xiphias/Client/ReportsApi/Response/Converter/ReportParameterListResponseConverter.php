@@ -23,9 +23,11 @@ class ReportParameterListResponseConverter extends AbstractResponseConverter
         $bladeFxReportParameterListResponseTransfer = new BladeFxGetReportParameterListResponseTransfer();
         $bladeFxReportParameterList = [];
         foreach ($responseData as $parameter) {
-            $bladeFxParameter = new BladeFxParameterTransfer();
-            $bladeFxParameter->fromArray($parameter);
-            $bladeFxReportParameterList[] = $bladeFxParameter;
+            if (is_array($parameter)) {
+                $bladeFxParameter = new BladeFxParameterTransfer();
+                $bladeFxParameter->fromArray($parameter);
+                $bladeFxReportParameterList[] = $bladeFxParameter;
+            }
         }
 
         $bladeFxReportParameterListResponseTransfer->setParameterList(new ArrayObject($bladeFxReportParameterList));

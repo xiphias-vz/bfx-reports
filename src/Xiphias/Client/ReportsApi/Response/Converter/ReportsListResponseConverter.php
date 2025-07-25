@@ -23,9 +23,11 @@ class ReportsListResponseConverter extends AbstractResponseConverter
         $bladeFxReportsListResponseTransfer = new BladeFxGetReportsListResponseTransfer();
         $bladeFxReportsList = [];
         foreach ($responseData as $report) {
-            $bladeFxReport = new BladeFxReportTransfer();
-            $bladeFxReport->fromArray($report, true);
-            $bladeFxReportsList[] = $bladeFxReport;
+            if (is_array($report)) {
+                $bladeFxReport = new BladeFxReportTransfer();
+                $bladeFxReport->fromArray($report, true);
+                $bladeFxReportsList[] = $bladeFxReport;
+            }
         }
 
         $bladeFxReportsListResponseTransfer->setReportsList(new ArrayObject($bladeFxReportsList));
