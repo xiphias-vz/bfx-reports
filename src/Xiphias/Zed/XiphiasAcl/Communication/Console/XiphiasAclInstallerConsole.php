@@ -7,7 +7,6 @@ namespace Xiphias\Zed\XiphiasAcl\Communication\Console;
 use PHPUnit\Exception;
 use Spryker\Zed\Kernel\Communication\Console\Console;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**

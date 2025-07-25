@@ -15,9 +15,9 @@ class XiphiasAclDependencyProvider extends AbstractBundleDependencyProvider
     public const FACADE_ACL = 'FACADE_ACL';
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function provideCommunicationLayerDependencies(Container $container)
     {
@@ -27,9 +27,9 @@ class XiphiasAclDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
+     * @return \Spryker\Zed\Kernel\Container
      */
     protected function addAclFacade(Container $container): Container
     {

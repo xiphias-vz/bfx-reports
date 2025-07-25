@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\XiphiasAcl\Communication;
 
-use Spryker\Zed\Acl\Business\AclFacadeInterface;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use Xiphias\Zed\XiphiasAcl\XiphiasAclDependencyProvider;
 
 class XiphiasAclCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return AclFacadeInterface
+     * @return \Spryker\Zed\Acl\Business\AclFacadeInterface
      */
     public function getAclFacade()
     {
