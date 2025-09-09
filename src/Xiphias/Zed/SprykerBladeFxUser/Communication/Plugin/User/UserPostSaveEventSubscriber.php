@@ -18,9 +18,12 @@ class UserPostSaveEventSubscriber extends AbstractPlugin implements EventSubscri
      */
     public function getSubscribedEvents(EventCollectionInterface $eventCollection): EventCollectionInterface
     {
-        return $eventCollection->addListener(
+        return $eventCollection->addListenerQueued(
             ReportsConstants::EVENT_USER_POST_SAVE_LICENSE_ISSUE,
             new UserPostSaveLicenseIssueEventListener(),
+            0,
+            null,
+            ReportsConstants::EVENT_QUEUE_NAME,
         );
     }
 }

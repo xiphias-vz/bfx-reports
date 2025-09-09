@@ -199,6 +199,10 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const EVENT_QUEUE_NAME = 'event';
+    /**
+     * @var string
+     */
     public const USER_CREATE_FAILED_USER_CAP_ERROR = 'bfx.reports.create_update_delete.failed.user_cap';
 
     /**
