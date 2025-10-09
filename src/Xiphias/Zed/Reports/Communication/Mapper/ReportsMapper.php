@@ -24,7 +24,7 @@ class ReportsMapper implements ReportsMapperInterface
     /**
      * @var string
      */
-    protected const PARAMETER_SEPARATOR = ',';
+    protected const PARAMETER_SEPARATOR = '?#?';
 
     /**
      * @var int
