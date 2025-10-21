@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports;
 
+use Spryker\Shared\Log\LoggerTrait;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 use Xiphias\BladeFxApi\BladeFxApiClient;
@@ -15,6 +16,8 @@ use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandl
  */
 class ReportsDependencyProvider extends AbstractBundleDependencyProvider
 {
+    use LoggerTrait;
+
     /**
      * @var string
      */
