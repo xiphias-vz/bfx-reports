@@ -9,7 +9,7 @@ use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 

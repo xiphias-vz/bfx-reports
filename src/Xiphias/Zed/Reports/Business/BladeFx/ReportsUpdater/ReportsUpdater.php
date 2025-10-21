@@ -1,17 +1,16 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportsUpdater;
 
-use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\ReportsUpdaterRequestTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -107,7 +106,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
         );
 
         return (new BladeFxSetFavoriteReportRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($token))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token))
             ->setUserId($userId)
             ->setRepId($repId);
     }

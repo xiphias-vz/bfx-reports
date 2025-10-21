@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportsReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\ReportsReaderRequestTransfer;
 
 interface ReportsReaderInterface
@@ -21,8 +21,7 @@ interface ReportsReaderInterface
 
     /**
      * @param int $reportId
-     *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     * @return BladeFxGetReportParamFormResponseTransfer
      */
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer;
 }

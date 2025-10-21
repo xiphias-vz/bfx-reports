@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Table;
 
-use Generated\Shared\Transfer\BladeFxReportTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use InvalidArgumentException;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
@@ -189,7 +189,7 @@ class ReportsTable extends AbstractTable
         $searchTerm = $this->getSearchTerm()['value'];
 
         /**
-         * @var \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
+         * @var \Xiphias\BladeFxApi\DTO\BladeFxReportTransfer $reportListItem
          */
         foreach ($reportList as $reportListItem) {
             if ($searchTerm) {
@@ -278,7 +278,7 @@ class ReportsTable extends AbstractTable
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxReportTransfer $reportListItem
      * @param array|null $params
      *
      * @return string
@@ -326,7 +326,7 @@ class ReportsTable extends AbstractTable
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxReportTransfer $reportListItem
      *
      * @return string
      */

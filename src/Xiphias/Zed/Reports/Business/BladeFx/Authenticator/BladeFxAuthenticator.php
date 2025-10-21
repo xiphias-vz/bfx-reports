@@ -7,11 +7,11 @@ namespace Xiphias\Zed\Reports\Business\BladeFx\Authenticator;
 
 use Exception;
 use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
@@ -105,12 +105,12 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
                 $this->getAuthenticationRequestTransfer($userInfo),
             );
 
-            $this->setUserAuthTokenToSession($authenticationResponseTransfer->getToken());
+            $this->setUserAuthTokenToSession($authenticationResponseTransfer->getAccessToken());
         }
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
      *
      * @return void
      */

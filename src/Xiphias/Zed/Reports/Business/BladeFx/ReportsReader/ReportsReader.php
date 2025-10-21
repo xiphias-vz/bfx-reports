@@ -5,13 +5,13 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportsReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\ReportsReaderRequestTransfer;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -71,7 +71,7 @@ class ReportsReader implements ReportsReaderInterface
         ?string $attribute = ''
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()))
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
             ->setAttribute($attribute)
             ->setReturnType($this->config->getReturnTypeJson());
@@ -79,15 +79,14 @@ class ReportsReader implements ReportsReaderInterface
 
     /**
      * @param int $reportId
-     *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportParamFormResponseTransfer
+     * @return BladeFxGetReportParamFormResponseTransfer
      */
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer
     {
         $requestTransfer = (new BladeFxGetReportParamFormRequestTransfer())
             ->setRootUrl($this->config->getParamFormRootUrl())
             ->setReportId($reportId)
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()));
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()));
 
         return $this->apiClient->sendGetReportParamFormRequest($requestTransfer);
     }
