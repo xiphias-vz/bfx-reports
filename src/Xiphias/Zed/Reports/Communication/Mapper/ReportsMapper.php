@@ -29,7 +29,7 @@ class ReportsMapper implements ReportsMapperInterface
     /**
      * @var int
      */
-    protected const LAYOUT_ID_DEFAULT = 1;
+    protected const LAYOUT_ID_DEFAULT = 105;
 
     /**
      * @var string

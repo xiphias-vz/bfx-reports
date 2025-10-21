@@ -69,11 +69,25 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_ORDER_ATTRIBUTE = 'spryker_order_detail';
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MP_ORDER_ATTRIBUTE = "spryker_order_detail_MP";
 
     /**
      * @var string
      */
     public const BLADE_FX_CUSTOMER_ATTRIBUTE = 'spryker_customer_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MP_REPORTS = "spryker_mp_reports";
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_ALL_REPORTS = "spryker_all_reports";
 
     /**
      * @var string
