@@ -52,6 +52,7 @@ class CategoryTreeBuilder implements CategoryTreeBuilderInterface
     {
         $categoryTree = [];
         foreach ($categories as $category) {
+            $category = $category->toArray();
             $categoryParentId = $category[static::KEY_CATEGORY_PARENT_ID];
             $categoryId = $category['catId'];
             $categoryTree[$categoryId] = [

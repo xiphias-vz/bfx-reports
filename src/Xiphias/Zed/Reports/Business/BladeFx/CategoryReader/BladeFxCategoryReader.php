@@ -46,7 +46,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     }
 
     /**
-     * @param \Xiphias\BladeFxApi\DTO\CategoryReaderRequestTransfer $readerRequestTransfer
+     * @param \Generated\Shared\Transfer\CategoryReaderRequestTransfer $readerRequestTransfer
      *
      * @return \Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer
      */
@@ -70,7 +70,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     }
 
     /**
-     * @param \Xiphias\BladeFxApi\DTO\CategoryReaderRequestTransfer $readerRequestTransfer
+     * @param \Generated\Shared\Transfer\CategoryReaderRequestTransfer $readerRequestTransfer
      *
      * @return \Xiphias\BladeFxApi\DTO\BladeFxGetCategoriesListRequestTransfer
      */

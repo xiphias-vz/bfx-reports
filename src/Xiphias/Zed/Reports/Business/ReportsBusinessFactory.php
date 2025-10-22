@@ -8,7 +8,7 @@ namespace Xiphias\Zed\Reports\Business;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticator;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReader;
