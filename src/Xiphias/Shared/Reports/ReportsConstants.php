@@ -18,6 +18,36 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const BLADE_FX_URL_PRINT_OUT_FILE = 'BLADE_FX_URL_PRINT_OUT_FILE';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_URL_MOBILE_FILE = 'BLADE_FX_URL_MOBILE_FILE';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_X_THIS_HOST = 'BLADE_FX_X_THIS_HOST';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_WEB_SERVICE_FILE = 'BLADE_FX_WEB_SERVICE_FILE';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_USER_INFO = 'BLADE_FX_POST_URL';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_REPORT_LIST = 'BLADE_FX_REPORT_LIST';
+
+    /**
+     * @var string
+     */
     public const EXTERNAL_API_HTTP_CLIENT_PARAMS = 'EXTERNAL_API_HTTP_CLIENT_PARAMS';
 
     /**
