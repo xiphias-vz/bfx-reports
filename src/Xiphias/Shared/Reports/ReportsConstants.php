@@ -18,36 +18,6 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_URL_PRINT_OUT_FILE = 'BLADE_FX_URL_PRINT_OUT_FILE';
-
-    /**
-     * @var string
-     */
-    public const BLADE_FX_URL_MOBILE_FILE = 'BLADE_FX_URL_MOBILE_FILE';
-
-    /**
-     * @var string
-     */
-    public const BLADE_FX_X_THIS_HOST = 'BLADE_FX_X_THIS_HOST';
-
-    /**
-     * @var string
-     */
-    public const BLADE_FX_WEB_SERVICE_FILE = 'BLADE_FX_WEB_SERVICE_FILE';
-
-    /**
-     * @var string
-     */
-    public const BLADE_FX_USER_INFO = 'BLADE_FX_POST_URL';
-
-    /**
-     * @var string
-     */
-    public const BLADE_FX_REPORT_LIST = 'BLADE_FX_REPORT_LIST';
-
-    /**
-     * @var string
-     */
     public const EXTERNAL_API_HTTP_CLIENT_PARAMS = 'EXTERNAL_API_HTTP_CLIENT_PARAMS';
 
     /**
@@ -63,11 +33,6 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_SESSION_USER_TOKEN = 'blade-fx-user-token';
-
-    /**
-     * @var string
-     */
     public const BLADE_FX_ORDER_ATTRIBUTE = 'spryker_order_detail';
 
     /**
@@ -78,22 +43,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const QUERY_ATTRIBUTE = 'attribute';
-
-    /**
-     * @var string
-     */
     public const BLADE_FX_ORDER_PARAM_NAME = '@OrderID';
 
     /**
      * @var string
      */
     public const BLADE_FX_CUSTOMER_PARAM_NAME = '@CustomerID';
-
-    /**
-     * @var string
-     */
-    public const ROOT_URL_QUERY_PROPERTY = 'rootUrl';
 
     /**
      * @var string
@@ -129,11 +84,6 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const REPORT_ID = 'report_id';
-
-    /**
-     * @var string
-     */
     public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
 
     /**
@@ -155,11 +105,6 @@ class ReportsConstants
      * @var string
      */
     public const SRYKER_BO_ROLE = 'SprykerBORole';
-
-    /**
-     * @var string
-     */
-    public const SPRYKER_MP_ROLE = 'SprykerMPRole';
 
     /**
      * @var string
