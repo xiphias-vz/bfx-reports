@@ -18,7 +18,7 @@ use Xiphias\Zed\Reports\ReportsConfig;
 class ReportsReader implements ReportsReaderInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     protected ReportsApiClientInterface $apiClient;
 
@@ -33,7 +33,7 @@ class ReportsReader implements ReportsReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */

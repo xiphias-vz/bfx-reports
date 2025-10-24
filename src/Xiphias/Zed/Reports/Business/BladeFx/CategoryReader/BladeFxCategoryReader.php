@@ -16,7 +16,7 @@ use Xiphias\Zed\Reports\ReportsConfig;
 class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     protected ReportsApiClientInterface $apiClient;
 
@@ -31,7 +31,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */

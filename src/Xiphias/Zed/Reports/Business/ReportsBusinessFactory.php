@@ -180,7 +180,7 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @return \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     public function getBladeFxClient(): ReportsApiClientInterface
     {

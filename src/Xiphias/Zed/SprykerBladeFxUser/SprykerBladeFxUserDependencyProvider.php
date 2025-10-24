@@ -5,8 +5,8 @@ namespace Xiphias\Zed\SprykerBladeFxUser;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
-use Xiphias\Client\ReportsApi\ReportsApiClient;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClient;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CCreateBfxUserOnBfxPlugin;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CDeleteBfxUserOnBfxPlugin;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CUpdateBfxUserOnBfxPlugin;

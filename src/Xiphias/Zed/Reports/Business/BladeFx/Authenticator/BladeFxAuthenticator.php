@@ -18,7 +18,7 @@ use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     protected ReportsApiClientInterface $apiClient;
 
@@ -43,7 +43,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     private SprykerBladeFxUserFacadeInterface $bladeFxUserFacade;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins

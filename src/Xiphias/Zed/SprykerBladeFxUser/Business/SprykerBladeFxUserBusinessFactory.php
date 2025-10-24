@@ -7,7 +7,7 @@ use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserChecker;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Handler\BladeFxUserHandler;
@@ -57,7 +57,7 @@ class SprykerBladeFxUserBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @return \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     protected function getBladeFxClient(): ReportsApiClientInterface
     {

@@ -32,7 +32,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
     protected const MESSAGE_PARAM_ID = 'id';
 
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
      */
     protected ReportsApiClientInterface $apiClient;
 
@@ -57,7 +57,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Spryker\Zed\Messenger\Business\MessengerFacadeInterface $messengerFacade
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
