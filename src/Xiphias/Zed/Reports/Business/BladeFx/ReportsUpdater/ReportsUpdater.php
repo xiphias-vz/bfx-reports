@@ -96,7 +96,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
     /**
      * @param int $repId
      *
-     * @return \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer
      */
     protected function generateAuthenticatedSetFavoriteReportRequestTransfer(int $repId): BladeFxSetFavoriteReportRequestTransfer
     {

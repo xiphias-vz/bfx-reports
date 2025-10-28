@@ -5,10 +5,10 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\PreviewReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
@@ -46,7 +46,7 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
@@ -58,9 +58,9 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer
      */
     protected function buildAuthenticatedGetReportsListRequest(
         BladeFxParameterTransfer $parameterTransfer

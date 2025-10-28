@@ -5,9 +5,9 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportListReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\BladeFxApi\ReportsApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
@@ -78,7 +78,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
     /**
      * @param string|null $attribute
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer
      */
     protected function buildAuthenticatedReportListRequestTransfer(?string $attribute = ''): BladeFxGetReportsListRequestTransfer
     {
@@ -102,7 +102,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
      * @param string $token
      * @param string $attribute
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer
      */
     protected function buildReportListRequestTransfer(
         string $token,

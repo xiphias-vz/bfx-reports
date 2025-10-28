@@ -4,10 +4,10 @@
 namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 
 use Exception;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserResponseTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\UserTransfer;
@@ -135,7 +135,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
      *
-     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserRequestTransfer
      */
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
         UserTransfer $userTransfer,

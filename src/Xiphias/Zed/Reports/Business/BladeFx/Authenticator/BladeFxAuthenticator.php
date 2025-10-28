@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Business\BladeFx\Authenticator;
 
 use Exception;
-use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
@@ -122,7 +122,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     }
 
     /**
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer
      */
     protected function getRootUserAuthenticationRequestTransfer(): BladeFxAuthenticationRequestTransfer
     {
@@ -135,7 +135,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     /**
      * @param array $userInfo
      *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer
      */
     protected function getAuthenticationRequestTransfer(array $userInfo): BladeFxAuthenticationRequestTransfer
     {

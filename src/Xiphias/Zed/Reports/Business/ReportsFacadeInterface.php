@@ -10,7 +10,7 @@ use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -96,7 +96,7 @@ interface ReportsFacadeInterface
     public function getReportParamForm(int $reportId): BladeFxGetReportParamFormResponseTransfer;
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
      */
@@ -116,7 +116,7 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Generated\Shared\Transfer\BladeFxParameterTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer
      */
     public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer;
 

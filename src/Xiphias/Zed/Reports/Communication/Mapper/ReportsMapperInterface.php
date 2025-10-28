@@ -4,7 +4,7 @@ namespace Xiphias\Zed\Reports\Communication\Mapper;
 
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
 interface ReportsMapperInterface
@@ -19,7 +19,7 @@ interface ReportsMapperInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Generated\Shared\Transfer\BladeFxParameterTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer
      */
     public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer;
 
