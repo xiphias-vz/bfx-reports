@@ -8,7 +8,7 @@ namespace Xiphias\Zed\Reports\Business;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Generated\Shared\Transfer\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\UserTransfer;
@@ -119,7 +119,7 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     /**
      * @param string|null $attribute
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer
      */
     public function getAllReports(?string $attribute = ''): BladeFxGetReportsListResponseTransfer
     {

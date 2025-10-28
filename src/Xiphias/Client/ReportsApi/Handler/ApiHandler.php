@@ -21,8 +21,8 @@ use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportResponseTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordResponseTransfer;
 use Xiphias\Client\ReportsApi\Http\Client\HttpApiClientInterface;
 use Xiphias\Client\ReportsApi\ReportsApiConfig;
 use Xiphias\Client\ReportsApi\Request\RequestFactoryInterface;
@@ -276,9 +276,9 @@ class ApiHandler implements ApiHandlerInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordResponseTransfer
      */
     public function sendUpdatePasswordOnBladeFxRequest(
         BladeFxUpdatePasswordRequestTransfer $requestTransfer

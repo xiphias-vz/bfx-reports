@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Psr\Http\Message\RequestInterface;
 use Xiphias\Client\ReportsApi\Request\Builder\RequestBuilderInterface;
 
@@ -20,7 +20,7 @@ interface RequestManagerInterface
 {
     /**
      * @param string $resource
-     * @param \Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer $requestTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer $requestTransfer
      *
      * @return \Psr\Http\Message\RequestInterface
      */
@@ -114,7 +114,7 @@ interface RequestManagerInterface
 
     /**
      * @param string $resource
-     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransfer
      *
      * @return \Psr\Http\Message\RequestInterface
      */

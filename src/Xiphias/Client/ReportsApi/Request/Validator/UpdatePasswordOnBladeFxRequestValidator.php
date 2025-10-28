@@ -3,7 +3,7 @@
 
 namespace Xiphias\Client\ReportsApi\Request\Validator;
 
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException;
 
@@ -18,7 +18,7 @@ class UpdatePasswordOnBladeFxRequestValidator extends AbstractRequestValidator
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransfer
      *
      * @return bool
      */
@@ -26,7 +26,7 @@ class UpdatePasswordOnBladeFxRequestValidator extends AbstractRequestValidator
     {
         try {
             /**
-             * @var \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransferCasted
+             * @var \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransferCasted
              */
             $requestTransferCasted = $requestTransfer;
 

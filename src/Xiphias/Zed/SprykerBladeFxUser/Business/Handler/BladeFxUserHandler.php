@@ -6,9 +6,9 @@ namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 use Exception;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
 use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserResponseTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
@@ -107,9 +107,9 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer
      */
     public function generateAuthenticatedUpdatePasswordOnBladeFxRequest(
         UserTransfer $userTransfer,

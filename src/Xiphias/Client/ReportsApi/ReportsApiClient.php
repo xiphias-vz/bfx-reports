@@ -22,8 +22,8 @@ use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordResponseTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -127,9 +127,9 @@ class ReportsApiClient extends AbstractClient implements ReportsApiClientInterfa
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordResponseTransfer
      */
     public function sendUpdatePasswordOnBladeFxRequest(
         BladeFxUpdatePasswordRequestTransfer $requestTransfer

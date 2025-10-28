@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\BladeFxGetReportParamFormRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
 use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Psr\Http\Message\RequestInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Shared\Log\LoggerTrait;
@@ -189,9 +189,10 @@ class RequestManager implements RequestManagerInterface
 
     /**
      * @param string $resource
-     * @param \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $requestTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $requestTransfer
      *
      * @return \Psr\Http\Message\RequestInterface
+     * @throws ReportsRequestException
      */
     public function getUpdatePasswordOnBladeFxRequest(string $resource, BladeFxUpdatePasswordRequestTransfer $requestTransfer): RequestInterface
     {

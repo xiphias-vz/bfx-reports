@@ -54,7 +54,7 @@ class UpdatePasswordOnBladeFxRequestBuilder extends AbstractRequestBuilder
      */
     protected function getUrlParamsFromRequestTransfer(AbstractTransfer $requestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer $reportParamFormRequestTransfer */
+        /** @var \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer $reportParamFormRequestTransfer */
         $reportParamFormRequestTransfer = $requestTransfer;
 
         return [

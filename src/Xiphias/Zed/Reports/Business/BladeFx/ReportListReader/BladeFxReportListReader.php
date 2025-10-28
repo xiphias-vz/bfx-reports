@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportListReader;
 
 use Generated\Shared\Transfer\BladeFxGetReportsListRequestTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\BladeFxApi\ReportsApiClientInterface;
@@ -66,7 +66,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
     /**
      * @param string|null $attribute
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportsListResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer
      */
     public function getReportList(?string $attribute = ''): BladeFxGetReportsListResponseTransfer
     {
