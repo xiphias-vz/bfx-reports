@@ -82,6 +82,16 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const BLADE_FX_PRODUCT_ATTRIBUTE = 'spryker_product_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MERCHANT_ATTRIBUTE = 'spryker_merchant_detail';
+
+    /**
+     * @var string
+     */
     public const BLADE_FX_MP_REPORTS = "spryker_mp_reports";
 
     /**
@@ -103,6 +113,26 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_CUSTOMER_PARAM_NAME = '@CustomerID';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_PRODUCT_PARAM_NAME = '@ProductID';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MERCHANT_PARAM_NAME = '@MerchantID';
+
+    /**
+     * @var string
+     */
+    public const SPRKYER_PARAM_ID_PRODUCT_ABSTRACT = "id-product-abstract";
+
+    /**
+     * @var string
+     */
+    public const SPRKYER_PARAM_ID_MERCHANT = "id-merchant";
 
     /**
      * @var string

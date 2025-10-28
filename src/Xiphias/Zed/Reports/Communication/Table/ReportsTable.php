@@ -122,6 +122,7 @@ class ReportsTable extends AbstractTable
             [
                 BladeFxReportTransfer::IS_FAVORITE,
                 BladeFxReportTransfer::REP_NAME,
+                BladeFxReportTransfer::REP_ID,
             ],
         );
 

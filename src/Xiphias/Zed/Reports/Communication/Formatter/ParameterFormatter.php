@@ -3,6 +3,7 @@
 
 namespace Xiphias\Zed\Reports\Communication\Formatter;
 
+use Pyz\Shared\Customer\CustomerConfig;
 use Spryker\Shared\Customer\CustomerConstants;
 use Spryker\Zed\Sales\SalesConfig;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,8 +35,18 @@ class ParameterFormatter implements ParameterFormatterInterface
         if ($request->query->has(SalesConfig::PARAM_ID_SALES_ORDER)) {
             return ReportsConstants::BLADE_FX_ORDER_ATTRIBUTE;
         }
+        if ($request->query->has(CustomerConstants::PARAM_ID_CUSTOMER)) {
+            return ReportsConstants::BLADE_FX_CUSTOMER_ATTRIBUTE;
+        }
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_PRODUCT_ABSTRACT)) {
+            return ReportsConstants::BLADE_FX_PRODUCT_ATTRIBUTE;
+        }
 
-        return ReportsConstants::BLADE_FX_CUSTOMER_ATTRIBUTE;
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_MERCHANT)) {
+            return ReportsConstants::BLADE_FX_MERCHANT_ATTRIBUTE;
+        }
+
+        return "";
     }
 
     /**
@@ -49,7 +60,18 @@ class ParameterFormatter implements ParameterFormatterInterface
             return ReportsConstants::BLADE_FX_ORDER_PARAM_NAME;
         }
 
-        return ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME;
+        if ($request->query->has(CustomerConstants::PARAM_ID_CUSTOMER)) {
+            return ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME;
+        }
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_PRODUCT_ABSTRACT)) {
+            return ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME;
+        }
+
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_MERCHANT)) {
+            return ReportsConstants::BLADE_FX_MERCHANT_PARAM_NAME;
+        }
+
+        return "";
     }
 
     /**
@@ -62,7 +84,16 @@ class ParameterFormatter implements ParameterFormatterInterface
         if ($request->query->has(SalesConfig::PARAM_ID_SALES_ORDER)) {
             return (int)$request->query->getInt(SalesConfig::PARAM_ID_SALES_ORDER);
         }
+        if ($request->query->has(CustomerConstants::PARAM_ID_CUSTOMER)) {
+            return (int)$request->query->getInt(CustomerConstants::PARAM_ID_CUSTOMER);
+        }
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_PRODUCT_ABSTRACT)) {
+            (int)$request->query->getInt(ReportsConstants::SPRKYER_PARAM_ID_PRODUCT_ABSTRACT);
+        }
+        if ($request->query->has(ReportsConstants::SPRKYER_PARAM_ID_MERCHANT)) {
+            (int)$request->query->getInt(ReportsConstants::SPRKYER_PARAM_ID_MERCHANT);
+        }
 
-        return (int)$request->query->getInt(CustomerConstants::PARAM_ID_CUSTOMER);
+        return 1;
     }
 }

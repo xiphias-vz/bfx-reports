@@ -41,6 +41,7 @@ class SalesReportsTable extends ReportsTable
             [
                 BladeFxReportTransfer::IS_FAVORITE,
                 BladeFxReportTransfer::REP_NAME,
+                BladeFxReportTransfer::REP_ID,
             ],
         );
 
