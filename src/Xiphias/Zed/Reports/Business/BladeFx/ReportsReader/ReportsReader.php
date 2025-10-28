@@ -11,16 +11,16 @@ use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\ReportsReaderRequestTransfer;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
 class ReportsReader implements ReportsReaderInterface
 {
     /**
-     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface
@@ -33,12 +33,12 @@ class ReportsReader implements ReportsReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
         ReportsConfig $config
     ) {

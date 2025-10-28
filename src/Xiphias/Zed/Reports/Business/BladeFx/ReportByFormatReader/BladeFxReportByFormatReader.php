@@ -10,7 +10,7 @@ use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -27,9 +27,9 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     protected BladeFxAuthenticatorInterface $authenticator;
 
     /**
-     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Spryker\Client\Session\SessionClientInterface
@@ -43,13 +43,13 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
 
     /**
      * @param \Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface $authenticator
-     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
         BladeFxAuthenticatorInterface $authenticator,
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         SessionClientInterface $sessionClient,
         ReportsConfig $config
     ) {

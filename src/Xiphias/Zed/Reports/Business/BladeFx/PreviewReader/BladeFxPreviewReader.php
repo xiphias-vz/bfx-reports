@@ -9,16 +9,16 @@ use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
 class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
 {
     /**
-     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface
@@ -31,12 +31,12 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
         ReportsConfig $config
     ) {

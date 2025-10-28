@@ -14,7 +14,7 @@ use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface;
@@ -25,7 +25,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     /**
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
-     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $reportsApiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $reportsApiClient
      * @param array $bfxUserHandlerPlugins
      * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
      * @param \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface $entityManager
@@ -35,7 +35,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     public function __construct(
         protected BladeFXUserCheckerInterface $bladeFXUserChecker,
         protected SessionClientInterface $sessionClient,
-        protected ReportsApiClientInterface $reportsApiClient,
+        protected BladeFxApiClientInterface $reportsApiClient,
         protected array $bfxUserHandlerPlugins,
         protected SprykerBladeFxUserConfig $config,
         protected SprykerBladeFxUserEntityManagerInterface $entityManager,

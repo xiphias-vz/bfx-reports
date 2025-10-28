@@ -8,7 +8,7 @@ use Spryker\Shared\Log\LoggerTrait;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 use Xiphias\BladeFxApi\BladeFxApiClient;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandlerPostAuthenticationPlugin;
 
 /**
@@ -86,7 +86,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addBladeFxClient(Container $container): Container
     {
-        $container->set(static::BLADE_FX_CLIENT, function (Container $container): ReportsApiClientInterface {
+        $container->set(static::BLADE_FX_CLIENT, function (Container $container): BladeFxApiClientInterface {
             return new BladeFxApiClient(
                 $this->getConfig()->getHostUrl(),
                 $this->getConfig()->getDefaultUsername(),

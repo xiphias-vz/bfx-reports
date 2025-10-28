@@ -8,7 +8,7 @@ namespace Xiphias\Zed\Reports\Business;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticator;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\CategoryReader\BladeFxCategoryReader;
@@ -180,9 +180,9 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Xiphias\BladeFxApi\ReportsApiClientInterface
+     * @return \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    public function getBladeFxClient(): ReportsApiClientInterface
+    public function getBladeFxClient(): BladeFxApiClientInterface
     {
         return $this->getProvidedDependency(ReportsDependencyProvider::BLADE_FX_CLIENT);
     }

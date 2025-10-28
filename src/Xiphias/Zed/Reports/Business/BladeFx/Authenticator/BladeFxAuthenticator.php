@@ -11,16 +11,16 @@ use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Xiphias\BladeFxApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 {
     /**
-     * @var \Xiphias\BladeFxApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\ReportsConfig
@@ -43,14 +43,14 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     private SprykerBladeFxUserFacadeInterface $bladeFxUserFacade;
 
     /**
-     * @param \Xiphias\BladeFxApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         ReportsConfig $config,
         SessionClientInterface $sessionClient,
         array $bladeFxPostAuthenticationPlugins,
