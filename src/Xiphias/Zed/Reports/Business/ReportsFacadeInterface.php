@@ -7,7 +7,7 @@ namespace Xiphias\Zed\Reports\Business;
 
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
@@ -98,7 +98,7 @@ interface ReportsFacadeInterface
     /**
      * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreviewURL(
         BladeFxParameterTransfer $parameterTransfer
@@ -128,7 +128,7 @@ interface ReportsFacadeInterface
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer;
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer $responseTransfer
      *
      * @return string
      */

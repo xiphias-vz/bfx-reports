@@ -5,10 +5,10 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Mapper;
 
-use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Generated\Shared\Transfer\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\BladeFxReportTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
@@ -92,7 +92,7 @@ class ReportsMapper implements ReportsMapperInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer $responseTransfer
      *
      * @return string
      */
