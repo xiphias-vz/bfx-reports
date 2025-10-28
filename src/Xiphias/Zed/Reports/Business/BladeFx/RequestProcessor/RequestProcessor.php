@@ -72,7 +72,6 @@ class RequestProcessor implements RequestProcessorInterface
         return $this->categoryReader
             ->getAllCategories($categoryReaderRequestTransfer)
             ->getCategoriesList();
-//            ->getArrayCopy();
     }
 
     /**
@@ -110,6 +109,5 @@ class RequestProcessor implements RequestProcessorInterface
         return $this->reportsReader
             ->getReportsList($reportsReaderRequestTransfer, $attribute)
             ->getReportsList();
-//            ->getArrayCopy();
     }
 }
