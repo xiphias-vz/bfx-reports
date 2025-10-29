@@ -63,12 +63,46 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const BLADE_FX_SESSION_USER_TOKEN = 'blade-fx-user-token';
+
+    /**
+     * @var string
+     */
     public const BLADE_FX_ORDER_ATTRIBUTE = 'spryker_order_detail';
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MP_ORDER_ATTRIBUTE = "spryker_order_detail_MP";
 
     /**
      * @var string
      */
     public const BLADE_FX_CUSTOMER_ATTRIBUTE = 'spryker_customer_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_PRODUCT_ATTRIBUTE = 'spryker_product_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MERCHANT_ATTRIBUTE = 'spryker_merchant_detail';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MP_REPORTS = "spryker_mp_reports";
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_ALL_REPORTS = "spryker_all_reports";
+
+    /**
+     * @var string
+     */
+    public const QUERY_ATTRIBUTE = 'attribute';
 
     /**
      * @var string
@@ -79,6 +113,31 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_CUSTOMER_PARAM_NAME = '@CustomerID';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_PRODUCT_PARAM_NAME = '@ProductID';
+
+    /**
+     * @var string
+     */
+    public const BLADE_FX_MERCHANT_PARAM_NAME = '@MerchantID';
+
+    /**
+     * @var string
+     */
+    public const SPRKYER_PARAM_ID_PRODUCT_ABSTRACT = "id-product-abstract";
+
+    /**
+     * @var string
+     */
+    public const SPRKYER_PARAM_ID_MERCHANT = "id-merchant";
+
+    /**
+     * @var string
+     */
+    public const ROOT_URL_QUERY_PROPERTY = 'rootUrl';
 
     /**
      * @var string
@@ -114,6 +173,11 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const REPORT_ID = 'report_id';
+
+    /**
+     * @var string
+     */
     public const BLADE_FX_ROOT_URL = 'BLADE_FX_ROOT_URL';
 
     /**
@@ -135,6 +199,11 @@ class ReportsConstants
      * @var string
      */
     public const SRYKER_BO_ROLE = 'SprykerBORole';
+
+    /**
+     * @var string
+     */
+    public const SPRYKER_MP_ROLE = 'SprykerMPRole';
 
     /**
      * @var string

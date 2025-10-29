@@ -41,6 +41,26 @@ class OrderOverviewTabs extends AbstractTabs
     /**
      * @var string
      */
+    public const PRODUCT_NAME = 'product';
+
+    /**
+     * @var string
+     */
+    public const PRODUCT_TITLE = 'Product Overview';
+
+    /**
+     * @var string
+     */
+    public const MERCHANT_NAME = 'merchant';
+
+    /**
+     * @var string
+     */
+    public const MERCHANT_TITLE = 'Merchant Overview';
+
+    /**
+     * @var string
+     */
     public const REPORT_NAME = 'report';
 
     /**
@@ -58,6 +78,8 @@ class OrderOverviewTabs extends AbstractTabs
         match ($this->resource) {
             ReportsConstants::BLADE_FX_ORDER_PARAM_NAME => $this->addOrderOverviewTab($tabsViewTransfer),
             ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME => $this->addCustomerOverviewTab($tabsViewTransfer),
+            ReportsConstants::BLADE_FX_PRODUCT_PARAM_NAME => $this->addProductOverviewTab($tabsViewTransfer),
+            ReportsConstants::BLADE_FX_MERCHANT_PARAM_NAME => $this-> addMerchantOVerViewTab($tabsViewTransfer),
             default => null
         };
 
@@ -104,6 +126,42 @@ class OrderOverviewTabs extends AbstractTabs
     }
 
     /**
+     * @param TabsViewTransfer $tabsViewTransfer
+     *
+     * @return $this
+     */
+    protected function addProductOverviewTab(TabsViewTransfer $tabsViewTransfer)
+    {
+        $tabItemTransfer = new TabItemTransfer();
+        $tabItemTransfer
+            ->setName(static::PRODUCT_NAME)
+            ->setTitle(static::PRODUCT_TITLE)
+            ->setTemplate($this->getProductTemplate());
+
+        $tabsViewTransfer->addTab($tabItemTransfer);
+
+        return $this;
+    }
+
+    /**
+     * @param TabsViewTransfer $tabsViewTransfer
+     *
+     * @return $this
+     */
+    protected function addMerchantOVerViewTab(TabsViewTransfer $tabsViewTransfer)
+    {
+        $tabItemTransfer = new TabItemTransfer();
+        $tabItemTransfer
+            ->setName(static::MERCHANT_NAME)
+            ->setTitle(static::MERCHANT_TITLE)
+            ->setTemplate($this->getMerchantTemplate());
+
+        $tabsViewTransfer->addTab($tabItemTransfer);
+
+        return $this;
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
      *
      * @return $this
@@ -137,6 +195,21 @@ class OrderOverviewTabs extends AbstractTabs
         return '@Customer/_partials/_tabs/customer-overview.twig';
     }
 
+    /**
+     * @return string
+     */
+    protected function getProductTemplate(): string
+    {
+        return '@ProductManagement/_partials/_tabs/product-overview.twig';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMerchantTemplate(): string
+    {
+        return '@MerchantGui/_partials/_tabs/merchant-overview.twig';
+    }
     /**
      * @return string
      */

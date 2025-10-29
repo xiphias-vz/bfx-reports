@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
+use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\Reports\Business\ReportsFacadeInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -121,6 +122,7 @@ class ReportsTable extends AbstractTable
             [
                 BladeFxReportTransfer::IS_FAVORITE,
                 BladeFxReportTransfer::REP_NAME,
+                BladeFxReportTransfer::REP_ID,
             ],
         );
 
@@ -173,7 +175,7 @@ class ReportsTable extends AbstractTable
     protected function prepareData(TableConfiguration $config): array
     {
         $reportList = $this->reportsFacade
-            ->processGetReportsRequest($this->request);
+            ->processGetReportsRequest($this->request, ReportsConstants::BLADE_FX_ALL_REPORTS);
 
         return $this->processData($reportList);
     }
