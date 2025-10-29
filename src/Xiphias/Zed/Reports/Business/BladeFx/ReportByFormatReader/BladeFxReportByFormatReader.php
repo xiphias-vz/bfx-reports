@@ -7,7 +7,7 @@ namespace Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader;
 
 use Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer;
 use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
@@ -62,7 +62,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
@@ -79,7 +79,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer
      */
@@ -110,7 +110,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
      * @param string $token
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatRequestTransfer
      */

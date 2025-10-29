@@ -9,7 +9,7 @@ use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterListTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,7 +71,7 @@ interface ReportsFacadeInterface
     /**
      * @param int $reportId
      * @param string $format
-     * @param \Generated\Shared\Transfer\BladeFxParameterListTransfer|null $paramListTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer|null $paramListTransfer
      *
      * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
      */
@@ -123,7 +123,7 @@ interface ReportsFacadeInterface
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Generated\Shared\Transfer\BladeFxParameterListTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer
      */
     public function mapDownloadParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer;
 
