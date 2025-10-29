@@ -58,8 +58,7 @@ class SalesReportsTable extends ReportsTable
         $reportList = $this
             ->reportsFacade
             ->getAllReports($this->params[ReportsConstants::ATTRIBUTE])
-            ->getReportsList()
-            ->getArrayCopy();
+            ->getReportsList();
 
         return $this->processData($reportList);
     }
