@@ -126,6 +126,6 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE)
             ->setParams($paramListTransfer)
-            ->setToken((new BladeFxTokenTransfer())->setToken($token));
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token));
     }
 }

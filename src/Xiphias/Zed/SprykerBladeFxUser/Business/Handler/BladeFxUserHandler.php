@@ -116,7 +116,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
     ): BladeFxUpdatePasswordRequestTransfer {
         return (new BladeFxUpdatePasswordRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->getToken()))
             ->setBladeFxUserId($responseTransfer->getId())
             ->setPassword($userTransfer->getPassword());
     }
@@ -142,7 +142,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
         bool $isActive = true
     ): BladeFxCreateOrUpdateUserRequestTransfer {
         return (new BladeFxCreateOrUpdateUserRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->getToken()))
             ->setEmail($userTransfer->getUsername())
             ->setFirstName($userTransfer->getFirstName())
             ->setLastName($userTransfer->getLastName())

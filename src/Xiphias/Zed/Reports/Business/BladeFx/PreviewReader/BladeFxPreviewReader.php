@@ -71,6 +71,6 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
             ->setRootUrl($this->config->getRootUrl())
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType($this->config->getReturnTypeJson())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()));
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()));
     }
 }

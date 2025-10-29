@@ -109,7 +109,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
         string $attribute = ''
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($token))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token))
             ->setAttribute($attribute)
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE);
     }
