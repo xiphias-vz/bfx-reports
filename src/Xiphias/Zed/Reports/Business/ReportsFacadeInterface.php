@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business;
 
-use Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportByFormatResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
@@ -73,7 +73,7 @@ interface ReportsFacadeInterface
      * @param string $format
      * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer|null $paramListTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportByFormatResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportByFormatResponseTransfer
      */
     public function getReportByIdInWantedFormat(
         int $reportId,
