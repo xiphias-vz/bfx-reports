@@ -5,20 +5,20 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\CategoryReader;
 
-use Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer;
-use Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetCategoriesListRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
 class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface
@@ -31,12 +31,12 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
         ReportsConfig $config
     ) {
@@ -48,7 +48,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     /**
      * @param \Generated\Shared\Transfer\CategoryReaderRequestTransfer $readerRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxCategoriesListResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer
      */
     public function getAllCategories(CategoryReaderRequestTransfer $readerRequestTransfer): BladeFxCategoriesListResponseTransfer
     {
@@ -72,7 +72,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     /**
      * @param \Generated\Shared\Transfer\CategoryReaderRequestTransfer $readerRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetCategoriesListRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetCategoriesListRequestTransfer
      */
     protected function buildAuthenticatedCategoriesListRequestTransfer(
         CategoryReaderRequestTransfer $readerRequestTransfer
@@ -81,7 +81,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
             ->setReturnType($this->config->getReturnTypeJson())
             ->setToken(
-                (new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()),
+                (new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()),
             );
     }
 }

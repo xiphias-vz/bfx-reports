@@ -279,4 +279,12 @@ class ReportsConfig extends AbstractBundleConfig
     {
         return static::GET_REPORT_PREVIEW_URL_PATH;
     }
+
+    /**
+     * @return string
+     */
+    public function getHostUrl(): string
+    {
+        return $this->get(ReportsConstants::BLADE_FX_REPORTS_HOST);
+    }
 }

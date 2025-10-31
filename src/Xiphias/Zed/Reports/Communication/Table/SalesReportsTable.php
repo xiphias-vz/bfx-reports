@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Table;
 
-use Generated\Shared\Transfer\BladeFxReportTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Xiphias\Shared\Reports\ReportsConstants;
@@ -58,8 +58,7 @@ class SalesReportsTable extends ReportsTable
         $reportList = $this
             ->reportsFacade
             ->getAllReports($this->params[ReportsConstants::ATTRIBUTE])
-            ->getReportsList()
-            ->getArrayCopy();
+            ->getReportsList();
 
         return $this->processData($reportList);
     }
@@ -87,7 +86,7 @@ class SalesReportsTable extends ReportsTable
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxReportTransfer $reportListItem
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxReportTransfer $reportListItem
      * @param array|null $params
      *
      * @return string

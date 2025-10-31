@@ -5,8 +5,8 @@ namespace Xiphias\Zed\SprykerBladeFxUser;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
-use Xiphias\Client\ReportsApi\ReportsApiClient;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\ReportsApiClient;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CCreateBfxUserOnBfxPlugin;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CDeleteBfxUserOnBfxPlugin;
 use Xiphias\Zed\SprykerBladeFxUser\Communication\Plugin\User\B2CUpdateBfxUserOnBfxPlugin;
@@ -86,7 +86,7 @@ class SprykerBladeFxUserDependencyProvider extends AbstractBundleDependencyProvi
     {
         $container->set(
             static::BLADE_FX_CLIENT,
-            static function (): ReportsApiClientInterface {
+            static function (): BladeFxApiClientInterface {
                 return new ReportsApiClient();
             },
         );

@@ -5,20 +5,20 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\PreviewReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer;
-use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
 class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface
@@ -31,12 +31,12 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
         ReportsConfig $config
     ) {
@@ -46,9 +46,9 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportsPreview(BladeFxParameterTransfer $parameterTransfer): BladeFxGetReportPreviewResponseTransfer
     {
@@ -58,9 +58,9 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer
      */
     protected function buildAuthenticatedGetReportsListRequest(
         BladeFxParameterTransfer $parameterTransfer
@@ -71,6 +71,6 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
             ->setRootUrl($this->config->getRootUrl())
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType($this->config->getReturnTypeJson())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->tokenResolver->resolveToken()));
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()));
     }
 }

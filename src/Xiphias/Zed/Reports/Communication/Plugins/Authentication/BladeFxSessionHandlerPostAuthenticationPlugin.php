@@ -3,7 +3,7 @@
 
 namespace Xiphias\Zed\Reports\Communication\Plugins\Authentication;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
@@ -12,7 +12,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class BladeFxSessionHandlerPostAuthenticationPlugin extends AbstractPlugin implements BladeFxPostAuthenticationPluginInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class BladeFxSessionHandlerPostAuthenticationPlugin extends AbstractPlugin imple
 
         $sessionClient->set(
             $this->getFactory()->getConfig()->getBfxTokenSessionKey(),
-            $authenticationResponseTransfer->getToken(),
+            $authenticationResponseTransfer->getAccessToken(),
         );
 
         $sessionClient->set(

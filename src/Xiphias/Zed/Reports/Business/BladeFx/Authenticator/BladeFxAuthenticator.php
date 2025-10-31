@@ -6,21 +6,21 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Business\BladeFx\Authenticator;
 
 use Exception;
-use Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer;
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 
 class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
 {
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\ReportsConfig
@@ -43,14 +43,14 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     private SprykerBladeFxUserFacadeInterface $bladeFxUserFacade;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param array $bladeFxPostAuthenticationPlugins
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface $bladeFxUserFacade
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         ReportsConfig $config,
         SessionClientInterface $sessionClient,
         array $bladeFxPostAuthenticationPlugins,
@@ -105,12 +105,12 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
                 $this->getAuthenticationRequestTransfer($userInfo),
             );
 
-            $this->setUserAuthTokenToSession($authenticationResponseTransfer->getToken());
+            $this->setUserAuthTokenToSession($authenticationResponseTransfer->getAccessToken());
         }
     }
 
     /**
-     * @param \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
      *
      * @return void
      */
@@ -122,7 +122,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     }
 
     /**
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer
      */
     protected function getRootUserAuthenticationRequestTransfer(): BladeFxAuthenticationRequestTransfer
     {
@@ -135,7 +135,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
     /**
      * @param array $userInfo
      *
-     * @return \Generated\Shared\Transfer\BladeFxAuthenticationRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer
      */
     protected function getAuthenticationRequestTransfer(array $userInfo): BladeFxAuthenticationRequestTransfer
     {

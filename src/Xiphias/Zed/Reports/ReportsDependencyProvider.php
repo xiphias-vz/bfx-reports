@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports;
 
+use Spryker\Shared\Log\LoggerTrait;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClient;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandlerPostAuthenticationPlugin;
 
+/**
+ * @method \Pyz\Zed\Reports\ReportsConfig getConfig()
+ */
 class ReportsDependencyProvider extends AbstractBundleDependencyProvider
 {
+    use LoggerTrait;
+
     /**
      * @var string
      */
@@ -79,8 +86,13 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addBladeFxClient(Container $container): Container
     {
-        $container->set(static::BLADE_FX_CLIENT, function (Container $container): ReportsApiClientInterface {
-              return $container->getLocator()->ReportsApi()->client();
+        $container->set(static::BLADE_FX_CLIENT, function (Container $container): BladeFxApiClientInterface {
+            return new BladeFxApiClient(
+                $this->getConfig()->getHostUrl(),
+                $this->getConfig()->getDefaultUsername(),
+                $this->getConfig()->getDefaultPassword(),
+                $this->getLogger(),
+            );
         });
 
         return $container;

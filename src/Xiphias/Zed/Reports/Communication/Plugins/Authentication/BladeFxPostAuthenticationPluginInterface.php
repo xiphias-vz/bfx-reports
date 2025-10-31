@@ -3,12 +3,12 @@
 
 namespace Xiphias\Zed\Reports\Communication\Plugins\Authentication;
 
-use Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 
 interface BladeFxPostAuthenticationPluginInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer $authenticationResponseTransfer
      *
      * @return void
      */
