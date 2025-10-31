@@ -46,7 +46,8 @@
         "spryker/session": "*",
         "spryker/kernel": "^3.7.0",
         "spryker/acl": "^3.13.0",
-        "spryker/translator": "^1.9.1"
+        "spryker/translator": "^1.9.1",
+        "xiphias/bladefx-api-php": "dev-main"
     },
     "require-dev": {
         "spryker/code-sniffer": "*",
