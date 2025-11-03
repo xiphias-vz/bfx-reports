@@ -203,7 +203,7 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const SPRKYER_BO_ROLE = 'SprykerBORole';
+    public const SPRYKER_BO_ROLE = 'SprykerBORole';
 
     /**
      * @var string
