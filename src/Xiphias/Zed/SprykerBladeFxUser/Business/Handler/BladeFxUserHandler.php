@@ -147,7 +147,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
             ->setFirstName($userTransfer->getFirstName())
             ->setLastName($userTransfer->getLastName())
             ->setPassword($userTransfer->getPassword())
-            ->setRoleName(ReportsConstants::SRYKER_BO_ROLE)
+            ->setRoleName(ReportsConstants::SPRYKER_BO_ROLE)
             ->setCompanyId($this->getUserIdCompany())
             ->setLanguageId($this->getUserIdLanguage())
             ->setIsActive($isActive)

@@ -193,12 +193,17 @@ class ReportsConstants
     /**
      * @var string
      */
+    public const SPRYKER_ROOT_GROUP = 'root_group';
+
+    /**
+     * @var string
+     */
     public const MARKETPLACE_ONLY_CLASS = 'Xiphias\Zed\BfxReportsMerchantPortalGui\BfxReportsMerchantPortalGuiDependencyProvider';
 
     /**
      * @var string
      */
-    public const SRYKER_BO_ROLE = 'SprykerBORole';
+    public const SPRKYER_BO_ROLE = 'SprykerBORole';
 
     /**
      * @var string
