@@ -4,17 +4,17 @@
 namespace Xiphias\Zed\SprykerBladeFxUser\Business\Handler;
 
 use Exception;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer;
-use Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
-use Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserCustomFieldsTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Event\Business\EventFacadeInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface;
 use Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface;
@@ -25,7 +25,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     /**
      * @param \Xiphias\Zed\SprykerBladeFxUser\Business\Checker\BladeFXUserCheckerInterface $bladeFXUserChecker
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $reportsApiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $reportsApiClient
      * @param array $bfxUserHandlerPlugins
      * @param \Xiphias\Zed\SprykerBladeFxUser\SprykerBladeFxUserConfig $config
      * @param \Xiphias\Zed\SprykerBladeFxUser\Persistence\SprykerBladeFxUserEntityManagerInterface $entityManager
@@ -35,7 +35,7 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
     public function __construct(
         protected BladeFXUserCheckerInterface $bladeFXUserChecker,
         protected SessionClientInterface $sessionClient,
-        protected ReportsApiClientInterface $reportsApiClient,
+        protected BladeFxApiClientInterface $reportsApiClient,
         protected array $bfxUserHandlerPlugins,
         protected SprykerBladeFxUserConfig $config,
         protected SprykerBladeFxUserEntityManagerInterface $entityManager,
@@ -107,16 +107,16 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
 
     /**
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxUpdatePasswordRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxUpdatePasswordRequestTransfer
      */
     public function generateAuthenticatedUpdatePasswordOnBladeFxRequest(
         UserTransfer $userTransfer,
         BladeFxCreateOrUpdateUserResponseTransfer $responseTransfer
     ): BladeFxUpdatePasswordRequestTransfer {
         return (new BladeFxUpdatePasswordRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->getToken()))
             ->setBladeFxUserId($responseTransfer->getId())
             ->setPassword($userTransfer->getPassword());
     }
@@ -135,14 +135,14 @@ class BladeFxUserHandler implements BladeFxUserHandlerInterface
      * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      * @param bool $isActive
      *
-     * @return \Generated\Shared\Transfer\BladeFxCreateOrUpdateUserRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxCreateOrUpdateUserRequestTransfer
      */
     public function generateAuthenticatedCreateOrUpdateUserOnBladeFxRequestTransfer(
         UserTransfer $userTransfer,
         bool $isActive = true
     ): BladeFxCreateOrUpdateUserRequestTransfer {
         return (new BladeFxCreateOrUpdateUserRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($this->getToken()))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->getToken()))
             ->setEmail($userTransfer->getUsername())
             ->setFirstName($userTransfer->getFirstName())
             ->setLastName($userTransfer->getLastName())

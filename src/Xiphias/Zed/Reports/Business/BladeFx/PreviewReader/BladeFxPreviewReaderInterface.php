@@ -5,15 +5,15 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\PreviewReader;
 
-use Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer;
-use Generated\Shared\Transfer\BladeFxParameterTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 
 interface BladeFxPreviewReaderInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
      *
-     * @return \Generated\Shared\Transfer\BladeFxGetReportPreviewResponseTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportsPreview(BladeFxParameterTransfer $parameterTransfer): BladeFxGetReportPreviewResponseTransfer;
 }

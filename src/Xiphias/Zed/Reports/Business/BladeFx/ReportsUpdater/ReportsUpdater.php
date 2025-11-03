@@ -1,17 +1,16 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportsUpdater;
 
-use Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer;
-use Generated\Shared\Transfer\BladeFxTokenTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\ReportsUpdaterRequestTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
-use Xiphias\Client\ReportsApi\ReportsApiClientInterface;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -33,9 +32,9 @@ class ReportsUpdater implements ReportsUpdaterInterface
     protected const MESSAGE_PARAM_ID = 'id';
 
     /**
-     * @var \Xiphias\Client\ReportsApi\ReportsApiClientInterface
+     * @var \Xiphias\BladeFxApi\BladeFxApiClientInterface
      */
-    protected ReportsApiClientInterface $apiClient;
+    protected BladeFxApiClientInterface $apiClient;
 
     /**
      * @var \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface
@@ -58,14 +57,14 @@ class ReportsUpdater implements ReportsUpdaterInterface
     protected ReportsConfig $config;
 
     /**
-     * @param \Xiphias\Client\ReportsApi\ReportsApiClientInterface $apiClient
+     * @param \Xiphias\BladeFxApi\BladeFxApiClientInterface $apiClient
      * @param \Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface $tokenResolver
      * @param \Spryker\Zed\Messenger\Business\MessengerFacadeInterface $messengerFacade
      * @param \Spryker\Client\Session\SessionClientInterface $sessionClient
      * @param \Xiphias\Zed\Reports\ReportsConfig $config
      */
     public function __construct(
-        ReportsApiClientInterface $apiClient,
+        BladeFxApiClientInterface $apiClient,
         TokenResolverInterface $tokenResolver,
         MessengerFacadeInterface $messengerFacade,
         SessionClientInterface $sessionClient,
@@ -97,7 +96,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
     /**
      * @param int $repId
      *
-     * @return \Generated\Shared\Transfer\BladeFxSetFavoriteReportRequestTransfer
+     * @return \Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer
      */
     protected function generateAuthenticatedSetFavoriteReportRequestTransfer(int $repId): BladeFxSetFavoriteReportRequestTransfer
     {
@@ -107,7 +106,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
         );
 
         return (new BladeFxSetFavoriteReportRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setToken($token))
+            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token))
             ->setUserId($userId)
             ->setRepId($repId);
     }
