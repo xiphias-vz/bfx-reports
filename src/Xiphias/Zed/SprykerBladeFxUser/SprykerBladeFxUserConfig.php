@@ -92,4 +92,28 @@ class SprykerBladeFxUserConfig extends AbstractBundleConfig
     {
         return static::ROOT_ADMIN_ID;
     }
+
+    /**
+     * @return string
+     */
+    public function getHostUrl(): string
+    {
+        return $this->get(ReportsConstants::BLADE_FX_REPORTS_HOST);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultUsername(): string
+    {
+        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_DEFAULT_USER_NAME];
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultPassword(): string
+    {
+        return $this->get(ReportsConstants::BLADE_FX_SERVICE)[ReportsConstants::BLADE_FX_DEFAULT_PASSWORD];
+    }
 }

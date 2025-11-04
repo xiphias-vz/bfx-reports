@@ -5,12 +5,12 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Mapper;
 
+use Spryker\Client\Session\SessionClientInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
-use Spryker\Client\Session\SessionClientInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\Reports\ReportsConfig;
 

@@ -2,10 +2,10 @@
 
 namespace Xiphias\Zed\Reports\Communication\Mapper;
 
+use Symfony\Component\HttpFoundation\Request;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
-use Symfony\Component\HttpFoundation\Request;
 
 interface ReportsMapperInterface
 {

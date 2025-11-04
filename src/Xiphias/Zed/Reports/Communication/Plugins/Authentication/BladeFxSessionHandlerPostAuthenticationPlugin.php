@@ -3,8 +3,8 @@
 
 namespace Xiphias\Zed\Reports\Communication\Plugins\Authentication;
 
-use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 
 /**
  * @method \Xiphias\Zed\Reports\Communication\ReportsCommunicationFactory getFactory()

@@ -134,7 +134,6 @@ class ReportsBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    // TODO Remove?
     /**
      * @return \Xiphias\Zed\Reports\Business\BladeFx\ReportByFormatReader\BladeFxReportByFormatReaderInterface
      */

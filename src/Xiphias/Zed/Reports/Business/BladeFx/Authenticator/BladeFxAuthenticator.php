@@ -6,12 +6,12 @@ declare(strict_types=1);
 namespace Xiphias\Zed\Reports\Business\BladeFx\Authenticator;
 
 use Exception;
-use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Generated\Shared\Transfer\UserTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxAuthenticationResponseTransfer;
 use Xiphias\Zed\Reports\ReportsConfig;
 use Xiphias\Zed\SprykerBladeFxUser\Business\SprykerBladeFxUserFacadeInterface;
 

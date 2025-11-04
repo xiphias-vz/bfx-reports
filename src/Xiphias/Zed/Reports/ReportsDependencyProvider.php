@@ -12,7 +12,7 @@ use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Communication\Plugins\Authentication\BladeFxSessionHandlerPostAuthenticationPlugin;
 
 /**
- * @method \Pyz\Zed\Reports\ReportsConfig getConfig()
+ * @method \Xiphias\Zed\Reports\ReportsConfig getConfig()
  */
 class ReportsDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -86,7 +86,7 @@ class ReportsDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addBladeFxClient(Container $container): Container
     {
-        $container->set(static::BLADE_FX_CLIENT, function (Container $container): BladeFxApiClientInterface {
+        $container->set(static::BLADE_FX_CLIENT, function (): BladeFxApiClientInterface {
             return new BladeFxApiClient(
                 $this->getConfig()->getHostUrl(),
                 $this->getConfig()->getDefaultUsername(),

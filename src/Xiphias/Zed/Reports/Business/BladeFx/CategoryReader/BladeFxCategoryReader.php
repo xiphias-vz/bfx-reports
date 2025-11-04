@@ -5,11 +5,11 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\CategoryReader;
 
+use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetCategoriesListRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
-use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
-use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 

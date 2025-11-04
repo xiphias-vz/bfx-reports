@@ -5,12 +5,12 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Controller;
 
-use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 
 /**
  * @method \Xiphias\Zed\Reports\Communication\ReportsCommunicationFactory getFactory()

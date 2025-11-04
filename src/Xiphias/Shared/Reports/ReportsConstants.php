@@ -69,10 +69,11 @@ class ReportsConstants
      * @var string
      */
     public const BLADE_FX_ORDER_ATTRIBUTE = 'spryker_order_detail';
+
     /**
      * @var string
      */
-    public const BLADE_FX_MP_ORDER_ATTRIBUTE = "spryker_order_detail_MP";
+    public const BLADE_FX_MP_ORDER_ATTRIBUTE = 'spryker_order_detail_MP';
 
     /**
      * @var string
@@ -92,12 +93,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const BLADE_FX_MP_REPORTS = "spryker_mp_reports";
+    public const BLADE_FX_MP_REPORTS = 'spryker_mp_reports';
 
     /**
      * @var string
      */
-    public const BLADE_FX_ALL_REPORTS = "spryker_all_reports";
+    public const BLADE_FX_ALL_REPORTS = 'spryker_all_reports';
 
     /**
      * @var string
@@ -127,12 +128,12 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const SPRKYER_PARAM_ID_PRODUCT_ABSTRACT = "id-product-abstract";
+    public const SPRKYER_PARAM_ID_PRODUCT_ABSTRACT = 'id-product-abstract';
 
     /**
      * @var string
      */
-    public const SPRKYER_PARAM_ID_MERCHANT = "id-merchant";
+    public const SPRKYER_PARAM_ID_MERCHANT = 'id-merchant';
 
     /**
      * @var string
@@ -249,6 +250,7 @@ class ReportsConstants
      * @var string
      */
     public const EVENT_QUEUE_NAME = 'event';
+
     /**
      * @var string
      */

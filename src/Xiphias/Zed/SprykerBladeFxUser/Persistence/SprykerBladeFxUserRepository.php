@@ -61,10 +61,9 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
     public function checkIfUserHasWantedGroup(int $userId, int $groupId): bool
     {
         $aclUserHasGroups = $this->getFactory()->createAclUserHasGroups();
+        $userGroupCollection = $aclUserHasGroups->findByFkUser($userId)->getData();
 
-        $UserGroupCollection = $aclUserHasGroups->findByFkUser($userId)->getIterator()->getCollection()->getData();
-
-        foreach ($UserGroupCollection as $userGroupId) {
+        foreach ($userGroupCollection as $userGroupId) {
             if ($userGroupId->getFkAclGroup() == $groupId) {
                 return true;
             }

@@ -5,11 +5,11 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Communication\Table;
 
-use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use InvalidArgumentException;
 use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
+use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
 use Xiphias\Shared\Reports\ReportsConstants;
 use Xiphias\Zed\Reports\Business\ReportsFacadeInterface;
 use Xiphias\Zed\Reports\ReportsConfig;

@@ -79,7 +79,7 @@ class OrderOverviewTabs extends AbstractTabs
             ReportsConstants::BLADE_FX_ORDER_PARAM_NAME => $this->addOrderOverviewTab($tabsViewTransfer),
             ReportsConstants::BLADE_FX_CUSTOMER_PARAM_NAME => $this->addCustomerOverviewTab($tabsViewTransfer),
             ReportsConstants::BLADE_FX_PRODUCT_PARAM_NAME => $this->addProductOverviewTab($tabsViewTransfer),
-            ReportsConstants::BLADE_FX_MERCHANT_PARAM_NAME => $this-> addMerchantOVerViewTab($tabsViewTransfer),
+            ReportsConstants::BLADE_FX_MERCHANT_PARAM_NAME => $this->addMerchantOVerViewTab($tabsViewTransfer),
             default => null
         };
 
@@ -126,7 +126,7 @@ class OrderOverviewTabs extends AbstractTabs
     }
 
     /**
-     * @param TabsViewTransfer $tabsViewTransfer
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
      *
      * @return $this
      */
@@ -144,7 +144,7 @@ class OrderOverviewTabs extends AbstractTabs
     }
 
     /**
-     * @param TabsViewTransfer $tabsViewTransfer
+     * @param \Generated\Shared\Transfer\TabsViewTransfer $tabsViewTransfer
      *
      * @return $this
      */
@@ -210,6 +210,7 @@ class OrderOverviewTabs extends AbstractTabs
     {
         return '@MerchantGui/_partials/_tabs/merchant-overview.twig';
     }
+
     /**
      * @return string
      */

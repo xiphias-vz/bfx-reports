@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\ReportsUpdater;
 
-use Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Generated\Shared\Transfer\MessageTransfer;
 use Generated\Shared\Transfer\ReportsUpdaterRequestTransfer;
 use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
+use Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 

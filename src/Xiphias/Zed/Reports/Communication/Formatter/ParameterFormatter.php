@@ -3,7 +3,6 @@
 
 namespace Xiphias\Zed\Reports\Communication\Formatter;
 
-use Pyz\Shared\Customer\CustomerConfig;
 use Spryker\Shared\Customer\CustomerConstants;
 use Spryker\Zed\Sales\SalesConfig;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +45,7 @@ class ParameterFormatter implements ParameterFormatterInterface
             return ReportsConstants::BLADE_FX_MERCHANT_ATTRIBUTE;
         }
 
-        return "";
+        return '';
     }
 
     /**
@@ -71,7 +70,7 @@ class ParameterFormatter implements ParameterFormatterInterface
             return ReportsConstants::BLADE_FX_MERCHANT_PARAM_NAME;
         }
 
-        return "";
+        return '';
     }
 
     /**

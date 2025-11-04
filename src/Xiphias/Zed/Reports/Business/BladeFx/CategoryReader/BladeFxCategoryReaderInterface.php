@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\CategoryReader;
 
-use Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer;
 use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
+use Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer;
 
 interface BladeFxCategoryReaderInterface
 {

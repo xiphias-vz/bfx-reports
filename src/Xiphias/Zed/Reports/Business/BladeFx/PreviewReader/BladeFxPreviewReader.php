@@ -5,11 +5,11 @@ declare(strict_types=1);
 
 namespace Xiphias\Zed\Reports\Business\BladeFx\PreviewReader;
 
+use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
-use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
