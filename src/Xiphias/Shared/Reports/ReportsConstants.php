@@ -260,4 +260,14 @@ class ReportsConstants
      * @var string
      */
     public const USER_CREATE_UPDATE_DELETE_FAILED_GENERAL_ERROR = 'bfx.reports.create_update_delete.failed';
+
+    /**
+     * @var string
+     */
+    public const TIMEZONE_CROATIA = "Europe/Zagreb";
+
+    /**
+     * @var string
+     */
+    public const TIME_FORMAT_BLADEFX = "Y-m-d H:i:s";
 }

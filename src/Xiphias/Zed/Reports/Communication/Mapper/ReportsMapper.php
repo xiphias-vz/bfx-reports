@@ -83,10 +83,11 @@ class ReportsMapper implements ReportsMapperInterface
         $reportId = (int)$request->query->get(BladeFxReportTransfer::REP_ID);
         $parameterName = $request->query->get(ReportsConstants::PARAMETER_NAME);
         $parameterValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
+        $currentTime = $this->getCurrentTimeInCroatia();
 
         return (new BladeFxParameterTransfer())
             ->setParamName($parameterName)
-            ->setParamValue($this->buildParameters($reportId, $parameterValue, $parameterName))
+            ->setParamValue($this->buildParameters($reportId, $parameterValue, $parameterName, $currentTime))
             ->setReportId($reportId)
             ->setSqlDbType('');
     }
@@ -108,10 +109,11 @@ class ReportsMapper implements ReportsMapperInterface
      * @param int $reportId
      * @param string|null $parameterValue
      * @param string|null $parameterName
+     * @param string $currentTime
      *
      * @return string
      */
-    protected function buildParameters(int $reportId, ?string $parameterValue, ?string $parameterName): string
+    protected function buildParameters(int $reportId, ?string $parameterValue, ?string $parameterName, string $currentTime): string
     {
         return $reportId
             . static::DELIMITER
@@ -123,8 +125,19 @@ class ReportsMapper implements ReportsMapperInterface
             . static::PARAMETER_SEPARATOR
             . $parameterValue
             . static::DELIMITER
-            . date('j.n.Y. H:i:s')
+            . $currentTime
             . static::DELIMITER
             . $this->sessionClient->get($this->config->getBfxTokenSessionKey());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getCurrentTimeInCroatia(): string
+    {
+        $tz = new \DateTimeZone(ReportsConstants::TIMEZONE_CROATIA);
+        $date = new \DateTime("now", $tz);
+
+        return $date->format(ReportsConstants::TIME_FORMAT_BLADEFX);
     }
 }
