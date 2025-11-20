@@ -9,7 +9,6 @@ use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -54,7 +53,7 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
     {
         $requestTransfer = $this->buildAuthenticatedGetReportsListRequest($parameterTransfer);
 
-        return $this->apiClient->sendGetReportPreviewRequest($requestTransfer);
+        return $this->apiClient->sendGetReportPreviewRequest($requestTransfer, true);
     }
 
     /**
@@ -71,6 +70,6 @@ class BladeFxPreviewReader implements BladeFxPreviewReaderInterface
             ->setRootUrl($this->config->getRootUrl())
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType($this->config->getReturnTypeJson())
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()));
+            ->setAccessToken($this->tokenResolver->resolveToken());
     }
 }

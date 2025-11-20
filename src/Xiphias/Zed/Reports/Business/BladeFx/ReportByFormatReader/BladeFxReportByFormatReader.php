@@ -10,7 +10,6 @@ use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportByFormatRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportByFormatResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -73,6 +72,7 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
     ): BladeFxGetReportByFormatResponseTransfer {
         return $this->apiClient->sendGetReportByFormatRequest(
             $this->buildAuthenticatedReportByFormatRequestTransfer($reportId, $format, $paramListTransfer),
+            true,
         );
     }
 
@@ -126,6 +126,6 @@ class BladeFxReportByFormatReader implements BladeFxReportByFormatReaderInterfac
             ->setLayoutId($this->config->getDefaultLayout())
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE)
             ->setParams($paramListTransfer)
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token));
+            ->setAccessToken($token);
     }
 }

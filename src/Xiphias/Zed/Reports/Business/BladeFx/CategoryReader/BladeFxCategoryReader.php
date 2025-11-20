@@ -9,7 +9,6 @@ use Generated\Shared\Transfer\CategoryReaderRequestTransfer;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxCategoriesListResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetCategoriesListRequestTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -54,6 +53,7 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
     {
         $categories = $this->apiClient->sendGetCategoriesListRequest(
             $this->buildAuthenticatedCategoriesListRequestTransfer($readerRequestTransfer),
+            true,
         );
 
         $categoryList = $categories->getCategoriesList();
@@ -80,8 +80,6 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
         return (new BladeFxGetCategoriesListRequestTransfer())
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
             ->setReturnType($this->config->getReturnTypeJson())
-            ->setToken(
-                (new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()),
-            );
+            ->setAccessToken($this->tokenResolver->resolveToken());
     }
 }

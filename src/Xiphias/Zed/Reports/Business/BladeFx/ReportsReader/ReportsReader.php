@@ -11,7 +11,6 @@ use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportParamFormResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -57,7 +56,7 @@ class ReportsReader implements ReportsReaderInterface
     {
         $requestTransfer = $this->buildAuthenticatedGetReportsListRequest($readerRequestTransfer, $attribute);
 
-        return $this->apiClient->sendGetReportsListRequest($requestTransfer);
+        return $this->apiClient->sendGetReportsListRequest($requestTransfer, true);
     }
 
     /**
@@ -71,10 +70,10 @@ class ReportsReader implements ReportsReaderInterface
         ?string $attribute = ''
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()))
             ->setCatId($readerRequestTransfer->getActiveCategory() ?? $this->config->getDefaultCategoryIndex())
             ->setAttribute($attribute)
-            ->setReturnType($this->config->getReturnTypeJson());
+            ->setReturnType($this->config->getReturnTypeJson())
+            ->setAccessToken($this->tokenResolver->resolveToken());
     }
 
     /**
@@ -87,8 +86,8 @@ class ReportsReader implements ReportsReaderInterface
         $requestTransfer = (new BladeFxGetReportParamFormRequestTransfer())
             ->setRootUrl($this->config->getParamFormRootUrl())
             ->setReportId($reportId)
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($this->tokenResolver->resolveToken()));
+            ->setAccessToken($this->tokenResolver->resolveToken());
 
-        return $this->apiClient->sendGetReportParamFormRequest($requestTransfer);
+        return $this->apiClient->sendGetReportParamFormRequest($requestTransfer, true);
     }
 }
