@@ -103,7 +103,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
             $userInfo = $request->request->getIterator()->current();
 
             $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
-                $this->getAuthenticationRequestTransfer($userInfo),
+                $this->getAuthenticationRequestTransfer($userInfo), true
             );
 
             $this->setUserAuthTokenToSession($authenticationResponseTransfer->getAccessToken());
