@@ -9,7 +9,6 @@ use Spryker\Client\Session\SessionClientInterface;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListRequestTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxGetReportsListResponseTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\Authenticator\BladeFxAuthenticatorInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -72,6 +71,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
     {
         return $this->apiClient->sendGetReportsListRequest(
             $this->buildAuthenticatedReportListRequestTransfer($attribute),
+            true,
         );
     }
 
@@ -109,7 +109,7 @@ class BladeFxReportListReader implements BladeFxReportListReaderInterface
         string $attribute = ''
     ): BladeFxGetReportsListRequestTransfer {
         return (new BladeFxGetReportsListRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token))
+            ->setAccessToken($token)
             ->setAttribute($attribute)
             ->setReturnType(static::DEFAULT_DATA_RETURN_TYPE);
     }

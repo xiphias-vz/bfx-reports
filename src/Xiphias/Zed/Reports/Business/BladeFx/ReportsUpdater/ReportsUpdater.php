@@ -10,7 +10,6 @@ use Spryker\Client\Session\SessionClientInterface;
 use Spryker\Zed\Messenger\Business\MessengerFacadeInterface;
 use Xiphias\BladeFxApi\BladeFxApiClientInterface;
 use Xiphias\BladeFxApi\DTO\BladeFxSetFavoriteReportRequestTransfer;
-use Xiphias\BladeFxApi\DTO\BladeFxTokenTransfer;
 use Xiphias\Zed\Reports\Business\BladeFx\TokenResolver\TokenResolverInterface;
 use Xiphias\Zed\Reports\ReportsConfig;
 
@@ -88,7 +87,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
             $updaterRequestTransfer->getRepId(),
         );
 
-        $this->apiClient->sendSetFavoriteReportRequest($requestTransfer);
+        $this->apiClient->sendSetFavoriteReportRequest($requestTransfer, true);
 
         $this->generateSuccessMessage($updaterRequestTransfer);
     }
@@ -106,7 +105,7 @@ class ReportsUpdater implements ReportsUpdaterInterface
         );
 
         return (new BladeFxSetFavoriteReportRequestTransfer())
-            ->setToken((new BladeFxTokenTransfer())->setAccessToken($token))
+            ->setAccessToken($token)
             ->setUserId($userId)
             ->setRepId($repId);
     }

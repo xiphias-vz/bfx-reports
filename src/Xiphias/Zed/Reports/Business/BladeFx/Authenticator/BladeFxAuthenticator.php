@@ -82,6 +82,7 @@ class BladeFxAuthenticator implements BladeFxAuthenticatorInterface
             try {
                 $authenticationResponseTransfer = $this->apiClient->sendAuthenticateUserRequest(
                     $validatedAuthenticationRequestTransfer,
+                    true,
                 );
 
                 $this->executePostAuthenticationPlugins($authenticationResponseTransfer);
