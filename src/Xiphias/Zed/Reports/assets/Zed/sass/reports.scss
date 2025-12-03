@@ -6,6 +6,7 @@
     box-shadow: 0.125rem 0.125rem 0.313rem rgba(0, 0, 0, 0.1);
     overflow: hidden;
     height: 70vh;
+    margin-right: 20px;
 
     &__list-item {
         width: 100%;
@@ -106,4 +107,8 @@ iframe.modal-body {
     40%{background-position:0% 100%, 50%   0%,100%  50%}
     60%{background-position:0%  50%, 50% 100%,100%   0%}
     80%{background-position:0%  50%, 50%  50%,100% 100%}
+}
+
+.bfx-container-main {
+    display: flex;
 }
