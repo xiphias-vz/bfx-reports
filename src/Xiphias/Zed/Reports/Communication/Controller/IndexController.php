@@ -30,6 +30,11 @@ class IndexController extends AbstractController
      */
     public function indexAction(Request $request): array
     {
+        $isLoggedIn = $this->isLoggedInBladeFx();
+        if (!$isLoggedIn) {
+            return $this->viewResponse(['isLoggedInBladeFx' => false]);
+        }
+
         $categoryTree = $this
             ->getFacade()
             ->buildCategoryTree($request);
@@ -38,15 +43,11 @@ class IndexController extends AbstractController
             ->createReportsTable();
 
         $config = $this->getFactory()->getConfig();
-
         $categoryQueryKey = $config->getCategoryQueryKey();
         $defaultCategoryIndex = $config->getDefaultCategoryIndex();
 
-        if (!$this->isLoggedInBladeFx()) {
-            $this->createErrorMessage();
-        }
-
         return $this->viewResponse([
+            'isLoggedInBladeFx' => true,
             'categoryTree' => $categoryTree,
             'reportsTable' => $reportsTable->render(),
             'currentCategoryId' => $request->query->getInt($categoryQueryKey, $defaultCategoryIndex),
@@ -148,7 +149,7 @@ class IndexController extends AbstractController
         $reportParamFormTransfer = $this->getFacade()->getReportParamForm($reportId);
 
         return $this->jsonResponse([
-           'iframeUrl' => $reportParamFormTransfer->getIframeUrl(),
+            'iframeUrl' => $reportParamFormTransfer->getIframeUrl(),
         ]);
     }
 
@@ -170,13 +171,5 @@ class IndexController extends AbstractController
         return $this->getFactory()->getSessionClient()->has(
             $this->getFactory()->getConfig()->getBfxTokenSessionKey(),
         );
-    }
-
-    /**
-     * @return void
-     */
-    protected function createErrorMessage(): void
-    {
-        $this->addErrorMessage('bfx.reports.login_failed');
     }
 }
