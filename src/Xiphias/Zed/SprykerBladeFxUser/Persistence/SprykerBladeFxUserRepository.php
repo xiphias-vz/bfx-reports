@@ -94,8 +94,8 @@ class SprykerBladeFxUserRepository extends AbstractRepository implements Spryker
         $adminGroupId = $this->getRootGroupId();
         $userId = $userTransfer->getIdUser();
 
-        if ($userId !== $this->getFactory()->getConfig()->getRootAdminId()) {
-            return false;
+        if ($userId === $this->getFactory()->getConfig()->getRootAdminId()) {
+            return true;
         }
 
         return $this->checkIfUserHasWantedGroup($userId, $adminGroupId);
