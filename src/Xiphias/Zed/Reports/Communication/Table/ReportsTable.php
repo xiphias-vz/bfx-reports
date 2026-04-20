@@ -213,9 +213,12 @@ class ReportsTable extends AbstractTable
         $this->filtered = count($results);
         $this->total = count($reportList);
 
-        $sortingParameters = $this->createSortingParameters($this->getOrderParameter())[0];
-        if ($sortingParameters) {
-            $results = $this->sortResults($results, $sortingParameters[static::KEY_COLUMN], $sortingParameters[static::KEY_DIRECTION]);
+        $orderParameter = $this->getOrderParameter();
+        if ($orderParameter && count($orderParameter)) {
+            $sortingParameters = $this->createSortingParameters($this->getOrderParameter())[0];
+            if ($sortingParameters) {
+                $results = $this->sortResults($results, $sortingParameters[static::KEY_COLUMN], $sortingParameters[static::KEY_DIRECTION]);
+            }
         }
 
         foreach ($results as &$result) {
