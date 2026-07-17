@@ -102,11 +102,11 @@ class IndexController extends AbstractController
     public function previewAction(Request $request): JsonResponse
     {
         $mapper = $this->getFactory()->createReportsMapper();
-        $paramTransfer = $mapper->mapPreviewParametersToNewParameterTransfer($request);
-        $responseTransfer = $this->getFacade()->getReportPreviewURL($paramTransfer);
+        $paramListTransfer = $mapper->mapPreviewParametersToNewParameterListTransfer($request);
+        $responseTransfer = $this->getFacade()->getReportPreviewURL($paramListTransfer);
 
         return $this->jsonResponse([
-            'iframeUrl' => $mapper->assemblePreviewUrl($responseTransfer),
+            'iframeUrl' => $responseTransfer->getUrl(),
         ]);
     }
 
