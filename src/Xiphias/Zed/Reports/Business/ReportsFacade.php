@@ -106,12 +106,12 @@ class ReportsFacade extends AbstractFacade implements ReportsFacadeInterface
     }
 
     /**
-     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer $parameterTransfer
+     * @param \Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer $parameterTransfer
      *
      * @return \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer
      */
     public function getReportPreviewURL(
-        BladeFxParameterTransfer $parameterTransfer
+        BladeFxParameterListTransfer $parameterTransfer
     ): BladeFxGetReportPreviewResponseTransfer {
         return $this->getFactory()->createBladeFxPreviewReader()->getReportsPreview($parameterTransfer);
     }

@@ -7,7 +7,6 @@ namespace Xiphias\Zed\Reports\Communication\Mapper;
 
 use Spryker\Client\Session\SessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterListTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer;
 use Xiphias\BladeFxApi\DTO\BladeFxReportTransfer;
@@ -78,66 +77,35 @@ class ReportsMapper implements ReportsMapperInterface
      *
      * @return \Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer
      */
-    public function mapPreviewParametersToNewParameterTransfer(Request $request): BladeFxParameterTransfer
+    public function mapPreviewParametersToNewParameterListTransfer(Request $request): BladeFxParameterListTransfer
     {
         $reportId = (int)$request->query->get(BladeFxReportTransfer::REP_ID);
-        $parameterName = $request->query->get(ReportsConstants::PARAMETER_NAME);
-        $parameterValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
-        $currentTime = $this->getCurrentTimeInCroatia();
+        $contextValue = $request->query->get(ReportsConstants::PARAMETER_NAME);
+        $idValue = $request->query->get(ReportsConstants::PARAMETER_VALUE);
 
-        return (new BladeFxParameterTransfer())
-            ->setParamName($parameterName)
-            ->setParamValue($this->buildParameters($reportId, $parameterValue, $parameterName, $currentTime))
+        return (new BladeFxParameterListTransfer())
+            ->setParameterList($this->buildParameters($contextValue, $idValue))
             ->setReportId($reportId)
             ->setSqlDbType('');
     }
 
     /**
-     * @param \Xiphias\BladeFxApi\DTO\BladeFxGetReportPreviewResponseTransfer $responseTransfer
+     * @param string|null $contextValue
+     * @param string|null $idValue
      *
-     * @return string
+     * @return array<\Xiphias\BladeFxApi\DTO\BladeFxParameterTransfer>
      */
-    public function assemblePreviewUrl(BladeFxGetReportPreviewResponseTransfer $responseTransfer): string
+    protected function buildParameters(?string $contextValue, ?string $idValue): array
     {
-        return $this->config->getParamFormRootUrl()
-            . $this->config->getReportPreviewUrlPath()
-            . '?' . static::QUERY_PARAM_HASH . '='
-            . $responseTransfer->getUrl();
-    }
-
-    /**
-     * @param int $reportId
-     * @param string|null $parameterValue
-     * @param string|null $parameterName
-     * @param string $currentTime
-     *
-     * @return string
-     */
-    protected function buildParameters(int $reportId, ?string $parameterValue, ?string $parameterName, string $currentTime): string
-    {
-        return $reportId
-            . static::DELIMITER
-            . $this->sessionClient->get($this->config->getBfxUserIdSessionKey())
-            . static::DELIMITER
-            . static::LAYOUT_ID_DEFAULT
-            . static::DELIMITER
-            . $parameterName
-            . static::PARAMETER_SEPARATOR
-            . $parameterValue
-            . static::DELIMITER
-            . $currentTime
-            . static::DELIMITER
-            . $this->sessionClient->get($this->config->getBfxTokenSessionKey());
-    }
-
-    /**
-     * @return string
-     */
-    protected function getCurrentTimeInCroatia(): string
-    {
-        $tz = new \DateTimeZone(ReportsConstants::TIMEZONE_CROATIA);
-        $date = new \DateTime("now", $tz);
-
-        return $date->format(ReportsConstants::TIME_FORMAT_BLADEFX);
+        return [
+            (new BladeFxParameterTransfer())
+                ->setParamName(ReportsConstants::CONTEXT_BLADE_FX_PARAMETER_NAME)
+                ->setSqlDbType('')
+                ->setParamValue($contextValue),
+            (new BladeFxParameterTransfer())
+                ->setSqlDbType('')
+                ->setParamName(ReportsConstants::ID_BLADE_FX_PARAMETER_NAME)
+                ->setParamValue($idValue),
+        ];
     }
 }

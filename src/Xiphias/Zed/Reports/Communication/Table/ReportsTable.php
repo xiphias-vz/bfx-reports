@@ -80,6 +80,7 @@ class ReportsTable extends AbstractTable
      * @var string
      */
     protected $tableClass = self::TABLE_CLASS . ' bfx-reports-table';
+
     /**
      * @var \Xiphias\Zed\Reports\Business\ReportsFacadeInterface
      */

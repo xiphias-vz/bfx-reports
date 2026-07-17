@@ -153,7 +153,7 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const CONTEXT_BLADE_FX_PARAMETER_NAME = '@context';
+    public const CONTEXT_BLADE_FX_PARAMETER_NAME = '@Context';
 
     /**
      * @var string
@@ -264,10 +264,10 @@ class ReportsConstants
     /**
      * @var string
      */
-    public const TIMEZONE_CROATIA = "Europe/Zagreb";
+    public const TIMEZONE_CROATIA = 'Europe/Zagreb';
 
     /**
      * @var string
      */
-    public const TIME_FORMAT_BLADEFX = "Y-m-d H:i:s";
+    public const TIME_FORMAT_BLADEFX = 'Y-m-d H:i:s';
 }
