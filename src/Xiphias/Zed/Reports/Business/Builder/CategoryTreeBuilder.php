@@ -19,7 +19,7 @@ class CategoryTreeBuilder implements CategoryTreeBuilderInterface
     /**
      * @var string
      */
-    public const KEY_CATEGORY_PARENT_ID = 'catParentId';
+    public const KEY_CATEGORY_PARENT_ID = 'idParent';
 
     /**
      * @var string
@@ -56,7 +56,7 @@ class CategoryTreeBuilder implements CategoryTreeBuilderInterface
                 $category = $category->toArray();
             }
             $categoryParentId = $category[static::KEY_CATEGORY_PARENT_ID];
-            $categoryId = $category['catId'];
+            $categoryId = $category['id'];
             $categoryTree[$categoryId] = [
                 static::KEY_CATEGORY_PARENT_ID => null,
                 static::KEY_VALUE => $category,

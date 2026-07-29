@@ -59,8 +59,8 @@ class BladeFxCategoryReader implements BladeFxCategoryReaderInterface
         $categoryList = $categories->getCategoriesList();
 
         foreach ($categoryList as $category) {
-            if ($category->getCatId() == $readerRequestTransfer->getActiveCategory()) {
-                $category->setIsActiveTree(true);
+            if ($category->getId() == $readerRequestTransfer->getActiveCategory()) {
+                $category->setIsSelected(true);
             }
         }
 
